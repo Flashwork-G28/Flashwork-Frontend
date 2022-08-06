@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for install react router dom" />
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for install react axios">
+      <change afterPath="$PROJECT_DIR$/src/Components/NavBar/navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/about.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/contactUs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/job.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/workers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +33,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2CU1VShw0N4lXJEv3Bk0Ikz8QKS" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,6 +53,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\3Y Project\client\src\Pages\landingPages" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +68,8 @@
       <updated>1658842386697</updated>
       <workItem from="1658842390210" duration="3560000" />
       <workItem from="1658858746454" duration="704000" />
+      <workItem from="1659007307514" duration="124000" />
+      <workItem from="1659784920730" duration="2732000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -65,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658863156570</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="This commit for install react axios">
+      <created>1659007393117</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659007393117</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +125,7 @@
     <MESSAGE value="This commit for update structure" />
     <MESSAGE value="This commit for update data" />
     <MESSAGE value="This commit for install react router dom" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for install react router dom" />
+    <MESSAGE value="This commit for install react axios" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for install react axios" />
   </component>
 </project>
