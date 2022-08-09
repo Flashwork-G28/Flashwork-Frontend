@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,14 +20,29 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Job(props: Order) {
-  const classes = useStyles();
 
+
+
+
+const Job = (props: Order) => {
+  const [count, setCount] = useState<number>(0);
+  const classes = useStyles();
   return (
-      <Card className={classes.root} variant="outlined">
-        <CardContent className={classes.content}>
-          {props.name}
-        </CardContent>
-      </Card>
+      <div>
+        <header>
+          <h1>{props.name}</h1>
+          <button onClick={() => setCount(count + 1)}>
+            Click me!
+          </button>
+          <p>You've clicked the button {count} times.</p>
+        </header>
+        <Card className={classes.root} variant="outlined">
+          <CardContent className={classes.content}>
+            {props.name}
+          </CardContent>
+        </Card>
+      </div>
   );
 };
+
+export default Job;
