@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for add some testing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavBar/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for add some testing 3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +77,7 @@
       <workItem from="1659787753220" duration="4137000" />
       <workItem from="1659853604990" duration="10754000" />
       <workItem from="1659948053111" duration="10409000" />
-      <workItem from="1659967749031" duration="6653000" />
+      <workItem from="1659967749031" duration="7374000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -119,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660040150358</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="This commit for add some testing 3">
+      <created>1660040881086</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040881086</updated>
+    </task>
+    <task id="LOCAL-00007" summary="This commit for add some testing 3">
+      <created>1660040899936</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040899936</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +164,8 @@
     <MESSAGE value="This commit for install react axios" />
     <MESSAGE value="This commit for add folder structer" />
     <MESSAGE value="This commit for add some testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for add some testing" />
+    <MESSAGE value="This commit for add some testing 2" />
+    <MESSAGE value="This commit for add some testing 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for add some testing 3" />
   </component>
 </project>

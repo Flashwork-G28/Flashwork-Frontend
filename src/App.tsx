@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/'  element={<Home />}/>
         </Routes>
 
         {/*<Route path="/job">*/}
