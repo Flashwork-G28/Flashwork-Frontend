@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {Props} from "react-select";
+import {Order} from "./About";
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Job(props: Props) {
+export default function Job(props: Order) {
   const classes = useStyles();
 
   return (
