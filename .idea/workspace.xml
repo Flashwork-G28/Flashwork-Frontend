@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for add some testing 5">
-      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" afterDir="false" />
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new branc">
+      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +46,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/3Y Project/Flashwork-Frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "D:\\3Y Project\\client\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/3Y Project/Flashwork-Frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;H:\\3rd year Project\\FrontEnd\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="true" />
+        <entry key="com.haulmont.rcb.reactInspector" value="true" />
+      </map>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\3Y Project\client\src\Assets" />
@@ -80,6 +92,8 @@
       <workItem from="1659853604990" duration="10754000" />
       <workItem from="1659948053111" duration="10409000" />
       <workItem from="1659967749031" duration="8691000" />
+      <workItem from="1660063114912" duration="6421000" />
+      <workItem from="1660074894953" duration="3314000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -185,5 +199,16 @@
     <MESSAGE value="This commit for add some testing 4" />
     <MESSAGE value="This commit for add some testing 5" />
     <option name="LAST_COMMIT_MESSAGE" value="This commit for add some testing 5" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
