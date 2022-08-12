@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import {Props} from "react-select";
-import {Order} from "./About";
 
 const useStyles = makeStyles({
   root: {
@@ -24,13 +23,13 @@ const useStyles = makeStyles({
 
 
 
-const Job = (props: Order) => {
+const Job = () => {
   const [count, setCount] = useState<number>(0);
   const classes = useStyles();
   return (
       <div>
         <header>
-          <h1>{props.name}</h1>
+          <h1>sdfsds</h1>
           <button onClick={() => setCount(count + 1)}>
             Click me!
           </button>
@@ -38,7 +37,7 @@ const Job = (props: Order) => {
         </header>
         <Card className={classes.root} variant="outlined">
           <CardContent className={classes.content}>
-            {props.name}
+            adaddad
           </CardContent>
         </Card>
       </div>

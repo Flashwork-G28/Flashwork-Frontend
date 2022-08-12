@@ -1,19 +1,11 @@
-import React, { Component } from 'react'
-import Typography from '@mui/material/Typography';
-import Job from "./Job"
+import React from 'react';
 
-export interface Order {
-    name: string
-
-
-}
-
-export default class About extends Component {
-  render() {
+const About = () => {
     return (
-      <div>
-
-      </div>
+        <div>
+            about
+        </div>
     );
-  }
-}
+};
+
+export default About;
