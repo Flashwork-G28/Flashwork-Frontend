@@ -19,8 +19,7 @@ const styles = {
 const Home = () => {
     return (
         <>
-
-            <HomeServiceCard/>
+            {/*<HomeServiceCard/>*/}
         </>
     );
 };
