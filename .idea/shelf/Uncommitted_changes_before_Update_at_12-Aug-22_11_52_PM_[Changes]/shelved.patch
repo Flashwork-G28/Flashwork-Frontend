@@ -1,0 +1,839 @@
+Index: src/Components/NavBar/NavBar.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import * as React from 'react';\r\nimport AppBar from '@mui/material/AppBar';\r\nimport Box from '@mui/material/Box';\r\nimport Toolbar from '@mui/material/Toolbar';\r\nimport Typography from '@mui/material/Typography';\r\nimport Button from '@mui/material/Button';\r\nimport IconButton from '@mui/material/IconButton';\r\nimport MenuIcon from '@mui/icons-material/Menu';\r\n\r\n\r\nexport default function NavBar() {\r\n    return (\r\n        <Box sx={{ flexGrow: 1 }}>\r\n            <AppBar position=\"static\" color=\"secondary\">\r\n                <Toolbar >\r\n                    <IconButton\r\n                        size=\"large\"\r\n                        edge=\"start\"\r\n                        color=\"primary\"\r\n                        aria-label=\"menu\"\r\n                        sx={{ mr: 2 }}\r\n                    >\r\n                        <MenuIcon />\r\n                    </IconButton>\r\n                    <Typography variant=\"h6\" component=\"div\" sx={{ flexGrow: 1 }}>\r\n                        News\r\n                    </Typography>\r\n                    <Button color=\"inherit\">Login</Button>\r\n                </Toolbar>\r\n            </AppBar>\r\n        </Box>\r\n    );\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Components/NavBar/NavBar.tsx b/src/Components/NavBar/NavBar.tsx
+--- a/src/Components/NavBar/NavBar.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Components/NavBar/NavBar.tsx	(date 1660292095467)
+@@ -2,32 +2,138 @@
+ import AppBar from '@mui/material/AppBar';
+ import Box from '@mui/material/Box';
+ import Toolbar from '@mui/material/Toolbar';
++import IconButton from '@mui/material/IconButton';
+ import Typography from '@mui/material/Typography';
++import Container from '@mui/material/Container';
++import Avatar from '@mui/material/Avatar';
++
++import { makeStyles } from '@material-ui/core/styles';
++import logoIcon from '../../Assets/logoIcon.png'
++import { Link, NavLink } from "react-router-dom";
++
++import Tooltip from '@mui/material/Tooltip';
++import NotificationsIcon from '@mui/icons-material/Notifications';
++import Badge from '@mui/material/Badge';
++import LogoutIcon from '@mui/icons-material/Logout';
++
+ import Button from '@mui/material/Button';
+-import IconButton from '@mui/material/IconButton';
+-import MenuIcon from '@mui/icons-material/Menu';
++
++const useStyles = makeStyles({
++    typoContent: {
++        textDecoration: 'none',
++        color: 'black',
++        display: 'block',
++        fontWeight: 600,
++        padding: '10px',
++        paddingLeft: '30px',
++        paddingRight: '30px',
++    },
++    activeStyle:{
++        textDecoration: 'none',
++        color: 'white',
++        display: 'block',
++        backgroundColor:"#7A3293",
++        fontWeight: 600,
++        padding: '10px',
++        paddingLeft: '30px',
++        paddingRight: '30px'
+ 
++    },
++    link:{
++        textDecoration: 'none',
++    }
++});
+ 
+-export default function NavBar() {
++const NavBar = () => {
++    const classes = useStyles();
++
+     return (
+-        <Box sx={{ flexGrow: 1 }}>
+-            <AppBar position="static" color="secondary">
+-                <Toolbar >
+-                    <IconButton
+-                        size="large"
+-                        edge="start"
++        <AppBar position="static" color="transparent">
++            <Container maxWidth="xl" >
++                <Toolbar disableGutters>
++                    <Avatar alt="logoIcon" src={logoIcon} sx={{ display: { xs: 'none', md: 'flex' }, ml:2, mr:1 ,width: 56, height: 56  }}/>
++                    <Typography
++                        variant="h5"
++                        noWrap
+                         color="primary"
+-                        aria-label="menu"
+-                        sx={{ mr: 2 }}
++                        sx={{
++                            mr: 10,
++                            display: { xs: 'none', md: 'flex' },
++                            fontFamily: 'monospace',
++                            fontWeight: 900,
++                            letterSpacing: '.3rem',
++                            textDecoration: 'none',
++                        }}
+                     >
+-                        <MenuIcon />
+-                    </IconButton>
+-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+-                        News
++                        FlashWork
+                     </Typography>
+-                    <Button color="inherit">Login</Button>
++
++
++                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}} mr="20">
++
++                        <NavLink to="/" className={({ isActive }) =>
++                            isActive ? classes.activeStyle : classes.typoContent
++                        }>
++                            <Typography sx={{ my: 2,fontWeight: 600 }}>Home</Typography>
++                        </NavLink>
++
++                        <NavLink to="/workers" className={({ isActive }) =>
++                            isActive ? classes.activeStyle : classes.typoContent
++                        }>
++                            <Typography sx={{ my: 2,fontWeight: 600 }}>Workers</Typography>
++                        </NavLink>
++                        <NavLink to="/jobs" className={({ isActive }) =>
++                            isActive ? classes.activeStyle : classes.typoContent
++                        }>
++                            <Typography sx={{ my: 2,fontWeight: 600 }}>Jobs</Typography>
++                        </NavLink>
++                        <NavLink to="/about" className={({ isActive }) =>
++                            isActive ? classes.activeStyle : classes.typoContent
++                        }>
++                            <Typography sx={{ my: 2,fontWeight: 600 }}>About</Typography>
++                        </NavLink>
++                        <NavLink to="/contactUs" className={({ isActive }) =>
++                            isActive ? classes.activeStyle : classes.typoContent
++                        }>
++                            <Typography sx={{ my: 2,fontWeight: 600 }}>Contact Us</Typography>
++                        </NavLink>
++
++                    </Box>
++
++                    {/*<Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>*/}
++                    {/*    <IconButton*/}
++                    {/*        size="large"*/}
++                    {/*        color="inherit"*/}
++                    {/*    >*/}
++                    {/*        <Badge badgeContent={17} color="error">*/}
++                    {/*            <NotificationsIcon />*/}
++                    {/*        </Badge>*/}
++                    {/*    </IconButton>*/}
++
++                    {/*    <IconButton size="large" color="inherit">*/}
++                    {/*        <Badge  color="error">*/}
++                    {/*            <LogoutIcon />*/}
++                    {/*        </Badge>*/}
++                    {/*    </IconButton>*/}
++
++                    {/*    <Tooltip title="Open settings">*/}
++                    {/*        <IconButton  >*/}
++                    {/*            <Avatar alt="ProfilePic" src="/static/images/avatar/2.jpg" />*/}
++                    {/*        </IconButton>*/}
++                    {/*    </Tooltip>*/}
++                    {/*</Box>*/}
++
++                    <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
++                        <Link to="/signUp" className={classes.link}>
++                            <Button variant="outlined"  color="secondary">Sign Up</Button>
++                        </Link>
++                        <Link to="/signIn" className={classes.link}>
++                            <Button variant="contained" href="signIp" color="secondary">Sign In</Button>
++                        </Link>
++                    </Box>
+                 </Toolbar>
+-            </AppBar>
+-        </Box>
++            </Container>
++        </AppBar>
+     );
+-}
++};
++export default NavBar;
+Index: src/Pages/LandingPages/Home.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\r\nimport NavBar from \"../../Components/NavBar/NavBar\";\r\nimport About from \"./About\";\r\n\r\n\r\n\r\nfunction Home() {\r\n  return(\r\n      <div>\r\n        <NavBar/>\r\n        <About/>\r\n      </div>\r\n\r\n\r\n  );\r\n}\r\nexport default Home;\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/Home.tsx b/src/Pages/LandingPages/Home.tsx
+--- a/src/Pages/LandingPages/Home.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/LandingPages/Home.tsx	(date 1660302708906)
+@@ -1,19 +1,55 @@
+-import React from "react";
+-import NavBar from "../../Components/NavBar/NavBar";
+-import About from "./About";
++import React from 'react';
++import Container from '@mui/material/Container';
++import Box from '@material-ui/core/Box';
+ 
++import Paper from '@mui/material/Paper';
++import Typography from '@mui/material/Typography';
++import Grid from '@mui/material/Grid';
++import Link from '@mui/material/Link';
+ 
++import bg from "../../Assets/Home/landingBg.png";
+ 
+-function Home() {
+-  return(
+-      <div>
+-        <NavBar/>
+-        <About/>
+-      </div>
++const styles = {
++    paperContainer: {
++        backgroundImage: `url(${bg})`
++    }
++};
++
++const Home = () => {
++    return (
++        <>
++            <Paper  style={styles.paperContainer}
++                sx={{
++                    position: 'relative',
++                    mb: 4,
++                    backgroundSize: 'cover',
++                    backgroundRepeat: 'no-repeat',
++                    backgroundPosition: 'center',
++                    height:"80Vh",
+ 
++                }}
++            >
++                <Grid container  alignItems="left" direction="row">
++                    <Grid item md={6} >
++                            <Typography component="h1" variant="h3" color="inherit" gutterBottom style={{ wordWrap: "break-word" }}>
++                                We Will Do
++                                Your All Work
++                            </Typography>
++                            <Typography variant="h5" color="inherit" paragraph>
++                                We Are The Best Solution For You Can Also Find Job
++                                Opportunities And Avail Services. Come Join Flash Work.
++                            </Typography>
++                            <Link variant="subtitle1" href="#">
++                                link
++                            </Link>
++                    </Grid>
+ 
+-  );
+-}
++                    <Grid item md={6}>
++                    </Grid>
++                </Grid>
++            </Paper>
++        </>
++    );
++};
++
+ export default Home;
+-
+-
+Index: src/App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React , {Component} from 'react';\r\nimport './App.scss';\r\nimport { createTheme, ThemeProvider } from '@mui/material/styles';\r\n\r\nimport {BrowserRouter, Route, Routes} from \"react-router-dom\";\r\n\r\nimport Home from './Pages/LandingPages/Home';\r\nimport Job from './Pages/LandingPages/Job';\r\nimport Workers from './Pages/LandingPages/Workers';\r\nimport ContactUS from './Pages/LandingPages/ContactUs';\r\nimport About from './Pages/LandingPages/About';\r\nimport DashBoard from \"./Pages/Dashboard/DashBoard\";\r\nimport SignIn from \"./Pages/SignIn\";\r\nimport SignUp from \"./Pages/SignUp\";\r\n\r\nimport theme from \"./Theme\";\r\n\r\nfunction App() {\r\n  return (\r\n    <div className=\"App\">\r\n      <ThemeProvider theme={theme}>\r\n        <Routes>\r\n          <Route path='/'  element={<Home />}/>\r\n        </Routes>\r\n\r\n        {/*<Route path=\"/job\">*/}\r\n        {/*  <Job />*/}\r\n        {/*</Route>*/}\r\n        {/*<Route path='/workers'>*/}\r\n        {/*  <Workers />*/}\r\n        {/*</Route>*/}\r\n        {/*<Route path='/contactUs'>*/}\r\n        {/*  <ContactUS />*/}\r\n        {/*</Route>*/}\r\n        {/*<Route path='/about'>*/}\r\n        {/*  <About />*/}\r\n        {/*</Route>*/}\r\n        {/*<Route path=\"/signIn\">*/}\r\n        {/*  <SignIn />*/}\r\n        {/*</Route>*/}\r\n        {/*<Route path=\"/signUp\">*/}\r\n        {/*  <SignUp />*/}\r\n        {/*</Route>*/}\r\n\r\n      </ThemeProvider>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App.tsx b/src/App.tsx
+--- a/src/App.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/App.tsx	(date 1660291935305)
+@@ -1,47 +1,39 @@
+-import React , {Component} from 'react';
++import React from 'react';
+ import './App.scss';
+-import { createTheme, ThemeProvider } from '@mui/material/styles';
+-
+-import {BrowserRouter, Route, Routes} from "react-router-dom";
+-
+-import Home from './Pages/LandingPages/Home';
+-import Job from './Pages/LandingPages/Job';
+-import Workers from './Pages/LandingPages/Workers';
+-import ContactUS from './Pages/LandingPages/ContactUs';
+-import About from './Pages/LandingPages/About';
+-import DashBoard from "./Pages/Dashboard/DashBoard";
++import { ThemeProvider } from '@mui/material/styles';
++import { Route, Routes} from "react-router-dom";
++import theme from "./Theme";
+ import SignIn from "./Pages/SignIn";
+ import SignUp from "./Pages/SignUp";
++import Layout from "./Pages/Layout";
+ 
+-import theme from "./Theme";
++
+ 
+ function App() {
+   return (
+     <div className="App">
+       <ThemeProvider theme={theme}>
+         <Routes>
+-          <Route path='/'  element={<Home />}/>
++            {/*<Route path='(/dashboard)' />*/}
++            {/*    <Base/>*/}
++            {/*<Route/>*/}
++            <Route path='/signIn'  element={<SignIn />}/>
++            <Route path='/signUp'  element={<SignUp />}/>
++            <Route path='/' element={<Layout />}>
++                <Route  path='/jobs'  element={<Layout />}/>
++                <Route path='/workers'  element={<Layout />}/>
++                <Route path='/contactUs'  element={<Layout />}/>
++                <Route path='/about'  element={<Layout />}/>
++            </Route>
++
++            <Route path="*" element={
++                <main style={{ padding: "1rem" }}>
++                    <p>There's nothing here!</p>
++                </main>
++            }
++            />
+         </Routes>
+ 
+-        {/*<Route path="/job">*/}
+-        {/*  <Job />*/}
+-        {/*</Route>*/}
+-        {/*<Route path='/workers'>*/}
+-        {/*  <Workers />*/}
+-        {/*</Route>*/}
+-        {/*<Route path='/contactUs'>*/}
+-        {/*  <ContactUS />*/}
+-        {/*</Route>*/}
+-        {/*<Route path='/about'>*/}
+-        {/*  <About />*/}
+-        {/*</Route>*/}
+-        {/*<Route path="/signIn">*/}
+-        {/*  <SignIn />*/}
+-        {/*</Route>*/}
+-        {/*<Route path="/signUp">*/}
+-        {/*  <SignUp />*/}
+-        {/*</Route>*/}
+-
+       </ThemeProvider>
+     </div>
+   );
+Index: .idea/jsLinters/eslint.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jsLinters/eslint.xml b/.idea/jsLinters/eslint.xml
+new file mode 100644
+--- /dev/null	(date 1659967922897)
++++ b/.idea/jsLinters/eslint.xml	(date 1659967922897)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="EslintConfiguration">
++    <option name="fix-on-save" value="true" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/App.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\r\n@media (prefers-reduced-motion: no-preference) {\r\n  .App-logo {\r\n    animation: App-logo-spin infinite 20s linear;\r\n  }\r\n}\r\n\r\n.App-header {\r\n  background-color: #282c34;\r\n  min-height: 100vh;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: calc(10px + 2vmin);\r\n  color: white;\r\n}\r\n\r\n.App-link {\r\n  color: #61dafb;\r\n}\r\n\r\n@keyframes App-logo-spin {\r\n  from {\r\n    transform: rotate(0deg);\r\n  }\r\n  to {\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App.scss b/src/App.scss
+--- a/src/App.scss	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/App.scss	(date 1660211281188)
+@@ -1,30 +1,0 @@
+-//
+-@media (prefers-reduced-motion: no-preference) {
+-  .App-logo {
+-    animation: App-logo-spin infinite 20s linear;
+-  }
+-}
+-
+-.App-header {
+-  background-color: #282c34;
+-  min-height: 100vh;
+-  display: flex;
+-  flex-direction: column;
+-  align-items: center;
+-  justify-content: center;
+-  font-size: calc(10px + 2vmin);
+-  color: white;
+-}
+-
+-.App-link {
+-  color: #61dafb;
+-}
+-
+-@keyframes App-logo-spin {
+-  from {
+-    transform: rotate(0deg);
+-  }
+-  to {
+-    transform: rotate(360deg);
+-  }
+-}
+Index: src/Pages/SignUp.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class SignUp extends Component {\r\n    render() {\r\n        return (\r\n            <div>about</div>\r\n        )\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/SignUp.tsx b/src/Pages/SignUp.tsx
+--- a/src/Pages/SignUp.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/SignUp.tsx	(date 1660212368442)
+@@ -1,9 +1,12 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class SignUp extends Component {
+-    render() {
+-        return (
+-            <div>about</div>
+-        )
+-    }
+-}
++const SignUp = () => {
++    return (
++        <div>
++            signup
++        </div>
++    );
++};
++
++export default SignUp;
++
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"client\",\r\n  \"version\": \"0.1.0\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"@auth0/auth0-react\": \"^1.10.2\",\r\n    \"@emotion/react\": \"^11.10.0\",\r\n    \"@emotion/styled\": \"^11.10.0\",\r\n    \"@material-ui/core\": \"^4.12.4\",\r\n    \"@mui/icons-material\": \"^5.8.4\",\r\n    \"@mui/material\": \"^5.9.3\",\r\n    \"@mui/styles\": \"^5.9.3\",\r\n    \"@testing-library/jest-dom\": \"^5.16.4\",\r\n    \"@testing-library/react\": \"^13.3.0\",\r\n    \"@testing-library/user-event\": \"^13.5.0\",\r\n    \"@types/jest\": \"^27.5.2\",\r\n    \"@types/node\": \"^16.11.45\",\r\n    \"@types/react\": \"^18.0.17\",\r\n    \"@types/react-dom\": \"^18.0.6\",\r\n    \"axios\": \"^0.27.2\",\r\n    \"bootstrap\": \"^5.2.0\",\r\n    \"feather-icons\": \"^4.29.0\",\r\n    \"react\": \"^18.2.0\",\r\n    \"react-bootstrap\": \"^2.4.0\",\r\n    \"react-dom\": \"^18.2.0\",\r\n    \"react-redux\": \"^8.0.2\",\r\n    \"react-router-dom\": \"^6.3.0\",\r\n    \"react-scripts\": \"5.0.1\",\r\n    \"react-select\": \"^5.4.0\",\r\n    \"typescript\": \"^4.7.4\",\r\n    \"web-vitals\": \"^2.1.4\"\r\n  },\r\n  \"scripts\": {\r\n    \"start\": \"react-scripts start\",\r\n    \"build\": \"react-scripts build\",\r\n    \"test\": \"react-scripts test\",\r\n    \"eject\": \"react-scripts eject\"\r\n  },\r\n  \"eslintConfig\": {\r\n    \"extends\": [\r\n      \"react-app\",\r\n      \"react-app/jest\"\r\n    ]\r\n  },\r\n  \"browserslist\": {\r\n    \"production\": [\r\n      \">0.2%\",\r\n      \"not dead\",\r\n      \"not op_mini all\"\r\n    ],\r\n    \"development\": [\r\n      \"last 1 chrome version\",\r\n      \"last 1 firefox version\",\r\n      \"last 1 safari version\"\r\n    ]\r\n  },\r\n  \"devDependencies\": {\r\n    \"sass\": \"^1.54.0\",\r\n    \"sass-loader\": \"^13.0.2\",\r\n    \"webpack\": \"^5.74.0\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/package.json	(date 1660216299197)
+@@ -31,7 +31,7 @@
+     "web-vitals": "^2.1.4"
+   },
+   "scripts": {
+-    "start": "react-scripts start",
++    "start": "set PORT=3005 && react-scripts start",
+     "build": "react-scripts build",
+     "test": "react-scripts test",
+     "eject": "react-scripts eject"
+Index: src/Pages/LandingPages/ContactUs.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class contactUs extends Component {\r\n  render() {\r\n    return (\r\n      <div>contactUs</div>\r\n    )\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/ContactUs.tsx b/src/Pages/LandingPages/ContactUs.tsx
+--- a/src/Pages/LandingPages/ContactUs.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/LandingPages/ContactUs.tsx	(date 1660212124604)
+@@ -1,9 +1,11 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class contactUs extends Component {
+-  render() {
++const ContactUs = () => {
+     return (
+-      <div>contactUs</div>
+-    )
+-  }
+-}
++        <div>
++          contact
++        </div>
++    );
++};
++
++export default ContactUs;
+Index: src/Pages/LandingPages/Workers.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class workers extends Component {\r\n  render() {\r\n    return (\r\n      <div>workers</div>\r\n    )\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/Workers.tsx b/src/Pages/LandingPages/Workers.tsx
+--- a/src/Pages/LandingPages/Workers.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/LandingPages/Workers.tsx	(date 1660234333336)
+@@ -1,9 +1,11 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class workers extends Component {
+-  render() {
++const Workers = () => {
+     return (
+-      <div>workers</div>
+-    )
+-  }
+-}
++        <div>
++          <h1>workes</h1>
++        </div>
++    );
++};
++
++export default Workers;
+Index: src/Pages/LandingPages/About.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\nimport Typography from '@mui/material/Typography';\r\nimport Job from \"./Job\"\r\n\r\nexport interface Order {\r\n    name: string\r\n\r\n\r\n}\r\n\r\nexport default class About extends Component {\r\n  render() {\r\n    return (\r\n      <div>\r\n        <Typography variant=\"h1\" component=\"h2\" align=\"center\" color=\"neutral\">\r\n          h1. Heading\r\n        </Typography>;\r\n          <Job  name=\"James\"/>\r\n      </div>\r\n    )\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/About.tsx b/src/Pages/LandingPages/About.tsx
+--- a/src/Pages/LandingPages/About.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/LandingPages/About.tsx	(date 1660212368370)
+@@ -1,22 +1,11 @@
+-import React, { Component } from 'react'
+-import Typography from '@mui/material/Typography';
+-import Job from "./Job"
+-
+-export interface Order {
+-    name: string
++import React from 'react';
+ 
+-
+-}
+-
+-export default class About extends Component {
+-  render() {
++const About = () => {
+     return (
+-      <div>
+-        <Typography variant="h1" component="h2" align="center" color="neutral">
+-          h1. Heading
+-        </Typography>;
+-          <Job  name="James"/>
+-      </div>
+-    )
+-  }
+-}
++        <div>
++            about
++        </div>
++    );
++};
++
++export default About;
+Index: src/Pages/LandingPages/Job.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState } from 'react';\r\nimport { makeStyles } from '@material-ui/core/styles';\r\nimport Card from '@material-ui/core/Card';\r\nimport CardContent from '@material-ui/core/CardContent';\r\nimport {Props} from \"react-select\";\r\nimport {Order} from \"./About\";\r\n\r\nconst useStyles = makeStyles({\r\n  root: {\r\n    minWidth: '100%',\r\n    height: \"100%\",\r\n    borderRadius: 12,\r\n    boxShadow: 'rgba(83, 144, 217, 0.1) 0px 4px 12px',\r\n    overflow: 'unset',\r\n    backgroundColor: '#ECD2F2'\r\n  },\r\n  content: {\r\n    padding: 10,\r\n    justifyContent: 'center'\r\n  },\r\n});\r\n\r\n\r\n\r\n\r\n\r\nconst Job = (props: Order) => {\r\n  const [count, setCount] = useState<number>(0);\r\n  const classes = useStyles();\r\n  return (\r\n      <div>\r\n        <header>\r\n          <h1>{props.name}</h1>\r\n          <button onClick={() => setCount(count + 1)}>\r\n            Click me!\r\n          </button>\r\n          <p>You've clicked the button {count} times.</p>\r\n        </header>\r\n        <Card className={classes.root} variant=\"outlined\">\r\n          <CardContent className={classes.content}>\r\n            {props.name}\r\n          </CardContent>\r\n        </Card>\r\n      </div>\r\n  );\r\n};\r\n\r\nexport default Job;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/Job.tsx b/src/Pages/LandingPages/Job.tsx
+--- a/src/Pages/LandingPages/Job.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/LandingPages/Job.tsx	(date 1660213526115)
+@@ -2,8 +2,6 @@
+ import { makeStyles } from '@material-ui/core/styles';
+ import Card from '@material-ui/core/Card';
+ import CardContent from '@material-ui/core/CardContent';
+-import {Props} from "react-select";
+-import {Order} from "./About";
+ 
+ const useStyles = makeStyles({
+   root: {
+@@ -24,13 +22,13 @@
+ 
+ 
+ 
+-const Job = (props: Order) => {
++const Job = () => {
+   const [count, setCount] = useState<number>(0);
+   const classes = useStyles();
+   return (
+       <div>
+         <header>
+-          <h1>{props.name}</h1>
++          <h1>"rashmia"</h1>
+           <button onClick={() => setCount(count + 1)}>
+             Click me!
+           </button>
+@@ -38,7 +36,7 @@
+         </header>
+         <Card className={classes.root} variant="outlined">
+           <CardContent className={classes.content}>
+-            {props.name}
++            {"sdfsd"}
+           </CardContent>
+         </Card>
+       </div>
+Index: src/Components/Footer/Footer.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Components/Footer/Footer.tsx b/src/Components/Footer/Footer.tsx
+new file mode 100644
+--- /dev/null	(date 1660212209653)
++++ b/src/Components/Footer/Footer.tsx	(date 1660212209653)
+@@ -0,0 +1,11 @@
++import React from 'react';
++
++const Footer = () => {
++    return (
++        <div>
++            footer
++        </div>
++    );
++};
++
++export default Footer;
+Index: src/Pages/SignIn.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class SignIn extends Component {\r\n    render() {\r\n        return (\r\n            <div>about</div>\r\n        )\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/SignIn.tsx b/src/Pages/SignIn.tsx
+--- a/src/Pages/SignIn.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/SignIn.tsx	(date 1660225594950)
+@@ -1,9 +1,12 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class SignIn extends Component {
+-    render() {
+-        return (
+-            <div>about</div>
+-        )
+-    }
+-}
++const SignIn = () => {
++    return (
++        <div>
++            <h1>signin</h1>
++        </div>
++    );
++};
++
++export default SignIn;
++
+Index: src/Pages/Layout.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/Layout.tsx b/src/Pages/Layout.tsx
+new file mode 100644
+--- /dev/null	(date 1660275757959)
++++ b/src/Pages/Layout.tsx	(date 1660275757959)
+@@ -0,0 +1,27 @@
++import React from 'react';
++import NavBar from "../Components/NavBar/NavBar";
++import Footer from "../Components/Footer/Footer";
++import Home from './LandingPages/Home';
++import Job from './LandingPages/Job';
++import Workers from './LandingPages/Workers';
++import ContactUS from './LandingPages/ContactUs';
++import About from './LandingPages/About';
++import {Route,Routes} from "react-router-dom";
++
++const Layout = () => {
++    return (
++        <>
++            <NavBar/>
++            <Routes>
++                <Route path='/' element={<Home />}/>
++                <Route  path='/jobs'  element={<Job />}/>
++                <Route path='/workers'  element={<Workers />}/>
++                <Route path='/contactUs'  element={<ContactUS />}/>
++                <Route path='/about'  element={<About />}/>
++            </Routes>
++            <Footer/>
++        </>
++    );
++};
++
++export default Layout;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f0cc7ce0-ab06-4707-8f4d-f24c782d98a9\" name=\"Changes\" comment=\"This commit for add some testing 5\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"TypeScript File\" />\r\n        <option value=\"TypeScript JSX File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Merge.Settings\">\r\n    <option name=\"BRANCH\" value=\"main\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"dev\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CU1VShw0N4lXJEv3Bk0Ikz8QKS\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"last_opened_file_path\": \"D:/3Y Project/Flashwork-Frontend\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.standard\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.standard\": \"\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\",\r\n    \"ts.external.directory.path\": \"D:\\\\3Y Project\\\\client\\\\node_modules\\\\typescript\\\\lib\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\3Y Project\\client\\src\\Assets\" />\r\n      <recent name=\"D:\\3Y Project\\client\\src\\Pages\\landingPages\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f0cc7ce0-ab06-4707-8f4d-f24c782d98a9\" name=\"Changes\" comment=\"\" />\r\n      <created>1658842386697</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1658842386697</updated>\r\n      <workItem from=\"1658842390210\" duration=\"3560000\" />\r\n      <workItem from=\"1658858746454\" duration=\"704000\" />\r\n      <workItem from=\"1659007307514\" duration=\"124000\" />\r\n      <workItem from=\"1659784920730\" duration=\"2732000\" />\r\n      <workItem from=\"1659787753220\" duration=\"4137000\" />\r\n      <workItem from=\"1659853604990\" duration=\"10754000\" />\r\n      <workItem from=\"1659948053111\" duration=\"10409000\" />\r\n      <workItem from=\"1659967749031\" duration=\"8691000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"This commit for update data\">\r\n      <created>1658855504090</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1658855504090</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"This commit for install react router dom\">\r\n      <created>1658863156570</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1658863156570</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"This commit for install react axios\">\r\n      <created>1659007393117</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1659007393117</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"This commit for add folder structer\">\r\n      <created>1659787814683</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1659787814683</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"This commit for add some testing\">\r\n      <created>1660040150358</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660040150358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"This commit for add some testing 3\">\r\n      <created>1660040881086</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660040881086</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"This commit for add some testing 3\">\r\n      <created>1660040899936</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660040899936</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"This commit for add some testing 4\">\r\n      <created>1660041575783</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660041575783</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"This commit for add some testing 5\">\r\n      <created>1660042522679</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1660042522679</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"feature/Build_Home_Page\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"This commit for update structure\" />\r\n    <MESSAGE value=\"This commit for update data\" />\r\n    <MESSAGE value=\"This commit for install react router dom\" />\r\n    <MESSAGE value=\"This commit for install react axios\" />\r\n    <MESSAGE value=\"This commit for add folder structer\" />\r\n    <MESSAGE value=\"This commit for add some testing\" />\r\n    <MESSAGE value=\"This commit for add some testing 2\" />\r\n    <MESSAGE value=\"This commit for add some testing 3\" />\r\n    <MESSAGE value=\"This commit for add some testing 4\" />\r\n    <MESSAGE value=\"This commit for add some testing 5\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"This commit for add some testing 5\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/.idea/workspace.xml	(date 1660302557001)
+@@ -1,8 +1,27 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for add some testing 5">
++    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for update the navbar 2.0">
++      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Assets/Home/landingBg.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Assets/logoIcon.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Components/Footer/Footer.tsx" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Pages/Layout.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Base.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/DashBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/DashBoard.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/About.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/ContactUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/ContactUs.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignIn.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp.tsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -50,7 +69,7 @@
+     "last_opened_file_path": "D:/3Y Project/Flashwork-Frontend",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.standard": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.eslint": "",
+     "node.js.selected.package.standard": "",
+     "nodejs_package_manager_path": "npm",
+     "settings.editor.selected.configurable": "preferences.pluginManager",
+@@ -60,6 +79,7 @@
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\3Y Project\client\src\Assets\Home" />
+       <recent name="D:\3Y Project\client\src\Assets" />
+       <recent name="D:\3Y Project\client\src\Pages\landingPages" />
+     </key>
+@@ -80,6 +100,7 @@
+       <workItem from="1659853604990" duration="10754000" />
+       <workItem from="1659948053111" duration="10409000" />
+       <workItem from="1659967749031" duration="8691000" />
++      <workItem from="1660198665028" duration="37132000" />
+     </task>
+     <task id="LOCAL-00001" summary="This commit for update data">
+       <created>1658855504090</created>
+@@ -184,6 +205,9 @@
+     <MESSAGE value="This commit for add some testing 3" />
+     <MESSAGE value="This commit for add some testing 4" />
+     <MESSAGE value="This commit for add some testing 5" />
+-    <option name="LAST_COMMIT_MESSAGE" value="This commit for add some testing 5" />
++    <MESSAGE value="This commit for add routes" />
++    <MESSAGE value="This commit for update the navbar" />
++    <MESSAGE value="This commit for update the navbar 2.0" />
++    <option name="LAST_COMMIT_MESSAGE" value="This commit for update the navbar 2.0" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/Base.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useEffect, useState } from \"react\";\r\nimport { Route, Routes } from \"react-router-dom\";\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Base.tsx b/src/Base.tsx
+--- a/src/Base.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Base.tsx	(date 1660214762492)
+@@ -1,4 +1,13 @@
+-import React, { useEffect, useState } from "react";
+-import { Route, Routes } from "react-router-dom";
++import React from 'react';
++import DashBoard from "./Pages/Dashboard/DashBoard";
+ 
++const Base = () => {
++    return (
++        <div>
++            this use to basic route in to the dashboard
++            <DashBoard/>
++        </div>
++    );
++};
+ 
++export default Base;
+Index: src/Pages/Dashboard/DashBoard.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class DashBoard extends Component {\r\n    render() {\r\n        return (\r\n            <div>about</div>\r\n        )\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/Dashboard/DashBoard.tsx b/src/Pages/Dashboard/DashBoard.tsx
+--- a/src/Pages/Dashboard/DashBoard.tsx	(revision 9f9a465529e4007676039462464fdba536f03ab8)
++++ b/src/Pages/Dashboard/DashBoard.tsx	(date 1660212368501)
+@@ -1,9 +1,12 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class DashBoard extends Component {
+-    render() {
+-        return (
+-            <div>about</div>
+-        )
+-    }
+-}
++const DashBoard = () => {
++    return (
++        <div>
++            dashbord
++        </div>
++    );
++};
++
++export default DashBoard;
++
+Index: .idea/watcherTasks.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/watcherTasks.xml b/.idea/watcherTasks.xml
+new file mode 100644
+--- /dev/null	(date 1659948260822)
++++ b/.idea/watcherTasks.xml	(date 1659948260822)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectTasksOptions">
++    <TaskOptions isEnabled="false">
++      <option name="arguments" value="$FileName$:$FileNameWithoutExtension$.css" />
++      <option name="checkSyntaxErrors" value="true" />
++      <option name="description" />
++      <option name="exitCodeBehavior" value="ERROR" />
++      <option name="fileExtension" value="scss" />
++      <option name="immediateSync" value="true" />
++      <option name="name" value="SCSS" />
++      <option name="output" value="$FileNameWithoutExtension$.css:$FileNameWithoutExtension$.css.map" />
++      <option name="outputFilters">
++        <array />
++      </option>
++      <option name="outputFromStdout" value="false" />
++      <option name="program" value="sass" />
++      <option name="runOnExternalChanges" value="true" />
++      <option name="scopeName" value="Project Files" />
++      <option name="trackOnlyRoot" value="true" />
++      <option name="workingDir" value="$FileDir$" />
++      <envs />
++    </TaskOptions>
++  </component>
++</project>
+\ No newline at end of file
