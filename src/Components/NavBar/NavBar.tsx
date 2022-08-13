@@ -100,37 +100,37 @@ const NavBar = () => {
 
                     </Box>
 
-                    {/*<Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>*/}
-                    {/*    <IconButton*/}
-                    {/*        size="large"*/}
-                    {/*        color="inherit"*/}
-                    {/*    >*/}
-                    {/*        <Badge badgeContent={17} color="error">*/}
-                    {/*            <NotificationsIcon />*/}
-                    {/*        </Badge>*/}
-                    {/*    </IconButton>*/}
-
-                    {/*    <IconButton size="large" color="inherit">*/}
-                    {/*        <Badge  color="error">*/}
-                    {/*            <LogoutIcon />*/}
-                    {/*        </Badge>*/}
-                    {/*    </IconButton>*/}
-
-                    {/*    <Tooltip title="Open settings">*/}
-                    {/*        <IconButton  >*/}
-                    {/*            <Avatar alt="ProfilePic" src="/static/images/avatar/2.jpg" />*/}
-                    {/*        </IconButton>*/}
-                    {/*    </Tooltip>*/}
-                    {/*</Box>*/}
-
                     <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
-                        <Link to="/signUp" className={classes.link}>
-                            <Button variant="outlined"  color="secondary">Sign Up</Button>
-                        </Link>
-                        <Link to="/signIn" className={classes.link}>
-                            <Button variant="contained" href="signIp" color="secondary">Sign In</Button>
-                        </Link>
+                        <IconButton
+                            size="large"
+                            color="inherit"
+                        >
+                            <Badge badgeContent={17} color="error">
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+
+                        <IconButton size="large" color="inherit">
+                            <Badge  color="error">
+                                <LogoutIcon />
+                            </Badge>
+                        </IconButton>
+
+                        <Tooltip title="Open settings">
+                            <IconButton  >
+                                <Avatar alt="ProfilePic" src="/static/images/avatar/2.jpg" />
+                            </IconButton>
+                        </Tooltip>
                     </Box>
+
+                    {/*<Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>*/}
+                    {/*    <Link to="/signUp" className={classes.link}>*/}
+                    {/*        <Button variant="outlined"  color="secondary">Sign Up</Button>*/}
+                    {/*    </Link>*/}
+                    {/*    <Link to="/signIn" className={classes.link}>*/}
+                    {/*        <Button variant="contained" href="signIp" color="secondary">Sign In</Button>*/}
+                    {/*    </Link>*/}
+                    {/*</Box>*/}
                 </Toolbar>
             </Container>
         </AppBar>

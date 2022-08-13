@@ -5,8 +5,14 @@ import Typography from '@mui/material/Typography';
 import {inspect} from "util";
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from '@mui/material/Grid';
+import bg1 from "../../Assets/backgroundImages/recruitment (2) 1.png";
+import bg2 from "../../Assets/backgroundImages/workers 1.png";
+import bg3 from "../../Assets/backgroundImages/calendar 1.png";
 import Image from '../../Assets/backgroundImages/backgroundDot.png';
 import { positions } from '@mui/system';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+
 
 const useStyles = makeStyles({
     root: {
@@ -15,58 +21,50 @@ const useStyles = makeStyles({
         borderRadius: '10px',
         border: '1px solid #E5E5E5',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        marginLeft:'110px',
+        marginLeft:'90px',
         position: 'relative',
-        // marginBottom:'-10px',
-        backgroundColor:'white',
-        backgroundImage: Image
+        marginBottom:'-30px',
+        backgroundColor:'white'
+
     },
     CardBody: {
         width: '250px',
+        height: '250px',
         borderRadius: '10px',
-        padding:'10px',
-        backgroundImage: "url('.././Assets/backgroundImages/backgroundGot.png')",
-        // backgroundColor:'pink',
-        marginTop:'-20px'
-        // border: '1px solid #E5E5E5'
-
-    },
-    GridCard: {
-        // direction: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'flex-start'
-        // backgroundColor: 'blue'
+        padding:'10px'
     }
 });
 
 export default function HomeServiceCard() {
     const classes = useStyles();
     return (
-
-        <div>
+        <>
             <Grid
                 container
                 direction="row"
                 justifyContent="space-evenly"
                 alignItems="center"
+                height="360px"
                 >
             {[
-                { title : 'Find jobs', name: 'FlashWork is your source for jobs and career opportunities.Search for jobs, read career advice from Monsters job experts,and find hiring and recruiting advice.' },
-                { title: 'Get the services', name: 'one that works especially at manual or industrial labor or with a particular material as a factory worker. a person who works cafeteria worker He\'s a good worker.' },
-                { title: 'Schedule plan', name: 'Create your own business plan 1.1 Mission At Web Applications, our mission is to provide an online office system that links workers in different locations to their mother company. ' },
+                { title : 'Find jobs', name: ' FlashWork is your source for jobs and career opportunities platform. Search for the jobs, read career advice from Monster\'s job experts, and find hiring and recruiting advice.' , img: `url(${bg1})` },
+                { title: 'Get the services', name: 'one that works especially at manual or industrial labor or with a particular material as a factory worker. a person who works cafeteria worker He\'s a good worker.' , img: `url(${bg2})` },
+                { title: 'Schedule plan', name: 'Create your own business plan 1.1 Mission At Web Applications, our mission is to provide an online office system that links workers in different locations to their mother company. ' , img: `url(${bg3})`  },
 
             ].map((item, index) => (
 
                     <Grid item xs={3} key={index} >
-                            {/*<div style={{width:'50px', height:'50px' , backgroundColor:'red', marginBottom:'-10px' , order:'2',marginLeft:'100px'}}>*/}
-                            {/*</div>*/}
-
                             <div className={classes.CardBody} >
                                 <div className={classes.root}>
+                                        <img
+                                            src={`${item.img}?w=64&h=64&fit=crop&auto=format`}
+                                            srcSet={`${item.img}?w=64&h=64&fit=crop&auto=format&dpr=2 2x`}
+                                            loading="lazy"
+                                        />
                                 </div>
                                 <Card color={'blue'}>
                                     <CardContent>
-                                        <Typography variant="h5" component="div" color={'secondary'} style={{paddingBottom:'10px'}}>
+                                        <Typography variant="h5" component="div" color={'secondary'} style={{padding:'40px 5px 10px 5px'}}>
                                             {item.title}
                                         </Typography>
                                         <Typography variant="body2">{item.name}</Typography>
@@ -74,10 +72,8 @@ export default function HomeServiceCard() {
                                 </Card>
                             </div>
                     </Grid>
-
             ))}
             </Grid>
-        </div>
-
+        </>
     );
 }
