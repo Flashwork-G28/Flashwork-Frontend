@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for install react axios">
-      <change afterPath="$PROJECT_DIR$/src/Components/NavBar/navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/about.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/contactUs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/home.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/job.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/workers.tsx" afterDir="false" />
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new service card data added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="main" />
@@ -24,13 +24,16 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2CU1VShw0N4lXJEv3Bk0Ikz8QKS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -47,14 +50,26 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/3Y Project/Flashwork-Frontend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\3Y Project\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;H:\\3rd year Project\\FrontEnd\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\3Y Project\client\src\Assets" />
       <recent name="D:\3Y Project\client\src\Pages\landingPages" />
     </key>
   </component>
@@ -70,6 +85,15 @@
       <workItem from="1658858746454" duration="704000" />
       <workItem from="1659007307514" duration="124000" />
       <workItem from="1659784920730" duration="2732000" />
+      <workItem from="1659787753220" duration="4137000" />
+      <workItem from="1659853604990" duration="10754000" />
+      <workItem from="1659948053111" duration="10409000" />
+      <workItem from="1659967749031" duration="8691000" />
+      <workItem from="1660063114912" duration="6421000" />
+      <workItem from="1660074894953" duration="3314000" />
+      <workItem from="1660098701609" duration="14200000" />
+      <workItem from="1660138129532" duration="15801000" />
+      <workItem from="1660316947981" duration="2229000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -92,7 +116,56 @@
       <option name="project" value="LOCAL" />
       <updated>1659007393117</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="This commit for add folder structer">
+      <created>1659787814683</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659787814683</updated>
+    </task>
+    <task id="LOCAL-00005" summary="This commit for add some testing">
+      <created>1660040150358</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040150358</updated>
+    </task>
+    <task id="LOCAL-00006" summary="This commit for add some testing 3">
+      <created>1660040881086</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040881086</updated>
+    </task>
+    <task id="LOCAL-00007" summary="This commit for add some testing 3">
+      <created>1660040899936</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660040899936</updated>
+    </task>
+    <task id="LOCAL-00008" summary="This commit for add some testing 4">
+      <created>1660041575783</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660041575783</updated>
+    </task>
+    <task id="LOCAL-00009" summary="This commit for add some testing 5">
+      <created>1660042522679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660042522679</updated>
+    </task>
+    <task id="LOCAL-00010" summary="This commit for creat new service card data added">
+      <created>1660147667533</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1660147667533</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,7 +182,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/dev" />
+                        <option value="feature/Build_Home_Page" />
                       </list>
                     </value>
                   </entry>
@@ -126,6 +199,23 @@
     <MESSAGE value="This commit for update data" />
     <MESSAGE value="This commit for install react router dom" />
     <MESSAGE value="This commit for install react axios" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for install react axios" />
+    <MESSAGE value="This commit for add folder structer" />
+    <MESSAGE value="This commit for add some testing" />
+    <MESSAGE value="This commit for add some testing 2" />
+    <MESSAGE value="This commit for add some testing 3" />
+    <MESSAGE value="This commit for add some testing 4" />
+    <MESSAGE value="This commit for add some testing 5" />
+    <MESSAGE value="This commit for creat new service card data added" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat new service card data added" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
