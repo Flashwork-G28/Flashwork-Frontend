@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new service card data added">
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create signup">
+      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/Company.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="feature/Build_Home_Page" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,7 +60,7 @@
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;H:\\3rd year Project\\FrontEnd\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\3Y Project\\client\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -94,6 +99,9 @@
       <workItem from="1660098701609" duration="14200000" />
       <workItem from="1660138129532" duration="15801000" />
       <workItem from="1660316947981" duration="2229000" />
+      <workItem from="1660447265386" duration="1602000" />
+      <workItem from="1660636253159" duration="11360000" />
+      <workItem from="1660650864323" duration="5397000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -206,7 +214,8 @@
     <MESSAGE value="This commit for add some testing 4" />
     <MESSAGE value="This commit for add some testing 5" />
     <MESSAGE value="This commit for creat new service card data added" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat new service card data added" />
+    <MESSAGE value="This commit for create signup" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for create signup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

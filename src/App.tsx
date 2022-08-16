@@ -6,8 +6,9 @@ import theme from "./Theme";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Layout from "./Pages/Layout";
-
-
+import JobProvider from "./Pages/SignUp/JobProvider";
+import Company from "./Pages/SignUp/Company";
+import JobSeeker from "./Pages/SignUp/JobSeeker";
 
 function App() {
   return (
@@ -17,8 +18,14 @@ function App() {
             {/*<Route path='(/dashboard)' />*/}
             {/*    <Base/>*/}
             {/*<Route/>*/}
+
             <Route path='/signIn'  element={<SignIn />}/>
-            <Route path='/signUp'  element={<SignUp />}/>
+            <Route path='/signUp' element={<SignUp/>}/>
+            <Route path="/signUp/JobProvider" element={<JobProvider />} />
+            <Route path="/signUp/Company" element={<Company />} />
+            <Route path="/signUp/JobSeeker" element={<JobSeeker />} />
+
+
 
             <Route path='/' element={<Layout />}>
                 <Route  path='/jobs'  element={<Layout />}/>
