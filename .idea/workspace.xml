@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create signup">
-      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/Company.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,12 @@
     <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="feature/Build_Home_Page" />
@@ -101,7 +104,7 @@
       <workItem from="1660316947981" duration="2229000" />
       <workItem from="1660447265386" duration="1602000" />
       <workItem from="1660636253159" duration="11360000" />
-      <workItem from="1660650864323" duration="5397000" />
+      <workItem from="1660650864323" duration="12882000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
