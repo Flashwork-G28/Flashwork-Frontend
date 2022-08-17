@@ -1,120 +1,161 @@
 import React from 'react';
-import Container from '@mui/material/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import {makeStyles} from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button'
+import InputAdornment from '@mui/material/InputAdornment';
+import { Formik, Form, Field } from 'formik';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 const useStyles = makeStyles({
-    root:{
-        backgroundColor: "#D89EE7",
-        backgroundAttachment: "fixed",
-        minHeight: "100vh",
-        backgroundSize: "cover",
-    },
-    container: {
-        width: "auto",
-        margin: "0 auto",
-        paddingTop: 10,
-        paddingBottom: 10,
-        minHeight: "100vh",
-    },
+        root:{
+            backgroundColor: "#D89EE7",
+            backgroundAttachment: "fixed",
+            minHeight: "100vh",
+            backgroundSize: "cover",
+            alignItem: "center",
+            justifyContent: "center"
+
+        },
+        container: {
+            width: "auto",
+            margin: "0 auto",
+            paddingTop: 10,
+            paddingBottom: 10,
+            minHeight: "100vh",
+
+        },
         select: {
             "& :focus": {
-           backgroundColor: "transparent",
-       },
-    },
+                backgroundColor: "transparent",
+            },
+        },
 
 
     })
 ;
 
 const JobSeeker = () => {
-    const classes= useStyles();
+    const classes = useStyles();
+
     return (
         <div className={classes.root}>
-            <Container className={classes.container}>
+            <Container className={classes.container} >
                 <Card >
                     <CardContent sx={{display: 'flex',alignItems: 'left'}}>
                         <Typography gutterBottom variant="h5" component="div">
                             Job Seeker Sign Up
                         </Typography>
                     </CardContent>
-                    <form>
-                        <Grid container justifyContent="flex-start" spacing={3} >
-                            <Grid item xs={4} container justifyContent="flex-start" alignItems="flex-start">
-                                <Typography gutterBottom variant="h6" component="div"  align={"left"} sx={{ m: 2 }}>
-                                    Basic Details
-                                </Typography>
-                                <Box sx={{ m: 2, display: 'flex' }} >
-                                    <TextField id="first-name" label="First Name" variant="outlined" required />
-                                    <TextField id="last-name" label="Last Name" variant="outlined" required />
-                                </Box>
-                                <TextField id="nid" label="National ID" variant="outlined" required sx={{ m: 2,width: 380}}/>
-
-                                <Box sx={{ m: 2}}>
-                                    <InputLabel id="demo-simple-select-outlined-label">
-                                        Gender
-                                    </InputLabel>
+                    <form >
+                        <Grid container
+                              direction="row"
+                              justifyContent="flex-start"
+                              alignItems="flex-start" >
+                            <Grid  xs={4} direction="column"  >
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="h6" component="div"  align={"left"} >
+                                        Basic Details
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="firstName" label="First Name" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="last-name" label="Last Name" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
                                     <Select
-                                        labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                                        fullWidth
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
                                         label="Gender"
-                                        className={classes.select}
+
                                     >
-                                        <MenuItem value="Male">Male</MenuItem>
-                                        <MenuItem value="Female">Female</MenuItem>
-                                        <MenuItem value="Other">Other</MenuItem>
+                                        <MenuItem value={"male"}>Male</MenuItem>
+                                        <MenuItem value={"female"}>Female</MenuItem>
                                     </Select>
-                                </Box>
-                                <Typography gutterBottom variant="h6" component="div"  align={"left"} sx={{ m: 2 }}>
-                                    About
-                                </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="h6" component="div"  align={"left"} >
+                                        About
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="tagile" label="Tagile" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="last-name" label="Last Name" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="overline" component="div"  align={"left"} >
+                                        Have a account already? <Link to="/SignIn">Sign In</Link>
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid xs={4} direction="column">
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="h6" component="div"  align={"left"} >
+                                        Location
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="first-name" label="Street" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="last-name" label="City" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="h6" component="div"  align={"left"} >
+                                        Contact Details
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth
+                                               label="Mobile"
+                                               id="outlined-start-adornment"
+                                               sx={{ m: 1, width: '25ch' }}
+                                               InputProps={{
+                                                   startAdornment: <InputAdornment position="start">+98</InputAdornment>,
+                                               }}/>
+                                </Grid>
 
                             </Grid>
+                            <Grid  xs={4} direction="column">
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="h6" component="div"  align={"left"} >
+                                        Login Credentials
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="first-name" label="E-mail Address" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField  fullWidth id="last-name" label="Password*" variant="outlined" required />
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Typography gutterBottom variant="body2" component="div"  align={"left"} >
+                                        Please make sure that your password contain at least,
+                                        <ul>8 characters</ul>
+                                        <ul>1 uppercase lettes</ul>
+                                        <ul>1 lowercase letters</ul>
+                                        <ul>1 number and 1 special characters</ul>
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Stack spacing={2} direction="row">
+                                        <Button variant="contained">Sign Up</Button>
+                                        <Button variant="outlined">Cancel</Button>
+                                    </Stack>
 
-
-
-                            <Grid item xs={4}>
-                                <Typography gutterBottom variant="h6" component="div"  align={"left"} sx={{ m: 2 }}>
-                                    Location
-                                </Typography>
-                                <Box sx={{ m: 2, display: 'flex' }} >
-                                    <TextField id="street" label="Street" variant="outlined" />
-                                    <TextField id="city" label="City" variant="outlined" />
-                                </Box>
-                                <Typography gutterBottom variant="h6" component="div"  align={"left"} sx={{ m: 2 }}>
-                                    Contact Details
-                                </Typography>
-                                <TextField id="mobile" label="Mobile" variant="outlined" required sx={{ m: 2,width: 380}}/>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Typography gutterBottom variant="h6" component="div"  align={"left"} sx={{ m: 2 }}>
-                                    Login Credentials
-                                </Typography>
-                                <TextField id="mobile" label="Mobile" variant="outlined" required sx={{ m: 2,width: 380}}/>
-                                <TextField id="mobile" label="Mobile" variant="outlined" required sx={{ m: 2,width: 380}}/>
-                                <TextField id="mobile" label="Mobile" variant="outlined" required sx={{ m: 2,width: 380}}/>
-
-                                <Typography variant="caption" display="block">
-                                    Please make sure that your password contains at
-                                    least,
-                                    <ul>
-                                        <li>8 characters</li>
-                                        <li>1 uppercase letter</li>
-                                        <li>1 lowercase letter</li>
-                                        <li>1 number and 1 special character</li>
-                                    </ul>
-                                </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </form>

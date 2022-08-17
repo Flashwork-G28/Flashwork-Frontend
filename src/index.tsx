@@ -14,6 +14,8 @@ root.render(
         domain="flashwork.us.auth0.com"
         clientId="mCCTJkEfsO9DEKLLrVv3rMPBEFfU85SV"
         redirectUri={window.location.origin}
+        useRefreshTokens
+        cacheLocation='localstorage'
     >
       <React.StrictMode>
           <BrowserRouter>

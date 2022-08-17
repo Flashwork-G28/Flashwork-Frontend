@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create signup provider">
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create signin finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/SignIn.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Base.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +108,8 @@
       <workItem from="1660636253159" duration="11360000" />
       <workItem from="1660650864323" duration="13849000" />
       <workItem from="1660710406296" duration="1404000" />
-      <workItem from="1660713900146" duration="1721000" />
+      <workItem from="1660713900146" duration="4235000" />
+      <workItem from="1660736690813" duration="3629000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -187,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660674225104</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="This commit for create signin finish">
+      <created>1660715958450</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1660715958450</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +238,8 @@
     <MESSAGE value="This commit for creat new service card data added" />
     <MESSAGE value="This commit for create signup" />
     <MESSAGE value="This commit for create signup provider" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for create signup provider" />
+    <MESSAGE value="This commit for create signin finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for create signin finish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
