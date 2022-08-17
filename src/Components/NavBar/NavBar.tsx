@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from '@material-ui/core/styles';
 import logoIcon from '../../Assets/logoIcon.png'
 import { Link, NavLink } from "react-router-dom";
@@ -44,8 +44,16 @@ const useStyles = makeStyles({
     }
 });
 
+
 const NavBar = () => {
     const classes = useStyles();
+    const {
+        user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+    } = useAuth0();
+    console.log(user);
 
     return (
         <AppBar position="static" color="transparent">
@@ -100,37 +108,42 @@ const NavBar = () => {
 
                     </Box>
 
-                    {/*<Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>*/}
-                    {/*    <IconButton*/}
-                    {/*        size="large"*/}
-                    {/*        color="inherit"*/}
-                    {/*    >*/}
-                    {/*        <Badge badgeContent={17} color="error">*/}
-                    {/*            <NotificationsIcon />*/}
-                    {/*        </Badge>*/}
-                    {/*    </IconButton>*/}
+                    {isAuthenticated && (
+                        <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
+                            <IconButton
+                                size="large"
+                                color="inherit"
+                            >
+                                <Badge badgeContent={17} color="error">
+                                    <NotificationsIcon />
+                                </Badge>
+                            </IconButton>
 
-                    {/*    <IconButton size="large" color="inherit">*/}
-                    {/*        <Badge  color="error">*/}
-                    {/*            <LogoutIcon />*/}
-                    {/*        </Badge>*/}
-                    {/*    </IconButton>*/}
+                            <IconButton size="large" color="inherit" onClick={() => {
+                                logout({ returnTo: window.location.origin });
+                            }}>
+                                <Badge  color="error">
+                                    <LogoutIcon />
+                                </Badge>
+                            </IconButton>
 
-                    {/*    <Tooltip title="Open settings">*/}
-                    {/*        <IconButton  >*/}
-                    {/*            <Avatar alt="ProfilePic" src="/static/images/avatar/2.jpg" />*/}
-                    {/*        </IconButton>*/}
-                    {/*    </Tooltip>*/}
-                    {/*</Box>*/}
+                            <Tooltip title="Open settings">
+                                <IconButton  >
+                                    <Avatar alt={user?.nickname} src={user?.picture} />
+                                </IconButton>
+                            </Tooltip>
+                        </Box>
+                    )}
 
-                    <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
-                        <Link to="/signUp" className={classes.link}>
-                            <Button variant="outlined"  color="secondary">Sign Up</Button>
-                        </Link>
-                        <Link to="/signIn" className={classes.link}>
-                            <Button variant="contained" href="signIp" color="secondary">Sign In</Button>
-                        </Link>
-                    </Box>
+                    {!isAuthenticated &&(
+                        <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
+                            <Link to="/signUp" className={classes.link}>
+                                <Button variant="outlined"  color="secondary">Sign Up</Button>
+                            </Link>
+                            <Button variant="contained" href="signIp" color="secondary"  onClick={() => loginWithRedirect()}>Sign In</Button>
+                        </Box>
+                    )}
+
                 </Toolbar>
             </Container>
         </AppBar>

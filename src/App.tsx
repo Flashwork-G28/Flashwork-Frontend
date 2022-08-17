@@ -3,7 +3,6 @@ import './App.scss';
 import { ThemeProvider } from '@mui/material/styles';
 import { Route, Routes} from "react-router-dom";
 import theme from "./Theme";
-import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Layout from "./Pages/Layout";
 import JobProvider from "./Pages/SignUp/JobProvider";
@@ -19,7 +18,6 @@ function App() {
             {/*    <Base/>*/}
             {/*<Route/>*/}
 
-            <Route path='/signIn'  element={<SignIn />}/>
             <Route path='/signUp' element={<SignUp/>}/>
             <Route path="/signUp/JobProvider" element={<JobProvider />} />
             <Route path="/signUp/Company" element={<Company />} />
