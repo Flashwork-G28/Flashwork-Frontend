@@ -28,12 +28,11 @@ function App() {
                 <Route path='/workers'  element={<Layout />}/>
                 <Route path='/contactUs'  element={<Layout />}/>
                 <Route path='/about'  element={<Layout />}/>
-
-
             </Route>
 
-            <Route path='/dashboard' element={<DashBoard />} />
-
+            <Route path='/dashboard' element={<DashBoard />} >
+                <Route path='/dashboard/dashboard' element={<DashBoard />} />
+            </Route>
 
 
 

@@ -11,8 +11,9 @@ import { Link } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
-import { Formik, Form, Field } from 'formik';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import { Formik, Form, Field } from 'formik';
 
 const useStyles = makeStyles({
         root:{
@@ -48,7 +49,7 @@ const JobSeeker = () => {
     return (
         <div className={classes.root}>
             <Container className={classes.container} >
-                <Card >
+                <Card sx={{ mt: 6 }}>
                     <CardContent sx={{display: 'flex',alignItems: 'left'}}>
                         <Typography gutterBottom variant="h5" component="div">
                             Job Seeker Sign Up
@@ -72,12 +73,12 @@ const JobSeeker = () => {
                                     <TextField fullWidth id="last-name" label="Last Name" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
+                                    <InputLabel id="demo-simple-select-helper-label" >Gender</InputLabel>
                                     <Select
                                         fullWidth
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Gender"
-
+                                        labelId="gender"
+                                        id="gender"
+                                        label="gender"
                                     >
                                         <MenuItem value={"male"}>Male</MenuItem>
                                         <MenuItem value={"female"}>Female</MenuItem>
@@ -92,7 +93,7 @@ const JobSeeker = () => {
                                     <TextField fullWidth id="tagile" label="Tagile" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField fullWidth id="last-name" label="Last Name" variant="outlined" required />
+                                    <TextField fullWidth id="description" label="Description" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <Typography gutterBottom variant="overline" component="div"  align={"left"} >
@@ -107,10 +108,10 @@ const JobSeeker = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField fullWidth id="first-name" label="Street" variant="outlined" required />
+                                    <TextField fullWidth id="street" label="Street" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField fullWidth id="last-name" label="City" variant="outlined" required />
+                                    <TextField fullWidth id="city" label="City" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <Typography gutterBottom variant="h6" component="div"  align={"left"} >
@@ -118,13 +119,13 @@ const JobSeeker = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField fullWidth
-                                               label="Mobile"
-                                               id="outlined-start-adornment"
-                                               sx={{ m: 1, width: '25ch' }}
-                                               InputProps={{
-                                                   startAdornment: <InputAdornment position="start">+98</InputAdornment>,
-                                               }}/>
+                                    <TextField
+                                        fullWidth
+                                        id="mobile"
+                                        label="Mobile"
+                                        InputProps={{
+                                            startAdornment: <InputAdornment position="start">+94</InputAdornment>,
+                                        }}/>
                                 </Grid>
 
                             </Grid>
@@ -135,21 +136,21 @@ const JobSeeker = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField fullWidth id="first-name" label="E-mail Address" variant="outlined" required />
+                                    <TextField fullWidth id="email" label="E-mail Address" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <TextField  fullWidth id="last-name" label="Password*" variant="outlined" required />
+                                    <TextField  fullWidth id="password" label="Password*" variant="outlined" required />
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <Typography gutterBottom variant="body2" component="div"  align={"left"} >
                                         Please make sure that your password contain at least,
-                                        <ul>8 characters</ul>
-                                        <ul>1 uppercase lettes</ul>
-                                        <ul>1 lowercase letters</ul>
-                                        <ul>1 number and 1 special characters</ul>
+                                        <ul> 8 characters</ul>
+                                        <ul> 1 uppercase lettes</ul>
+                                        <ul> 1 lowercase letters</ul>
+                                        <ul> 1 number and 1 special characters</ul>
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} sx={{ m: 2 }}>
+                                <Grid item xs={12} sx={{ m: 4 }}>
                                     <Stack spacing={2} direction="row">
                                         <Button variant="contained">Sign Up</Button>
                                         <Button variant="outlined">Cancel</Button>
