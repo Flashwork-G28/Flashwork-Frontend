@@ -10,6 +10,7 @@ import Link from '@mui/material/Link';
 import bg from "../../Assets/Home/landingBg.png";
 import HomeServiceCard from "../../Components/HomeCard/HomeServiceCard";
 
+
 const styles = {
     paperContainer: {
         backgroundImage: `url(${bg})`
@@ -20,6 +21,7 @@ const Home = () => {
     return (
         <>
             {/*<HomeServiceCard/>*/}
+
         </>
     );
 };
