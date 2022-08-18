@@ -6,17 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from '@material-ui/core/styles';
 import logoIcon from '../../Assets/logoIcon.png'
 import { Link, NavLink } from "react-router-dom";
-
 import Tooltip from '@mui/material/Tooltip';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
 import LogoutIcon from '@mui/icons-material/Logout';
-
 import Button from '@mui/material/Button';
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
     typoContent: {
@@ -53,7 +52,6 @@ const NavBar = () => {
         loginWithRedirect,
         logout,
     } = useAuth0();
-    console.log(user);
 
     return (
         <AppBar position="static" color="transparent">
@@ -115,7 +113,7 @@ const NavBar = () => {
                                 color="inherit"
                             >
                                 <Badge badgeContent={17} color="error">
-                                    <NotificationsIcon />
+                                    <NotificationsIcon fontSize="inherit"/>
                                 </Badge>
                             </IconButton>
 
@@ -123,14 +121,16 @@ const NavBar = () => {
                                 logout({ returnTo: window.location.origin });
                             }}>
                                 <Badge  color="error">
-                                    <LogoutIcon />
+                                    <LogoutIcon fontSize="inherit"/>
                                 </Badge>
                             </IconButton>
 
                             <Tooltip title="Open settings">
-                                <IconButton  >
-                                    <Avatar alt={user?.nickname} src={user?.picture} />
-                                </IconButton>
+                                <Link to="/dashboard">
+                                    <IconButton >
+                                        <Avatar alt={user?.nickname} src={user?.picture} />
+                                    </IconButton>
+                                </Link>
                             </Tooltip>
                         </Box>
                     )}
