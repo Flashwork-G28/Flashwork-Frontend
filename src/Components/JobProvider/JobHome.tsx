@@ -1,12 +1,11 @@
 import React from 'react';
 
-const SignIn = () => {
+const JobHome = () => {
     return (
         <div>
-            signin
+            jobHome
         </div>
     );
 };
 
-export default SignIn;
-
+export default JobHome;
