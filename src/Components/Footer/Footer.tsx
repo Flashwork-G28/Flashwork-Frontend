@@ -51,9 +51,9 @@ const Footer = () => {
                 </div>
 
                 <div style={{paddingTop:"10px",marginLeft:"5px",display:"flex",flexDirection:"row"}}>
-                        <div style={{paddingLeft:"8px"}}><img src={facebook}/></div>
-                        <div style={{paddingLeft:"8px"}}><img src={insta}/></div>
-                        <div style={{paddingLeft:"8px"}}><img src={twi}/></div>
+                        {/*<div style={{paddingLeft:"8px"}}><img src={facebook}/></div>*/}
+                        {/*<div style={{paddingLeft:"8px"}}><img src={insta}/></div>*/}
+                        {/*<div style={{paddingLeft:"8px"}}><img src={twi}/></div>*/}
                 </div>
             </div>
 
