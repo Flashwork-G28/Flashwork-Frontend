@@ -1,24 +1,52 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import Box from '@material-ui/core/Box';
 
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Box, { BoxProps } from '@mui/material/Box'
 
-import bg from "../../Assets/Home/landingBg.png";
+import bg from "../../Assets/Home/SideImage.png";
 import HomeServiceCard from "../../Components/HomeCard/HomeServiceCard";
+import UsersCountingSection from "../../Components/HomeCard/UsersCountingSection";
+import UnicFirstPage from "../../Components/HomeCard/UnicFirstPage";
 
-const styles = {
-    paperContainer: {
-        backgroundImage: `url(${bg})`
-    }
-};
+// const styles = {
+//     paperContainer: {
+//         backgroundImage: `url(${bg})`
+//     }
+// };
+// function Item(props: BoxProps) {
+//     const { sx, ...other } = props;
+//     return (
+//         <Box
+//             sx={{
+//                 p: 1,
+//                 m: 1,
+//                 fontSize: '0.875rem',
+//                 fontWeight: '700',
+//
+//             }}
+//             {...other}
+//         />
+//     );
+// }
 
 const Home = () => {
     return (
         <>
+
+            {/*<div style={{ width: '100%', height:'100vh' }}>*/}
+            {/*    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>*/}
+            {/*        <UnicFirstPage />*/}
+            {/*        <div style={{backgroundImage:`url(${bg})`}}></div>*/}
+
+            {/*    </Box>*/}
+            {/*</div>*/}
+            <UnicFirstPage />
+
+            <UsersCountingSection/>
             <HomeServiceCard/>
         </>
     );

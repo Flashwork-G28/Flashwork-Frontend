@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new service card 1.0">
-      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/MainHomeImage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-Aug-22_11_52_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12-Aug-22_11_52_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new final card in without add images.">
+      <change afterPath="$PROJECT_DIR$/src/Components/CommonComponent/SearchBar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/UnicFirstPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/UsersCountingSection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +97,10 @@
       <workItem from="1660074894953" duration="3314000" />
       <workItem from="1660098701609" duration="14200000" />
       <workItem from="1660138129532" duration="15801000" />
-      <workItem from="1660316947981" duration="14505000" />
+      <workItem from="1660316947981" duration="28113000" />
+      <workItem from="1660492976827" duration="15105000" />
+      <workItem from="1660621329649" duration="1842000" />
+      <workItem from="1660745294375" duration="27213000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -176,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660328429691</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="This commit for creat new final card in without add images.">
+      <created>1660414347957</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1660414347957</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +228,8 @@
     <MESSAGE value="This commit for add some testing 5" />
     <MESSAGE value="This commit for creat new service card data added" />
     <MESSAGE value="This commit for creat new service card 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat new service card 1.0" />
+    <MESSAGE value="This commit for creat new final card in without add images." />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat new final card in without add images." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -229,8 +240,11 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/HomeCard/UsersCountingSection.tsx</url>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
