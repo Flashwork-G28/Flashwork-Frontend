@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Tooltip from "@mui/material/Tooltip";
 import {Link} from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {makeStyles} from "@material-ui/core/styles";
@@ -27,7 +26,6 @@ const TopBar = () => {
     const {
         user,
         isAuthenticated,
-        loginWithRedirect,
         logout,
     } = useAuth0();
 
