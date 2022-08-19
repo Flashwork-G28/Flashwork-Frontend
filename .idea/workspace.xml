@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create signin finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Base.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/SignUp/JobSeeker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +31,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/Build_Home_Page" />
+        <entry key="$PROJECT_DIR$" value="feature/Build_dashboard" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -212,7 +209,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/feature/Build_sign" />
+                        <option value="origin/dev" />
                       </list>
                     </value>
                   </entry>
