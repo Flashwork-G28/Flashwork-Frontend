@@ -1,6 +1,6 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import Card from "react-bootstrap/Card";
+// import {makeStyles} from "@material-ui/core/styles";
+//import Card from "react-bootstrap/Card";
 import facebook from '../../Assets/footer/facebook.png';
 import insta from '../../Assets/footer/instagram.png';
 import twi from '../../Assets/footer/twitter.png';
@@ -12,7 +12,7 @@ const Footer = () => {
     return (
 
         <div>
-            <div style={{height:"250px",backgroundColor:"#600080",padding:"1px",marginBottom:"1px",display:"flex",flexDirection:"row",paddingLeft:"20px"}}>
+            <div style={{height:"250px",backgroundColor:"#46225F",padding:"1px",marginBottom:"1px",display:"flex",flexDirection:"row",paddingLeft:"20px"}}>
                 <div style={{paddingLeft:"5%",paddingTop:"3%",color:"white"}}>
                    <div  style={{display:"flex",justifyContent:"flex-start"}}>FlashWork</div>
                     <div style={{display:"flex",justifyContent:"flex-start",paddingBottom:"12px"}}>The Service Integration Platform</div>
@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
 
 
-            </div><div style={{width:"100%",height:"50px",backgroundColor:"#600080",display:"flex",flexDirection:"row"}}>
+            </div><div style={{width:"100%",height:"50px",backgroundColor:"#46225F",display:"flex",flexDirection:"row"}}>
                 <div style={{color:"white", marginRight:"900px", fontSize:"12px",padding:"5px",paddingTop:"15px",marginLeft:"70px",}}>
                     Copyright ©  2021 FLASHWORK SERVICE CENTER (PVT) LTD
                 </div>
