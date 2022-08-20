@@ -1,0 +1,308 @@
+Index: src/Pages/LandingPages/about.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class about extends Component {\r\n  render() {\r\n    return (\r\n      <div>about</div>\r\n    )\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/about.tsx b/src/Pages/LandingPages/about.tsx
+--- a/src/Pages/LandingPages/about.tsx	(revision 5ae152e8fabe2c4b77869dfc92de38ca02b92fd6)
++++ b/src/Pages/LandingPages/about.tsx	(date 1660663672188)
+@@ -1,9 +1,11 @@
+-import React, { Component } from 'react'
++import React from 'react';
+ 
+-export default class about extends Component {
+-  render() {
++const About = () => {
+     return (
+-      <div>about</div>
+-    )
+-  }
+-}
++        <div>
++
++        </div>
++    );
++};
++
++export default About;
+Index: src/Components/AboutUs/TheServicesIntegration.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Components/AboutUs/TheServicesIntegration.tsx b/src/Components/AboutUs/TheServicesIntegration.tsx
+new file mode 100644
+--- /dev/null	(date 1660663697915)
++++ b/src/Components/AboutUs/TheServicesIntegration.tsx	(date 1660663697915)
+@@ -0,0 +1,50 @@
++import * as React from 'react';
++import {makeStyles} from "@material-ui/core/styles";
++import Image from "*.png";
++import Card from 'react-bootstrap/Card';
++
++
++const useStyles = makeStyles({
++    TheServicesIntegration: {
++        width:'100%',
++        height:'10%',
++    },
++
++});
++
++// const About = () => {
++//     return (
++//         <div>
++//             about
++//         </div>
++//     );
++// };
++
++export default function TheServicesIntegration() {
++    const classes = useStyles();
++    return (
++
++        <div className={classes.TheServicesIntegration}>
++           <div style={{color:"#600080",marginRight:"28%"}}>
++               <h1>The services integration platform is at your service</h1>
++           </div>
++
++            <div>
++                <Card style={{ width: '70rem',padding:'40px', borderRadius:'10px', marginLeft:'7%', marginTop:"7%",position:"absolute", fontSize:"20px",fontWeight:"2px" }}>
++
++                        <Card.Text>
++                            Flashwork is a platform which connects part-time workers with suitable opportunities. The main purpose of this system is to provide facilities to interconnect part-time service providers such as individual service providers or manpower agencies with part-time service receivers with the facilities to make online payments, online chat services, online booking services and other facilities.
++
++                        </Card.Text>
++
++                </Card>
++            </div>
++
++
++        </div>
++
++    );
++}
++
++
++
+Index: src/Pages/LandingPages/home.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class home extends Component {\r\n  render() {\r\n    return (\r\n      <div>home</div>\r\n    )\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Pages/LandingPages/home.tsx b/src/Pages/LandingPages/home.tsx
+--- a/src/Pages/LandingPages/home.tsx	(revision 5ae152e8fabe2c4b77869dfc92de38ca02b92fd6)
++++ b/src/Pages/LandingPages/home.tsx	(date 1660663828777)
+@@ -1,9 +1,64 @@
+-import React, { Component } from 'react'
++import React from 'react';
++import Container from '@mui/material/Container';
++import Box from '@material-ui/core/Box';
++
++import Paper from '@mui/material/Paper';
++import Typography from '@mui/material/Typography';
++import Grid from '@mui/material/Grid';
++import Link from '@mui/material/Link';
++
++import bg from "../../Assets/Home/landingBg.png";
++
++import TheServicesIntegration from "../../Components/AboutUs/TheServicesIntegration";
++import AboutUs from "../../Components/AboutUs/AboutUs";
+ 
+-export default class home extends Component {
+-  render() {
++const styles = {
++    paperContainer: {
++        backgroundImage: `url(${bg})`
++    }
++};
++
++const Home = () => {
+     return (
+-      <div>home</div>
+-    )
+-  }
+-}
++        <>
++            {/*<HomeServiceCard/>*/}
++           
++
++
++
++        </>
++    );
++};
++
++export default Home;
++
++{/*<Paper  style={styles.paperContainer}*/}
++{/*    sx={{*/}
++{/*        position: 'relative',*/}
++{/*        mb: 4,*/}
++{/*        backgroundSize: 'cover',*/}
++{/*        backgroundRepeat: 'no-repeat',*/}
++{/*        backgroundPosition: 'center',*/}
++{/*        height:"80Vh",*/}
++
++{/*    }}*/}
++{/*>*/}
++{/*    <Grid container  alignItems="left" direction="row">*/}
++{/*        <Grid item md={6} >*/}
++{/*                <Typography component="h1" variant="h3" color="inherit" gutterBottom style={{ wordWrap: "break-word" }}>*/}
++{/*                    We Will Do*/}
++{/*                    Your All Work*/}
++{/*                </Typography>*/}
++{/*                <Typography variant="h5" color="inherit" paragraph>*/}
++{/*                    We Are The Best Solution For You Can Also Find Job*/}
++{/*                    Opportunities And Avail Services. Come Join Flash Work.*/}
++{/*                </Typography>*/}
++{/*                <Link variant="subtitle1" href="#">*/}
++{/*                    link*/}
++{/*                </Link>*/}
++{/*        </Grid>*/}
++
++{/*        <Grid item md={6}>*/}
++{/*        </Grid>*/}
++{/*    </Grid>*/}
++{/*</Paper>*/}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f0cc7ce0-ab06-4707-8f4d-f24c782d98a9\" name=\"Changes\" comment=\"This commit for install react axios\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/Components/NavBar/navbar.tsx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/about.tsx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/contactUs.tsx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/home.tsx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/job.tsx\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/Pages/LandingPages/workers.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/App.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/App.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/App.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/App.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/logo.svg\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Merge.Settings\">\r\n    <option name=\"BRANCH\" value=\"main\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2CU1VShw0N4lXJEv3Bk0Ikz8QKS\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/3Y Project/Flashwork-Frontend&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;ts.external.directory.path&quot;: &quot;D:\\\\3Y Project\\\\client\\\\node_modules\\\\typescript\\\\lib&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\3Y Project\\client\\src\\Pages\\landingPages\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f0cc7ce0-ab06-4707-8f4d-f24c782d98a9\" name=\"Changes\" comment=\"\" />\r\n      <created>1658842386697</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1658842386697</updated>\r\n      <workItem from=\"1658842390210\" duration=\"3560000\" />\r\n      <workItem from=\"1658858746454\" duration=\"704000\" />\r\n      <workItem from=\"1659007307514\" duration=\"124000\" />\r\n      <workItem from=\"1659784920730\" duration=\"2732000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"This commit for update data\">\r\n      <created>1658855504090</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1658855504090</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"This commit for install react router dom\">\r\n      <created>1658863156570</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1658863156570</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"This commit for install react axios\">\r\n      <created>1659007393117</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1659007393117</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/dev\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"This commit for update structure\" />\r\n    <MESSAGE value=\"This commit for update data\" />\r\n    <MESSAGE value=\"This commit for install react router dom\" />\r\n    <MESSAGE value=\"This commit for install react axios\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"This commit for install react axios\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5ae152e8fabe2c4b77869dfc92de38ca02b92fd6)
++++ b/.idea/workspace.xml	(date 1660663829915)
+@@ -1,17 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for install react axios">
+-      <change afterPath="$PROJECT_DIR$/src/Components/NavBar/navbar.tsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/about.tsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/contactUs.tsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/home.tsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/job.tsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Pages/LandingPages/workers.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
++    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for TheServicesIntegration">
++      <change afterPath="$PROJECT_DIR$/src/Assets/aboutus.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Components/AboutUs/AboutUs.tsx" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/Components/AboutUs/TheServicesIntegration.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/about.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/about.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/home.tsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,7 +19,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="feature/Build_Home_Page" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -40,19 +35,19 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;D:/3Y Project/Flashwork-Frontend&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;ts.external.directory.path&quot;: &quot;D:\\3Y Project\\client\\node_modules\\typescript\\lib&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "WebServerToolWindowFactoryState": "false",
++    "last_opened_file_path": "D:/3Y Project/Flashwork-Frontend",
++    "node.js.detected.package.eslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "ts.external.directory.path": "D:\\3rd year\\node_modules\\typescript\\lib",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="D:\3Y Project\client\src\Pages\landingPages" />
+Index: src/Components/AboutUs/AboutUs.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Components/AboutUs/AboutUs.tsx b/src/Components/AboutUs/AboutUs.tsx
+new file mode 100644
+--- /dev/null	(date 1660663697940)
++++ b/src/Components/AboutUs/AboutUs.tsx	(date 1660663697940)
+@@ -0,0 +1,51 @@
++import React from 'react';
++import {makeStyles} from "@material-ui/core/styles";
++import img from '../../Assets/aboutus.png';
++import Card from 'react-bootstrap/Card';
++
++
++
++const useStyles = makeStyles({
++    // const classes = useStyles();
++    AboutUs: {
++
++    },
++
++    card: {
++
++    },
++
++});
++
++export default function AboutUs() {
++    const classes = useStyles();
++    return (
++
++        <div className={classes.AboutUs} style={{display:"flex", flexDirection:"row"}}>
++
++            <div className={classes.card}>
++
++                <Card style={{ width: '25rem', backgroundColor:'#e6e6e6' ,padding:'40px', borderRadius:'10px', marginLeft:'15%', marginTop:"7%",position:"absolute" }}>
++                    <Card.Body>
++                        <Card.Title><h2>About Us</h2></Card.Title>
++
++                        <Card.Text>
++                            <h5> Search Online Jobs For Students Today. Work From Home Sites. Work Remote.
++                                Work From Home Sites. Computer Work From Home. Email. Facebook. Area. Search.
++                                Chat. Number. Instagram. Local. Fast. Jobs. Types: Home, Office, Laptop, Phone, Call, Online Meeting.</h5>
++                        </Card.Text>
++                    </Card.Body>
++                </Card>
++            </div>
++
++           <div >
++               <img src={img} className='img-fluid shadow-4' alt='...' width={"110%"} height={"90%"} style={{borderRadius:"30px", marginTop:"10%", marginLeft:"130%"}}/>
++           </div>
++
++
++
++        </div>
++
++    );
++}
++
