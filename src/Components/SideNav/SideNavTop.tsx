@@ -1,5 +1,4 @@
 import React from 'react';
-import arrow from '../../Assets/SideNav/right-arrow (1).png';
 
 const SideNavTop = () => {
     return (

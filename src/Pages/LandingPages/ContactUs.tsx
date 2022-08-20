@@ -14,41 +14,31 @@ import person from '../../Assets/ContactUs/Background 2.png';
 
 import Card from 'react-bootstrap/Card';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-}));
 
 const ContactUs = () => {
   return (
-      <div style={{height:"1100px",backgroundColor:"white"}}>
+      <>
           <div style={{height:"550px",display:"flex",flexDirection:"row"}}>
               <div style={{paddingLeft:"70px"}}>
                   <h1 style={{color:"#600080",fontWeight:"bold",fontSize:"40px",paddingLeft:"20px"}}>Time To Join With Us</h1>
                   <div style={{display:"flex",flexDirection:"row",paddingBottom:"10px"}}>
-                      <img src={p1} style={{width:"150px",height:"100px",paddingRight:"10px"}}/>
-                      <img src={p2} style={{paddingRight:"10px"}}/>
-                      <img src={p4} style={{width:"150px",height:"100px"}}/>
+                      <img src={p1} alt={"contactImg"} style={{width:"150px",height:"100px",paddingRight:"10px"}}/>
+                      <img src={p2} alt={"contactImg"} style={{paddingRight:"10px"}}/>
+                      <img src={p4} alt={"contactImg"} style={{width:"150px",height:"100px"}}/>
                   </div>
                   <div  style={{display:"flex",flexDirection:"row",paddingLeft:"20%",paddingBottom:"10px"}}>
-                      <img src={p9} style={{width:"100px",height:"150px",paddingRight:"10px"}}/>
-                      <img src={p7} style={{width:"100px",height:"150px",paddingRight:"10px"}}/>
-                      <img src={p3} style={{width:"100px",height:"150px"}}/>
+                      <img src={p9} alt={"contactImg"} style={{width:"100px",height:"150px",paddingRight:"10px"}}/>
+                      <img src={p7} alt={"contactImg"} style={{width:"100px",height:"150px",paddingRight:"10px"}}/>
+                      <img src={p3} alt={"contactImg"} style={{width:"100px",height:"150px"}}/>
                   </div>
                   <div style={{display:"flex",flexDirection:"row"}}>
-                      <img src={p5} style={{width:"150px",height:"100px",paddingRight:"10px"}}/>
-                      <img src={p6} style={{paddingRight:"10px"}}/>
-                      <img src={p8} style={{width:"150px",height:"100px"}}/>
+                      <img src={p5} alt={"contactImg"} style={{width:"150px",height:"100px",paddingRight:"10px"}}/>
+                      <img src={p6} alt={"contactImg"} style={{paddingRight:"10px"}}/>
+                      <img src={p8} alt={"contactImg"} style={{width:"150px",height:"100px"}}/>
                   </div>
               </div>
               <div style={{paddingLeft:"15%",paddingTop:"5%",display:"flex",flexDirection:"column"}}>
-                  <div><img src={quto} style={{width:"60px",height:"60px",paddingRight:"350px"}}/>
+                  <div><img src={quto} alt={"quto"} style={{width:"60px",height:"60px",paddingRight:"350px"}}/>
                       <div style={{display:"flex",justifyContent:"flex-start"}}>
                           <Card style={{ width: '20rem', borderRadius:'10px', marginLeft:'7%', fontSize:"20px",fontWeight:"2px"}}>
                               <Card.Text style={{display:"flex",justifyContent:"flex-start"}}>
@@ -69,8 +59,9 @@ const ContactUs = () => {
 
                       </div>
                       <div style={{paddingTop:"30px",paddingRight:"270px",paddingLeft:"40px"}}>
-                          <button style={{padding:"15px",borderRadius:"7px",fontWeight:"bold",backgroundColor:"#7A3293",color:"white",border:"none",width:"100px"}}>Join Us</button>
-
+                          <button style={{padding:"15px",borderRadius:"7px",fontWeight:"bold",backgroundColor:"#7A3293",color:"white",border:"none",width:"100px"}}>
+                              Join Us
+                          </button>
                       </div>
                   </div>
               </div>
@@ -97,21 +88,21 @@ const ContactUs = () => {
                               <TextField style={{display:"flex",justifyContent:"flex-start",paddingBottom:"20px"}}
                                   id="outlined-multiline-static"
                                   multiline
-                                  rows={3}
                                   defaultValue="Message"
                                   variant="outlined"
                               />
-                              <div style={{display:"flex",justifyContent:"flex-end",padding:"10px"}}><button style={{padding:"10px",width:"100px",backgroundColor:"#7A3293",fontWeight:"bold",border:"none",color:"white",borderRadius:"7px"}}>Send</button></div>
+                              <div style={{display:"flex",justifyContent:"flex-end",padding:"10px"}}>
+                                  <button style={{padding:"10px",width:"100px",backgroundColor:"#7A3293",fontWeight:"bold",border:"none",color:"white",borderRadius:"7px"}}>Send</button></div>
                           </form>
                       </Card.Text>
                   </Card>
 
               </div>
               <div style={{paddingLeft:"40%",paddingTop:"5%"}}>
-                  <img src={person} style={{width:"350px",height:"400px"}}/>
+                  <img src={person} alt={"person"} style={{width:"350px",height:"400px"}}/>
               </div>
           </div>
-      </div>
+      </>
   );
 };
 

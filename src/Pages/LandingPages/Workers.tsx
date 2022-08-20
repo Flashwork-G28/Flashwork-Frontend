@@ -1,5 +1,4 @@
 import React from 'react';
-import WorkerCard from "../../Components/Workers/WorkerCard";
 import WorkerMainComponents from "../../Components/Workers/WorkerMainComponents";
 import Typography from "@mui/material/Typography";
 

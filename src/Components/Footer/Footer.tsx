@@ -1,9 +1,8 @@
 import React from 'react';
-// import {makeStyles} from "@material-ui/core/styles";
-//import Card from "react-bootstrap/Card";
+
 import facebook from '../../Assets/footer/facebook.png';
-import insta from '../../Assets/footer/instagram.png';
-import twi from '../../Assets/footer/twitter.png';
+import instagram from '../../Assets/footer/instagram.png';
+import twitter from '../../Assets/footer/twitter.png';
 
 
 
@@ -51,9 +50,9 @@ const Footer = () => {
                 </div>
 
                 <div style={{paddingTop:"10px",marginLeft:"5px",display:"flex",flexDirection:"row"}}>
-                        {/*<div style={{paddingLeft:"8px"}}><img src={facebook}/></div>*/}
-                        {/*<div style={{paddingLeft:"8px"}}><img src={insta}/></div>*/}
-                        {/*<div style={{paddingLeft:"8px"}}><img src={twi}/></div>*/}
+                        <div style={{paddingLeft:"8px"}}><img src={facebook} alt={"facebook"}/></div>
+                        <div style={{paddingLeft:"8px"}}><img src={instagram} alt={"instagram"}/></div>
+                        <div style={{paddingLeft:"8px"}}><img src={twitter} alt={"twitter"}/></div>
                 </div>
             </div>
 

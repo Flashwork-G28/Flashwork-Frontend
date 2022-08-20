@@ -3,9 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Grid from '@mui/material/Grid';
 import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import Typography from '@mui/material/Typography';
-
 import Avatar from '@mui/material/Avatar';
-import {colors} from "@mui/material";
 import Button from "@mui/material/Button";
 
 const useStyles = makeStyles({

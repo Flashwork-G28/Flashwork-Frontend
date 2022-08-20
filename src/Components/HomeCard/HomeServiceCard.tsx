@@ -2,17 +2,13 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import {inspect} from "util";
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from '@mui/material/Grid';
 import bg1 from "../../Assets/backgroundImages/myPub.png";
 import bg2 from "../../Assets/backgroundImages/countWorker2.png";
 import bg3 from "../../Assets/backgroundImages/countWorker.png";
-import Box, { BoxProps } from '@mui/material/Box';
-import Image from '../../Assets/backgroundImages/backgroundDot.png';
-import { positions } from '@mui/system';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import Box from '@mui/material/Box';
+
 
 
 
@@ -70,6 +66,7 @@ export default function HomeServiceCard() {
                                             srcSet={`${item.img}?w=32&fit=crop&auto=format&dpr=2 2x`}
                                             loading="lazy"
                                             style={{width: '32px', height:'32px'}}
+                                            alt={"homeImage"}
                                         />
                                     </div>
                                     <Card color={'blue'}>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import Image from "*.png";
 import Card from 'react-bootstrap/Card';
 
 
@@ -12,13 +11,6 @@ const useStyles = makeStyles({
 
 });
 
-// const About = () => {
-//     return (
-//         <div>
-//             abouts
-//         </div>
-//     );
-// };
 
 export default function TheServicesIntegration() {
     const classes = useStyles();

@@ -2,9 +2,6 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
 import bc1 from "../../Assets/backgroundImages/countWorker.png";
 import bc2 from "../../Assets/backgroundImages/countWorker2.png";
 import bc3 from "../../Assets/backgroundImages/countGroup.png";
@@ -32,7 +29,7 @@ const itemData = [
 const UsersCountingSection = () => {
         return (
             <div style={{alignItems:'center' , backgroundColor:'red'}}>
-                <ImageList sx={{ width: 1/1, height: 270 }} cols={3} gap={0}>
+                <ImageList sx={{ width: 1, height: 270 }} cols={3} gap={0}>
                     {itemData.map((item) => (
                         <ImageListItem key={item.img}>
                             <img

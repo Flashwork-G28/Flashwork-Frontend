@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="this is SideNav">
-      <change afterPath="$PROJECT_DIR$/src/Components/SideNav/SideNavTop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_16_2022_8_57_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_16_2022_8_57_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_19_2022_6_42_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_19_2022_6_42_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_20_2022_4_59_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_20_2022_4_59_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_20_2022_4_59_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_20_2022_4_59_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_2022_9_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_13_2022_9_10_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_16_2022_9_02_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_16_2022_9_02_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_19_2022_8_57_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_19_2022_8_57_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_9_2022_3_54_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_9_2022_3_54_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SideNav/SideNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNav/SideNav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AboutUs/TheServicesIntegration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AboutUs/TheServicesIntegration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Footer/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/UnicFirstPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/UnicFirstPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/UsersCountingSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/UsersCountingSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SideNav/SideNavTop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNav/SideNavTop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Workers/WorkerCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Workers/WorkerCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/ContactUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/ContactUs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +32,6 @@
       <list>
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -32,16 +47,13 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/Build_About" />
+        <entry key="$PROJECT_DIR$" value="feature/Build_sign" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -54,22 +66,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/3Y Project/client/src/Assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "D:\\3rd year\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/3Y Project/client/src/Assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\3Y Project\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -114,7 +126,6 @@
       <workItem from="1660710406296" duration="1404000" />
       <workItem from="1660713900146" duration="4235000" />
       <workItem from="1660736690813" duration="18292000" />
-      <workItem from="1660921742339" duration="1017000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -260,15 +271,25 @@
     <MESSAGE value="This commit for create signin finish" />
     <MESSAGE value="This commit for create signup basic setup" />
     <MESSAGE value="This commit for create dashborad and route" />
-    <MESSAGE value="This commit for create new service card data added and sent" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for create new service card data added and sent" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for create dashborad and route" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx</url>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/SideNav/SideNavTop.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/AboutUs/TheServicesIntegration.tsx</url>
+          <line>9</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
