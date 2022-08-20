@@ -1,0 +1,16 @@
+Index: src/Components/NavBar/navbar.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\r\n\r\nexport default class navbar extends Component {\r\n  render() {\r\n    return (\r\n      <div>navbar</div>\r\n    )\r\n  }\r\n}\r\n
+===================================================================
+diff --git a/src/Components/NavBar/navbar.tsx b/src/Components/NavBar/navbar.tsx
+--- a/src/Components/NavBar/navbar.tsx	
++++ b/src/Components/NavBar/navbar.tsx	
+@@ -3,6 +3,7 @@
+ export default class navbar extends Component {
+   render() {
+     return (
++
+       <div>navbar</div>
+     )
+   }
