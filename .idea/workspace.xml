@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for create dashborad and route">
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="this is SideNav">
+      <change afterPath="$PROJECT_DIR$/src/Components/SideNav/SideNavTop.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assets/logoIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/logoIcon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TopBar/TopBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TopBar/TopBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Dashboard/DashBoard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Dashboard/DashBoard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SideNav/SideNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SideNav/SideNav.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +16,7 @@
       <list>
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -33,13 +32,16 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/Build_sign" />
+        <entry key="$PROJECT_DIR$" value="feature/Build_About" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -64,7 +66,7 @@
     "node.js.selected.package.standard": "",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "D:\\3Y Project\\client\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\3rd year\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -112,6 +114,7 @@
       <workItem from="1660710406296" duration="1404000" />
       <workItem from="1660713900146" duration="4235000" />
       <workItem from="1660736690813" duration="18292000" />
+      <workItem from="1660921742339" duration="1017000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -257,14 +260,15 @@
     <MESSAGE value="This commit for create signin finish" />
     <MESSAGE value="This commit for create signup basic setup" />
     <MESSAGE value="This commit for create dashborad and route" />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for create dashborad and route" />
+    <MESSAGE value="This commit for create new service card data added and sent" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for create new service card data added and sent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Job.tsx</url>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
