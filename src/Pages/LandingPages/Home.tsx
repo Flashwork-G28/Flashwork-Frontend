@@ -11,6 +11,7 @@ import bg from "../../Assets/Home/SideImage.png";
 import HomeServiceCard from "../../Components/HomeCard/HomeServiceCard";
 import UsersCountingSection from "../../Components/HomeCard/UsersCountingSection";
 import UnicFirstPage from "../../Components/HomeCard/UnicFirstPage";
+import HomeTopWorker from "../../Components/HomeCard/HomeTopWorker";
 
 // const styles = {
 //     paperContainer: {
@@ -48,6 +49,7 @@ const Home = () => {
 
             <UsersCountingSection/>
             <HomeServiceCard/>
+            <HomeTopWorker />
         </>
     );
 };

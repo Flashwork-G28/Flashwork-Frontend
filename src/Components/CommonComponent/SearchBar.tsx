@@ -1,26 +1,9 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-
-
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-
-
-
-
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import CardMedia from '@mui/material/CardMedia';
-import bg from "../../Assets/backgroundImages/countGroup.png";
 import {alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
+
 
 
 
@@ -51,7 +34,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // color: 'inherit',
-    color: 'blue',
+    color: '#4E2363',
     borderRadius: '10px',
     border: '1px solid #E5E5E5',
     boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
@@ -63,9 +46,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '12ch',
+            width: '20ch',
             '&:focus': {
-                width: '20ch',
+                width: '25ch',
             },
         },
     },

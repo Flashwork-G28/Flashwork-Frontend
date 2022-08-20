@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat new final card in without add images.">
-      <change afterPath="$PROJECT_DIR$/src/Components/CommonComponent/SearchBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/UnicFirstPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/UsersCountingSection.tsx" afterDir="false" />
+    <list default="true" id="f0cc7ce0-ab06-4707-8f4d-f24c782d98a9" name="Changes" comment="This commit for creat worker card">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_19_2022_6_42_AM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_19_2022_6_42_AM_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_8_19_2022_6_42_AM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_9_2022_3_54_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_9_2022_3_54_PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/Home/SideImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/Background (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/backgroundDot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/countGroup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/countWorker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/countWorker2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/man1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/myPub.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/worker.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Assets/backgroundImages/workersNew.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeTopWorker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Workers/WorkerCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Workers/WorkerMainComponents.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CommonComponent/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CommonComponent/SearchBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomeCard/HomeServiceCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LandingPages/Workers.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +118,7 @@
       <workItem from="1660492976827" duration="15105000" />
       <workItem from="1660621329649" duration="1842000" />
       <workItem from="1660745294375" duration="27213000" />
+      <workItem from="1660989362855" duration="4059000" />
     </task>
     <task id="LOCAL-00001" summary="This commit for update data">
       <created>1658855504090</created>
@@ -229,7 +247,8 @@
     <MESSAGE value="This commit for creat new service card data added" />
     <MESSAGE value="This commit for creat new service card 1.0" />
     <MESSAGE value="This commit for creat new final card in without add images." />
-    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat new final card in without add images." />
+    <MESSAGE value="This commit for creat worker card" />
+    <option name="LAST_COMMIT_MESSAGE" value="This commit for creat worker card" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
