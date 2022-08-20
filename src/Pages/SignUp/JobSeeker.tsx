@@ -13,6 +13,9 @@ import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
 const useStyles = makeStyles({
         root:{
             backgroundColor: "#D89EE7",
@@ -39,6 +42,11 @@ const useStyles = makeStyles({
 
     })
 ;
+
+const validationSchema = yup.object({
+    email: yup.string().required('Email Required !'),
+    password: yup.string().required('Password Required !')
+});
 
 const JobSeeker = () => {
     const classes = useStyles();
