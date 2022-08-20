@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 
 const validationSchema = yup.object({
     email: yup.string().required('Email Required !'),
-    password: yup.string().required('Password Required !')
+    password: yup.string().required('Password Require !')
 });
 
 const JobSeeker = () => {
