@@ -8,6 +8,9 @@ import Workers from "./LandingPages/Workers";
 import ContactUs from "./LandingPages/ContactUs";
 import About from "./LandingPages/About";
 
+/* test admin */
+import AdminDashboard from "../Components/Admin/AdminDashboard";
+
 const Layout = () => {
     return (
         <>
@@ -18,6 +21,9 @@ const Layout = () => {
                 <Route path='/workers'  element={<Workers />}/>
                 <Route path='/contactUs'  element={<ContactUs />}/>
                 <Route path='/about'  element={<About />}/>
+
+                {/* test admin */}
+                <Route path='/adminDashboard'  element={<AdminDashboard />}/>
             </Routes>
             <Footer/>
         </>

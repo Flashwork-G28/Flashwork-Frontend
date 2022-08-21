@@ -28,6 +28,9 @@ function App() {
                 <Route path='/workers'  element={<Layout />}/>
                 <Route path='/contactUs'  element={<Layout />}/>
                 <Route path='/about'  element={<Layout />}/>
+                
+                {/* test admin */}
+                <Route path='/adminDashboard'  element={<Layout />}/>
             </Route>
 
             <Route path='/dashboard' element={<DashBoard />} >
