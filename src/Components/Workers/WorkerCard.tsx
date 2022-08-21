@@ -5,6 +5,10 @@ import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarIcon from '@mui/icons-material/Star';
+import WorkIcon from '@mui/icons-material/Work';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const useStyles = makeStyles({
     cardBody: {
@@ -38,10 +42,18 @@ const useStyles = makeStyles({
         position: 'absolute',
         bottom: '50px',
         right: '25px',
-
-
+    },
+    hartCard:{
+        width:'100px',
+        height:'100px',
+        marginRight: '50px',
+        display: 'flex',
+        flexDirection:'row',
+        justifyContent:'right',
+        // content: 'end',
 
     },
+
 
 })
 
@@ -56,7 +68,11 @@ const WorkerCard = () => {
                 direction="column"
                 margin='25px' >
 
-                <Grid sx={{ width:'100%' , height:'fitContent'}}>
+                <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="flex-start">
                     <Grid>
                         <Avatar
                             alt="Remy Sharp"
@@ -64,8 +80,11 @@ const WorkerCard = () => {
                             sx={{ width: 100, height: 100 }}
                         />
                     </Grid>
-                    <Grid>
+                    <Grid className={classes.hartCard}>
 
+                            <FavoriteBorderIcon fontSize='medium'  />
+
+                            <StarIcon color='primary' />
                     </Grid>
 
                 </Grid>
@@ -75,10 +94,10 @@ const WorkerCard = () => {
                         Mohomad Faalil
                     </Typography>
                     <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                        <span style={{}}>blue</span>Home Repairs
+                        <span><WorkIcon fontSize='small' /></span> Home Repairs
                     </Typography>
                     <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                        49 Minor Tasks Completed
+                        <span><CheckCircleOutlineIcon fontSize='small' /></span> 49 Minor Tasks Completed
                     </Typography>
 
                     <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
