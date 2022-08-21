@@ -106,11 +106,11 @@ const NavBar = () => {
                         
 
                         {/* test admin */}
-                        <NavLink to="/adminDashboard" className={({ isActive }) =>
+                        {/* <NavLink to="/adminDashboard" className={({ isActive }) =>
                             isActive ? classes.activeStyle : classes.typoContent
                         }>
                             <Typography sx={{ my: 2,fontWeight: 600 }}>Admin</Typography>
-                        </NavLink>
+                        </NavLink> */}
 
                     </Box>
 
