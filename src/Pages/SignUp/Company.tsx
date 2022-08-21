@@ -5,17 +5,18 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 
+
 // @ts-ignore
 const validationSchema = yup.object({
-    email: yup.string().required('Email Required !'),
+    email: yup.string().required('Email Required!'),
     password: yup.string().required('Password Required !')
 });
 
 const Company = () => {
     const formik = useFormik({
         initialValues: {
-            email: 'foobar@example.com',
-            password: 'foobar',
+            email: '',
+            password: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
