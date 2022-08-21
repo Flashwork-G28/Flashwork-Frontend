@@ -9,8 +9,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-
-
 const useStyles = makeStyles({
     Item: {
         backgroundColor: '#fff',
@@ -38,7 +36,6 @@ const DashBoard = () => {
                     <Grid item xs={9.5} >
                         <Paper className={classes.Item} elevation={3}>
                             <Routes>
-                                <Route path='/' element={<JobHome />}/>
                                 <Route path='/dashboard' element={<JobDashboard />}/>
                             </Routes>
                         </Paper>
