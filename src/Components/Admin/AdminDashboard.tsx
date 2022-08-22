@@ -35,11 +35,9 @@ export default function AdminDashboard() {
   return (
     <Box sx={{ width: 'auto', padding: '30px'}}>
       <div>
-        <div style={{float: 'left', marginBottom: '-20px', fontWeight: 'bold'}}>
-            <Typography variant="h5" component="h5" fontWeight='700' color='secondary' textAlign='left'>
-                Users
-            </Typography>
-        </div>
+        <Typography variant="h4" component="h4" fontWeight='700' color='secondary' padding={3} textAlign='center'>
+            Users
+        </Typography>
         <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item xs={4}>
             <Item><AssistantIcon sx={{position: 'relative', top: '12px'}} fontSize='large' color='secondary' />&nbsp;&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h1" fontWeight='bold' padding='20px 0px 0px 0px' >9</Typography></Item>
@@ -54,11 +52,9 @@ export default function AdminDashboard() {
       </div><br /><br />
 
       <div>
-        <div style={{float: 'left', marginBottom: '-20px', fontWeight: 'bold'}}>
-            <Typography variant="h5" component="h5" fontWeight='700' color='secondary' textAlign='left'>
-                Payments
-            </Typography> 
-        </div>
+        <Typography variant="h4" component="h4" fontWeight='700' color='secondary' padding={3} textAlign='center'>
+            Payments
+        </Typography>
         <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item xs={4}>
             <Item><AssistantIcon sx={{position: 'relative', top: '12px'}} fontSize='large' color='secondary' />&nbsp;&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h1" fontWeight='bold' padding='20px 0px 0px 0px' >6</Typography></Item>
