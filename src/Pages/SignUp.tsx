@@ -57,7 +57,7 @@ const SignUp = () => {
                         <Link to="/signUp/Company" className={classes.link}>
                             <ListItem button>
                                 <Box mt={5} mb={5} ml={10} mr={10}>
-                                    <Typography>Company</Typography>
+                                    <Typography>ManPower Agency</Typography>
                                 </Box>
                             </ListItem>
                         </Link>
