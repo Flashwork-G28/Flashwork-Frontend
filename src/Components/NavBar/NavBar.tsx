@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -46,12 +46,33 @@ const useStyles = makeStyles({
 
 const NavBar = () => {
     const classes = useStyles();
+
     const {
         user,
         isAuthenticated,
         loginWithRedirect,
         logout,
     } = useAuth0();
+
+    const [url, setUrl] = useState("/");
+
+    useEffect(() => {
+        if(user?.family_name==="JobProvider"){
+            setUrl("/dashboard/jobprovider/home")
+        }
+        else if(user?.family_name==="JobSeeker"){
+            setUrl("/dashboard/jobseeker/home")
+        }
+        else if(user?.family_name==="ManPower"){
+            setUrl("/dashboard/manpower/home")
+        }
+        else if(user?.family_name==="Admin"){
+            setUrl("/dashboard/admin/home")
+        }else{
+            setUrl("/")
+        }
+    });
+
 
     return (
         <AppBar position="static" color="transparent">
@@ -126,7 +147,7 @@ const NavBar = () => {
                             </IconButton>
 
                             <Tooltip title="Open settings">
-                                <Link to="/dashboard">
+                                <Link to={url} >
                                     <IconButton >
                                         <Avatar alt={user?.nickname} src={user?.picture} />
                                     </IconButton>

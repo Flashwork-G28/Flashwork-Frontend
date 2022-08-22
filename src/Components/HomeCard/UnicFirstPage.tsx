@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import bg from "../../Assets/Home/SideImage.png";
 import {makeStyles} from "@material-ui/core/styles";
 import Button from '@mui/material/Button';
 import SearchBar from "../CommonComponent/SearchBar";
+import Stack from '@mui/material/Stack';
+
+import bg from "../../Assets/Home/SideImage.png";
 
 
 const useStyles = makeStyles({
@@ -40,8 +42,11 @@ export default function UnicFirstPage() {
                         </Typography>
 
                     </Grid>
-                    <Button variant="contained">Get Start</Button>
-                    <SearchBar />
+
+                    <Stack spacing={2} >
+                        <Button variant="contained">Get Start</Button>
+                        <SearchBar />
+                    </Stack>
 
                     </Grid>
 

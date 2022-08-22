@@ -28,7 +28,7 @@ const itemData = [
 
 const UsersCountingSection = () => {
         return (
-            <div style={{alignItems:'center' , backgroundColor:'red'}}>
+            <div style={{alignItems:'center'}}>
                 <ImageList sx={{ width: 1, height: 270 }} cols={3} gap={0}>
                     {itemData.map((item) => (
                         <ImageListItem key={item.img}>
