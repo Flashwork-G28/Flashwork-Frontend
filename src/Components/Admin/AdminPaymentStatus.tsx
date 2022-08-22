@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
+import PendingIcon from '@mui/icons-material/Pending';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,20 +38,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function createData(
   name: string,
   userType: string,
-  reg: string,
+  date: string,
   city: string,
   email: string,
-
+  status: any
 ) {
-  return { name, userType, reg, city, email };
+  return { name, userType, date, city, email, status };
 }
 
 const rows = [
-  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com'),
-  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com'),
-  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com'),
-  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com'),
-  createData('Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com'),
+  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
+  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
+  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
+  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
+  createData('Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
+  createData('Hashan Kure', 'Job Seeker', '18/08/2022', 'Kandy', 'hasshKK@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
 ];
 
 export default function CustomizedTables() {
@@ -66,22 +69,20 @@ export default function CustomizedTables() {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }} >
       <Typography variant="h4" component="h4" fontWeight='700' color='secondary' padding={2} textAlign='center'>
-        Manage Users
-      </Typography>
-      <Button sx={{backgroundColor: '#3949ab', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained"  >Add New User</Button>
+        Payments
+      </Typography> 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Name</StyledTableCell>
               <StyledTableCell align="center">User Type</StyledTableCell>
-              <StyledTableCell align="center">Registered Date</StyledTableCell>
+              <StyledTableCell align="center">Date</StyledTableCell>
               <StyledTableCell align="center">City</StyledTableCell>
               <StyledTableCell align="center">Email</StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="left"></StyledTableCell>
+              <StyledTableCell align="center">Status</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -91,11 +92,10 @@ export default function CustomizedTables() {
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.userType}</StyledTableCell>
-                <StyledTableCell align="center">{row.reg}</StyledTableCell>
+                <StyledTableCell align="center">{row.date}</StyledTableCell>
                 <StyledTableCell align="center">{row.city}</StyledTableCell>
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
-                <StyledTableCell align="right"><Button variant="contained">Update</Button></StyledTableCell>
-                <StyledTableCell align="left"><Button sx={{backgroundColor: '#d32f2f'}} variant="contained">Delete</Button></StyledTableCell>
+                <StyledTableCell align="center">{row.status}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
