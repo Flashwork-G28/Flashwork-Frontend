@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import JobSeekerRequest from "../../Components/JobSeeker/JobSeekerRequest";
 
 
 
@@ -38,7 +39,7 @@ const DashBoard = () => {
                     <Grid item xs={9.5} >
                         <Paper className={classes.Item} elevation={3}>
                             <Routes>
-                                <Route path='/' element={<JobHome />}/>
+                                <Route path='/' element={<JobSeekerRequest />}/>
                                 <Route path='/dashboard' element={<JobDashboard />}/>
                             </Routes>
                         </Paper>
