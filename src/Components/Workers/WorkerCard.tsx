@@ -9,6 +9,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import WorkIcon from '@mui/icons-material/Work';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
+import { yellow } from '@mui/material/colors';
 
 const useStyles = makeStyles({
     cardBody: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles({
         width: '300px',
         height: '0.001px',
         border: '0.5px solid #4E2363',
-        marginTop:'25px',
+        marginTop:'15px',
 
     },
     contentCard:{
@@ -48,13 +50,10 @@ const useStyles = makeStyles({
         height:'100px',
         marginRight: '50px',
         display: 'flex',
-        flexDirection:'row',
-        justifyContent:'right',
-        // content: 'end',
+        flexDirection:'column',
+
 
     },
-
-
 })
 
 
@@ -70,21 +69,27 @@ const WorkerCard = () => {
 
                 <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
                       container
-                      direction="row"
                       justifyContent="space-between"
                       alignItems="flex-start">
-                    <Grid>
+                    <Grid item xs={6}>
                         <Avatar
                             alt="Remy Sharp"
                             src= {pc1}
                             sx={{ width: 100, height: 100 }}
                         />
                     </Grid>
-                    <Grid className={classes.hartCard}>
+                    <Grid item xs={6} container
+                          direction="column"
+                          alignItems="flex-end"
+                          >
 
-                            <FavoriteBorderIcon fontSize='medium'  />
+                            <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
+                            <Stack direction="row" spacing={0.5} sx={{mt:7 ,mr:5.8}} alignItems="flex-end">
+                                <StarIcon sx={{color:yellow[600]}}/>
+                                <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
+                                <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
+                            </Stack>
 
-                            <StarIcon color='primary' />
                     </Grid>
 
                 </Grid>

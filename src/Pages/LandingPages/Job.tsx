@@ -1,12 +1,12 @@
 import React from 'react';
-import BookingPopUp from "../../Components/Workers/BookingPopUp";
-
+import JobDashboardCard from "../../Components/CommonComponent/JobDashboardCard";
 const Job = () => {
     return (
         <div>
             job
 
-            <BookingPopUp />
+            <JobDashboardCard />
+
         </div>
     );
 };

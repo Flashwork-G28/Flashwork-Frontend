@@ -2,6 +2,14 @@ import React from 'react';
 import Grid from "@mui/material/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import WorkerCard from "../../Components/Workers/WorkerCard";
+import StarIcon from "@mui/icons-material/Star";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 const useStyles = makeStyles({
@@ -20,8 +28,10 @@ const useStyles = makeStyles({
 
 const WorkerMainComponents = () => {
     const classes = useStyles();
+
     return (
-        <div>
+        <>
+
             <Grid className={classes.cardSection}
                   container
                   spacing={0.0}
@@ -36,7 +46,7 @@ const WorkerMainComponents = () => {
 
             </Grid>
 
-        </div>
+        </>
     );
 };
 
