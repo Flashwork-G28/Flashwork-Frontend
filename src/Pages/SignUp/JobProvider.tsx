@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
+
 import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -27,6 +28,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import YupPassword from 'yup-password';
+YupPassword(yup);
 
 interface State {
     password: string;
@@ -62,21 +65,21 @@ const useStyles = makeStyles({
 ;
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-const passwordRegExp = /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/;
 
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name Required !'),
     lastName: yup.string().required('Last Name Required !'),
-    gender: yup.string().required('Gender Required !'),
-    // street: yup.string().required('Street Required !').max(150),
-    // city: yup.string().required('City Name Required !'),
-    // mobile: yup.string().min(9, "to short").max(9, "to long").required('Mobile Number Required !').matches(phoneRegExp, 'Phone number is not valid'),
-    // email: yup.string().email().required('E-Mail Name Required !'),
-    // password: yup.string()
-    //     .required('Please Enter your password')
-    //     .matches(passwordRegExp,
-    //         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    //     ),
+    // gender: yup.string().required('Gender Required !'),
+    street: yup.string().required('Street Required !').max(150),
+    city: yup.string().required('City Name Required !'),
+    mobile: yup.string().min(9, "to short").max(9, "to long").required('Mobile Number Required !').matches(phoneRegExp, 'Phone number is not valid'),
+    email: yup.string().email().required('E-Mail Name Required !'),
+    password: yup.string()
+        .required('Please Enter your password')
+        .min(8,"Must Contain 8 Characters").minLowercase(1, 'password must contain at least 1 lower case letter')
+        .minUppercase(1, 'password must contain at least 1 upper case letter')
+        .minNumbers(1, 'password must contain at least 1 number')
+        .minSymbols(1, 'password must contain at least 1 special character'),
 
 });
 const topCat = [
@@ -102,13 +105,14 @@ const JobProvider = () => {
 
     const formik = useFormik({
         initialValues: {
-            // firstName: '',
-            // lastName: '',
-            gender:'',
-            // street:'',
-            // city:'',
-            // mobile:'',
-            // email:'',
+            firstName: '',
+            lastName: '',
+            // gender:'',
+            street:'',
+            city:'',
+            mobile:'',
+            email:'',
+            password:''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -122,7 +126,7 @@ const JobProvider = () => {
     //     setValues({ ...values, [prop]: event.target.value });
     //
     // };
-
+    //
     // const handleChange =
     //     (prop:keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     //         setValues({ ...values, [prop]: event.target.value });
@@ -134,10 +138,10 @@ const JobProvider = () => {
     //         showPassword: !values.showPassword,
     //     });
     // };
-
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
+    //
+    // const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     event.preventDefault();
+    // };
 
     return (
         <div className={classes.root}>
@@ -159,44 +163,44 @@ const JobProvider = () => {
                                         Basic Details
                                     </Typography>
                                 </Grid>
-                                {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                {/*    <TextField fullWidth id="firstName" label="First Name" variant="outlined"*/}
-                                {/*               value={formik.values.firstName}*/}
-                                {/*               onChange={formik.handleChange}*/}
-                                {/*               error={formik.touched.firstName && Boolean(formik.errors.firstName)}*/}
-                                {/*               helperText={formik.touched.firstName && formik.errors.firstName}/>*/}
-                                {/*</Grid>*/}
-                                {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                {/*    <TextField fullWidth id="lastName" label="Last Name" variant="outlined"*/}
-                                {/*               value={formik.values.lastName}*/}
-                                {/*               onChange={formik.handleChange}*/}
-                                {/*               error={formik.touched.lastName && Boolean(formik.errors.lastName)}*/}
-                                {/*               helperText={formik.touched.lastName && formik.errors.lastName}/>*/}
-                                {/*</Grid>*/}
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    <FormControl fullWidth id={"gender"}>
-                                        <InputLabel id="genderSelect">Gender</InputLabel>
-                                        <Select
-                                            labelId="genderSelect"
-                                            id="gender"
-                                            label="Gender"
-                                            value={formik.values.gender}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                Boolean(formik.touched.gender && formik.errors.gender)
-                                            }
-                                        >
-                                            <MenuItem value={"Male"}>Male</MenuItem>
-                                            <MenuItem value={"Female"}>Female</MenuItem>
-                                        </Select>
-                                        {formik.touched.gender && formik.errors.gender ? (
-                                            <FormHelperText
-                                                sx={{ color: "#bf3333", marginLeft: "16px !important" }}
-                                            >
-                                                {formik.touched.gender && formik.errors.gender}
-                                            </FormHelperText>
-                                        ) : null}
-                                    </FormControl>
+                                    <TextField fullWidth id="firstName" label="First Name" variant="outlined"
+                                               value={formik.values.firstName}
+                                               onChange={formik.handleChange}
+                                               error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                                               helperText={formik.touched.firstName && formik.errors.firstName}/>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <TextField fullWidth id="lastName" label="Last Name" variant="outlined"
+                                               value={formik.values.lastName}
+                                               onChange={formik.handleChange}
+                                               error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                                               helperText={formik.touched.lastName && formik.errors.lastName}/>
+                                </Grid>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    {/*<FormControl fullWidth id={"gender"}>*/}
+                                    {/*    <InputLabel id="genderSelect">Gender</InputLabel>*/}
+                                    {/*    <Select*/}
+                                    {/*        labelId="genderSelect"*/}
+                                    {/*        id="gender"*/}
+                                    {/*        label="Gender"*/}
+                                    {/*        value={formik.values.gender}*/}
+                                    {/*        onChange={formik.handleChange}*/}
+                                    {/*        error={*/}
+                                    {/*            Boolean(formik.touched.gender && formik.errors.gender)*/}
+                                    {/*        }*/}
+                                    {/*    >*/}
+                                    {/*        <MenuItem value={"Male"}>Male</MenuItem>*/}
+                                    {/*        <MenuItem value={"Female"}>Female</MenuItem>*/}
+                                    {/*    </Select>*/}
+                                    {/*    {formik.touched.gender && formik.errors.gender ? (*/}
+                                    {/*        <FormHelperText*/}
+                                    {/*            sx={{ color: "#bf3333", marginLeft: "16px !important" }}*/}
+                                    {/*        >*/}
+                                    {/*            {formik.touched.gender && formik.errors.gender}*/}
+                                    {/*        </FormHelperText>*/}
+                                    {/*    ) : null}*/}
+                                    {/*</FormControl>*/}
                                 </Grid>
                                     <Grid item xs={12} sx={{ m: 2 }}>
                                         <Typography gutterBottom variant="overline" component="div"  align={"left"} >
@@ -210,39 +214,39 @@ const JobProvider = () => {
                                             Location
                                         </Typography>
                                     </Grid>
-                                    {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                    {/*    <TextField fullWidth id="street" label="Street" variant="outlined"*/}
-                                    {/*               value={formik.values.street}*/}
-                                    {/*               onChange={formik.handleChange}*/}
-                                    {/*               error={formik.touched.street && Boolean(formik.errors.street)}*/}
-                                    {/*               helperText={formik.touched.street && formik.errors.street}/>*/}
-                                    {/*</Grid>*/}
-                                    {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                    {/*    <TextField fullWidth id="city" label="City" variant="outlined"*/}
-                                    {/*               value={formik.values.city}*/}
-                                    {/*               onChange={formik.handleChange}*/}
-                                    {/*               error={formik.touched.city && Boolean(formik.errors.city)}*/}
-                                    {/*               helperText={formik.touched.city && formik.errors.city}/>*/}
-                                    {/*</Grid>*/}
+                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                        <TextField fullWidth id="street" label="Street" variant="outlined"
+                                                   value={formik.values.street}
+                                                   onChange={formik.handleChange}
+                                                   error={formik.touched.street && Boolean(formik.errors.street)}
+                                                   helperText={formik.touched.street && formik.errors.street}/>
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                        <TextField fullWidth id="city" label="City" variant="outlined"
+                                                   value={formik.values.city}
+                                                   onChange={formik.handleChange}
+                                                   error={formik.touched.city && Boolean(formik.errors.city)}
+                                                   helperText={formik.touched.city && formik.errors.city}/>
+                                    </Grid>
                                     <Grid item xs={12} sx={{ m: 2 }}>
                                         <Typography gutterBottom variant="h6" component="div"  align={"left"} >
                                             Contact Details
                                         </Typography>
                                     </Grid>
-                                    {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                    {/*    <TextField*/}
-                                    {/*        fullWidth*/}
-                                    {/*        id="mobile"*/}
-                                    {/*        label="Mobile"*/}
-                                    {/*        InputProps={{*/}
-                                    {/*            startAdornment: <InputAdornment position="start">+94</InputAdornment>,*/}
-                                    {/*        }}*/}
-                                    {/*        value={formik.values.mobile}*/}
-                                    {/*        onChange={formik.handleChange}*/}
-                                    {/*        error={formik.touched.mobile && Boolean(formik.errors.mobile)}*/}
-                                    {/*        helperText={formik.touched.mobile && formik.errors.mobile}/>*/}
+                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                        <TextField
+                                            fullWidth
+                                            id="mobile"
+                                            label="Mobile"
+                                            InputProps={{
+                                                startAdornment: <InputAdornment position="start">+94</InputAdornment>,
+                                            }}
+                                            value={formik.values.mobile}
+                                            onChange={formik.handleChange}
+                                            error={formik.touched.mobile && Boolean(formik.errors.mobile)}
+                                            helperText={formik.touched.mobile && formik.errors.mobile}/>
 
-                                    {/*</Grid>*/}
+                                    </Grid>
 
                                 </Grid>
                             <Grid  xs={4} direction="column">
@@ -251,37 +255,42 @@ const JobProvider = () => {
                                             Login Credentials
                                         </Typography>
                                     </Grid>
-                                    {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                    {/*    <TextField fullWidth id="email" label="E-mail Address" variant="outlined"*/}
-                                    {/*               value={formik.values.email}*/}
-                                    {/*               onChange={formik.handleChange}*/}
-                                    {/*               error={formik.touched.email && Boolean(formik.errors.email)}*/}
-                                    {/*               helperText={formik.touched.email && formik.errors.email}/>*/}
-                                    {/*</Grid>*/}
-                                    {/*<Grid item xs={12} sx={{ m: 2 }}>*/}
-                                    {/*    <FormControl fullWidth variant="outlined">*/}
-                                    {/*        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>*/}
-                                    {/*        <OutlinedInput*/}
-                                    {/*            id="outlined-adornment-password"*/}
-                                    {/*            type={values.showPassword ? 'text' : 'password'}*/}
-                                    {/*            value={values.password}*/}
-                                    {/*            onChange={handleChange('password')}*/}
-                                    {/*            endAdornment={*/}
-                                    {/*                <InputAdornment position="end">*/}
-                                    {/*                    <IconButton*/}
-                                    {/*                        aria-label="toggle password visibility"*/}
-                                    {/*                        onClick={handleClickShowPassword}*/}
-                                    {/*                        onMouseDown={handleMouseDownPassword}*/}
-                                    {/*                        edge="end"*/}
-                                    {/*                    >*/}
-                                    {/*                        {values.showPassword ? <VisibilityOff /> : <Visibility />}*/}
-                                    {/*                    </IconButton>*/}
-                                    {/*                </InputAdornment>*/}
-                                    {/*            }*/}
-                                    {/*            label="Password"*/}
-                                    {/*        />*/}
-                                    {/*    </FormControl>*/}
-                                    {/*</Grid>*/}
+                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                        <TextField fullWidth id="email" label="E-mail Address" variant="outlined"
+                                                   value={formik.values.email}
+                                                   onChange={formik.handleChange}
+                                                   error={formik.touched.email && Boolean(formik.errors.email)}
+                                                   helperText={formik.touched.email && formik.errors.email}/>
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                        {/*<FormControl fullWidth variant="outlined">*/}
+                                        {/*    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>*/}
+                                        {/*    <OutlinedInput*/}
+                                        {/*        id="outlined-adornment-password"*/}
+                                        {/*        type={values.showPassword ? 'text' : 'password'}*/}
+                                        {/*        value={values.password}*/}
+                                        {/*        onChange={handleChange('password')}*/}
+                                        {/*        endAdornment={*/}
+                                        {/*            <InputAdornment position="end">*/}
+                                        {/*                <IconButton*/}
+                                        {/*                    aria-label="toggle password visibility"*/}
+                                        {/*                    onClick={handleClickShowPassword}*/}
+                                        {/*                    onMouseDown={handleMouseDownPassword}*/}
+                                        {/*                    edge="end"*/}
+                                        {/*                >*/}
+                                        {/*                    {values.showPassword ? <VisibilityOff /> : <Visibility />}*/}
+                                        {/*                </IconButton>*/}
+                                        {/*            </InputAdornment>*/}
+                                        {/*        }*/}
+                                        {/*        label="Password"*/}
+                                        {/*    />*/}
+                                        {/*</FormControl>*/}
+                                        <TextField fullWidth id="password" label="Password" variant="outlined"
+                                                   value={formik.values.password}
+                                                   onChange={formik.handleChange}
+                                                   error={formik.touched.password && Boolean(formik.errors.password)}
+                                                   helperText={formik.touched.password && formik.errors.password}/>
+                                    </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <Typography gutterBottom variant="body2" component="div"  align={"left"} >
                                         Please make sure that your password contain at least,
