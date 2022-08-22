@@ -7,10 +7,13 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from '@mui/material/InputLabel';
@@ -21,14 +24,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormHelperText } from "@mui/material";
-
 import { useAuth0 } from "@auth0/auth0-react";
-
-
-
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
+const axios = require('axios');
+
 YupPassword(yup);
 
 interface State {
@@ -93,6 +94,7 @@ const topCat = [
 ];
 
 const JobProvider = () => {
+    const navigate = useNavigate()
     const classes = useStyles();
     const {
         loginWithRedirect,
@@ -116,11 +118,42 @@ const JobProvider = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            //lert(JSON.stringify(values, null, 2));
             console.log('about to submit:', values);
+            axios.post('http://localhost:8000/register/jobprovider', {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                street: values.street,
+                city: values.city,
+                mobile:values.mobile,
+                email: values.email,
+                password: values.password
+            })
+                .then(function (response: any) {
+                    // console.log(response);
+                    const MySwal = withReactContent(Swal)
+                    MySwal.fire({
+                        title: 'Create Account Successfully',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            navigate("/", { replace: false });
+                        }
+                    })
+
+                })
+                .catch(function (error: any) {
+                    console.log(error);
+                });
         },
     });
-
 
     // const handleChangeGender = (prop:keyof State) => (event: SelectChangeEvent) => {
     //     setValues({ ...values, [prop]: event.target.value });
@@ -301,7 +334,7 @@ const JobProvider = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }} >
-                                    <Stack spacing={4} direction="row" sx={{ mt: 8 }}>
+                                    <Stack spacing={4} direction="row" sx={{ mt: 4 }}>
                                         <Button variant="contained" type="submit">Sign Up</Button>
                                         <Button variant="outlined">Cancel</Button>
                                     </Stack>
