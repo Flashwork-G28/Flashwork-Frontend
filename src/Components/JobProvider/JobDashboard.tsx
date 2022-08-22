@@ -3,7 +3,7 @@ import React from 'react';
 const JobDashboard = () => {
     return (
         <div>
-            jobDashboard
+            job provider Dashboard
         </div>
     );
 };

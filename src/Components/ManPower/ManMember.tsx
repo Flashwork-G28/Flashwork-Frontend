@@ -1,11 +1,11 @@
 import React from 'react';
 
-const JobHome = () => {
+const ManMember = () => {
     return (
         <div>
-            jobHome
+            man member page
         </div>
     );
 };
 
-export default JobHome;
+export default ManMember;

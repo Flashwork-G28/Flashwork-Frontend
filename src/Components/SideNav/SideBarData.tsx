@@ -9,64 +9,32 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 
-export const ManPowerSidebarData = [
-    {
-        title: "Dashboard",
-        path: "/dashboard",
-        icon: <AutoAwesomeMosaicIcon fontSize="large"/>
-    },
-    {
-        title: "Profile",
-        path: "/dashboard/dashboard",
-        icon: <PersonIcon fontSize="large"/>
-    },
-    {
-        title: "Member",
-        path: "/dashboard/f",
-        icon: <AssignmentIndIcon fontSize="large"/>
-    },
-    {
-        title: "Request",
-        path: "/dashboard/f",
-        icon: <CoPresentIcon fontSize="large"/>
-    },
-    {
-        title: "Report",
-        path: "/dashboard/f",
-        icon: <EventNoteIcon fontSize="large"/>
-    },
-    {
-        title: "Help",
-        path: "/dashboard/f",
-        icon: <ForumIcon fontSize="large"/>
-    },
-];
 
 export const JobProviderSidebarData = [
     {
         title: "Dashboard",
-        path: "/dashboard",
+        path: "/dashboard/jobprovider/home",
         icon: <AutoAwesomeMosaicIcon fontSize="large"/>
     },
     {
         title: "Profile",
-        path: "/dashboard/dashboard",
+        path: "/dashboard/jobprovider/profile",
         icon: <PersonIcon fontSize="large"/>
     },
     {
         title: "Advertisements",
-        path: "/dashboard/f",
+        path: "/dashboard/jobprovider/advertisements",
         icon: <TableViewIcon fontSize="large"/>
     },
 
     {
         title: "Report",
-        path: "/dashboard/f",
+        path: "/dashboard/jobprovider/report",
         icon: <EventNoteIcon fontSize="large"/>
     },
     {
         title: "Help",
-        path: "/dashboard/f",
+        path: "/dashboard/jobprovider/help",
         icon: <ForumIcon fontSize="large"/>
     },
 ];
@@ -74,27 +42,60 @@ export const JobProviderSidebarData = [
 export const JobSeekerSidebarData = [
     {
         title: "Dashboard",
-        path: "/dashboard",
+        path: "/dashboard/jobseeker/home",
         icon: <AutoAwesomeMosaicIcon fontSize="large"/>
     },
     {
         title: "Profile",
-        path: "/dashboard/dashboard",
+        path: "/dashboard/jobseeker/profile",
         icon: <PersonIcon fontSize="large"/>
     },
     {
         title: "Request",
-        path: "/dashboard/f",
+        path: "/dashboard/jobseeker/request",
         icon: <CoPresentIcon fontSize="large"/>
     },
     {
         title: "Report",
-        path: "/dashboard/f",
+        path: "/dashboard/jobseeker/repeort",
         icon: <EventNoteIcon fontSize="large"/>
     },
     {
         title: "Help",
-        path: "/dashboard/f",
+        path: "/dashboard/jobseeker/help",
+        icon: <ForumIcon fontSize="large"/>
+    },
+];
+
+export const ManPowerSidebarData = [
+    {
+        title: "Dashboard",
+        path: "/dashboard/manpower/home",
+        icon: <AutoAwesomeMosaicIcon fontSize="large"/>
+    },
+    {
+        title: "Profile",
+        path: "/dashboard/manpower/profile",
+        icon: <PersonIcon fontSize="large"/>
+    },
+    {
+        title: "Member",
+        path: "/dashboard/manpower/member",
+        icon: <AssignmentIndIcon fontSize="large"/>
+    },
+    {
+        title: "Request",
+        path: "/dashboard/manpower/request",
+        icon: <CoPresentIcon fontSize="large"/>
+    },
+    {
+        title: "Report",
+        path: "/dashboard/manpower/report",
+        icon: <EventNoteIcon fontSize="large"/>
+    },
+    {
+        title: "Help",
+        path: "/dashboard/manpower/help",
         icon: <ForumIcon fontSize="large"/>
     },
 ];
@@ -102,22 +103,22 @@ export const JobSeekerSidebarData = [
 export const AdminSidebarData = [
     {
         title: "Dashboard",
-        path: "/dashboard",
+        path: "/dashboard/admin/home",
         icon: <AutoAwesomeMosaicIcon fontSize="large"/>
     },
     {
         title: "Payment",
-        path: "/dashboard/dashboard",
+        path: "/dashboard/admin/payment",
         icon: <PaymentsIcon fontSize="large"/>
     },
     {
         title: "User Request",
-        path: "/dashboard/f",
+        path: "/dashboard/admin/userrequest",
         icon: <RecentActorsIcon fontSize="large"/>
     },
     {
         title: "All Users",
-        path: "/dashboard/f",
+        path: "/dashboard/admin/allusers",
         icon: <PeopleAltIcon fontSize="large"/>
     }
 ];

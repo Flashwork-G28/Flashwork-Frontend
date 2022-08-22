@@ -3,6 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {  NavLink } from "react-router-dom";
 import {AdminSidebarData, JobProviderSidebarData, JobSeekerSidebarData, ManPowerSidebarData} from "./SideBarData";
 import Typography from "@mui/material/Typography";
+import {useAuth0} from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
     navMenu: {
@@ -44,31 +45,112 @@ const useStyles = makeStyles({
 
 })
 
+
 const SideNaveMenu = () => {
     const classes = useStyles();
-    return (
-        <>
-            <nav className={classes.navMenu}>
-                <ul className={ classes.navMenuItem}>
-                    {AdminSidebarData.map((item, index) => {
-                        return (
-                            <li key={index} className={classes.liItem}>
-                                <NavLink to={item.path} className={({ isActive }) =>
-                                    isActive ? classes.navTextActive : classes.navText
-                                } end>
-                                    {item.icon}
-                                    <Typography variant="h6" sx={{ml:1}}>
-                                        {item.title}
-                                    </Typography>
-                                </NavLink>
-                            </li>
-                        );
-                    })}
-                </ul>
+    const { user } = useAuth0();
 
-            </nav>
-        </>
-    );
+    if(user?.family_name=="JobProvider"){
+        return (
+            <>
+                <nav className={classes.navMenu}>
+                    <ul className={ classes.navMenuItem}>
+                        {JobProviderSidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={classes.liItem}>
+                                    <NavLink to={item.path} className={({ isActive }) =>
+                                        isActive ? classes.navTextActive : classes.navText
+                                    } end>
+                                        {item.icon}
+                                        <Typography variant="h6" sx={{ml:1}}>
+                                            {item.title}
+                                        </Typography>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                </nav>
+            </>
+        );
+    }else if (user?.family_name=="JobSeeker"){
+        return (
+            <>
+                <nav className={classes.navMenu}>
+                    <ul className={ classes.navMenuItem}>
+                        {JobSeekerSidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={classes.liItem}>
+                                    <NavLink to={item.path} className={({ isActive }) =>
+                                        isActive ? classes.navTextActive : classes.navText
+                                    } end>
+                                        {item.icon}
+                                        <Typography variant="h6" sx={{ml:1}}>
+                                            {item.title}
+                                        </Typography>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                </nav>
+            </>
+        );
+    }else if (user?.family_name=="ManPower"){
+        return (
+            <>
+                <nav className={classes.navMenu}>
+                    <ul className={ classes.navMenuItem}>
+                        {ManPowerSidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={classes.liItem}>
+                                    <NavLink to={item.path} className={({ isActive }) =>
+                                        isActive ? classes.navTextActive : classes.navText
+                                    } end>
+                                        {item.icon}
+                                        <Typography variant="h6" sx={{ml:1}}>
+                                            {item.title}
+                                        </Typography>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                </nav>
+            </>
+        );
+    }else if (user?.family_name=="Admin"){
+        return (
+            <>
+                <nav className={classes.navMenu}>
+                    <ul className={ classes.navMenuItem}>
+                        {AdminSidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={classes.liItem}>
+                                    <NavLink to={item.path} className={({ isActive }) =>
+                                        isActive ? classes.navTextActive : classes.navText
+                                    } end>
+                                        {item.icon}
+                                        <Typography variant="h6" sx={{ml:1}}>
+                                            {item.title}
+                                        </Typography>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                </nav>
+            </>
+        );
+    }
+    else{
+        return null
+    }
+
 };
 
 export default SideNaveMenu;
