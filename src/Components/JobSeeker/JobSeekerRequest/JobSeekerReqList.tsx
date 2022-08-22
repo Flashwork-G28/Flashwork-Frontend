@@ -9,9 +9,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { createTheme } from '@mui/material/styles';
 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: 'purple',
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -31,11 +32,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function createData(
     name: string,
-    calories: string,
-    fat: string,
+    location: string,
+    catogory: string,
 
 ) {
-    return { name, calories, fat };
+    return { name, location,  catogory };
 }
 
 const rows = [
@@ -43,6 +44,7 @@ const rows = [
     createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Kalutara', 'Electrition'),
     createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'Car penter'),
     createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'Galle', 'Electrit'),
+    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Matara', 'Car penter'),
     createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Matara', 'Car penter'),
 
 
@@ -73,8 +75,8 @@ const JobSeekerReqList = () => {
                                     <StyledTableCell component="th" scope="row">
                                         {row.name}
                                     </StyledTableCell>
-                                    <StyledTableCell align="left">{row.calories}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.fat}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.location}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.catogory}</StyledTableCell>
                                     <StyledTableCell align="left"><button style={{padding:"5px",backgroundColor:"#43BA5D",border:"none",fontWeight:"bold",color:"white",borderRadius:"3px"}}>Accept</button></StyledTableCell>
                                     <StyledTableCell align="left"><button style={{padding:"5px",backgroundColor:"red",border:"none",fontWeight:"bold",color:"white",borderRadius:"3px"}}>Reject</button></StyledTableCell>
                                 </StyledTableRow>

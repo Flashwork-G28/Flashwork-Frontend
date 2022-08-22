@@ -14,7 +14,8 @@ import JobSeekerRequest from "../../Components/JobSeeker/JobSeekerRequest";
 
 const useStyles = makeStyles({
     Item: {
-        backgroundColor: '#fff',
+
+        // backgroundColor: '#fff',
         padding: 2,
         textAlign: 'center',
     }
@@ -27,22 +28,22 @@ const DashBoard = () => {
             <Box sx={{ flexGrow: 1, padding:4, backgroundColor:'#B786EC',minHeight:"100vh"}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                        <Paper className={classes.Item} elevation={3}>
+                        <Paper elevation={3}>
                             <TopBar/>
                         </Paper>
                     </Grid>
                     <Grid item xs={2.5}>
-                        <Paper className={classes.Item} elevation={3}>
+                        <Paper elevation={3}>
                             <SideNav/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={9.5} >
-                        <Paper className={classes.Item} elevation={3}>
+                    <Grid item xs={9.5}>
+
                             <Routes>
                                 <Route path='/' element={<JobSeekerRequest />}/>
                                 <Route path='/dashboard' element={<JobDashboard />}/>
                             </Routes>
-                        </Paper>
+
                     </Grid>
 
                 </Grid>

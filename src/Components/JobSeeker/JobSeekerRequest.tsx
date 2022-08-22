@@ -16,7 +16,7 @@ const JobSeekerRequest = () => {
                 <Grid item xs={6.5} sx={{backgroundColor:"#ebccff",borderRadius:"10px"}}>
                     <JobSeekerReqList/>
                 </Grid>
-                <Grid item xs={5}  sx={{backgroundColor:"blue",borderRadius:"10px",paddingLeft:"3px"}}>
+                <Grid item xs={5}  sx={{borderRadius:"10px",paddingLeft:"3px",backgroundColor:"#ffff"}}>
                     <JobSeekerReqProfile/>
                 </Grid>
             </Grid>
