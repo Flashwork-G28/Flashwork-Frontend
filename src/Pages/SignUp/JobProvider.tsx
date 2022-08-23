@@ -108,7 +108,7 @@ const JobProvider = () => {
                 password: values.password
             })
                 .then(function (response: any) {
-                    // console.log(response);
+                    console.log(response);
                     const MySwal = withReactContent(Swal)
                     MySwal.fire({
                         title: 'Create Account Successfully',

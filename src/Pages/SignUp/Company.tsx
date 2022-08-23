@@ -18,6 +18,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
+
 const axios = require('axios');
 
 YupPassword(yup);
@@ -68,7 +69,7 @@ const validationSchema = yup.object({
         .minNumbers(1, 'password must contain at least 1 number')
         .minSymbols(1, 'password must contain at least 1 special character'),
     company: yup.string().required('Company Name Required !'),
-    description:yup.string().required('Description Required !').max(150),
+    description:yup.string().required('Description Required !'),
     nid:yup.string().required('National ID Required !').min(10, "to short").max(12, "to long"),
     oMail:yup.string().email().required('Owner E-Mail Name Required !'),
 });
@@ -80,6 +81,8 @@ const JobProvider = () => {
     const {
         loginWithRedirect,
     } = useAuth0();
+
+
 
 
 
@@ -108,7 +111,11 @@ const JobProvider = () => {
                 city: values.city,
                 mobile:values.mobile,
                 email: values.email,
-                password: values.password
+                password: values.password,
+                company: values.company,
+                description: values.description,
+                nid:values.nid,
+                oMail: values.oMail
             })
                 .then(function (response: any) {
                     // console.log(response);

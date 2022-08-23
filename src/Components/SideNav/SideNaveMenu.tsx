@@ -50,7 +50,7 @@ const SideNaveMenu = () => {
     const classes = useStyles();
     const { user } = useAuth0();
 
-    if(user?.family_name=="JobProvider"){
+    if(user?.family_name==="JobProvider"){
         return (
             <>
                 <nav className={classes.navMenu}>
@@ -74,7 +74,7 @@ const SideNaveMenu = () => {
                 </nav>
             </>
         );
-    }else if (user?.family_name=="JobSeeker"){
+    }else if (user?.family_name==="JobSeeker"){
         return (
             <>
                 <nav className={classes.navMenu}>
@@ -98,7 +98,7 @@ const SideNaveMenu = () => {
                 </nav>
             </>
         );
-    }else if (user?.family_name=="ManPower"){
+    }else if (user?.family_name==="ManPower"){
         return (
             <>
                 <nav className={classes.navMenu}>
@@ -122,7 +122,7 @@ const SideNaveMenu = () => {
                 </nav>
             </>
         );
-    }else if (user?.family_name=="Admin"){
+    }else if (user?.family_name==="Admin"){
         return (
             <>
                 <nav className={classes.navMenu}>

@@ -5,10 +5,6 @@ import {useAuth0} from "@auth0/auth0-react";
 
 const SideNav = () => {
     const { user } = useAuth0();
-    console.log(user);
-
-    const [type, setType] = useState("none");
-
 
     return (
         <>
