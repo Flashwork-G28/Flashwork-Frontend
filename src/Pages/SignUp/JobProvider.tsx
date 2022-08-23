@@ -44,7 +44,6 @@ const useStyles = makeStyles({
             paddingTop: 40,
             paddingBottom: 10,
             minHeight: "100vh",
-
         },
         select: {
             "& :focus": {
