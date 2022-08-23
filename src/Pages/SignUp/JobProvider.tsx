@@ -182,7 +182,7 @@ const JobProvider = () => {
                 <Card >
                     <CardContent sx={{display: 'flex',alignItems: 'left'}}>
                         <Typography gutterBottom variant="h5" component="div">
-                            Job Seeker Sign Up
+                            Manpower Agency Sign Up
                         </Typography>
                     </CardContent>
                     <form onSubmit={formik.handleSubmit}>
