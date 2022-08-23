@@ -1,5 +1,5 @@
 import React from 'react';
-import JobDashboardBookingRequest from "./JobProviderComponents/JobDashboardBookingRequest";
+// import JobDashboardBookingRequest from "./JobProviderComponents/JobDashboardBookingRequest";
 import Grid from "@mui/material/Grid";
 import JobSeekerReqList from "../JobSeeker/JobSeekerRequest/JobSeekerReqList";
 import JobSeekerReqProfile from "../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
@@ -11,10 +11,10 @@ const JobDashboard = () => {
 
             <Grid  spacing={2} style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
                 {/*<Grid item xs={7} sx={{backgroundColor:"#ebccff",borderRadius:"10px"}}>*/}
-                    <JobDashboardBookingRequest />
+                {/*    <JobDashboardBookingRequest />*/}
                 {/*</Grid>*/}
                 <Grid item xs={5}  sx={{borderRadius:"10px",paddingLeft:"3px",backgroundColor:"#ffff"}}>
-                    <JobSeekerReqProfile/>
+                    {/*<JobSeekerReqProfile/>*/}
                 </Grid>
             </Grid>
 
