@@ -57,7 +57,6 @@ export default function HomeServiceCard() {
                             { title: 'Schedule plan', name: 'Create your own business plan 1.1 Mission At Web Applications, our mission is to provide an online office system that links workers in different locations to their mother company. ' , img: bg3 },
 
                         ].map((item, index) => (
-
                             <Grid item xs={3} key={index} >
                                 <div className={classes.CardBody} >
                                     <div className={classes.root}>
