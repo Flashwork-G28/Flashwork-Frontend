@@ -1,8 +1,20 @@
 import React from 'react';
+
+const MyComponent = () => {
+    return (
+        <div>
+
+        </div>
+    );
+};
+
+export default MyComponent;
+
+/*
 import CloseIcon from '@mui/icons-material/Close';
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -13,7 +25,6 @@ import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl";
-
 
 const useStyles = makeStyles({
         PopUpCard:{
@@ -40,19 +51,19 @@ const useStyles = makeStyles({
             minHeight: "100vh",
 
         },
-    closeIcon:{
-        position: 'absolute',
-        top: '10px',
-        right: '25px',
-        // paddingTop: 10,
-    },
-    sendAdd:{
-        marginLeft:'87%',
-        marginBottom:'20px',
-        // position: 'relative',
-        // bottom: '50px',
-        // right: '25px',
-    },
+        closeIcon:{
+            position: 'absolute',
+            top: '10px',
+            right: '25px',
+            // paddingTop: 10,
+        },
+        sendAdd:{
+            marginLeft:'87%',
+            marginBottom:'20px',
+            // position: 'relative',
+            // bottom: '50px',
+            // right: '25px',
+        },
 
         select: {
             "& :focus": {
@@ -61,7 +72,7 @@ const useStyles = makeStyles({
         },
     })
 ;
-const BookingPopUp = () => {
+const JobProviderProfileDetails = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState<Date | null>(
         new Date('2014-08-18T21:11:54'),
@@ -70,6 +81,7 @@ const BookingPopUp = () => {
     const handleChange = (newValue: Date | null) => {
         setValue(newValue);
     };
+
     return (
         <div className={classes.PopUpCard}>
             <Grid item xs={12} sx={{ m: 2 }} >
@@ -85,46 +97,35 @@ const BookingPopUp = () => {
                             <Grid  xs={4} direction="column"  >
                                 <Grid item xs={6} sx={{ m: 2 }}>
                                     <FormControl >
-                                        {/*<LocalizationProvider dateAdapter={AdapterDateFns} >*/}
-                                        {/*<DesktopDatePicker*/}
-                                        {/*    label="Date desktop"*/}
-                                        {/*    inputFormat="MM/dd/yyyy"*/}
-                                        {/*    value={value}*/}
-                                        {/*    onChange={handleChange}*/}
-                                        {/*    renderInput={(params) => <TextField {...params} sx={{ width: 1/1 }}/>}/>*/}
-                                        {/*</LocalizationProvider>*/}
-
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Date"
-                                            defaultValue="Date"
-                                        />
+                                        <LocalizationProvider dateAdapter={AdapterDateFns} >
+                                            <DesktopDatePicker
+                                                label="Date desktop"
+                                                inputFormat="MM/dd/yyyy"
+                                                value={value}
+                                                onChange={handleChange}
+                                                renderInput={(params) => <TextField {...params} sx={{ width: 1/1 }}/>}/>
+                                        </LocalizationProvider>
                                     </FormControl>
 
                                 </Grid>
                                 <Grid item xs={4} sx={{ m: 2 }}>
                                     <FormControl>
                                         <Select
-                                        // fullWidth
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Category">
-                                            <MenuItem value={"Restaurant & food services"}>Restaurant & food services</MenuItem>
-                                            <MenuItem value={"Transportation & delivery"}>Transportation & delivery</MenuItem>
-                                            <MenuItem value={"Retail & Production"}>Retail & Production</MenuItem>
-                                            <MenuItem value={"Office work & Administration"}>Office work & Administration</MenuItem>
-                                            <MenuItem value={"General services"}>General services</MenuItem>
+                                            fullWidth
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            label="Category">
+                                            <MenuItem value={"Carpenter"}>Carpenter</MenuItem>
                                             <MenuItem value={"Others"}>Others</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={4} sx={{ m: 2 }}>
                                     <TextField
-                                       label="Mobile"
-                                       id="outlined-start-adornment"
-                                       InputProps={{startAdornment: <InputAdornment position="start">+94</InputAdornment>,
-                                       }}/>
+                                        label="Mobile"
+                                        id="outlined-start-adornment"
+                                        InputProps={{startAdornment: <InputAdornment position="start">+94</InputAdornment>,
+                                        }}/>
                                 </Grid>
                             </Grid>
                             <Grid xs={4} direction="column">
@@ -168,9 +169,9 @@ const BookingPopUp = () => {
                                 </Grid>
 
                             </Grid>
-                            {/*<Grid  xs={3} direction="column"  >*/}
-                            {/*    <TextField fullWidth label="Description" id="fullWidth" />*/}
-                            {/*</Grid>*/}
+                            <Grid  xs={3} direction="column"  >
+                           <TextField fullWidth label="Description" id="fullWidth" />
+                            </Grid>
 
                         </Grid>
 
@@ -195,5 +196,4 @@ const BookingPopUp = () => {
     );
 };
 
-export default BookingPopUp;
-
+export default JobProviderProfileDetails; */
