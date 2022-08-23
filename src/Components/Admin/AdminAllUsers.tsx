@@ -24,6 +24,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import Grid from '@mui/material/Grid';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -130,66 +131,71 @@ export default function AdminAllUsers() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <Typography variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='center'>
+      <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
         Manage Users
       </Typography>
-
-      <AdminSearchUsers />
-      
-      <Button sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained" onClick={handleClickOpen} >Add New User</Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create a new user</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText>
-            Create a new user
-          </DialogContentText> */}
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            type="text"
-            fullWidth
-            variant="standard"
-          /><br/>
-          <InputLabel sx={{marginTop: '20px'}} margin="dense" id="demo-simple-select-label" variant="standard">User Type</InputLabel>
-          <Select
-            margin="dense"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="User Type"
-            type='select'
-            fullWidth
-            variant="standard"
-          >
-            <MenuItem value={'js'}>Job Seeker</MenuItem>
-            <MenuItem value={'jp'}>Job Provider</MenuItem>
-            <MenuItem value={'mp'}>Manpower Agency</MenuItem>
-          </Select>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="city"
-            label="City"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Create</Button>
-        </DialogActions>
-      </Dialog>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+          <Grid item xs={5}>
+            <Button sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained" onClick={handleClickOpen} >Add New User</Button>
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle variant="h4" component="h4" fontWeight='700' color='secondary' padding={3}>Create a new user</DialogTitle>
+              <DialogContent>
+                {/* <DialogContentText>
+                  Create a new user
+                </DialogContentText> */}
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="name"
+                  label="Name"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                /><br/>
+                <InputLabel sx={{marginTop: '20px'}} margin="dense" id="demo-simple-select-label" variant="standard">User Type</InputLabel>
+                <Select
+                  sx={{paddingTop: '5px'}}
+                  margin="dense"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="User Type"
+                  type='select'
+                  fullWidth
+                  variant="standard"
+                >
+                  <MenuItem value={'js'}>Job Seeker</MenuItem>
+                  <MenuItem value={'jp'}>Job Provider</MenuItem>
+                  <MenuItem value={'mp'}>Manpower Agency</MenuItem>
+                </Select>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="city"
+                  label="City"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                />
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="email"
+                  label="Email Address"
+                  type="email"
+                  fullWidth
+                  variant="standard"
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={handleClose}>Create</Button>
+              </DialogActions>
+            </Dialog>
+          </Grid>
+          <Grid item xs={7} alignItems='center'>
+            <AdminSearchUsers />
+          </Grid>
+      </Grid>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
