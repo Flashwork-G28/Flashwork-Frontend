@@ -5,7 +5,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Stack from '@mui/material/Stack';
@@ -14,16 +13,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
-
-import Autocomplete from '@mui/material/Autocomplete';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import IconButton from '@mui/material/IconButton';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FormHelperText } from "@mui/material";
+import FormLabel from '@mui/material/FormLabel';
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -32,11 +27,6 @@ const axios = require('axios');
 
 YupPassword(yup);
 
-interface State {
-    password: string;
-    showPassword: boolean;
-    gender:string
-}
 
 const useStyles = makeStyles({
         root:{
@@ -81,17 +71,9 @@ const validationSchema = yup.object({
         .minUppercase(1, 'password must contain at least 1 upper case letter')
         .minNumbers(1, 'password must contain at least 1 number')
         .minSymbols(1, 'password must contain at least 1 special character'),
-
+    nid:yup.string().required('National ID Required !').min(10, "to short").max(12, "to long"),
 });
-const topCat = [
-    { title: 'Restaurant & food services' },
-    { title: 'Transportation & delivery' },
-    { title: 'Retail & Production' },
-    { title: 'Office work & Administration' },
-    { title: 'General services' },
-    { title: 'Other' },
 
-];
 
 const JobProvider = () => {
     const navigate = useNavigate()
@@ -100,10 +82,6 @@ const JobProvider = () => {
         loginWithRedirect,
     } = useAuth0();
 
-    // const [values, setValues] = React.useState<State>({
-    //     password: '',
-    //     showPassword: false,
-    // });
 
     const formik = useFormik({
         initialValues: {
@@ -114,7 +92,8 @@ const JobProvider = () => {
             city:'',
             mobile:'',
             email:'',
-            password:''
+            password:'',
+            nid:'',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -155,41 +134,20 @@ const JobProvider = () => {
         },
     });
 
-    // const handleChangeGender = (prop:keyof State) => (event: SelectChangeEvent) => {
-    //     setValues({ ...values, [prop]: event.target.value });
-    //
-    // };
-    //
-    // const handleChange =
-    //     (prop:keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    //         setValues({ ...values, [prop]: event.target.value });
-    //     };
-    //
-    // const handleClickShowPassword = () => {
-    //     setValues({
-    //         ...values,
-    //         showPassword: !values.showPassword,
-    //     });
-    // };
-    //
-    // const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    //     event.preventDefault();
-    // };
-
     return (
         <div className={classes.root}>
             <Container className={classes.container} >
                 <Card >
-                    <CardContent sx={{display: 'flex',alignItems: 'left'}}>
+                    <CardContent sx={{display: 'flex',alignItems: 'left',paddingBottom:0}}>
                         <Typography gutterBottom variant="h5" component="div">
-                            Manpower Agency Sign Up
+                            Job Provider Sign Up
                         </Typography>
                     </CardContent>
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container
                               direction="row"
                               justifyContent="flex-start"
-                              alignItems="flex-start" >
+                              alignItems="flex-start" sx={{pt:0}}>
                             <Grid  xs={4} direction="column"  >
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <Typography gutterBottom variant="h6" component="div"  align={"left"} >
@@ -211,31 +169,27 @@ const JobProvider = () => {
                                                helperText={formik.touched.lastName && formik.errors.lastName}/>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
-                                    {/*<FormControl fullWidth id={"gender"}>*/}
-                                    {/*    <InputLabel id="genderSelect">Gender</InputLabel>*/}
-                                    {/*    <Select*/}
-                                    {/*        labelId="genderSelect"*/}
-                                    {/*        id="gender"*/}
-                                    {/*        label="Gender"*/}
-                                    {/*        value={formik.values.gender}*/}
-                                    {/*        onChange={formik.handleChange}*/}
-                                    {/*        error={*/}
-                                    {/*            Boolean(formik.touched.gender && formik.errors.gender)*/}
-                                    {/*        }*/}
-                                    {/*    >*/}
-                                    {/*        <MenuItem value={"Male"}>Male</MenuItem>*/}
-                                    {/*        <MenuItem value={"Female"}>Female</MenuItem>*/}
-                                    {/*    </Select>*/}
-                                    {/*    {formik.touched.gender && formik.errors.gender ? (*/}
-                                    {/*        <FormHelperText*/}
-                                    {/*            sx={{ color: "#bf3333", marginLeft: "16px !important" }}*/}
-                                    {/*        >*/}
-                                    {/*            {formik.touched.gender && formik.errors.gender}*/}
-                                    {/*        </FormHelperText>*/}
-                                    {/*    ) : null}*/}
-                                    {/*</FormControl>*/}
+                                    <TextField fullWidth id="nid" label="ID Number" variant="outlined"
+                                               value={formik.values.nid}
+                                               onChange={formik.handleChange}
+                                               error={formik.touched.nid && Boolean(formik.errors.nid)}
+                                               helperText={formik.touched.nid && formik.errors.nid}/>
                                 </Grid>
-                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                <Grid item xs={12} sx={{ m: 2 }}>
+                                    <FormControl>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{fontSize:"18px"}}>Gender</FormLabel>
+                                        <RadioGroup
+                                            row
+                                            aria-labelledby="demo-row-radio-buttons-group-label"
+                                            name="row-radio-buttons-group"
+                                            sx={{ml:2}}
+                                        >
+                                            <FormControlLabel value="male" control={<Radio />} label="Male" defaultValue="male" />
+                                            <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Grid>
+                                    <Grid item xs={12} sx={{ m: 2 ,mt:10}}>
                                         <Typography gutterBottom variant="overline" component="div"  align={"left"} >
                                             Have a account already? <Link to={"/"} onClick={() => loginWithRedirect()}>Sign In</Link>
                                         </Typography>
@@ -261,7 +215,7 @@ const JobProvider = () => {
                                                    error={formik.touched.city && Boolean(formik.errors.city)}
                                                    helperText={formik.touched.city && formik.errors.city}/>
                                     </Grid>
-                                    <Grid item xs={12} sx={{ m: 2 }}>
+                                    <Grid item xs={12} sx={{ m: 2,mt: 11 }}>
                                         <Typography gutterBottom variant="h6" component="div"  align={"left"} >
                                             Contact Details
                                         </Typography>
@@ -296,28 +250,7 @@ const JobProvider = () => {
                                                    helperText={formik.touched.email && formik.errors.email}/>
                                     </Grid>
                                     <Grid item xs={12} sx={{ m: 2 }}>
-                                        {/*<FormControl fullWidth variant="outlined">*/}
-                                        {/*    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>*/}
-                                        {/*    <OutlinedInput*/}
-                                        {/*        id="outlined-adornment-password"*/}
-                                        {/*        type={values.showPassword ? 'text' : 'password'}*/}
-                                        {/*        value={values.password}*/}
-                                        {/*        onChange={handleChange('password')}*/}
-                                        {/*        endAdornment={*/}
-                                        {/*            <InputAdornment position="end">*/}
-                                        {/*                <IconButton*/}
-                                        {/*                    aria-label="toggle password visibility"*/}
-                                        {/*                    onClick={handleClickShowPassword}*/}
-                                        {/*                    onMouseDown={handleMouseDownPassword}*/}
-                                        {/*                    edge="end"*/}
-                                        {/*                >*/}
-                                        {/*                    {values.showPassword ? <VisibilityOff /> : <Visibility />}*/}
-                                        {/*                </IconButton>*/}
-                                        {/*            </InputAdornment>*/}
-                                        {/*        }*/}
-                                        {/*        label="Password"*/}
-                                        {/*    />*/}
-                                        {/*</FormControl>*/}
+
                                         <TextField fullWidth id="password" label="Password" variant="outlined"
                                                    value={formik.values.password}
                                                    onChange={formik.handleChange}
@@ -334,7 +267,7 @@ const JobProvider = () => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }} >
-                                    <Stack spacing={4} direction="row" sx={{ mt: 4 }}>
+                                    <Stack spacing={4} direction="row" sx={{ mt: 6.5 ,ml:4}}>
                                         <Button variant="contained" type="submit">Sign Up</Button>
                                         <Button variant="outlined">Cancel</Button>
                                     </Stack>
