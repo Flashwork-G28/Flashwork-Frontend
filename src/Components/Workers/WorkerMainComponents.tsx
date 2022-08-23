@@ -6,12 +6,10 @@ import WorkerCard from "../../Components/Workers/WorkerCard";
 
 const useStyles = makeStyles({
     cardSection: {
-
         backgroundColor: '#F7D6FF',
         width: '100%',
         height: 'fitcontent',
         marginTop:'20px'
-
     },
 })
 
