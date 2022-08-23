@@ -40,7 +40,6 @@ const useStyles = makeStyles({
         right: '25px',
 
 
-
     },
 
 })
