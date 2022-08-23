@@ -17,7 +17,7 @@ export default function TheServicesIntegration() {
     return (
 
         <div className={classes.TheServicesIntegration}>
-            <div style={{color:"#600080",marginRight:"28%"}}>
+            <div style={{color:"#600080",marginLeft:"100px"}}>
                 <h1>The services integration platform is at your service</h1>
             </div>
 
