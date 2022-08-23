@@ -1,5 +1,7 @@
 
 
+
+
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
@@ -54,17 +56,17 @@ function createData(
     location: string,
     payment: string,
     status: string,
-
+    mobile: string,
 ) {
-    return { jobSeeker, location, payment,status };
+    return { jobSeeker, location, payment,status,mobile };
 }
 
 const rows = [
-    createData('Ananda Rajapaksha -No 04 | Aug 23 2022', 'kalutara', 'cash','Accept'),
-    createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Matara', 'Online','Accept'),
-    createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'cash','Reject'),
-    createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'MAradana', 'Online','Reject'),
-    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Galle', 'cash','None',),
+    createData('Ananda Rajapaksha -No 04 | Aug 23 2022', 'kalutara', 'cash','current','0145689765'),
+    createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Matara', 'cash','progrs','0145689765'),
+    createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'cash','current','0145689765'),
+    createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'MAradana', 'cash','current','0145689765'),
+    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Galle', 'cash','current','0145689765'),
 
 ];
 
@@ -78,17 +80,8 @@ const JobSeekerReport = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={8}>
-                        <Grid item xs={12} >
-                            <div style={{display:"flex",flexDirection:"row"}}>
-                                <div style={{color:"#46225F",paddingLeft:"50px",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>
-                                <div  style={{paddingLeft:"300px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>
-                            </div>
-                        </Grid>
-                        <Grid item xs={12} >
-                            <Item>Activity Calender</Item>
-                        </Grid>
-                        <h2>Applied Job</h2>
-
+                        <h2 style={{paddingRight:"540px"}} >All  Currenrt job</h2>
+                        <Item>
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 500 }} aria-label="customized table">
                                     <TableHead>
@@ -97,7 +90,7 @@ const JobSeekerReport = () => {
                                             <StyledTableCell align="left" style={{fontWeight:"bold"}}>Location</StyledTableCell>
                                             <StyledTableCell align="left" style={{fontWeight:"bold"}}>Payment Methoud</StyledTableCell>
                                             <StyledTableCell align="left" style={{fontWeight:"bold"}}>Status</StyledTableCell>
-
+                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Contact</StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -109,22 +102,21 @@ const JobSeekerReport = () => {
                                                 <StyledTableCell align="left">{row.location}</StyledTableCell>
                                                 <StyledTableCell align="left">{row.payment}</StyledTableCell>
                                                 <StyledTableCell align="left">{row.status}</StyledTableCell>
-
+                                                <StyledTableCell align="left">{row.mobile}</StyledTableCell>
                                             </StyledTableRow>
                                         ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
 
-
-
+                        </Item>
 
                     </Grid>
                     <Grid item xs={4}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} >
-                                <Item>calender</Item>
-                            </Grid>
+                            {/*<Grid item xs={12} >*/}
+                            {/*    <Item>calender</Item>*/}
+                            {/*</Grid>*/}
                             <Grid item xs={12}>
 
                                 <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
@@ -183,4 +175,3 @@ const JobSeekerReport = () => {
 };
 
 export default JobSeekerReport;
-
