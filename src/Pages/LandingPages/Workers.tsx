@@ -1,10 +1,13 @@
 import React from 'react';
 import WorkerMainComponents from "../../Components/Workers/WorkerMainComponents";
 import Typography from "@mui/material/Typography";
+import BookingPopUp from "../../Components/Workers/BookingPopUp";
+import WorkerPageSearch from "../../Components/Workers/WorkerPageSearch";
 
 const Workers = () => {
   return (
-      <div>
+      <>
+          <WorkerPageSearch />
           <div>
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
                   Suggested For You
@@ -26,7 +29,10 @@ const Workers = () => {
               <WorkerMainComponents />
           </div>
 
-      </div>
+
+          <BookingPopUp />
+
+      </>
   );
 };
 

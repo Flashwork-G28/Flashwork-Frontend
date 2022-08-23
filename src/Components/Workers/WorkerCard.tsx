@@ -5,6 +5,12 @@ import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarIcon from '@mui/icons-material/Star';
+import WorkIcon from '@mui/icons-material/Work';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
+import { yellow } from '@mui/material/colors';
 
 const useStyles = makeStyles({
     cardBody: {
@@ -23,7 +29,7 @@ const useStyles = makeStyles({
         width: '300px',
         height: '0.001px',
         border: '0.5px solid #4E2363',
-        marginTop:'25px',
+        marginTop:'15px',
 
     },
     contentCard:{
@@ -38,11 +44,16 @@ const useStyles = makeStyles({
         position: 'absolute',
         bottom: '50px',
         right: '25px',
-
+    },
+    hartCard:{
+        width:'100px',
+        height:'100px',
+        marginRight: '50px',
+        display: 'flex',
+        flexDirection:'column',
 
 
     },
-
 })
 
 
@@ -56,15 +67,28 @@ const WorkerCard = () => {
                 direction="column"
                 margin='25px' >
 
-                <Grid sx={{ width:'100%' , height:'fitContent'}}>
-                    <Grid>
+                <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
+                      container
+                      justifyContent="space-between"
+                      alignItems="flex-start">
+                    <Grid item xs={6}>
                         <Avatar
                             alt="Remy Sharp"
                             src= {pc1}
                             sx={{ width: 100, height: 100 }}
                         />
                     </Grid>
-                    <Grid>
+                    <Grid item xs={6} container
+                          direction="column"
+                          alignItems="flex-end"
+                          >
+
+                            <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
+                            <Stack direction="row" spacing={0.5} sx={{mt:7 ,mr:5.8}} alignItems="flex-end">
+                                <StarIcon sx={{color:yellow[600]}}/>
+                                <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
+                                <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
+                            </Stack>
 
                     </Grid>
 
@@ -75,10 +99,10 @@ const WorkerCard = () => {
                         Mohomad Faalil
                     </Typography>
                     <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                        <span style={{}}>blue</span>Home Repairs
+                        <span><WorkIcon fontSize='small' /></span> Home Repairs
                     </Typography>
                     <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                        49 Minor Tasks Completed
+                        <span><CheckCircleOutlineIcon fontSize='small' /></span> 49 Minor Tasks Completed
                     </Typography>
 
                     <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
