@@ -37,6 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function createData(
+  id: string,
   name: string,
   userType: string,
   recDate: string,
@@ -45,16 +46,16 @@ function createData(
   email: string,
   amount: string,
 ) {
-  return { name, userType, recDate, validUntil, city, email, amount };
+  return { id, name, userType, recDate, validUntil, city, email, amount };
 }
 
 const rows = [
-  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', '07/09/2022', 'Matara', 'lak98@gmail.com', '1000'),
-  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', '13/09/2022', 'Colombo', 'rm97@gmail.com', '1000'),
-  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', '22/09/2022', 'Kandy', 'shala.hans89@gmail.com', '5000'),
-  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', '11/09/2022', 'Galle', 'shehanLak@gmail.com', '1000'),
-  createData('Chavinda Perera', 'Job Provider', '09/08/2022', '09/09/2022', 'Jaffna', 'chaviPP@gmail.com', '1000'),
-  createData('Hashan Kure', 'Job Seeker', '18/08/2022', '18/09/2022', 'Kandy', 'hasshKK@gmail.com', '1000'),
+  createData('js003', 'Udesh Lakshan', 'Job Seeker', '07/08/2022', '07/09/2022', 'Matara', 'lak98@gmail.com', '1000'),
+  createData('js007', 'Rashmika Malshan', 'Job Seeker', '13/08/2022', '13/09/2022', 'Colombo', 'rm97@gmail.com', '1000'),
+  createData('mp004', 'Shalani Hansika', 'Manpower agency', '22/08/2022', '22/09/2022', 'Kandy', 'shala.hans89@gmail.com', '5000'),
+  createData('jp016', 'Lakshitha Shehan', 'Job Provider', '11/08/2022', '11/09/2022', 'Galle', 'shehanLak@gmail.com', '1000'),
+  createData('jp002', 'Chavinda Perera', 'Job Provider', '09/08/2022', '09/09/2022', 'Jaffna', 'chaviPP@gmail.com', '1000'),
+  createData('js023', 'Hashan Kure', 'Job Seeker', '18/08/2022', '18/09/2022', 'Kandy', 'hasshKK@gmail.com', '1000'),
 ];
 
 export default function AdminPayment() {
@@ -79,7 +80,8 @@ export default function AdminPayment() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">Name</StyledTableCell>
+              <StyledTableCell align="left">ID</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
               <StyledTableCell align="center">User Type</StyledTableCell>
               <StyledTableCell align="center">Recieved Date</StyledTableCell>
               <StyledTableCell align="center">Valid Until</StyledTableCell>
@@ -91,7 +93,8 @@ export default function AdminPayment() {
           <TableBody>
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row" align="left">
+                <StyledTableCell align="left">{row.id}</StyledTableCell>
+                <StyledTableCell component="th" scope="row" align="center">
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.userType}</StyledTableCell>

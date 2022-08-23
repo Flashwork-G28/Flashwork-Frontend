@@ -12,6 +12,18 @@ import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
+// import AdminPopupProfile from "../../Components/Admin/AdminPopupProfile";
+import AdminSearchUsers from "./AdminSearchUsers";
+
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Select } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -91,8 +103,8 @@ export default function AdminAllUsers() {
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: 'btn btn-success',
       confirmButtonText: 'Confirm'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -104,14 +116,81 @@ export default function AdminAllUsers() {
       }
     })
   }
-  
+
+  // add new user form popup
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <Typography variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='center'>
         Manage Users
       </Typography>
-      <Button onClick={addNewUser} sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained"  >Add New User</Button>
+
+      <AdminSearchUsers />
+      
+      <Button sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained" onClick={handleClickOpen} >Add New User</Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Create a new user</DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText>
+            Create a new user
+          </DialogContentText> */}
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Name"
+            type="text"
+            fullWidth
+            variant="standard"
+          /><br/>
+          <InputLabel sx={{marginTop: '20px'}} margin="dense" id="demo-simple-select-label" variant="standard">User Type</InputLabel>
+          <Select
+            margin="dense"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="User Type"
+            type='select'
+            fullWidth
+            variant="standard"
+          >
+            <MenuItem value={'js'}>Job Seeker</MenuItem>
+            <MenuItem value={'jp'}>Job Provider</MenuItem>
+            <MenuItem value={'mp'}>Manpower Agency</MenuItem>
+          </Select>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="city"
+            label="City"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Create</Button>
+        </DialogActions>
+      </Dialog>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -123,7 +202,6 @@ export default function AdminAllUsers() {
               <StyledTableCell align="center">City</StyledTableCell>
               <StyledTableCell align="center">Email</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="left"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
           </TableHead>
@@ -138,8 +216,7 @@ export default function AdminAllUsers() {
                 <StyledTableCell align="center">{row.reg}</StyledTableCell>
                 <StyledTableCell align="center">{row.city}</StyledTableCell>
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
-                <StyledTableCell align="right"><Button sx={{backgroundColor: '#1976d2'}} variant="contained">&nbsp;View&nbsp;</Button></StyledTableCell>
-                <StyledTableCell align="right"><Button sx={{backgroundColor: '#7A3293'}} variant="contained">Update</Button></StyledTableCell>
+                <StyledTableCell align="right"><Button sx={{backgroundColor: '#7A3293'}} variant="contained">&nbsp;View&nbsp;</Button></StyledTableCell>
                 <StyledTableCell align="right"><Button onClick={deleteButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Delete</Button></StyledTableCell>
               </StyledTableRow>
             ))}
