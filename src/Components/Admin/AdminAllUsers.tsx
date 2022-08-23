@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2';
+import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,22 +36,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function createData(
+  status: any,
   name: string,
   userType: string,
   reg: string,
   city: string,
   email: string,
-
 ) {
-  return { name, userType, reg, city, email };
+  return { status, name, userType, reg, city, email };
 }
 
 const rows = [
-  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com'),
-  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com'),
-  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com'),
-  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com'),
-  createData('Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com'),
+  createData('FREE', 'Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com'),
+  createData('FREE', 'Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com'),
 ];
 
 export default function AdminAllUsers() {
@@ -115,6 +116,7 @@ export default function AdminAllUsers() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
+              <StyledTableCell align="center">Status</StyledTableCell>
               <StyledTableCell align="center">Name</StyledTableCell>
               <StyledTableCell align="center">User Type</StyledTableCell>
               <StyledTableCell align="center">Registered Date</StyledTableCell>
@@ -122,12 +124,13 @@ export default function AdminAllUsers() {
               <StyledTableCell align="center">Email</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="center"></StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
+                <StyledTableCell align="center">{row.status}</StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
                   {row.name}
                 </StyledTableCell>
@@ -137,7 +140,7 @@ export default function AdminAllUsers() {
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
                 <StyledTableCell align="right"><Button sx={{backgroundColor: '#1976d2'}} variant="contained">&nbsp;View&nbsp;</Button></StyledTableCell>
                 <StyledTableCell align="right"><Button sx={{backgroundColor: '#7A3293'}} variant="contained">Update</Button></StyledTableCell>
-                <StyledTableCell align="left"><Button onClick={deleteButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Delete</Button></StyledTableCell>
+                <StyledTableCell align="right"><Button onClick={deleteButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Delete</Button></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

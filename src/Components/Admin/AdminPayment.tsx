@@ -12,10 +12,11 @@ import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import PendingIcon from '@mui/icons-material/Pending';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#4E2363',
     color: theme.palette.common.white,
     fontSize: 16,
   },
@@ -38,21 +39,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function createData(
   name: string,
   userType: string,
-  date: string,
+  recDate: string,
+  validUntil: string,
   city: string,
   email: string,
-  status: any
+  amount: string,
 ) {
-  return { name, userType, date, city, email, status };
+  return { name, userType, recDate, validUntil, city, email, amount };
 }
 
 const rows = [
-  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
-  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
-  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
-  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com', <PendingIcon sx={{color: '#455a64', fontSize: '35px'}} />),
-  createData('Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
-  createData('Hashan Kure', 'Job Seeker', '18/08/2022', 'Kandy', 'hasshKK@gmail.com', <TaskAltIcon sx={{color: '#00c853', fontSize: '35px'}} />),
+  createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', '07/09/2022', 'Matara', 'lak98@gmail.com', '1000'),
+  createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', '13/09/2022', 'Colombo', 'rm97@gmail.com', '1000'),
+  createData('Shalani Hansika', 'Manpower agency', '22/08/2022', '22/09/2022', 'Kandy', 'shala.hans89@gmail.com', '5000'),
+  createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', '11/09/2022', 'Galle', 'shehanLak@gmail.com', '1000'),
+  createData('Chavinda Perera', 'Job Provider', '09/08/2022', '09/09/2022', 'Jaffna', 'chaviPP@gmail.com', '1000'),
+  createData('Hashan Kure', 'Job Seeker', '18/08/2022', '18/09/2022', 'Kandy', 'hasshKK@gmail.com', '1000'),
 ];
 
 export default function AdminPayment() {
@@ -70,32 +72,34 @@ export default function AdminPayment() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }} >
-      <Typography variant="h4" component="h4" fontWeight='700' color='secondary' padding={2} textAlign='center'>
+      <Typography variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='center'>
         Payments
       </Typography> 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="left">Name</StyledTableCell>
               <StyledTableCell align="center">User Type</StyledTableCell>
-              <StyledTableCell align="center">Date</StyledTableCell>
+              <StyledTableCell align="center">Recieved Date</StyledTableCell>
+              <StyledTableCell align="center">Valid Until</StyledTableCell>
               <StyledTableCell align="center">City</StyledTableCell>
               <StyledTableCell align="center">Email</StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
+              <StyledTableCell align="right">Amount (Rs.)</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row" align="center">
+                <StyledTableCell component="th" scope="row" align="left">
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.userType}</StyledTableCell>
-                <StyledTableCell align="center">{row.date}</StyledTableCell>
+                <StyledTableCell align="center">{row.recDate}</StyledTableCell>
+                <StyledTableCell align="center">{row.validUntil}</StyledTableCell>
                 <StyledTableCell align="center">{row.city}</StyledTableCell>
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
-                <StyledTableCell align="center">{row.status}</StyledTableCell>
+                <StyledTableCell align="right">{row.amount}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
