@@ -16,7 +16,6 @@ export const data = [
     [7, 27, 19],
 ];
 
-
 export const options = {
     hAxis: {
         title: "Time",
