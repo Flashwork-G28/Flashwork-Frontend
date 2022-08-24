@@ -73,7 +73,6 @@ const JobsCard = () => {
         }else{
             navigate("/signUp/JobSeeker", { replace: false });
         }
-
     };
     return (
         <div className={classes.cardBody}>
