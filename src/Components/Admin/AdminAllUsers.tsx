@@ -50,21 +50,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function createData(
   status: any,
+  userID: string,
   name: string,
   userType: string,
   reg: string,
   city: string,
   email: string,
 ) {
-  return { status, name, userType, reg, city, email };
+  return { status, userID, name, userType, reg, city, email };
 }
 
 const rows = [
-  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com'),
-  createData('FREE', 'Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com'),
-  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com'),
-  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com'),
-  createData('FREE', 'Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'js004', 'Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Matara', 'lak98@gmail.com'),
+  createData('FREE', 'js017', 'Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Colombo', 'rm97@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'mp056', 'Shalani Hansika', 'Manpower agency', '22/08/2022', 'Kandy', 'shala.hans89@gmail.com'),
+  createData(<LocalPoliceIcon sx={{color: '#7A3293', fontSize: '35px'}} />, 'jp008', 'Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Galle', 'shehanLak@gmail.com'),
+  createData('FREE', 'jp024', 'Chavinda Perera', 'Job Provider', '09/08/2022', 'Jaffna', 'chaviPP@gmail.com'),
 ];
 
 export default function AdminAllUsers() {
@@ -136,7 +137,7 @@ export default function AdminAllUsers() {
       </Typography>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
           <Grid item xs={5}>
-            <Button sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained" onClick={handleClickOpen} >Add New User</Button>
+            {/* <Button sx={{backgroundColor: '#7A3293', float: 'left', margin: '5px 5px 5px 0px', padding: '10px 50px'}} variant="contained" onClick={handleClickOpen} >Add New User</Button> */}
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle variant="h4" component="h4" fontWeight='700' color='secondary' padding={3}>Create a new user</DialogTitle>
               <DialogContent>
@@ -202,6 +203,7 @@ export default function AdminAllUsers() {
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Status</StyledTableCell>
+              <StyledTableCell align="center">User ID</StyledTableCell>
               <StyledTableCell align="center">Name</StyledTableCell>
               <StyledTableCell align="center">User Type</StyledTableCell>
               <StyledTableCell align="center">Registered Date</StyledTableCell>
@@ -215,6 +217,7 @@ export default function AdminAllUsers() {
             {rows.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell align="center">{row.status}</StyledTableCell>
+                <StyledTableCell align="center">{row.userID}</StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
                   {row.name}
                 </StyledTableCell>
@@ -223,7 +226,7 @@ export default function AdminAllUsers() {
                 <StyledTableCell align="center">{row.city}</StyledTableCell>
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
                 <StyledTableCell align="right"><Button sx={{backgroundColor: '#7A3293'}} variant="contained">&nbsp;View&nbsp;</Button></StyledTableCell>
-                <StyledTableCell align="right"><Button onClick={deleteButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Delete</Button></StyledTableCell>
+                <StyledTableCell align="right"><Button onClick={deleteButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Deactivate</Button></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

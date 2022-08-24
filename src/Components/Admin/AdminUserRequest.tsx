@@ -49,22 +49,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function createData(
-  complainedID: string,
-  senderName: string,
-  userType: string,
+  compID: string,
+  suspectID: string,
   complainedDate: string,
   reason: string,
   senderEmail: string,
 ) {
-  return { complainedID, senderName, userType, complainedDate, reason, senderEmail };
+  return { compID, suspectID, complainedDate, reason, senderEmail };
 }
 
 const rows = [
-  createData('js008', 'Nimal Hettiarachi', 'Job Seeker', '07/08/2022', 'Bad work', 'lak98@gmail.com'),
-  createData('mp016', 'Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Seems to be a fraud', 'rm97@gmail.com'),
-  createData('js013', 'Pasindu Sandaruwan', 'Manpower agency', '22/08/2022', 'Thief...', 'shala.hans89@gmail.com'),
-  createData('jp076', 'Shalanai Tharuka', 'Job Provider', '11/08/2022', 'Bad working experience..', 'shehanLak@gmail.com'),
-  createData('mp002', 'Chavinda Perera', 'Job Provider', '09/08/2022', 'Fake account....', 'chaviPP@gmail.com'),
+  createData('comp001', 'js006', '07/08/2022', 'Bad work', 'lak98@gmail.com'),
+  createData('comp002', 'js054', '13/08/2022', 'Seems to be a fraud', 'rm97@gmail.com'),
+  createData('comp003', 'mp017', '22/08/2022', 'Thief...', 'shala.hans89@gmail.com'),
+  createData('comp004', 'jp047', '11/08/2022', 'Bad working experience..', 'shehanLak@gmail.com'),
+  createData('comp005', 'jp066', '09/08/2022', 'Fake account....', 'chaviPP@gmail.com'),
 ];
 
 export default function AdminUserRequest() {
@@ -139,27 +138,23 @@ export default function AdminUserRequest() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">Complained ID</StyledTableCell>
-              <StyledTableCell align="center">Sender's Name</StyledTableCell>
-              <StyledTableCell align="center">User Type</StyledTableCell>
+              <StyledTableCell align="left">Complaint ID</StyledTableCell>
+              <StyledTableCell align="center">Complainer email</StyledTableCell>
+              <StyledTableCell align="center">Suspected User ID</StyledTableCell>
               <StyledTableCell align="center">Complained Date</StyledTableCell>
               <StyledTableCell align="center">Reason</StyledTableCell>
-              <StyledTableCell align="center">Sender's email</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <StyledTableRow key={row.senderName}>
-                <StyledTableCell align="left">{row.complainedID}</StyledTableCell>
-                <StyledTableCell component="th" scope="row" align="center">
-                  {row.senderName}
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.userType}</StyledTableCell>
+              <StyledTableRow key={row.compID}>
+                <StyledTableCell align="left">{row.compID}</StyledTableCell>
+                <StyledTableCell align="center">{row.senderEmail}</StyledTableCell>
+                <StyledTableCell align="center">{row.suspectID}</StyledTableCell>
                 <StyledTableCell align="center">{row.complainedDate}</StyledTableCell>
                 <StyledTableCell align="center">{row.reason}</StyledTableCell>
-                <StyledTableCell align="center">{row.senderEmail}</StyledTableCell>
                 <StyledTableCell align="right"><Button onClick={resolveButton} sx={{backgroundColor: '#7A3293'}} variant="contained">Resolve</Button></StyledTableCell>
                 <StyledTableCell align="right"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
               </StyledTableRow>

@@ -81,7 +81,7 @@ export default function AdminDashboard() {
             </Grid>
             <Grid item xs={4.5}>
                 <br />
-                <Card sx={{height: '100%', boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}} >
+                <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}} >
                     <CardActionArea>
                         <CardContent>
                             {/* <Chart chartType="PieChart" width='100%' height='180px' data={data} /> */}
