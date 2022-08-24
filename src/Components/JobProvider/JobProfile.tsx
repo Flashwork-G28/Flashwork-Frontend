@@ -1,9 +1,13 @@
 import React from 'react';
+import JobProviderProfileContent from "./JobProviderComponents/JobProviderProfileContent";
+import JobProviderProMember from "./JobProviderComponents/JobProviderProMember";
 
 const JobProfile = () => {
     return (
         <div>
-            job provider profile
+            {/*<JobProviderProfileContent />*/}
+
+            <JobProviderProMember />
         </div>
     );
 };

@@ -298,8 +298,9 @@ const WorkerCard = () => {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
                     <Button onClick={handleClose} variant="contained">Booking</Button>
+                    <Button onClick={handleClose} variant='outlined'>Cancel</Button>
+
                 </DialogActions>
             </Dialog>
 
