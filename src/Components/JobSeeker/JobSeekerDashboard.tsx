@@ -133,7 +133,7 @@ const JobSeekerDashboard = () => {
                             <Grid item xs={12} style={{backgroundColor:"lightgray"}}>
 
                                 <Grid item xs={12} >
-                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
+                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>2</div> </h3>
                                 </Grid>
                                 <Grid item xs={12} >
                                     <div style={{display:"flex",flexDirection:"row"}}>
