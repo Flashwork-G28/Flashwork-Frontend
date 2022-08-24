@@ -123,9 +123,6 @@ const WorkerCard = () => {
         setOpen(false);
     };
 
-
-
-
     return (
         <div className={classes.cardBody}>
 
@@ -295,7 +292,6 @@ const WorkerCard = () => {
                             {/*</Grid>*/}
                         </form>
                     </Card>
-
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} variant="contained">Booking</Button>
@@ -303,8 +299,6 @@ const WorkerCard = () => {
 
                 </DialogActions>
             </Dialog>
-
-
         </div>
     );
 };
