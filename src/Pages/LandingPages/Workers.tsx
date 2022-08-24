@@ -7,7 +7,6 @@ import WorkerPageSearch from "../../Components/Workers/WorkerPageSearch";
 import Dialog from '@mui/material/Dialog';
 
 const Workers = () => {
-    const [pop, setPop] = useState(false);
     return (
       <>
           <WorkerPageSearch />
@@ -31,10 +30,6 @@ const Workers = () => {
               </Typography>
               <WorkerMainComponents />
           </div>
-
-          <Dialog open={pop}>
-              <BookingPopUp />
-          </Dialog>
 
 
       </>

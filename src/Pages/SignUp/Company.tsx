@@ -13,8 +13,8 @@ import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import { useAuth0 } from "@auth0/auth0-react";
-import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password';

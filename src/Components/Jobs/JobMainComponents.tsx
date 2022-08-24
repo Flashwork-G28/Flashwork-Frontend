@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from "@mui/material/Grid";
 import {makeStyles} from "@material-ui/core/styles";
-import WorkerCard from "./Jobcard";
+import JobsCard from "./Jobcard";
 
 
 const useStyles = makeStyles({
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 
 
-const WorkerMainComponents = () => {
+const JobsMainComponents = () => {
     const classes = useStyles();
     return (
         <div>
@@ -29,8 +29,8 @@ const WorkerMainComponents = () => {
                   justifyContent="center"
                   alignItems="center">
 
-                <WorkerCard />
-                <WorkerCard />
+                <JobsCard />
+                <JobsCard />
 
 
             </Grid>
@@ -39,4 +39,4 @@ const WorkerMainComponents = () => {
     );
 };
 
-export default WorkerMainComponents;
+export default JobsMainComponents;
