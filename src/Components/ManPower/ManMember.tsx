@@ -1,9 +1,13 @@
 import React from 'react';
+import ManMemberCategory from "./ManPowerComponents/ManMemberCategory";
+import ManMemberMemberTable from "./ManPowerComponents/ManMemberMemberTable";
 
 const ManMember = () => {
     return (
         <div>
-            man member page
+            <ManMemberCategory />
+
+            <ManMemberMemberTable />
         </div>
     );
 };
