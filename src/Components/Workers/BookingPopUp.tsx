@@ -7,12 +7,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 
 const useStyles = makeStyles({
@@ -21,10 +22,6 @@ const useStyles = makeStyles({
             // margin: "0 auto",
             paddingTop: 10,
             paddingBottom: 10,
-            // minHeight: "100vh",
-            // height: 'fit-content',
-            height: '420px',
-            width: '750px',
             backgroundColor:'#D9D9D9',
             borderRadius: '10px',
             border: '3px solid #4E2363',
@@ -37,7 +34,6 @@ const useStyles = makeStyles({
             margin: "30px",
             // paddingTop: 30,
             paddingBottom: 20,
-            minHeight: "100vh",
 
         },
     closeIcon:{
@@ -47,13 +43,12 @@ const useStyles = makeStyles({
         // paddingTop: 10,
     },
     sendAdd:{
-        marginLeft:'87%',
+        marginLeft:'83%',
         marginBottom:'20px',
         // position: 'relative',
         // bottom: '50px',
         // right: '25px',
     },
-
         select: {
             "& :focus": {
                 backgroundColor: "transparent",
@@ -70,6 +65,19 @@ const BookingPopUp = () => {
     const handleChange = (newValue: Date | null) => {
         setValue(newValue);
     };
+
+    const [category, setCategory] = React.useState('');
+
+    const handleChangeCategory = (event: SelectChangeEvent) => {
+        setCategory(event.target.value as string);
+    };
+    const [method, setMethod] = React.useState('');
+
+    const handleChangeMethod = (event: SelectChangeEvent) => {
+        setMethod(event.target.value as string);
+    };
+
+
     return (
         <div className={classes.PopUpCard}>
             <Grid item xs={12} sx={{ m: 2 }} >
@@ -95,7 +103,6 @@ const BookingPopUp = () => {
                                         {/*</LocalizationProvider>*/}
 
                                         <TextField
-                                            required
                                             id="outlined-required"
                                             label="Date"
                                             defaultValue="Date"
@@ -104,12 +111,15 @@ const BookingPopUp = () => {
 
                                 </Grid>
                                 <Grid item xs={4} sx={{ m: 2 }}>
-                                    <FormControl>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
                                         <Select
-                                        // fullWidth
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Category">
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={category}
+                                            label="Category"
+                                            onChange={handleChangeCategory}
+                                        >
                                             <MenuItem value={"Restaurant & food services"}>Restaurant & food services</MenuItem>
                                             <MenuItem value={"Transportation & delivery"}>Transportation & delivery</MenuItem>
                                             <MenuItem value={"Retail & Production"}>Retail & Production</MenuItem>
@@ -118,6 +128,7 @@ const BookingPopUp = () => {
                                             <MenuItem value={"Others"}>Others</MenuItem>
                                         </Select>
                                     </FormControl>
+
                                 </Grid>
                                 <Grid item xs={4} sx={{ m: 2 }}>
                                     <TextField
@@ -140,21 +151,27 @@ const BookingPopUp = () => {
                                     />
                                 </Grid>
                                 <Grid item xs={6} sx={{ m: 2 }}>
-                                    <Select
-                                        fullWidth
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Payment Method">
-                                        <MenuItem value={"Cash"}>Chash</MenuItem>
-                                        <MenuItem value={"Online"}>Online</MenuItem>
-                                    </Select>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Payment Method</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={method}
+                                            label="Method"
+                                            onChange={handleChangeMethod}
+                                        >
+                                            <MenuItem value={"Cash"}>Cash</MenuItem>
+                                            <MenuItem value={"Online"}>Online</MenuItem>
+                                        </Select>
+                                    </FormControl>
+
                                 </Grid>
 
 
                             </Grid>
                             <Grid  xs={4} direction="column">
                                 <Grid item xs={6} sx={{ m: 2 }}>
-                                    <TextField fullWidth id="last-name" label="City" variant="outlined" required />
+                                    <TextField fullWidth id="last-name" label="City" variant="outlined"  />
                                 </Grid>
 
                                 <Grid item xs={6} sx={{ m: 2 }}>

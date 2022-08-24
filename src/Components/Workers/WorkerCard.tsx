@@ -5,28 +5,24 @@ import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
-
-
-
-
-
-import TextField from '@mui/material/TextField';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarIcon from '@mui/icons-material/Star';
+import WorkIcon from '@mui/icons-material/Work';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
+import { yellow } from '@mui/material/colors';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
-
 import Card from "@mui/material/Card";
-// import Grid from "@mui/material/Grid";
+import TextField from '@mui/material/TextField';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 
 import InputAdornment from '@mui/material/InputAdornment';
 // import TextField from '@mui/material/TextField';
-import FormControl from "@mui/material/FormControl";
+import FormControl from "@mui/material/FormControl"
 
 const useStyles = makeStyles({
     cardBody: {
@@ -126,53 +122,58 @@ const WorkerCard = () => {
     return (
         <div className={classes.cardBody}>
 
-            <Grid
-                container
-                direction="column"
-                margin='25px' >
+                <Grid
+                    container
+                    direction="column"
+                    margin='25px' >
 
-                <Grid sx={{ width:'100%' , height:'fitContent'}}>
-                    <Grid>
-                        <Avatar
-                            alt="Remy Sharp"
-                            src= {pc1}
-                            sx={{ width: 100, height: 100 }}
-                        />
+                    <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
+                          container
+                          justifyContent="space-between"
+                          alignItems="flex-start">
+                        <Grid item xs={6}>
+                            <Avatar
+                                alt="Remy Sharp"
+                                src= {pc1}
+                                sx={{ width: 100, height: 100 }}
+                            />
+                        </Grid>
+                        <Grid item xs={6} container
+                              direction="column"
+                              alignItems="flex-end"
+                        >
+
+                            <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
+                            <Stack direction="row" spacing={0.5} sx={{mt:7 ,mr:5.8}} alignItems="flex-end">
+                                <StarIcon sx={{color:yellow[600]}}/>
+                                <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
+                                <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
+                            </Stack>
+
+                        </Grid>
+
                     </Grid>
-                    <Grid>
+                    <Grid alignItems="flex-start" className={classes.contentCard}>
+                        <div className={classes.line}></div>
+                        <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
+                            Mohomad Faalil
+                        </Typography>
+                        <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
+                            <span><WorkIcon fontSize='small' /></span> Home Repairs
+                        </Typography>
+                        <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
+                            <span><CheckCircleOutlineIcon fontSize='small' /></span> 49 Minor Tasks Completed
+                        </Typography>
 
+                        <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
+                            I have been repairing anything that needed it for 35 years.
+                            I have an engineering degree, tools, and a truck. How can I help you?
+                        </Typography>
                     </Grid>
-
+                    <Grid className={classes.booking} >
+                        <Button variant="contained" onClick={handleClickOpen}>Booking</Button>
+                    </Grid>
                 </Grid>
-                <Grid alignItems="flex-start" className={classes.contentCard}>
-                    <div className={classes.line}></div>
-                    <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
-                        Mohomad Faalil
-                    </Typography>
-                    <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                        <span style={{}}>blue</span>Home Repairs
-                    </Typography>
-                    <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                        49 Minor Tasks Completed
-                    </Typography>
-
-                    <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
-                        I have been repairing anything that needed it for 35 years.
-                        I have an engineering degree, tools, and a truck. How can I help you?
-                    </Typography>
-                </Grid>
-                <Grid className={classes.booking} >
-                    <Button variant="contained" onClick={handleClickOpen}>Booking</Button>
-                </Grid>
-
-            </Grid>
-
-
-
-
-
-
-
 
 
 

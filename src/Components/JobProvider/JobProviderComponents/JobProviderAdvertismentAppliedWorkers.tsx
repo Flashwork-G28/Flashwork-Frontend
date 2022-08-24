@@ -90,8 +90,8 @@ const JobProviderAdvertismentAppliedWorkers = () => {
                                     <StyledTableCell align="left">{row.reg}</StyledTableCell>
                                     <StyledTableCell align="left">{row.contact}</StyledTableCell>
                                     <StyledTableCell align="left">{row.email}</StyledTableCell>
-                                    <StyledTableCell align="right"><Button variant="contained" sx={{fontSize:14 }}>Accept</Button></StyledTableCell>
-                                    <StyledTableCell align="left"><Button sx={{backgroundColor: '#d32f2f', fontSize:14 }} variant="contained">Reject</Button></StyledTableCell>
+                                    <StyledTableCell align="right"><Button variant="contained" sx={{fontSize:14 }}>Get</Button></StyledTableCell>
+                                    <StyledTableCell align="left"><Button sx={{backgroundColor: '#d32f2f', fontSize:14 }} variant="contained">Remove</Button></StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>

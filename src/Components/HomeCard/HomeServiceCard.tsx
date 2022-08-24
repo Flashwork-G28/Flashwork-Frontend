@@ -10,8 +10,6 @@ import bg3 from "../../Assets/backgroundImages/countWorker.png";
 import Box from '@mui/material/Box';
 
 
-
-
 const useStyles = makeStyles({
     imageBox: {
         width:'70px',
@@ -42,7 +40,7 @@ const HomeServiceCard = () => {
         <>
             <Box sx={{ display: 'grid', gridTemplateRows: 'repeat(1, 1fr)' }}>
                 <div>
-                    <Typography variant="h5" color="#4E2363" fontWeight="bold" textAlign='center' >Its Easy To Anroll And Get Our Service</Typography>
+                    <Typography variant="h5" color="#4E2363" fontWeight="bold" textAlign='center' >Yes, Its That Easy To Enroll and get our services.</Typography>
                 </div>
                 <div>
                     <Grid

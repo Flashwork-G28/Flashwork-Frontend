@@ -105,10 +105,11 @@ const JobProvider = () => {
                 city: values.city,
                 mobile:values.mobile,
                 email: values.email,
-                password: values.password
+                password: values.password,
+                nid:values.nid,
             })
                 .then(function (response: any) {
-                    // console.log(response);
+                    console.log(response);
                     const MySwal = withReactContent(Swal)
                     MySwal.fire({
                         title: 'Create Account Successfully',

@@ -45,7 +45,7 @@ const UsersCountingSection = () => {
                                     fontWeight: 'bold',
                                     mx: 0.001,
                                     height:'100%',
-                                    fontSize: 100,
+
                                 }}
                             />
 

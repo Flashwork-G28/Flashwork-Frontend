@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import WorkerMainComponents from "../../Components/Workers/WorkerMainComponents";
 import Typography from "@mui/material/Typography";
-import BookingPopUp from "../../Components/Workers/BookingPopUp";
 import WorkerPageSearch from "../../Components/Workers/WorkerPageSearch";
 
+
 const Workers = () => {
-  return (
+    return (
       <>
           <WorkerPageSearch />
           <div>
@@ -29,8 +29,6 @@ const Workers = () => {
               <WorkerMainComponents />
           </div>
 
-
-          <BookingPopUp />
 
       </>
   );

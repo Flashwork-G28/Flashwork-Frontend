@@ -45,7 +45,7 @@ const JobProviderAddMidContent = () => {
 
                 </Grid>
                 <JobProviderPlacementJob />
-                <Typography variant="h6" fontWeight='700' alignItems='flex-start' marginTop='30px' >Placement Job</Typography>
+                <Typography variant="h6" fontWeight='700' alignItems='flex-start' marginTop='30px' >Applied Workers</Typography>
 
                 <JobProviderAdvertismentAppliedWorkers />
             </Container>

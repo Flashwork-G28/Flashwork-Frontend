@@ -34,11 +34,11 @@ export default function UnicFirstPage() {
                     <Grid>
 
                         <Typography variant="subtitle1" component="div" fontWeight='1000' fontSize='72px' textAlign='left' lineHeight='1' color='#4E2363'>
-                            We Will Do Your All Work
+                            A Platform You Can Rely On
                         </Typography>
                         <Typography variant="body2" fontWeight='500' fontSize='24px' textAlign='left' marginTop='50px' >
-                            We Are The Best Solution For You Can Also Find Job
-                            Opportunities And Avail Services. Come Join Flash Work.
+                            We Understand Your Needs Better,
+                            Get the Right Worker for your needs today.
                         </Typography>
 
                     </Grid>
