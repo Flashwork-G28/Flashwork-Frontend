@@ -13,7 +13,7 @@ const JobSeekerRequest = () => {
     return (
         <div >
             <Grid  spacing={2} style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-                <Grid item xs={6.5} sx={{backgroundColor:"#ebccff",borderRadius:"10px"}}>
+                <Grid item xs={6.5} sx={{borderRadius:"10px"}}>
                     <JobSeekerReqList/>
                 </Grid>
                 <Grid item xs={5}  sx={{borderRadius:"10px",paddingLeft:"3px",backgroundColor:"#ffff"}}>
