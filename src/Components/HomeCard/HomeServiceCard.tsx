@@ -36,7 +36,6 @@ const useStyles = makeStyles({
     }
 });
 
-
 const HomeServiceCard = () => {
     const classes = useStyles();
     return (
