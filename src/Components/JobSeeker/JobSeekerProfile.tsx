@@ -304,7 +304,7 @@ const JobSeekerProfile = () => {
                     <Grid item xs={4}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} >
-                                <Item>calender</Item>
+                                {/*<Item>calender</Item>*/}
                             </Grid>
                             <Grid item xs={12}>
 

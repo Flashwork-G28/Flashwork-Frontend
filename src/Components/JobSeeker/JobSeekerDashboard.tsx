@@ -85,7 +85,7 @@ const JobSeekerDashboard = () => {
                             </div>
                         </Grid>
                         <Grid item xs={12} >
-                            <Item>Activity Calender</Item>
+                            {/*<Item>Activity Calender</Item>*/}
                         </Grid>
                         <h2>Applied Job</h2>
 
@@ -123,7 +123,7 @@ const JobSeekerDashboard = () => {
                     <Grid item xs={4}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} >
-                                <Item>calender</Item>
+                                {/*<Item>calender</Item>*/}
                             </Grid>
                             <Grid item xs={12}>
 
