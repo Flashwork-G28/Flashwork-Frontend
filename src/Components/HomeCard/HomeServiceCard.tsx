@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 
 
 const useStyles = makeStyles({
-    root: {
+    imageBox: {
         width:'70px',
         height:'70px',
         borderRadius: '10px',
@@ -22,26 +22,28 @@ const useStyles = makeStyles({
         marginLeft:'90px',
         position: 'relative',
         marginBottom:'-30px',
+        textAlign:'center',
         backgroundColor:'white'
 
     },
     CardBody: {
         width: '250px',
         height: '250px',
-        borderRadius: '10px',
+        borderRadius: '20px',
         // backgroundColor: 'red',
         padding:'10px'
 
     }
 });
 
-export default function HomeServiceCard() {
+
+const HomeServiceCard = () => {
     const classes = useStyles();
     return (
         <>
             <Box sx={{ display: 'grid', gridTemplateRows: 'repeat(1, 1fr)' }}>
                 <div>
-                    <Typography variant="h5" color="#4E2363" fontWeight="bold" >Its Easy To Anroll And Get Our Service</Typography>
+                    <Typography variant="h5" color="#4E2363" fontWeight="bold" textAlign='center' >Its Easy To Anroll And Get Our Service</Typography>
                 </div>
                 <div>
                     <Grid
@@ -57,10 +59,9 @@ export default function HomeServiceCard() {
                             { title: 'Schedule plan', name: 'Create your own business plan 1.1 Mission At Web Applications, our mission is to provide an online office system that links workers in different locations to their mother company. ' , img: bg3 },
 
                         ].map((item, index) => (
-
                             <Grid item xs={3} key={index} >
                                 <div className={classes.CardBody} >
-                                    <div className={classes.root}>
+                                    <div className={classes.imageBox}>
                                         <img
                                             src={`${item.img}?w=32&fit=crop&auto=format`}
                                             srcSet={`${item.img}?w=32&fit=crop&auto=format&dpr=2 2x`}
@@ -71,10 +72,10 @@ export default function HomeServiceCard() {
                                     </div>
                                     <Card color={'blue'}>
                                         <CardContent>
-                                            <Typography variant="h6" component="div" color={'secondary'} style={{padding:'40px 5px 10px 5px'}} fontWeight="bold">
+                                            <Typography variant="h6" component="div" color={'secondary'} style={{padding:'40px 5px 10px 5px', textAlign:'center'}} fontWeight="bold">
                                                 {item.title}
                                             </Typography>
-                                            <Typography variant="body2">{item.name}</Typography>
+                                            <Typography variant="body2" style={{padding:'10px 5px 10px 5px', textAlign:'center'}}>{item.name}</Typography>
                                         </CardContent>
                                     </Card>
                                 </div>
@@ -86,4 +87,10 @@ export default function HomeServiceCard() {
             </Box>
         </>
     );
-}
+};
+
+export default HomeServiceCard;
+
+
+
+
