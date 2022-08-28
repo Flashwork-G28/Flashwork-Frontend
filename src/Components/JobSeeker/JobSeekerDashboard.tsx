@@ -31,7 +31,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: 'purple',
+        backgroundColor: '#4E2363',
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -78,43 +78,55 @@ const JobSeekerDashboard = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={8}>
-                        <Grid item xs={12} >
-                            <div style={{display:"flex",flexDirection:"row"}}>
-                                <div style={{color:"#46225F",paddingLeft:"50px",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>
-                                <div  style={{paddingLeft:"300px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>
-                            </div>
+                        <Grid item xs={12} style={{display:"flex",flexDirection:"row"}}>
+                            <Grid item xs={6} >
+                                <div style={{color:"#46225F",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>
+                            </Grid>
+                            <Grid item xs={6} >
+                                <div  style={{paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>
+                            </Grid>
+                            {/*<div style={{display:"flex",flexDirection:"row"}}>*/}
+                            {/*    <div style={{color:"#46225F",paddingLeft:"50px",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>*/}
+                            {/*    <div  style={{paddingLeft:"300px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>*/}
+                            {/*</div>*/}
                         </Grid>
                         <Grid item xs={12} >
-                            {/*<Item>Activity Calender</Item>*/}
+                            <Item>Activity Calender</Item>
                         </Grid>
-                        <h2>Applied Job</h2>
+                        <Grid item xs={12} >
+                            <h2>Applied Job</h2>
+                        </Grid>
+                        <Grid item xs={12} >
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 500 }} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell style={{fontWeight:"bold"}}>Job Seeker</StyledTableCell>
+                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Location</StyledTableCell>
+                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Payment Methoud</StyledTableCell>
+                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Status</StyledTableCell>
 
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 500 }} aria-label="customized table">
-                                <TableHead>
-                                    <TableRow>
-                                        <StyledTableCell style={{fontWeight:"bold"}}>Job Seeker</StyledTableCell>
-                                        <StyledTableCell align="left" style={{fontWeight:"bold"}}>Location</StyledTableCell>
-                                        <StyledTableCell align="left" style={{fontWeight:"bold"}}>Payment Methoud</StyledTableCell>
-                                        <StyledTableCell align="left" style={{fontWeight:"bold"}}>Status</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <StyledTableRow key={row.jobSeeker}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    {row.jobSeeker}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{row.location}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.payment}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.status}</StyledTableCell>
 
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map((row) => (
-                                        <StyledTableRow key={row.jobSeeker}>
-                                            <StyledTableCell component="th" scope="row">
-                                                {row.jobSeeker}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="left">{row.location}</StyledTableCell>
-                                            <StyledTableCell align="left">{row.payment}</StyledTableCell>
-                                            <StyledTableCell align="left">{row.status}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
 
-                                        </StyledTableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+
+
 
 
 
@@ -123,55 +135,62 @@ const JobSeekerDashboard = () => {
                     <Grid item xs={4}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} >
-                                {/*<Item>calender</Item>*/}
-                            </Grid>
-                            <Grid item xs={12}>
-
-                                <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
 
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgray"}}>
+                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                                    <div><h3>Upcoming All Task 24</h3></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                                    <div><h3>Daily Task 2</h3></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
 
-                                <Grid item xs={12} >
-                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>2</div> </h3>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row"}}>
+                                   <div><h4>BlueMarket Privet Limited</h4></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row"}}>
+                                    <div><h4>FrockMe Textile</h4></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%",display:"flex",flexDirection:"column"}}>
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                    Date:
                                 </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={BlueMarket} alt={BlueMarket} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
-
-                                        <ArrowDropDownIcon />
-                                    </div>
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                  2022 july 23
                                 </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row",backgroundColor:"darkgrey"}}>
-                                        <div> <img src={FrockMe} alt={FrockMe} width={"50px"} height={"50px"} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"28px",color:"#7A3293"}}><h5>FrockMe Textile 8.00 am</h5></div>
-                                        <ArrowDropUpIcon />
-                                    </div>
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                    Time:
                                 </Grid>
-                                <Grid item xs={12} >
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                    9.00 am
+                                </Grid>
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                    Venue:
+                                </Grid>
+                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
                                     FrockMe, No 133/02/01
-                                    Highlevel Road,
+                                    Highlevel Road
                                     Kirulapana.
                                 </Grid>
-                                <Grid item xs={12} >
-                                    0772595548 / 0705594661
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <h3>Description</h3>
-                                    This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={profile} alt={profile} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
+
+
 
                             </Grid>
+
+
+
 
                         </Grid>
                     </Grid>
