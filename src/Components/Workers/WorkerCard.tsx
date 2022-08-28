@@ -16,14 +16,22 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Card from "@mui/material/Card";
 import TextField from '@mui/material/TextField';
-import Select from "@mui/material/Select";
+import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Swal from 'sweetalert2';
+
+
+
+import { useAuth0 } from "@auth0/auth0-react";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 
 import InputAdornment from '@mui/material/InputAdornment';
 // import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl"
 import IconButton from '@mui/material/IconButton';
+import InputLabel from "@mui/material/InputLabel";
 
 const useStyles = makeStyles({
     cardBody: {
@@ -104,6 +112,16 @@ const useStyles = makeStyles({
 });
 
 
+// const validationSchema = yup.object({
+//     firstName: yup.string().required('First Name Required !'),
+//     lastName: yup.string().required('Last Name Required !'),
+//     // gender: yup.string().required('Gender Required !'),
+//     street: yup.string().required('Street Required !').max(150),
+//     city: yup.string().required('City Name Required !'),
+//     description:yup.string().required('Description Required !'),
+// });
+
+
 interface FeaturedPostProps {
     post: {
         name: string;
@@ -116,7 +134,6 @@ interface FeaturedPostProps {
 
 
 
-
 const WorkerCard = (props: FeaturedPostProps) => {
     const classes = useStyles();
     const { post } = props;
@@ -126,11 +143,33 @@ const WorkerCard = (props: FeaturedPostProps) => {
     const handleClickOpen = () => {
         setOpen(true);
     };
+    const handleBookig = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Save it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Saved!',
+                    'Your booking has been saved.',
+                    'success'
+                )
+            }
+        })
+
+        handleClose();
+    };
 
     const handleClose = () => {
         setOpen(false);
     };
 
+    // validationSchema: validationSchema,
     return (
         <div className={classes.cardBody}>
 
@@ -155,7 +194,10 @@ const WorkerCard = (props: FeaturedPostProps) => {
                               alignItems="flex-end"
                         >
 
-                            <IconButton color="primary" >
+                            {/*<IconButton color="primary" >*/}
+                            {/*    <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />*/}
+                            {/*</IconButton>*/}
+                            <IconButton>
                                 <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
                             </IconButton>
                             <Stack direction="row" spacing={0.5} sx={{mt:4 ,mr:5.8}} alignItems="flex-end">
@@ -215,28 +257,24 @@ const WorkerCard = (props: FeaturedPostProps) => {
                                                 required
                                                 id="outlined-required"
                                                 label="Date"
-                                                defaultValue="Date"
+                                                defaultValue=''
                                             />
                                         </FormControl>
 
                                     </Grid>
-                                    <Grid item xs={4} sx={{ m: 2 }}>
-                                        <FormControl>
+                                    <Grid item xs={6} sx={{ m: 2 }}>
+                                        <FormControl fullWidth >
+                                            <InputLabel id="demo-select-small">Payment Type</InputLabel>
                                             <Select
-                                                // fullWidth
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
-                                                label="Category">
-                                                <MenuItem value={"Restaurant & food services"}>Restaurant & food services</MenuItem>
-                                                <MenuItem value={"Transportation & delivery"}>Transportation & delivery</MenuItem>
-                                                <MenuItem value={"Retail & Production"}>Retail & Production</MenuItem>
-                                                <MenuItem value={"Office work & Administration"}>Office work & Administration</MenuItem>
-                                                <MenuItem value={"General services"}>General services</MenuItem>
-                                                <MenuItem value={"Others"}>Others</MenuItem>
+                                                label="Payment Method">
+                                                <MenuItem value={"Cash"}>Chash</MenuItem>
+                                                <MenuItem value={"Online"}>Online</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </Grid>
-                                    <Grid item xs={4} sx={{ m: 2 }}>
+                                    <Grid item xs={6} sx={{ m: 2 }}>
                                         <TextField
                                             label="Mobile"
                                             id="outlined-start-adornment"
@@ -244,31 +282,31 @@ const WorkerCard = (props: FeaturedPostProps) => {
                                             }}/>
                                     </Grid>
                                 </Grid>
-                                <Grid xs={4} direction="column">
-                                    <Grid item xs={6} sx={{ m: 2 }}>
-                                        <TextField
-                                            id="outlined-number"
-                                            label="Number"
-                                            type="number"
-                                            sx={{width: 1/1}}
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={6} sx={{ m: 2 }}>
-                                        <Select
-                                            fullWidth
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            label="Payment Method">
-                                            <MenuItem value={"Cash"}>Chash</MenuItem>
-                                            <MenuItem value={"Online"}>Online</MenuItem>
-                                        </Select>
-                                    </Grid>
+                               {/*<Grid xs={4} direction="column">*/}
+                               {/*     <Grid item xs={6} sx={{ m: 2 }}>*/}
+                               {/*         <TextField*/}
+                               {/*             id="outlined-number"*/}
+                               {/*             label="Number"*/}
+                               {/*             type="number"*/}
+                               {/*             sx={{width: 1/1}}*/}
+                               {/*             InputLabelProps={{*/}
+                               {/*                 shrink: true,*/}
+                               {/*             }}*/}
+                               {/*         />*/}
+                               {/*     </Grid>*/}
+                               {/*     <Grid item xs={6} sx={{ m: 2 }}>*/}
+                               {/*         <Select*/}
+                               {/*             fullWidth*/}
+                               {/*             labelId="demo-simple-select-label"*/}
+                               {/*             id="demo-simple-select"*/}
+                               {/*             label="Payment Method">*/}
+                               {/*             <MenuItem value={"Cash"}>Chash</MenuItem>*/}
+                               {/*             <MenuItem value={"Online"}>Online</MenuItem>*/}
+                               {/*         </Select>*/}
+                               {/*     </Grid>*/}
 
 
-                                </Grid>
+                               {/* </Grid>*/}
                                 <Grid  xs={4} direction="column">
                                     <Grid item xs={6} sx={{ m: 2 }}>
                                         <TextField fullWidth id="last-name" label="City" variant="outlined" required />
@@ -309,7 +347,7 @@ const WorkerCard = (props: FeaturedPostProps) => {
                     </Card>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} variant="contained">Booking</Button>
+                    <Button onClick={handleBookig} variant="contained">Booking</Button>
                     <Button onClick={handleClose} variant='outlined'>Cancel</Button>
 
                 </DialogActions>

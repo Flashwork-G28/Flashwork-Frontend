@@ -173,9 +173,9 @@ const JobProvider = () => {
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <TextField fullWidth id="firstName" label="First Name" variant="outlined"
                                                value={formik.values.firstName}
-                                               onChange={formik.handleChange}
-                                               error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                                               helperText={formik.touched.firstName && formik.errors.firstName}/>
+                                               onChange={formik.handleChange} />
+                                               {/*error={formik.touched.firstName && Boolean(formik.errors.firstName)}*/}
+                                               {/*helperText={formik.touched.firstName && formik.errors.firstName}*/}
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <TextField fullWidth id="lastName" label="Last Name" variant="outlined"
