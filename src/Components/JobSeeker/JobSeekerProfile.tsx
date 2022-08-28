@@ -304,56 +304,59 @@ const JobSeekerProfile = () => {
                     <Grid item xs={4}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} >
-                                {/*<Item>calender</Item>*/}
-                            </Grid>
-                            <Grid item xs={12}>
-
-                                <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
 
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgray"}}>
+                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                                    <div><h3>Upcoming All Task 24</h3></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                                    <div><h3>Daily Task 2</h3></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
 
-                                <Grid item xs={12} >
-                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>3</div> </h3>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row"}}>
+                                    <div><h4>BlueMarket Privet Limited</h4></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
+                                <div style={{display:"flex",flexDirection:"row"}}>
+                                    <div><h4>FrockMe Textile</h4></div>
+                                    <div><ArrowDropDownIcon /></div>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%",display:"flex",flexDirection:"column"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                    Date:
                                 </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={BlueMarket} alt={BlueMarket} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
-
-                                        <ArrowDropDownIcon />
-                                    </div>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                    2022 july 23
                                 </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row",backgroundColor:"darkgrey"}}>
-                                        <div> <img src={FrockMe} alt={FrockMe} width={"50px"} height={"50px"} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"28px",color:"#7A3293"}}><h5>FrockMe Textile 8.00 am</h5></div>
-                                        <ArrowDropUpIcon />
-                                    </div>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                    Time:
                                 </Grid>
-                                <Grid item xs={12} >
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                    9.00 am
+                                </Grid>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                    Venue:
+                                </Grid>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
                                     FrockMe, No 133/02/01
-                                    Highlevel Road,
+                                    Highlevel Road
                                     Kirulapana.
                                 </Grid>
-                                <Grid item xs={12} >
-                                    0772595548 / 0705594661
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <h3>Description</h3>
-                                    This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={profile} alt={profile} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
+
+
 
                             </Grid>
-
                         </Grid>
                     </Grid>
 
