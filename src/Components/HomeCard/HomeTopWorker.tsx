@@ -20,9 +20,9 @@ const HomeTopWorker = () => {
                   justifyContent="center"
                   alignItems="center">
 
-                <WorkerCard />
-                <WorkerCard />
-                <WorkerCard />
+                {/*<WorkerCard />*/}
+                {/*<WorkerCard />*/}
+                {/*<WorkerCard />*/}
 
 
             </Grid>

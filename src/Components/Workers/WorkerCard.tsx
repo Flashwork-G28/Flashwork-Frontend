@@ -23,6 +23,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from '@mui/material/InputAdornment';
 // import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl"
+import IconButton from '@mui/material/IconButton';
 
 const useStyles = makeStyles({
     cardBody: {
@@ -92,9 +93,6 @@ const useStyles = makeStyles({
     sendAdd:{
         marginLeft:'87%',
         marginBottom:'20px',
-        // position: 'relative',
-        // bottom: '50px',
-        // right: '25px',
     },
 
     select: {
@@ -106,8 +104,22 @@ const useStyles = makeStyles({
 });
 
 
-const WorkerCard = () => {
+interface FeaturedPostProps {
+    post: {
+        name: string;
+        date: string;
+        description: string;
+        title: string;
+        image: string;
+    };
+}
+
+
+
+
+const WorkerCard = (props: FeaturedPostProps) => {
     const classes = useStyles();
+    const { post } = props;
 
     const [open, setOpen] = React.useState(false);
 
@@ -134,7 +146,7 @@ const WorkerCard = () => {
                         <Grid item xs={6}>
                             <Avatar
                                 alt="Remy Sharp"
-                                src= {pc1}
+                                src= {post.image}
                                 sx={{ width: 100, height: 100 }}
                             />
                         </Grid>
@@ -143,8 +155,10 @@ const WorkerCard = () => {
                               alignItems="flex-end"
                         >
 
-                            <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
-                            <Stack direction="row" spacing={0.5} sx={{mt:7 ,mr:5.8}} alignItems="flex-end">
+                            <IconButton color="primary" >
+                                <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
+                            </IconButton>
+                            <Stack direction="row" spacing={0.5} sx={{mt:4 ,mr:5.8}} alignItems="flex-end">
                                 <StarIcon sx={{color:yellow[600]}}/>
                                 <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
                                 <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
@@ -156,13 +170,13 @@ const WorkerCard = () => {
                     <Grid alignItems="flex-start" className={classes.contentCard}>
                         <div className={classes.line}></div>
                         <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
-                            Mohomad Faalil
+                            {post.name}
                         </Typography>
                         <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                            <span><WorkIcon fontSize='small' /></span> Home Repairs
+                            <span><WorkIcon fontSize='small' /></span> {post.title}
                         </Typography>
                         <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                            <span><CheckCircleOutlineIcon fontSize='small' /></span> 49 Minor Tasks Completed
+                            <span><CheckCircleOutlineIcon fontSize='small' /></span>{post.date} Minor Tasks Completed
                         </Typography>
 
                         <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
