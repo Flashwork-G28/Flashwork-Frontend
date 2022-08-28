@@ -163,22 +163,22 @@ const JobSeekerDashboard = () => {
                                 </div>
                             </Grid>
                             <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%",display:"flex",flexDirection:"column"}}>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
                                     Date:
                                 </Grid>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
                                   2022 july 23
                                 </Grid>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
                                     Time:
                                 </Grid>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
                                     9.00 am
                                 </Grid>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
                                     Venue:
                                 </Grid>
-                                <Grid item xs={6} style={{backgroundColor:"lightgrey"}}>
+                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
                                     FrockMe, No 133/02/01
                                     Highlevel Road
                                     Kirulapana.
