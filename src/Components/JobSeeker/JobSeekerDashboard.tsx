@@ -18,6 +18,9 @@ import FrockMe from '../../Assets/JobSeeker/FrockMe.png'
 import profile from '../../Assets/JobSeeker/profile.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -73,6 +76,15 @@ const rows = [
 
 
 const JobSeekerDashboard = () => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
@@ -137,57 +149,63 @@ const JobSeekerDashboard = () => {
                             <Grid item xs={12} >
 
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                            <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
                                     <div><h3>Upcoming All Task 24</h3></div>
-                                    <div><ArrowDropDownIcon /></div>
+
                                 </div>
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
-                                    <div><h3>Daily Task 2</h3></div>
-                                    <div><ArrowDropDownIcon /></div>
+                            <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
+                                    <div><h3>Daily Task 4</h3></div>
+
                                 </div>
                             </Grid>
 
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row"}}>
-                                   <div><h4>BlueMarket Privet Limited</h4></div>
-                                    <div><ArrowDropDownIcon /></div>
+                            <Grid item xs={12} style={{marginLeft:"5%"}}>
+                                <div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
+                                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                                        FrockMe Textile
+                                        <ArrowDropDownIcon />
+                                    </Button>
+                                    <Menu
+                                        id="simple-menu"
+                                        anchorEl={anchorEl}
+                                        keepMounted
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleClose}
+                                    >
+                                        <MenuItem onClick={handleClose}>
+                                           <div style={{display:"flex",flexDirection:"column"}}>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                   Date:
+                                               </Grid>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                   2022 july 23
+                                               </Grid>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                   Time:
+                                               </Grid>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                   9.00 am
+                                               </Grid>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                   Venue:
+                                               </Grid>
+                                               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                   FrockMe, No 133/02/01
+                                                   Highlevel Road
+                                                   Kirulapana.
+                                               </Grid>
+                                           </div>
+
+                                        </MenuItem>
+
+                                    </Menu>
                                 </div>
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row"}}>
-                                    <div><h4>FrockMe Textile</h4></div>
-                                    <div><ArrowDropDownIcon /></div>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%",display:"flex",flexDirection:"column"}}>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Date:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                  2022 july 23
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Time:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                    9.00 am
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Venue:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                    FrockMe, No 133/02/01
-                                    Highlevel Road
-                                    Kirulapana.
-                                </Grid>
 
 
-
-
-                            </Grid>
 
 
 

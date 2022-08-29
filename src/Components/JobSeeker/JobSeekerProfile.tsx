@@ -35,6 +35,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import star from '../../Assets/JobSeeker/star.png';
 import MenuItem from "@mui/material/MenuItem";
 
+import Menu from "@material-ui/core/Menu";
+
+
 
 
 
@@ -207,7 +210,7 @@ const JobSeekerProfile = () => {
                                                             <TextField   id="outlined-basic" label="First Name" variant="outlined" />
                                                             <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Last Name" variant="outlined" />
                                                         </div>
-                                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px"}} id="outlined-basic" label="Email Address" variant="outlined" />
+                                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"94.5%"}} id="outlined-basic" label="Email Address" variant="outlined" />
                                                         <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
                                                             <TextField   id="outlined-basic" label="Location" variant="outlined" />
                                                             <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Mobile" variant="outlined" />
@@ -223,12 +226,12 @@ const JobSeekerProfile = () => {
                                 </Grid>
                                 <Grid item xs={12}>
 
-                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px"}} id="outlined-basic" label="Description" variant="outlined" />
+                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"95%",marginLeft:"1.5%"}} id="outlined-basic" label="Description" variant="outlined" />
                                 </Grid>
                                 <Grid item xs={12}>
 
                                         <Box sx={{ minWidth: 120 }}>
-                                            <FormControl fullWidth>
+                                            <FormControl style={{width:"95%",paddingRight:"2%"}}>
                                                 <InputLabel id="demo-simple-select-label">Qualification</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
