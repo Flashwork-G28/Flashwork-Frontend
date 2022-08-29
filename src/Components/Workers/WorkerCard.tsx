@@ -143,6 +143,10 @@ const WorkerCard = (props: FeaturedPostProps) => {
     const handleClickOpen = () => {
         setOpen(true);
     };
+    const handleClickFavorite = () => {
+        setOpen(true);
+    };
+
     const handleBookig = () => {
         Swal.fire({
             title: 'Are you sure?',
@@ -197,10 +201,10 @@ const WorkerCard = (props: FeaturedPostProps) => {
                             {/*<IconButton color="primary" >*/}
                             {/*    <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />*/}
                             {/*</IconButton>*/}
-                            <IconButton>
-                                <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />
-                            </IconButton>
-                            <Stack direction="row" spacing={0.5} sx={{mt:4 ,mr:5.8}} alignItems="flex-end">
+                            {/*<IconButton>*/}
+                                <FavoriteBorderIcon onClick={handleClickFavorite} fontSize='medium' sx={{mr:5.8}} />
+                            {/*</IconButton>*/}
+                            <Stack direction="row" spacing={0.5} sx={{mt:6.5 ,mr:5.8}} alignItems="flex-end">
                                 <StarIcon sx={{color:yellow[600]}}/>
                                 <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
                                 <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
@@ -227,7 +231,7 @@ const WorkerCard = (props: FeaturedPostProps) => {
                         </Typography>
                     </Grid>
                     <Grid className={classes.booking} >
-                        <Button variant="contained" onClick={handleClickOpen}>Booking</Button>
+                        <Button variant="contained" onClick={handleClickOpen}>Book Now</Button>
                     </Grid>
                 </Grid>
 
