@@ -4,16 +4,9 @@ import Box from '@mui/material/Box';
 
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import BlueMarket from '../../Assets/JobSeeker/BlueMarket.png'
-import FrockMe from '../../Assets/JobSeeker/FrockMe.png'
-import profile from '../../Assets/JobSeeker/profile.png'
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
@@ -32,10 +25,10 @@ import Stack from '@mui/material/Stack';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import star from '../../Assets/JobSeeker/star.png';
 import MenuItem from "@mui/material/MenuItem";
-
 import Menu from "@material-ui/core/Menu";
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -112,6 +105,14 @@ const JobSeekerProfile = () => {
 
         prevOpen.current = open;
     }, [open]);
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const [value, setValue] = React.useState<number | null>(2);
 
     return (
         <div>
@@ -251,56 +252,44 @@ const JobSeekerProfile = () => {
                                 <Grid item xs={12}>
 
                                         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div>
+                                            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>
+                                            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div></Item>
+                                           <Item> <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>
 
                                         </div>
 
                                 </Grid>
                                 <Grid item xs={12}>
-
-                                        <div style={{display:"flex",flexDirection:"row"}}>
-                                            <div style={{paddingLeft:"10px"}}><h3>Review 05</h3></div>
-                                            <div style={{paddingLeft:"550px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <p>4.5</p>
-                                        </div>
-
-
-
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                        <div style={{display:"flex",flexDirection:"row"}}>
-                                            <div style={{paddingLeft:"10px"}}>
-                                                <div>Anjana Thilakawardana</div>
-                                                <div>2022-08-12</div>
-                                                <div>Good Aguncy, Good service</div>
-                                            </div>
-                                            <div style={{paddingLeft:"400px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        </div>
-
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div style={{paddingLeft:"10px"}}>
-                                            <div>Anjana Thilakawardana</div>
-                                            <div>2022-08-12</div>
-                                            <div>Good Aguncy, Good service</div>
-                                        </div>
-                                        <div style={{paddingLeft:"400px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
+                                    <div style={{backgroundColor:"lightgrey",borderRadius:"10px"}}>
+                                        <Box component="fieldset" mb={3} borderColor="transparent">
+                                            <Typography component="legend"><h3>Anjana Thilakawardana</h3>2022 - 08 - 12,Good Aguncy, Good service</Typography>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={value}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue);
+                                                }}
+                                            />
+                                        </Box>
                                     </div>
                                 </Grid>
+                                <Grid item xs={12}>
+
+                                    <div style={{backgroundColor:"lightgrey",borderRadius:"10px",marginTop:"2px"}}>
+                                        <Box component="fieldset" mb={3} borderColor="transparent">
+                                            <Typography component="legend"><h3>Amila Gnarathne</h3>2023 - 08 - 2,Good Aguncy, Good service</Typography>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={value}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue);
+                                                }}
+                                            />
+                                        </Box>
+                                    </div>
+
+                                </Grid>
+
                             </Grid>
                         </Grid>
                     </Grid>
@@ -309,56 +298,60 @@ const JobSeekerProfile = () => {
                             <Grid item xs={12} >
 
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
+                            <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
                                     <div><h3>Upcoming All Task 24</h3></div>
-                                    <div><ArrowDropDownIcon /></div>
+
                                 </div>
                             </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgrey",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center"}}>
-                                    <div><h3>Daily Task 2</h3></div>
-                                    <div><ArrowDropDownIcon /></div>
+                            <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
+                                    <div><h3>Daily Task 4</h3></div>
+
                                 </div>
                             </Grid>
 
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row"}}>
-                                    <div><h4>BlueMarket Privet Limited</h4></div>
-                                    <div><ArrowDropDownIcon /></div>
+                            <Grid item xs={12} style={{marginLeft:"5%"}}>
+                                <div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
+                                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                                        FrockMe Textile
+                                        <ArrowDropDownIcon />
+                                    </Button>
+                                    <Menu
+                                        id="simple-menu"
+                                        anchorEl={anchorEl}
+                                        keepMounted
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleClose}
+                                    >
+                                        <MenuItem onClick={handleClose}>
+                                            <div style={{display:"flex",flexDirection:"column"}}>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                    Date:
+                                                </Grid>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                    2022 july 23
+                                                </Grid>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                    Time:
+                                                </Grid>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                    9.00 am
+                                                </Grid>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                    Venue:
+                                                </Grid>
+                                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                    FrockMe, No 133/02/01
+                                                    Highlevel Road
+                                                    Kirulapana.
+                                                </Grid>
+                                            </div>
+
+                                        </MenuItem>
+
+                                    </Menu>
                                 </div>
-                            </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%"}}>
-                                <div style={{display:"flex",flexDirection:"row"}}>
-                                    <div><h4>FrockMe Textile</h4></div>
-                                    <div><ArrowDropDownIcon /></div>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"#E5E5E5",marginLeft:"5%",display:"flex",flexDirection:"column"}}>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Date:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                    2022 july 23
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Time:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                    9.00 am
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                    Venue:
-                                </Grid>
-                                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                    FrockMe, No 133/02/01
-                                    Highlevel Road
-                                    Kirulapana.
-                                </Grid>
-
-
-
-
                             </Grid>
                         </Grid>
                     </Grid>
