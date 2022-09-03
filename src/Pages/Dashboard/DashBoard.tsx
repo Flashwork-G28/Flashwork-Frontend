@@ -27,6 +27,8 @@ import AdminPayment from "../../Components/Admin/AdminPayment";
 import AdminUserRequest from "../../Components/Admin/AdminUserRequest";
 import AdminAllUsers from "../../Components/Admin/AdminAllUsers";
 
+import JobSeekerReq from "../../Components/JobSeekerNew/JobSeekerReq";
+
 
 
 const useStyles = makeStyles({
@@ -65,7 +67,7 @@ const DashBoard = () => {
 
                                 <Route path='/jobseeker/home' element={<JobSeekerDashboard />}/>
                                 <Route path='/jobseeker/profile' element={<JobSeekerProfile />}/>
-                                <Route path='/jobseeker/request' element={<JobSeekerRequest />}/>
+                                <Route path='/jobseeker/request' element={<JobSeekerReq />}/>
                                 <Route path='/jobseeker/repeort' element={<JobSeekerReport />}/>
                                 <Route path='/jobseeker/help' element={<JobSeekerHelp />}/>
 
