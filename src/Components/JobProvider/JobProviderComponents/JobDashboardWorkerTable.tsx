@@ -9,6 +9,9 @@ import Button from "@mui/material/Button";
 import TablePagination from "@mui/material/TablePagination";
 import {styled} from "@mui/material/styles";
 import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import SearchBar from "../../CommonComponent/SearchBar";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -68,6 +71,23 @@ const JobDashboardWorkerTable = () => {
 
     return (
         <div>
+            <Grid container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  style={{marginBottom:'30px'}}>
+
+                <Grid item xs={6}>
+                    <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Requested Worker</Typography>
+
+                </Grid>
+                <Grid item xs={6}>
+                    <SearchBar />
+                </Grid>
+
+            </Grid>
+
+
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">

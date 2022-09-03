@@ -19,23 +19,17 @@ import TextField from '@mui/material/TextField';
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Swal from 'sweetalert2';
-
-
-
-import { useAuth0 } from "@auth0/auth0-react";
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-
-
+import {useAuth0} from "@auth0/auth0-react";
+import {useNavigate} from "react-router-dom";
 import InputAdornment from '@mui/material/InputAdornment';
-// import TextField from '@mui/material/TextField';
 import FormControl from "@mui/material/FormControl"
-import IconButton from '@mui/material/IconButton';
 import InputLabel from "@mui/material/InputLabel";
+import IconButton from '@mui/material/IconButton';
+
+
 
 const useStyles = makeStyles({
     cardBody: {
-
         backgroundColor:'white',
         width:'350px',
         height:'450px',
@@ -45,20 +39,17 @@ const useStyles = makeStyles({
         margin:'30px',
         position: 'relative',
     },
-
     line :{
         width: '300px',
         height: '0.001px',
         border: '0.5px solid #4E2363',
         marginTop:'25px',
-
     },
     contentCard:{
         width:'100%' ,
         height:'fitcontent',
         // backgroundColor: 'red',
         textalign: 'left',
-
     },
     booking:{
         // marginTop:'80px',
@@ -108,6 +99,10 @@ const useStyles = makeStyles({
             backgroundColor: "transparent",
         },
     },
+    favourite:{
+        color: 'red',
+
+    },
 
 });
 
@@ -135,6 +130,10 @@ interface FeaturedPostProps {
 
 
 const WorkerCard = (props: FeaturedPostProps) => {
+    const navigate = useNavigate()
+    const {
+        user
+    } = useAuth0();
     const classes = useStyles();
     const { post } = props;
 
@@ -144,29 +143,34 @@ const WorkerCard = (props: FeaturedPostProps) => {
         setOpen(true);
     };
     const handleClickFavorite = () => {
-        setOpen(true);
+
+
     };
 
     const handleBookig = () => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Save it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Saved!',
-                    'Your booking has been saved.',
-                    'success'
-                )
-            }
-        })
+        if(user?.family_name==="JobProvider"){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Save it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Saved!',
+                        'Your booking has been saved.',
+                        'success'
+                    )
+                }
+            })
+            handleClose();
+    }else {
+            navigate("/signUp/JobProvider", { replace: false });
+        }
 
-        handleClose();
     };
 
     const handleClose = () => {
@@ -202,7 +206,7 @@ const WorkerCard = (props: FeaturedPostProps) => {
                             {/*    <FavoriteBorderIcon fontSize='medium' sx={{mr:5.8}} />*/}
                             {/*</IconButton>*/}
                             {/*<IconButton>*/}
-                                <FavoriteBorderIcon onClick={handleClickFavorite} fontSize='medium' sx={{mr:5.8}} />
+                                <FavoriteBorderIcon className={classes.favourite} onClick={handleClickFavorite} fontSize='medium' sx={{mr:5.8}} />
                             {/*</IconButton>*/}
                             <Stack direction="row" spacing={0.5} sx={{mt:6.5 ,mr:5.8}} alignItems="flex-end">
                                 <StarIcon sx={{color:yellow[600]}}/>
