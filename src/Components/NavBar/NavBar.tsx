@@ -16,6 +16,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+
 
 const useStyles = makeStyles({
     typoContent: {
@@ -52,9 +54,12 @@ const NavBar = () => {
         isAuthenticated,
         loginWithRedirect,
         logout,
+        isLoading
     } = useAuth0();
 
     const [url, setUrl] = useState("/");
+
+    // console.log(url);
 
     useEffect(() => {
         if(user?.family_name==="JobProvider"){
@@ -71,7 +76,9 @@ const NavBar = () => {
         }else{
             setUrl("/")
         }
-    });
+
+        console.log("i am run");
+    },[isLoading]);
 
 
     return (
