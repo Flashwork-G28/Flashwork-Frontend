@@ -15,6 +15,7 @@ const Workers = () => {
         axios.get('http://localhost:8000/workers')
             .then(function (response: any) {
                 // handle success
+                console.log("workers");
                 console.log(response.data.workers[0]);
                 setWorkers(response.data.workers);
                 console.log(workers);
@@ -31,6 +32,10 @@ const Workers = () => {
     useEffect(() => {
         getData()
     }, [])
+
+
+
+
 
 
     return (

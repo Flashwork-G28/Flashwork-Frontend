@@ -21,6 +21,7 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 
 import JobDashboardWorkerTable from "./JobDashboardWorkerTable";
 import JobDashboardSaveJobSeeker from "./JobDashboardSaveJobSeeker";
+import ProPaymentCard from "../../CommonComponent/ProPaymentCard";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -80,7 +81,7 @@ export default function BasicTabs() {
                 <JobDashboardSaveJobSeeker />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <ProPaymentCard />
             </TabPanel>
         </Box>
     );
