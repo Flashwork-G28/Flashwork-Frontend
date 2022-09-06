@@ -11,6 +11,7 @@ import TableBody from "@mui/material/TableBody";
 import TablePagination from "@mui/material/TablePagination";
 import {styled} from "@mui/material/styles";
 import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import JobSeekerReqProfile from "../../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -90,7 +91,7 @@ const JobDashboardSaveJobSeeker = () => {
                   justifyContent="flex-start"
                   alignItems="flex-start"
                   >
-                <Grid item xs={4} spacing={2}>
+                <Grid style={{backgroundColor:'red'}} item xs={4} spacing={2}>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 270 }} aria-label="customized table">
@@ -115,10 +116,11 @@ const JobDashboardSaveJobSeeker = () => {
                         </TableContainer>
 
                     </Paper>
-
                 </Grid>
                 <Grid style={{backgroundColor:'red'}} item xs={8} >
-                    sdgsz
+                    <Paper style={{backgroundColor:'blue',marginLeft:'25px'}}>
+                        <JobSeekerReqProfile />
+                    </Paper>
 
                 </Grid>
 

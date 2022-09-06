@@ -67,9 +67,9 @@ export default function BasicTabs() {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" style={{display:'flex', justifyContent:'space-evenly'}}>
 
-                    <Tab label="Requested Worker" {...a11yProps(0)} />
-                    <Tab label="Saved Workers" {...a11yProps(1)} />
-                    <Tab label="Saved Manpower Aguncy" {...a11yProps(2)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363' ,paddingBottom:'30px'}} label="Requested Worker" {...a11yProps(0)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Workers" {...a11yProps(1)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Manpower Aguncy" {...a11yProps(2)} />
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
