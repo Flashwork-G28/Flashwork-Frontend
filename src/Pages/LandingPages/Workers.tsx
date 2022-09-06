@@ -28,13 +28,9 @@ const Workers = () => {
                 // always executed
             });
     }
-
-
     useEffect(() => {
         getData()
     }, [])
-
-
 
 
     return (
@@ -56,7 +52,7 @@ const Workers = () => {
 
           <div>
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
-                  Favourite
+                  Favourites
               </Typography>
               <WorkerMainComponents />
           </div>
