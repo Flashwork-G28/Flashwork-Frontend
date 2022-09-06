@@ -58,15 +58,15 @@ const NavBar = () => {
     } = useAuth0();
 
     const [url, setUrl] = useState("/");
-
     // console.log(url);
 
-    useEffect(() => {
+    const seturl = () => {
         if(user?.family_name==="JobProvider"){
             setUrl("/dashboard/jobprovider/home")
         }
         else if(user?.family_name==="JobSeeker"){
             setUrl("/dashboard/jobseeker/home")
+            console.log('two');
         }
         else if(user?.family_name==="ManPower"){
             setUrl("/dashboard/manpower/home")
@@ -76,9 +76,15 @@ const NavBar = () => {
         }else{
             setUrl("/")
         }
+    }
 
-        console.log("i am run");
-    },[isLoading]);
+    useEffect(() => {
+        seturl();
+
+        console.log(isAuthenticated);
+    },[isAuthenticated]);
+
+
 
 
     return (
