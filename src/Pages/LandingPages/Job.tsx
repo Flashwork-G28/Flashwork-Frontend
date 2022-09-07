@@ -52,7 +52,7 @@ const Workers = () => {
         user
     } = useAuth0();
 
-    const confirmJob = () => {
+    const confirmJob = (job_id:int) => {
         if(user?.family_name==="JobSeeker"){
             Swal.fire({
                 title: 'You Are About Apply for this Job ? ',
@@ -63,6 +63,7 @@ const Workers = () => {
                 showCancelButton: true,
                 showCloseButton: true
             }).then((result) => {
+
                 if (result.isConfirmed) {
                     Swal.fire(
                         'Apply!',
@@ -116,7 +117,6 @@ const Workers = () => {
                 const diffTime = Math.abs(date2 - date1);
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-
                 setJobs((prevState: any) => [...prevState, {
                     id: item.id,
                     img: item.img,
@@ -131,6 +131,11 @@ const Workers = () => {
                 }])});
         } catch (error) {
             console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!'
+            })
         }
     }
 
@@ -160,6 +165,11 @@ const Workers = () => {
                 }])});
         } catch (error) {
             console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!'
+            })
         }
     }
 
@@ -305,7 +315,7 @@ const Workers = () => {
                                         </Grid>
                                         <Grid item xs={6} >
                                             <Box display="flex" justifyContent="flex-end">
-                                                <Button sx={{mr:2}} variant="contained" onClick={confirmJob}>Apply</Button>
+                                                <Button sx={{mr:2}} variant="contained" onClick={confirmJob(item.id)}>Apply</Button>
                                             </Box>
 
                                         </Grid>
