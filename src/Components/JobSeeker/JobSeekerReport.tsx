@@ -23,6 +23,13 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Typography from "@material-ui/core/Typography";
+import AccordionDetails from "@mui/material/AccordionDetails";
+
+
 
 
 
@@ -144,19 +151,18 @@ const JobSeekerReport = () => {
                             </Grid>
 
                             <Grid item xs={12} style={{marginLeft:"5%"}}>
-                                <div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
-                                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                        FrockMe Textile
-                                        <ArrowDropDownIcon />
-                                    </Button>
-                                    <Menu
-                                        id="simple-menu"
-                                        anchorEl={anchorEl}
-                                        keepMounted
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleClose}
-                                    >
-                                        <MenuItem onClick={handleClose}>
+
+                                <div>
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                            style={{backgroundColor:"#ECD2F2"}}
+                                        >
+                                            <Typography><h4>FrockMe Textile</h4></Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
                                             <div style={{display:"flex",flexDirection:"column"}}>
                                                 <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
                                                     Date:
@@ -179,11 +185,86 @@ const JobSeekerReport = () => {
                                                     Kirulapana.
                                                 </Grid>
                                             </div>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel2a-content"
+                                            id="panel2a-header"
+                                            style={{backgroundColor:"#ECD2F2"}}
+                                        >
+                                            <Typography><h4>BlueMarket Privet Limited</h4></Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                <div style={{display:"flex",flexDirection:"column"}}>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                        Date:
+                                                    </Grid>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                        2022 May 23
+                                                    </Grid>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                        Time:
+                                                    </Grid>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                        10.00 am
+                                                    </Grid>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
+                                                        Venue:
+                                                    </Grid>
+                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
+                                                        BlueMArket, No 134/02/01
+                                                        Highlevel Road
+                                                        Kirulapana.
+                                                    </Grid>
+                                                </div>
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
 
-                                        </MenuItem>
-
-                                    </Menu>
                                 </div>
+                                {/*<div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>*/}
+                                {/*    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>*/}
+                                {/*        FrockMe Textile*/}
+                                {/*        <ArrowDropDownIcon />*/}
+                                {/*    </Button>*/}
+                                {/*    <Menu*/}
+                                {/*        id="simple-menu"*/}
+                                {/*        anchorEl={anchorEl}*/}
+                                {/*        keepMounted*/}
+                                {/*        open={Boolean(anchorEl)}*/}
+                                {/*        onClose={handleClose}*/}
+                                {/*    >*/}
+                                {/*        <MenuItem onClick={handleClose}>*/}
+                                {/*            <div style={{display:"flex",flexDirection:"column"}}>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                                {/*                    Date:*/}
+                                {/*                </Grid>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                                {/*                    2022 july 23*/}
+                                {/*                </Grid>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                                {/*                    Time:*/}
+                                {/*                </Grid>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                                {/*                    9.00 am*/}
+                                {/*                </Grid>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                                {/*                    Venue:*/}
+                                {/*                </Grid>*/}
+                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                                {/*                    FrockMe, No 133/02/01*/}
+                                {/*                    Highlevel Road*/}
+                                {/*                    Kirulapana.*/}
+                                {/*                </Grid>*/}
+                                {/*            </div>*/}
+
+                                {/*        </MenuItem>*/}
+
+                                {/*    </Menu>*/}
+                                {/*</div>*/}
                             </Grid>
 
                         </Grid>
