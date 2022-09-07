@@ -52,7 +52,7 @@ const Workers = () => {
         user
     } = useAuth0();
 
-    const confirmJob = (job_id:int) => {
+    const confirmJob = (id:any) => {
         if(user?.family_name==="JobSeeker"){
             Swal.fire({
                 title: 'You Are About Apply for this Job ? ',
@@ -63,13 +63,25 @@ const Workers = () => {
                 showCancelButton: true,
                 showCloseButton: true
             }).then((result) => {
-
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        'Apply!',
-                        'Your SuccesfullY Apply this Job.',
-                        'success'
-                    )
+                    let seekerId:any = user?.sub;
+                    seekerId = seekerId.substring(6);
+                    console.log(id,seekerId );
+                    axios.post('http://localhost:8000/jobs/apply', {
+                        job_id: id,
+                        seeker_id: seekerId
+                    })
+                        .then(function (response:any) {
+                            console.log(response);
+                            Swal.fire(
+                                'Apply!',
+                                'Your Succesfully Apply this Job.',
+                                'success'
+                            )
+                        })
+                        .catch(function (error:any) {
+                            console.log(error);
+                        });
                 }
             })
         }else{
@@ -315,7 +327,7 @@ const Workers = () => {
                                         </Grid>
                                         <Grid item xs={6} >
                                             <Box display="flex" justifyContent="flex-end">
-                                                <Button sx={{mr:2}} variant="contained" onClick={confirmJob(item.id)}>Apply</Button>
+                                                <Button sx={{mr:2}} variant="contained" onClick={() => confirmJob(item.id)}>Apply</Button>
                                             </Box>
 
                                         </Grid>
