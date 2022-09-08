@@ -10,19 +10,15 @@ import Company from "./Pages/SignUp/Company";
 import JobSeeker from "./Pages/SignUp/JobSeeker";
 import DashBoard from "./Pages/Dashboard/DashBoard";
 
-
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Routes>
-
             <Route path='/signUp' element={<SignUp/>}/>
             <Route path="/signUp/JobProvider" element={<JobProvider />} />
             <Route path="/signUp/Company" element={<Company />} />
             <Route path="/signUp/JobSeeker" element={<JobSeeker />} />
-
-
 
             <Route path='/' element={<Layout />}>
                 <Route  path='/jobs'  element={<Layout />}/>
@@ -56,8 +52,6 @@ function App() {
                 <Route path='/dashboard/admin/userrequest' element={<DashBoard />}/>
                 <Route path='/dashboard/admin/allusers' element={<DashBoard />}/>
             </Route>
-
-
 
             <Route path="*" element={
                 <main style={{ padding: "1rem" }}>

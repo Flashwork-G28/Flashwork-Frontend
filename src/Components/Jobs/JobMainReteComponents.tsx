@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 
 
-const JobMainComponents = () => {
+const JobsMainRateComponents = () => {
     const classes = useStyles();
     return (
         <div>
@@ -41,4 +41,4 @@ const JobMainComponents = () => {
     );
 };
 
-export default JobMainComponents;
+export default JobsMainRateComponents;
