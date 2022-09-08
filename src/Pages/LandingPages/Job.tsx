@@ -116,8 +116,6 @@ const Workers = () => {
         setLocation(event.target.value);
         console.log(event.target.value);
     };
-
-
     async function getJobs() {
         try {
             const response = await axios.get('http://localhost:8000/jobs');
