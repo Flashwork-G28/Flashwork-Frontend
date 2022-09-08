@@ -10,13 +10,15 @@ import Paper from '@mui/material/Paper';
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import {makeStyles} from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
 
 const useStyles = makeStyles({
     cardback_1:{
         padding:'10px',
-        color:'red',
-        backgroundColor:'blue',
-        borderRadius:'5px',
+        color:'#4E2363',
+
+        // backgroundColor:'blue',
+        // borderRadius:'5px',
 
 
 
@@ -43,8 +45,8 @@ const ProPaymentCard = () => {
                         <Grid item>
                             <Card
                                 sx={{
-                                    height: 400,
-                                    width: 375,
+                                    height: 500,
+                                    width: 300,
                                     backgroundColor: '#E5E5E5',
                                 }}
                             ><Grid container
@@ -65,7 +67,7 @@ const ProPaymentCard = () => {
 
                                 </Grid>
                                 <Grid justifyContent={"left"} style={{textAlign:'left'}}>
-                                    <Typography variant={'h5'}>Free Member</Typography>
+                                    <Typography variant={'h5'} className={classes.cardback_1}>Free Member</Typography>
                                     <Typography >•	Advertisement can be posted once a day<br/>
                                         •	Limited requests of workers<br/>
                                         •	Less priority when an advertisement is posted.<br/>
@@ -83,22 +85,32 @@ const ProPaymentCard = () => {
                             </Card>
                         </Grid>
                     <Grid item>
-                        <Card
-                            sx={{
-                                height: 250,
-                                width: 220,
+                        <Card sx={{
+                                height: 230,
+                                width: 200,
                                 backgroundColor: '#E5E5E5',
-                            }}
-                        ></Card>
+                                padding:'20px',}}>
+                            <Typography variant={'h5'} fontWeight={'700'} textAlign='left'>1 Year</Typography>
+                            <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>833.33 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
+                            <Typography variant={'subtitle1'} textAlign='left' marginBottom={'50px'} >10000 LKR every 12 month</Typography>
+                            <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
+
+                            <Button variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
+                        </Card>
                     </Grid>
                     <Grid item>
-                        <Card
-                            sx={{
-                                height: 250,
-                                width: 220,
-                                backgroundColor: '#E5E5E5',
-                            }}
-                        ></Card>
+                        <Card sx={{
+                            height: 230,
+                            width: 200,
+                            backgroundColor: '#E5E5E5',
+                            padding:'20px',}}>
+                            <Typography variant={'h5'} fontWeight={'700'} textAlign='left'>1 Month</Typography>
+                            <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>1000 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
+                            <Typography variant={'subtitle1'} textAlign='left' marginBottom={'50px'} >12000 LKR every 12 month</Typography>
+                            <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
+
+                            <Button variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
+                        </Card>
                     </Grid>
                      {/*))}*/}
                 </Grid>

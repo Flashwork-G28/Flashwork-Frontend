@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from "@mui/material/Grid";
 import {makeStyles} from "@material-ui/core/styles";
-import WorkerCard from "../../Components/Workers/WorkerCard";
+
 import StarIcon from "@mui/icons-material/Star";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -63,9 +63,9 @@ const WorkerMainComponents = () => {
                 <WorkerCardMp />
                 {/*<WorkerCard />*/}
 
-                {featuredPosts.map((post) => (
-                    <WorkerCard key={post.title} post={post} />
-                ))}
+                {/*{featuredPosts.map((post) => (*/}
+                {/*    <WorkerCard key={post.title} post={post} />*/}
+                {/*))}*/}
 
 
             </Grid>
