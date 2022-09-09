@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         backgroundColor: "#E5E5E5",
         alignItems: 'left',
         height:'500px',
-        width: '400px',
+        width: '350px',
         justifyContent:'center',
         borderRadius: '10px',
         border: '3px solid #E5E5E5',
@@ -82,7 +82,7 @@ const JobProviderProMember = () => {
                         <Typography variant="h6">
 
                             Unlimited advertisement posting.<br />
-                           Unlimited requests of workers.<br />
+                            Unlimited requests of workers.<br />
                             Priority when an advertisement is posted.<br />
                             Priority when requesting a job seeker.<br />
                         </Typography>
