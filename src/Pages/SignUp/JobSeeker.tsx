@@ -14,7 +14,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
-import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAuth0 } from "@auth0/auth0-react";
