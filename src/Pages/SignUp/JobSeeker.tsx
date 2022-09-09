@@ -222,7 +222,6 @@ const JobProvider = () => {
                                             id="demo-select-small"
                                             value={categories}
                                             onChange={handleChangeCatagoris}>
-
                                             <MenuItem value={"Restaurant & food services"}>Restaurant & food services</MenuItem>
                                             <MenuItem value={"Transportation & delivery"}>Transportation & delivery</MenuItem>
                                             <MenuItem value={"Retail & Production"}>Retail & Production</MenuItem>
