@@ -1,10 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Typography from "@mui/material/Typography";
-import JobsPageSearch from "../../Components/Jobs/JobsPageSearch";
-import JobMainComponents from "../../Components/Jobs/JobMainComponents";
-import JobsMainRateComponents from "../../Components/Jobs/JobMainReteComponents";
 import {makeStyles} from "@material-ui/core/styles";
-import JobsCard from "../../Components/Jobs/Jobcard";
 import Grid from "@mui/material/Grid";
 import {useAuth0} from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -46,7 +42,6 @@ const useStyles = makeStyles({
     }
 })
 
-
 const Workers = () => {
     const classes = useStyles();
     const {
@@ -73,7 +68,7 @@ const Workers = () => {
                         seeker_id: seekerId
                     })
                         .then(function (response:any) {
-                            console.log(response);
+                            // console.log(response);
                             Swal.fire(
                                 'Apply!',
                                 'Your Succesfully Apply this Job.',
@@ -139,7 +134,9 @@ const Workers = () => {
                     amc: item.amc,
                     pay: item.pay,
                     pub_date: diffDays,
-                }])});
+                }])
+                return null;
+            });
         } catch (error) {
             console.error(error);
             Swal.fire({
@@ -173,7 +170,9 @@ const Workers = () => {
                     amc: item.amc,
                     pay: item.pay,
                     pub_date: diffDays,
-                }])});
+                }])
+                return null;
+            });
         } catch (error) {
             console.error(error);
             Swal.fire({
