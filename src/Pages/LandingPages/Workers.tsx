@@ -139,6 +139,7 @@ const Workers = () => {
 
     useEffect(() => {
         getWorkers();
+        setLoading(true);
 
     }, [])
 
@@ -248,7 +249,7 @@ const Workers = () => {
                                   <Grid alignItems="flex-start" className={classes.contentCard}>
                                       <div className={classes.line}></div>
                                       <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
-                                          {item.first_name}{item.last_name}
+                                          {item.first_name}{' '} {item.last_name}
                                       </Typography>
                                       <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
                                           <span><WorkIcon fontSize='small' /></span> {item.category}
