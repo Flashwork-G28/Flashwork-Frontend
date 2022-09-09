@@ -29,11 +29,6 @@ const axios = require('axios');
 
 YupPassword(yup);
 
-interface State {
-    password: string;
-    showPassword: boolean;
-    gender:string
-}
 
 const useStyles = makeStyles({
         root:{
@@ -90,6 +85,17 @@ const JobProvider = () => {
         loginWithRedirect,
     } = useAuth0();
 
+    const [gender, setGender] = React.useState('male');
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGender((event.target as HTMLInputElement).value);
+    };
+
+    const [categories, setCategories] = React.useState("Restaurant & food services");
+
+    const handleChangeCatagoris = (event: SelectChangeEvent) => {
+        setCategories(event.target.value);
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -105,7 +111,7 @@ const JobProvider = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log('about to submit:', values);
+            // console.log('about to submit:', values);
             axios.post('http://localhost:8000/register/jobseeker', {
                 firstName: values.firstName,
                 lastName: values.lastName,
@@ -115,7 +121,9 @@ const JobProvider = () => {
                 email: values.email,
                 password: values.password,
                 nid:values.nid,
-                description:values.description
+                description:values.description,
+                gender: gender,
+                categories:categories
             })
                 .then(function (response: any) {
                     console.log(response);
@@ -143,11 +151,7 @@ const JobProvider = () => {
         },
     });
 
-    const [catagoris, setCatagoris] = React.useState('');
 
-    const handleChangeCatagoris = (event: SelectChangeEvent) => {
-        setCatagoris(event.target.value);
-    };
 
 
     return (
@@ -193,14 +197,15 @@ const JobProvider = () => {
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <FormControl>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{fontSize:"18px"}}>Gender</FormLabel>
+                                        <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
                                         <RadioGroup
                                             row
-                                            aria-labelledby="demo-row-radio-buttons-group-label"
-                                            name="row-radio-buttons-group"
-                                            sx={{ml:2}}
+                                            aria-labelledby="demo-controlled-radio-buttons-group"
+                                            name="controlled-radio-buttons-group"
+                                            value={gender}
+                                            onChange={handleChange}
                                         >
-                                            <FormControlLabel value="male" control={<Radio />} label="Male" defaultValue="male" />
+                                            <FormControlLabel value="male" control={<Radio />} label="Male" />
                                             <FormControlLabel value="female" control={<Radio />} label="Female" />
                                         </RadioGroup>
                                     </FormControl>
@@ -212,21 +217,17 @@ const JobProvider = () => {
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <FormControl fullWidth >
-                                        <InputLabel id="demo-select-small">All Catagoris</InputLabel>
                                         <Select
                                             labelId="demo-select-small"
                                             id="demo-select-small"
-                                            value={catagoris}
-                                            label="Catagoris"
+                                            value={categories}
                                             onChange={handleChangeCatagoris}>
-                                            <MenuItem value="">
-                                                <em>All Catagoris</em>
-                                            </MenuItem>
-                                            <MenuItem value={1}>Restaurant & food services</MenuItem>
-                                            <MenuItem value={2}>Transportation & delivery</MenuItem>
-                                            <MenuItem value={3}>Retail & Production</MenuItem>
-                                            <MenuItem value={4}>Office work & Administration</MenuItem>
-                                            <MenuItem value={5}>General services</MenuItem>
+
+                                            <MenuItem value={"Restaurant & food services"}>Restaurant & food services</MenuItem>
+                                            <MenuItem value={"Transportation & delivery"}>Transportation & delivery</MenuItem>
+                                            <MenuItem value={"Retail & Production"}>Retail & Production</MenuItem>
+                                            <MenuItem value={"Office work & Administration"}>Office work & Administration</MenuItem>
+                                            <MenuItem value={"General services"}>General services</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Grid>

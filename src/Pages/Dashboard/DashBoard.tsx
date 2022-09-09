@@ -64,8 +64,8 @@ const DashBoard = () => {
                             <Routes>
                                 <Route path='/jobprovider/home' element={<JobDashboard />}/>
                                 <Route path='/jobprovider/profile' element={<JobProfile />}/>
-                                <Route path='/jobprovider/advertisements' element={<JobAdvertisements />}/>
-                                {/* <Route path='/jobprovider/advertisements' element={<JobProviderPostAd />}/> */}
+                                {/*<Route path='/jobprovider/advertisements' element={<JobAdvertisements />}/>*/}
+                                <Route path='/jobprovider/advertisements' element={<JobProviderPostAd />}/>
                                 <Route path='/jobprovider/report' element={<JobReport />}/>
                                 <Route path='/jobprovider/help' element={<JobHelp />}/>
 

@@ -110,6 +110,7 @@ const JobProvider = () => {
                 email: values.email,
                 password: values.password,
                 nid:values.nid,
+                gender:gender
             })
                 .then(function (response: any) {
                     console.log(response);
