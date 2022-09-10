@@ -132,67 +132,66 @@ export default function JobSeekerReq() {
 
     return (
         
-            <Grid container spacing={2}>
-            <Grid item xs={9}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
-                Requests
-            </Typography>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <StyledTableRow>
-                            {columns.map((column) => (
-                                <StyledTableCell
-                                key={column.id}
-                                align={column.align}
-                                // style={{ minWidth: column.minWidth }}
-                                >
-                                {column.label}
-                                </StyledTableCell>
-                            ))}
-                            <StyledTableCell align="right"></StyledTableCell>
-                            <StyledTableCell align="center"></StyledTableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
-                            return (
-                            <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.city}>
-                                {columns.map((column) => {
-                                const value = row[column.id];
-                                return (
-                                    <StyledTableCell key={column.id} align={column.align}>
-                                    {/* {column.format && typeof value === 'number'
-                                        ? column.format(value)
-                                        : value} */}
-                                        {value}
-                                    </StyledTableCell>
-                                );
+            <Grid container spacing={1}>
+                <Grid item xs={12}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
+                        Requests
+                    </Typography>
+                </Grid>
+                <Grid item xs={9}>
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableHead>
+                                <StyledTableRow>
+                                    {columns.map((column) => (
+                                        <StyledTableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        // style={{ minWidth: column.minWidth }}
+                                        >
+                                        {column.label}
+                                        </StyledTableCell>
+                                    ))}
+                                    <StyledTableCell align="right"></StyledTableCell>
+                                    <StyledTableCell align="center"></StyledTableCell>
+                                </StyledTableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
+                                    return (
+                                    <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.city}>
+                                        {columns.map((column) => {
+                                        const value = row[column.id];
+                                        return (
+                                            <StyledTableCell key={column.id} align={column.align}>
+                                            {/* {column.format && typeof value === 'number'
+                                                ? column.format(value)
+                                                : value} */}
+                                                {value}
+                                            </StyledTableCell>
+                                        );
+                                        })}
+                                        <StyledTableCell align="right"><Button onClick={acceptButton} sx={{backgroundColor: '#4caf50'}} variant="contained">&nbsp;Accept&nbsp;</Button></StyledTableCell>
+                                        <StyledTableCell align="center"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
+                                    </StyledTableRow>
+                                    );
                                 })}
-                                <StyledTableCell align="right"><Button onClick={acceptButton} sx={{backgroundColor: '#4caf50'}} variant="contained">&nbsp;Accept&nbsp;</Button></StyledTableCell>
-                                <StyledTableCell align="center"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
-                            </StyledTableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            /></Grid>
-            
-            <Grid item xs={3}><OthersProfile /></Grid> </Grid>
-            
-       
-        
-        
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Grid>
+                <Grid item xs={3}><OthersProfile /></Grid>
+            </Grid> 
     )
 }
 
