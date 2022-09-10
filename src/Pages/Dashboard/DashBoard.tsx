@@ -31,6 +31,7 @@ import JobSeekerReq from "../../Components/JobSeekerNew/JobSeekerReq";
 import JobSeekerComplaint from "../../Components/JobSeekerNew/JobSeekerComplaint";
 import OthersProfile from '../../Components/JobSeekerNew/OthersProfile';
 import JobProviderPostAd from '../../Components/JobProviderNew/JobProviderPostAd';
+// import JobProviderGetAd from '../../Components/JobProviderNew/JobProviderGetAd';
 
 
 
@@ -64,16 +65,17 @@ const DashBoard = () => {
                             <Routes>
                                 <Route path='/jobprovider/home' element={<JobDashboard />}/>
                                 <Route path='/jobprovider/profile' element={<JobProfile />}/>
-                                <Route path='/jobprovider/advertisements' element={<JobAdvertisements />}/>
-                                {/* <Route path='/jobprovider/advertisements' element={<JobProviderPostAd />}/> */}
+                                {/* <Route path='/jobprovider/advertisements' element={<JobAdvertisements />}/> */}
+                                <Route path='/jobprovider/advertisements' element={<JobProviderPostAd />}/>
+                                {/* <Route path='/jobprovider/advertisements' element={<JobProviderGetAd />}/> */}
                                 <Route path='/jobprovider/report' element={<JobReport />}/>
                                 <Route path='/jobprovider/help' element={<JobHelp />}/>
 
                                 <Route path='/jobseeker/home' element={<JobSeekerDashboard />}/>
                                 <Route path='/jobseeker/profile' element={<JobSeekerProfile />}/>
                                 {/* <Route path='/jobseeker/request' element={<JobSeekerRequest />}/> */}
-                                <Route path='/jobseeker/request' element={<JobSeekerReq />}/>
-                                {/* <Route path='/jobseeker/request' element={<JobSeekerComplaint />}/> */}
+                                {/* <Route path='/jobseeker/request' element={<JobSeekerReq />}/> */}
+                                <Route path='/jobseeker/request' element={<JobSeekerComplaint />}/>
                                 {/* <Route path='/jobseeker/request' element={<OthersProfile />}/> */}
                                 <Route path='/jobseeker/repeort' element={<JobSeekerReport />}/>
                                 <Route path='/jobseeker/help' element={<JobSeekerHelp />}/>

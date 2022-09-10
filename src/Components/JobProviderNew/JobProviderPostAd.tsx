@@ -97,7 +97,7 @@ export default function JobProviderPostAd() {
     const cancelButton = () => {
         Swal.fire({
             title: 'Are you sure?',
-            text: 'All filled data fields will be cleared!',
+            text: 'All the changes will be discarded!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
