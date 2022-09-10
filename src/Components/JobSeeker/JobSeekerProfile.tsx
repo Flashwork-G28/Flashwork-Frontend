@@ -39,6 +39,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 
+
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -212,14 +213,46 @@ const JobSeekerProfile = () => {
 
 
                                                     <form noValidate autoComplete="off">
-                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
-                                                            <TextField   id="outlined-basic" label="First Name" variant="outlined" />
-                                                            <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Last Name" variant="outlined" />
+                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                            <div style={{paddingRight:"30px"}}>
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Fist Name"
+                                                                    defaultValue="Lakshitha"
+                                                                />
+                                                            </div>
+
+                                                            <div >
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Last Name"
+                                                                    defaultValue="Dhananjaya"
+                                                                />
+                                                            </div>
                                                         </div>
-                                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"94.5%"}} id="outlined-basic" label="Email Address" variant="outlined" />
-                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
-                                                            <TextField   id="outlined-basic" label="Location" variant="outlined" />
-                                                            <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Mobile" variant="outlined" />
+                                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
+                                                            id="outlined-helperText"
+                                                            label="Email"
+                                                            defaultValue="dana@1998gmail.com"
+                                                        />
+                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                            <div style={{paddingRight:"30px"}}>
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Location"
+                                                                    defaultValue="Matara"
+                                                                />
+                                                            </div>
+
+                                                            <div >
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Mobile"
+                                                                    defaultValue="+94763079345"
+                                                                />
+                                                            </div>
                                                         </div>
 
 
@@ -231,27 +264,40 @@ const JobSeekerProfile = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-
-                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"95%",marginLeft:"1.5%"}} id="outlined-basic" label="Description" variant="outlined" />
+                                    <div style={{paddingLeft:"40px"}}>
+                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
+                                                   id="outlined-helperText"
+                                                   label="Description"
+                                                   defaultValue="I'm car penter"
+                                        />
+                                    </div>
                                 </Grid>
                                 <Grid item xs={12}>
 
-                                        <Box sx={{ minWidth: 120 }}>
-                                            <FormControl style={{width:"95%",paddingRight:"2%"}}>
-                                                <InputLabel id="demo-simple-select-label">Qualification</InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    value={age}
-                                                    label="Qualification"
-                                                    onChange={handleChange}
-                                                >
-                                                    <MenuItem value={10}>Qualification 1</MenuItem>
-                                                    <MenuItem value={20}>Qualification 2</MenuItem>
-                                                    <MenuItem value={30}>Qualification 3</MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                        </Box>
+                                    <div style={{paddingLeft:"40px"}}>
+                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
+                                                   id="outlined-helperText"
+                                                   label="Qualification"
+                                                   defaultValue="I have 4 years experiance "
+                                        />
+                                    </div>
+
+                                        {/*<Box sx={{ minWidth: 120 }}>*/}
+                                        {/*    <FormControl style={{width:"95%",paddingRight:"2%"}}>*/}
+                                        {/*        <InputLabel id="demo-simple-select-label">Qualification</InputLabel>*/}
+                                        {/*        <Select*/}
+                                        {/*            labelId="demo-simple-select-label"*/}
+                                        {/*            id="demo-simple-select"*/}
+                                        {/*            value={age}*/}
+                                        {/*            label="Qualification"*/}
+                                        {/*            onChange={handleChange}*/}
+                                        {/*        >*/}
+                                        {/*            <MenuItem value={10}>Qualification 1</MenuItem>*/}
+                                        {/*            <MenuItem value={20}>Qualification 2</MenuItem>*/}
+                                        {/*            <MenuItem value={30}>Qualification 3</MenuItem>*/}
+                                        {/*        </Select>*/}
+                                        {/*    </FormControl>*/}
+                                        {/*</Box>*/}
 
                                 </Grid>
                                 <Grid item xs={12}>
