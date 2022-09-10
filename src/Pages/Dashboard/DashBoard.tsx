@@ -74,8 +74,8 @@ const DashBoard = () => {
                                 <Route path='/jobseeker/home' element={<JobSeekerDashboard />}/>
                                 <Route path='/jobseeker/profile' element={<JobSeekerProfile />}/>
                                 {/* <Route path='/jobseeker/request' element={<JobSeekerRequest />}/> */}
-                                {/* <Route path='/jobseeker/request' element={<JobSeekerReq />}/> */}
-                                <Route path='/jobseeker/request' element={<JobSeekerComplaint />}/>
+                                <Route path='/jobseeker/request' element={<JobSeekerReq />}/>
+                                {/* <Route path='/jobseeker/request' element={<JobSeekerComplaint />}/> */}
                                 {/* <Route path='/jobseeker/request' element={<OthersProfile />}/> */}
                                 <Route path='/jobseeker/repeort' element={<JobSeekerReport />}/>
                                 <Route path='/jobseeker/help' element={<JobSeekerHelp />}/>
