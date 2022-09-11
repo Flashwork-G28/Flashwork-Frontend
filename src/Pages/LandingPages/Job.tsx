@@ -42,7 +42,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Workers = () => {
+const Jobs = () => {
     const classes = useStyles();
     const {
         user
@@ -182,9 +182,6 @@ const Workers = () => {
             })
         }
     }
-
-
-
 
     useEffect(() => {
         getJobs();
@@ -417,5 +414,5 @@ const Workers = () => {
     );
 };
 
-export default Workers;
+export default Jobs;
 

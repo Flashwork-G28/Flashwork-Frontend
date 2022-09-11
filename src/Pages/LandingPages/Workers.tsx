@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import WorkerMainComponents from "../../Components/Workers/WorkerMainComponents";
 import Typography from "@mui/material/Typography";
 import WorkerPageSearch from "../../Components/Workers/WorkerPageSearch";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Grid from "@mui/material/Grid";
 import WorkerCardMp from "../../Components/Workers/WorkerCardMP";
-
 import {makeStyles} from "@material-ui/core/styles";
 import {useNavigate} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
@@ -22,12 +20,18 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Card from "@mui/material/Card";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
+import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
 import DialogActions from "@mui/material/DialogActions";
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+import withReactContent from "sweetalert2-react-content";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const useStyles = makeStyles({
     cardSection: {
@@ -61,8 +65,6 @@ const useStyles = makeStyles({
         position: 'absolute',
         bottom: '50px',
         right: '25px',
-
-
     },
     PopUpCard:{
         paddingTop: 10,
@@ -78,22 +80,18 @@ const useStyles = makeStyles({
     container: {
         minWidth: 'cover',
         margin: "30px",
-        // paddingTop: 30,
         paddingBottom: 20,
         minHeight: "100vh",
-
     },
     closeIcon:{
         position: 'absolute',
         top: '10px',
         right: '25px',
-        // paddingTop: 10,
     },
     sendAdd:{
         marginLeft:'87%',
         marginBottom:'20px',
     },
-
     select: {
         "& :focus": {
             backgroundColor: "transparent",
@@ -101,24 +99,34 @@ const useStyles = makeStyles({
     },
     favourite:{
         color: 'red',
-
     },
-
 })
+
+
 
 const Workers = () => {
     const classes = useStyles();
+    const {
+        user
+    } = useAuth0();
 
+    const [required_date, setDate] = React.useState<Date | null>(null);
     const [workers, setWorkers]= useState<any>([]);
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [seeker_id, setSeeker_id] = useState('');
+    const [payment_type, setPayment_type] = React.useState("Cash");
+    const navigate = useNavigate()
+
+
+    const handleChangePayment_type = (event: SelectChangeEvent) => {
+        setPayment_type(event.target.value);
+    };
 
     async function getWorkers() {
         try {
             const response = await axios.get('http://localhost:8000/workers/');
-            // console.log(response.data);
             const data = response.data;
-            console.log("data");
-            console.log(data.data);
             data?.data.map((item: any) => {
                 setWorkers((prevState: any) => [...prevState, {
                     first_name: item.first_name,
@@ -126,71 +134,39 @@ const Workers = () => {
                     category: item.category,
                     description: item.description,
                 }])});
-
         } catch (any) {
             console.error(any);
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Something went wrong!'
-            // })
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!'
+            })
         }
     }
 
-    useEffect(() => {
-        getWorkers();
-        setLoading(true);
-
-    }, [])
-
-
-    const navigate = useNavigate()
-    const {
-        user
-    } = useAuth0();
-
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClickFavorite = () => {
-
-
-    };
-
-    const handleBookig = () => {
+    const handleClickOpen = (id:any) => {
         if(user?.family_name==="JobProvider"){
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Save it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Saved!',
-                        'Your booking has been saved.',
-                        'success'
-                    )
-                }
-            })
-            handleClose();
+            setSeeker_id(id);
+            setOpen(true);
         }else {
             navigate("/signUp/JobProvider", { replace: false });
         }
+    };
 
+    const onSubmitBooking = () => {
+    };
+
+    const handleClickFavorite = () => {
     };
 
     const handleClose = () => {
         setOpen(false);
     };
 
-
+    useEffect(() => {
+        getWorkers();
+        setLoading(true);
+    }, [])
 
     return (
       <>
@@ -199,30 +175,15 @@ const Workers = () => {
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
                   Suggested For You
               </Typography>
-              <Grid className={classes.cardSection}
-                    container
-                    spacing={0.0}
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center">
-
-                  {/*<WorkerCard />*/}
+              <Grid className={classes.cardSection}  container  spacing={0.0}  direction="row" justifyContent="center"  alignItems="center">
                   <WorkerCardMp />
-                  {/*<WorkerCard />*/}
                   {loading? workers.map((item: any) => {
-                      // const cars = [
-                      //     {first_name: item.first_name, last_name: item.last_name ,catagory:item.catagory ,description:item.description},
-                      // ];
-                      // <WorkerCard arr={cars} />
-
                       return (
                           <div className={classes.cardBody}>
-
                               <Grid
                                   container
                                   direction="column"
                                   margin='25px' >
-
                                   <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
                                         container
                                         justifyContent="space-between"
@@ -242,9 +203,7 @@ const Workers = () => {
                                               <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
                                               <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
                                           </Stack>
-
                                       </Grid>
-
                                   </Grid>
                                   <Grid alignItems="flex-start" className={classes.contentCard}>
                                       <div className={classes.line}></div>
@@ -255,7 +214,7 @@ const Workers = () => {
                                           <span><WorkIcon fontSize='small' /></span> {item.category}
                                       </Typography>
                                       <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                                          <span><CheckCircleOutlineIcon fontSize='small' /></span>05 Minor Tasks Completed
+                                          <span><CheckCircleOutlineIcon fontSize='small' /></span>05 Tasks Completed
                                       </Typography>
 
                                       <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
@@ -263,40 +222,32 @@ const Workers = () => {
                                       </Typography>
                                   </Grid>
                                   <Grid className={classes.booking} >
-                                      <Button variant="contained" onClick={handleClickOpen}>Book Now</Button>
+                                      <Button variant="contained" onClick={() => handleClickOpen(item.first_name)} >Book Now</Button>
                                   </Grid>
                               </Grid>
 
 
-
+{/*--------------------------- Popup box for the booking workers --------------------------------------------------------*/}
                               <Dialog open={open} onClose={handleClose}>
                                   <DialogContent>
                                       <Card >
-                                          <form >
+                                          <form onSubmit={onSubmitBooking}>
                                               <Grid container
                                                     direction="row"
                                                     justifyContent="flex-start"
                                                     alignItems="flex-start" >
                                                   <Grid  xs={4} direction="column"  >
                                                       <Grid item xs={6} sx={{ m: 2 }}>
-                                                          <FormControl >
-                                                              {/*<LocalizationProvider dateAdapter={AdapterDateFns} >*/}
-                                                              {/*<DesktopDatePicker*/}
-                                                              {/*    label="Date desktop"*/}
-                                                              {/*    inputFormat="MM/dd/yyyy"*/}
-                                                              {/*    value={value}*/}
-                                                              {/*    onChange={handleChange}*/}
-                                                              {/*    renderInput={(params) => <TextField {...params} sx={{ width: 1/1 }}/>}/>*/}
-                                                              {/*</LocalizationProvider>*/}
-
-                                                              <TextField
-                                                                  required
-                                                                  id="outlined-required"
+                                                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                              <DatePicker
                                                                   label="Date"
-                                                                  defaultValue=''
+                                                                  value={required_date}
+                                                                  onChange={(newValue) => {
+                                                                      setDate(newValue);
+                                                                  }}
+                                                                  renderInput={(params) => <TextField {...params}/>}
                                                               />
-                                                          </FormControl>
-
+                                                          </LocalizationProvider>
                                                       </Grid>
                                                       <Grid item xs={6} sx={{ m: 2 }}>
                                                           <FormControl fullWidth >
@@ -304,65 +255,28 @@ const Workers = () => {
                                                               <Select
                                                                   labelId="demo-simple-select-label"
                                                                   id="demo-simple-select"
-                                                                  label="Payment Method">
-                                                                  <MenuItem value={"Cash"}>Chash</MenuItem>
+                                                                  label="Payment Method"
+                                                                  value={payment_type}
+                                                                  onChange={handleChangePayment_type}>
+                                                                  <MenuItem value={"Cash"}>Cash</MenuItem>
                                                                   <MenuItem value={"Online"}>Online</MenuItem>
                                                               </Select>
                                                           </FormControl>
                                                       </Grid>
-                                                      <Grid item xs={6} sx={{ m: 2 }}>
-                                                          <TextField
-                                                              label="Mobile"
-                                                              id="outlined-start-adornment"
-                                                              InputProps={{startAdornment: <InputAdornment position="start">+94</InputAdornment>,
-                                                              }}/>
-                                                      </Grid>
                                                   </Grid>
-                                                  {/*<Grid xs={4} direction="column">*/}
-                                                  {/*     <Grid item xs={6} sx={{ m: 2 }}>*/}
-                                                  {/*         <TextField*/}
-                                                  {/*             id="outlined-number"*/}
-                                                  {/*             label="Number"*/}
-                                                  {/*             type="number"*/}
-                                                  {/*             sx={{width: 1/1}}*/}
-                                                  {/*             InputLabelProps={{*/}
-                                                  {/*                 shrink: true,*/}
-                                                  {/*             }}*/}
-                                                  {/*         />*/}
-                                                  {/*     </Grid>*/}
-                                                  {/*     <Grid item xs={6} sx={{ m: 2 }}>*/}
-                                                  {/*         <Select*/}
-                                                  {/*             fullWidth*/}
-                                                  {/*             labelId="demo-simple-select-label"*/}
-                                                  {/*             id="demo-simple-select"*/}
-                                                  {/*             label="Payment Method">*/}
-                                                  {/*             <MenuItem value={"Cash"}>Chash</MenuItem>*/}
-                                                  {/*             <MenuItem value={"Online"}>Online</MenuItem>*/}
-                                                  {/*         </Select>*/}
-                                                  {/*     </Grid>*/}
-
-
-                                                  {/* </Grid>*/}
                                                   <Grid  xs={4} direction="column">
                                                       <Grid item xs={6} sx={{ m: 2 }}>
-                                                          <TextField fullWidth id="last-name" label="City" variant="outlined" required />
+                                                          <TextField fullWidth id="location" label="Location" variant="outlined" />
                                                       </Grid>
-
                                                       <Grid item xs={6} sx={{ m: 2 }}>
                                                           <TextField
-                                                              label="One Worker Payment "
+                                                              label="One hour Payment "
                                                               id="outlined-start-adornment"
                                                               InputProps={{
                                                                   startAdornment: <InputAdornment position="start">LKR</InputAdornment>,
-                                                              }}
-                                                          />
+                                                              }}/>
                                                       </Grid>
-
                                                   </Grid>
-                                                  {/*<Grid  xs={3} direction="column"  >*/}
-                                                  {/*    <TextField fullWidth label="Description" id="fullWidth" />*/}
-                                                  {/*</Grid>*/}
-
                                               </Grid>
 
                                               <Grid container
@@ -370,50 +284,32 @@ const Workers = () => {
                                                     justifyContent="flex-start"
                                                     alignItems="flex-start" >
                                                   <Grid item xs={12} sx={{ m: 2 }} >
-                                                      <TextField fullWidth label="Description" id="fullWidth" />
-
+                                                      <TextField fullWidth label="Description" id="fullWidth"/>
                                                   </Grid>
-
                                               </Grid>
-
-                                              {/*<Grid className={classes.sendAdd} >*/}
-                                              {/*    <Button className={classes.closeIcon} variant="contained" >Booking</Button>*/}
-                                              {/*</Grid>*/}
                                           </form>
                                       </Card>
                                   </DialogContent>
                                   <DialogActions>
-                                      <Button onClick={handleBookig} variant="contained">Booking</Button>
+                                      <Button variant="contained" type="submit" >Booking</Button>
                                       <Button onClick={handleClose} variant='outlined'>Cancel</Button>
-
                                   </DialogActions>
                               </Dialog>
                           </div>
                       );
-
-
-                  }) : <p>Loading...</p> }
-
-
+                  }) :<CircularProgress />}
               </Grid>
-
           </div>
-
           <div>
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
                   Top Rate Workers
               </Typography>
-              {/*<WorkerMainComponents />*/}
           </div>
-
           <div>
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
                   Favourites
               </Typography>
-              {/*<WorkerMainComponents />*/}
           </div>
-
-
       </>
   );
 };

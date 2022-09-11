@@ -160,7 +160,7 @@ const JobProvider = () => {
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <TextField fullWidth id="firstName" label="First Name" variant="outlined"
-                                                                               value={formik.values.firstName}
+                                               value={formik.values.firstName}
                                                onChange={formik.handleChange}
                                                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                                                helperText={formik.touched.firstName && formik.errors.firstName}/>
@@ -276,7 +276,6 @@ const JobProvider = () => {
                                         <Button variant="contained" type="submit">Sign Up</Button>
                                         <Button variant="outlined">Cancel</Button>
                                     </Stack>
-
                                 </Grid>
                             </Grid>
                         </Grid>
