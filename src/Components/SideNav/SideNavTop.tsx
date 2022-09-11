@@ -111,7 +111,7 @@ const SideNavTop = () => {
             );
         }
             else {
-        {
+
             return (
                 <>
                     <Box sx={{ width: '100%' }}>
@@ -195,7 +195,7 @@ const SideNavTop = () => {
                     </Box>
                 </>
             );
-        }
+
     }
 
 };
