@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import {useAuth0} from "@auth0/auth0-react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles({
         proButton:{
@@ -30,19 +32,11 @@ const useStyles = makeStyles({
 })
 
 
-
-
-
 const SideNavTop = () => {
     const classes = useStyles();
     const { user } = useAuth0();
-    console.log(user);
-
-    useEffect(() => {
-
-    }, []);
-
     const [open, setOpen] = React.useState(false);
+    const [pro, setPro] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -51,6 +45,36 @@ const SideNavTop = () => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    let ID:any = user?.sub;
+    ID = ID.substring(6);
+
+    let linky = "http://localhost:8000/payment/year/" + ID + "/" + "10000";
+    let linkm = "http://localhost:8000/payment/month/" + ID + "/" + "1000";
+
+    function getpro() {
+        axios.post('http://localhost:8000/payment/pro', {
+            id: ID
+        })
+            .then(function (response) {
+                // console.log(response.data.length);
+                if (response.data.length == 1) {
+                    setPro(true);
+                }
+                else {
+                    setPro(false);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        getpro();
+
+
+    }, []);
 
 
     if(user?.family_name==="Admin"){
@@ -70,8 +94,7 @@ const SideNavTop = () => {
                 </Box>
             </>
         );
-    }else if(false){
-        {
+    }else if(pro){
             return (
                 <>
                     <Box sx={{ width: '100%' }}>
@@ -83,14 +106,11 @@ const SideNavTop = () => {
                                 {user?.email}
                             </Typography>
                         </Stack>
-
-
                     </Box>
                 </>
             );
         }
-    }
-    else {
+            else {
         {
             return (
                 <>
@@ -111,7 +131,7 @@ const SideNavTop = () => {
 
                         <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" maxWidth={"md"}>
                             {/*<DialogTitle id="alert-dialog-title">*/}
-                            {/*    {"Use Google's location service?"}*/}
+                            {/*    {"Use Google's location service?" }*/}
                             {/*</DialogTitle>*/}
                             <DialogActions>
                                 <Button onClick={handleClose} autoFocus>
@@ -148,8 +168,10 @@ const SideNavTop = () => {
                                                     <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>833.33 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
                                                     <Typography variant={'subtitle1'} textAlign='left' marginBottom={'30px'} >10000 LKR every 12 month</Typography>
                                                     <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
-                                                    <Button variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
-                                                </Card>
+                                                    <form action={linky} method="POST">
+                                                        <Button type="submit" variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
+                                                    </form>
+                                                    </Card>
                                             </Grid>
 
                                             <Grid item xs={12}>
@@ -158,7 +180,9 @@ const SideNavTop = () => {
                                                     <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>1000 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
                                                     <Typography variant={'subtitle1'} textAlign='left' marginBottom={'30px'} >12000 LKR every 12 month</Typography>
                                                     <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
-                                                    <Button variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
+                                                    <form action={linkm} method='POST'>
+                                                        <Button type="submit" variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
+                                                    </form>
                                                 </Card>
                                             </Grid>
                                         </Grid>

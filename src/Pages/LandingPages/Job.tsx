@@ -62,7 +62,7 @@ const Jobs = () => {
                 if (result.isConfirmed) {
                     let seekerId:any = user?.sub;
                     seekerId = seekerId.substring(6);
-                    console.log(id,seekerId );
+                    // console.log(id,seekerId );
                     axios.post('http://localhost:8000/jobs/apply', {
                         job_id: id,
                         seeker_id: seekerId
@@ -416,6 +416,8 @@ const Jobs = () => {
         </>
     );
 };
+
+
 
 export default Jobs;
 
