@@ -118,9 +118,9 @@ export default function JobProviderPostAd() {
 
   return (
     <Paper>
-        <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h5" component="h5" fontWeight='700' color='primary' padding={2} paddingLeft={5} textAlign='left'>
+        {/* <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h5" component="h5" fontWeight='700' color='primary' padding={2} paddingLeft={5} textAlign='left'>
             Job Advertisement
-        </Typography> <br />
+        </Typography> <br /> */}
         <form onSubmit={handleSubmit} style={{padding: '40px', paddingLeft: '70px'}} id="myForm" name='myForm' noValidate={false}>
             <Grid container spacing={4} sx={{padding: '25px', borderRadius: '10px', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
                 <Grid item xs={4}>
@@ -286,14 +286,14 @@ export default function JobProviderPostAd() {
                     />
                 </Grid>
                 <Grid xs={6}></Grid>
-                <Grid item xs={6} textAlign="right">
+                <Grid item xs={6} textAlign="right" sx={{marginBottom: '20px', marginTop: '20px'}}>
                     <Button color='secondary' variant='contained' fullWidth type='submit'
-                    sx={{marginBottom: '20px', marginTop: '30px', marginRight: '30px', padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
+                    sx={{padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
                         <PostAddIcon sx={{padding: '0px 10px 0px 0px'}}/> Post Advertisement
                     </Button>
 
                     <Button color='error' variant='contained' fullWidth type='reset' onClick={cancelButton}
-                    sx={{marginBottom: '20px', marginTop: '30px', padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
+                    sx={{marginLeft: '30px', padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
                         Cancel
                     </Button>
                 </Grid>
