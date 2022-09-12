@@ -1,33 +1,68 @@
 import React from 'react';
-
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-
-import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@mui/material/Grid";
-// import Diversity1Icon from '@mui/icons-material/Diversity1';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import HailIcon from '@mui/icons-material/Hail';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import ImportContactsIcon from '@mui/icons-material/ImportContacts';
-
-
-
+import SearchBar from "../../CommonComponent/SearchBar";
+import Paper from "@mui/material/Paper";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableBody from "@mui/material/TableBody";
+import {styled} from "@mui/material/styles";
+import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import JobSeekerReqProfile from "../../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
 import JobDashboardWorkerTable from "./JobDashboardWorkerTable";
 import JobDashboardSaveJobSeeker from "./JobDashboardSaveJobSeeker";
-import ProPaymentCard from "../../CommonComponent/ProPaymentCard";
+
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
 }
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: '#ECD2F2',
+        color: '#1C1C1C',
+        fontSize: 14,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
+function createData(
+    name: string,
+    category: string,
+
+) {
+    return { name, category};
+}
+
+const rows = [
+    createData('Udesh Lakshan', 'Job Seeker'),
+    createData('Rashmika Malshan', 'Job Seeker'),
+    createData('Shalani Hansika', 'Manpower agency'),
+    createData('Lakshitha Shehan', 'Job Provider'),
+    createData('Chavinda Perera', 'Job Provider'),
+];
+
 
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -63,6 +98,18 @@ export default function BasicTabs() {
         setValue(newValue);
     };
 
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -79,137 +126,67 @@ export default function BasicTabs() {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <JobDashboardSaveJobSeeker />
+                {/*<div>*/}
+                {/*    <Grid container*/}
+                {/*          direction="row"*/}
+                {/*          justifyContent="space-between"*/}
+                {/*          alignItems="center"*/}
+                {/*          style={{marginBottom:'30px'}}>*/}
+
+                {/*        <Grid item xs={6}>*/}
+                {/*            <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Requested Worker</Typography>*/}
+
+                {/*        </Grid>*/}
+                {/*        <Grid item xs={6}>*/}
+                {/*            <SearchBar />*/}
+                {/*        </Grid>*/}
+
+                {/*    </Grid>*/}
+
+
+                {/*    <Grid container*/}
+                {/*          direction="row"*/}
+                {/*          justifyContent="flex-start"*/}
+                {/*          alignItems="flex-start"*/}
+                {/*    >*/}
+                {/*        <Grid style={{backgroundColor:'red'}} item xs={4} spacing={2}>*/}
+                {/*            <Paper sx={{ width: '100%', overflow: 'hidden' }}>*/}
+                {/*                <TableContainer component={Paper}>*/}
+                {/*                    <Table sx={{ minWidth: 270 }} aria-label="customized table">*/}
+                {/*                        <TableHead>*/}
+                {/*                            <TableRow>*/}
+
+                {/*                                <StyledTableCell align="left">Name</StyledTableCell>*/}
+                {/*                                <StyledTableCell align="left">Category</StyledTableCell>*/}
+
+
+                {/*                            </TableRow>*/}
+                {/*                        </TableHead>*/}
+                {/*                        <TableBody>*/}
+                {/*                            {rows.map((row) => (*/}
+                {/*                                <StyledTableRow key={row.name}>*/}
+                {/*                                    <StyledTableCell component="th" scope="row" align="left">{row.name} </StyledTableCell>*/}
+                {/*                                    <StyledTableCell align="left">{row.category}</StyledTableCell>*/}
+                {/*                                </StyledTableRow>*/}
+                {/*                            ))}*/}
+                {/*                        </TableBody>*/}
+                {/*                    </Table>*/}
+                {/*                </TableContainer>*/}
+
+                {/*            </Paper>*/}
+                {/*        </Grid>*/}
+                {/*        <Grid style={{backgroundColor:'red'}} item xs={8} >*/}
+                {/*            <Paper style={{backgroundColor:'blue',marginLeft:'25px'}}>*/}
+                {/*                <JobSeekerReqProfile />*/}
+                {/*            </Paper>*/}
+
+                {/*        </Grid>*/}
+                {/*    </Grid>*/}
+                {/*</div>*/}
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <ProPaymentCard />
+
             </TabPanel>
         </Box>
     );
 }
-
-
-
-
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
-// import {makeStyles} from "@material-ui/core/styles";
-// import Grid from "@mui/material/Grid";
-// // import Diversity1Icon from '@mui/icons-material/Diversity1';
-// import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-// import HailIcon from '@mui/icons-material/Hail';
-// import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-// import ImportContactsIcon from '@mui/icons-material/ImportContacts';
-//
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-// import Stack from '@mui/material/Stack';
-//
-//
-// const useStyles = makeStyles({
-//     WorkerCard: {
-//         height: '100px',
-//         width: '200px',
-//         backgroundColor: '#E5E5E5',
-//         borderRadius: '10px',
-//         // position:'relative',
-//     },
-//
-// });
-//
-//
-//
-// const JobDashboardWorkerCard = () => {
-//     const classes = useStyles();
-//     return (
-//         <>
-//             <Grid container spacing={3} width='100%'>
-//                 <Grid item xs={4}>
-//                     <Button>
-//                         <CardContent className={classes.WorkerCard}>
-//                                 <Grid container
-//                                       direction="row"
-//                                       justifyContent="space-between"
-//                                       alignItems="center"
-//
-//                                       >
-//                                     <Grid item xs={3}>
-//                                         <HailIcon fontSize='large' />
-//                                     </Grid>
-//                                     <Grid item xs={9} style={{height:'100%'}}
-//                                           container
-//                                           direction="column"
-//                                           justifyContent="space-between"
-//                                           alignItems="flex-end">
-//                                         <Typography textAlign='right' variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Requested Workers</Typography>
-//                                         <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >02</Typography>
-//                                     </Grid>
-//
-//                                 </Grid>
-//                         </CardContent>
-//                     </Button>
-//
-//                 </Grid>
-//
-//                 <Grid item xs={4} >
-//                     <Button>
-//                         <CardContent className={classes.WorkerCard}>
-//
-//                             <Grid container
-//                                   direction="row"
-//                                   justifyContent="space-between"
-//                                   alignItems="center"
-//                                   sx={{ width: '100%', }}>
-//                                 <Grid item xs={3}>
-//                                     <ImportContactsIcon fontSize='large' />
-//                                 </Grid>
-//                                 <Grid item xs={9}
-//                                       container
-//                                       direction="column"
-//                                       justifyContent="space-between"
-//                                       alignItems="flex-end">
-//                                     <Typography sx={{mb:2}} textAlign='right' variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Saved Workers</Typography>
-//                                     <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >05</Typography>
-//                                 </Grid>
-//
-//                             </Grid>
-//
-//
-//                         </CardContent>
-//                     </Button>
-//                 </Grid>
-//
-//                 <Grid item xs={4} >
-//
-//                     <Button>
-//                         <CardContent className={classes.WorkerCard}>
-//                             <Grid container
-//                                   direction="row"
-//                                   justifyContent="space-between"
-//                                   alignItems="center"
-//                                   sx={{ width: '100%', }}>
-//                                 <Grid item xs={3}>
-//                                     <PeopleAltIcon fontSize='large' />
-//                                 </Grid>
-//                                 <Grid item xs={9}
-//                                       container
-//                                       direction="column"
-//                                       justifyContent="space-between"
-//                                       alignItems="flex-end">
-//                                     <Typography sx={{mb:2}} textAlign='right' variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Saved Manpower Aguncy</Typography>
-//                                     <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >05</Typography>
-//                                 </Grid>
-//                             </Grid>
-//                         </CardContent>
-//                     </Button>
-//
-//                 </Grid>
-//
-//             </Grid>
-//         </>
-//     );
-// };
-//
-// export default JobDashboardWorkerCard;

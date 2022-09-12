@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
@@ -12,6 +12,9 @@ import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import SearchBar from "../../CommonComponent/SearchBar";
+import axios from "axios";
+import Swal from "sweetalert2";
+import {useAuth0} from "@auth0/auth0-react";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -57,8 +60,14 @@ const rows = [
 
 
 const JobDashboardWorkerTable = () => {
+
+    const {
+        user
+    } = useAuth0();
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [workers, setBookingWorkers]= useState<any>([]);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -68,6 +77,32 @@ const JobDashboardWorkerTable = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+
+    async function getBookingWorkers() {
+        let providerID:any = user?.sub;
+        providerID = providerID.substring(6)
+        let provider_id:any = user?.sub;
+        provider_id = provider_id.substring(6);
+
+        axios.post('http://localhost:8000/workers/booking', {
+
+
+
+        })
+            .then(function (response) {
+                console.log(response);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        getBookingWorkers();
+        // setLoading(true);
+    }, [])
 
     return (
         <div>
