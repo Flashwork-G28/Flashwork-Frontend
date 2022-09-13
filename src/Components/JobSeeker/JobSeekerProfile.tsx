@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import React, {useEffect, useState} from 'react';
 
 import Box from '@mui/material/Box';
 
@@ -35,6 +36,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Swal from "sweetalert2";
+const axios = require('axios');
 
 
 
@@ -119,6 +122,30 @@ const JobSeekerProfile = () => {
     };
 
     const [value, setValue] = React.useState<number | null>(2);
+    const [profileDetails, setProfileDetails] = React.useState<any>([]);
+// console.log(profileDetails);
+
+
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/JobSeeker/profile").then((response: { data: any; }) => {
+            const det = response.data;
+            // console.log(det);
+            det.map((item: any) => {
+
+                setProfileDetails((prevState: any) => [...prevState, {
+                    first_name: item.first_name,
+                     last_name: item.last_name,
+                    email: item.email,
+                    mobile: item.mobile,
+                    description: item.description,
+                    city: item.city,
+
+                }])
+                return null;
+            });
+        })
+    }, []);
 
     return (
         <div>
@@ -152,6 +179,10 @@ const JobSeekerProfile = () => {
                        </div>
                         </Grid>
                         <Grid item xs={12}>
+
+                            {profileDetails.map((item:any) => {
+                                return (
+
                             <Grid container spacing={2}>
                                 <Grid container spacing={3} item xs={12}>
                                     <Grid item xs={4} style={{ display : "flex" , justifyContent: "center" , alignItems: "center"}}>
@@ -209,6 +240,12 @@ const JobSeekerProfile = () => {
                                                 </div>
                                             </div>
                                         </Grid>
+
+                                        {/*strat*/}
+
+
+
+
                                         <Grid item xs={12}>
 
 
@@ -219,7 +256,9 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Fist Name"
-                                                                    defaultValue="Lakshitha"
+
+
+                                                                    defaultValue={item.first_name}
                                                                 />
                                                             </div>
 
@@ -227,14 +266,14 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Last Name"
-                                                                    defaultValue="Dhananjaya"
+                                                                    defaultValue={item.last_name}
                                                                 />
                                                             </div>
                                                         </div>
                                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
                                                             id="outlined-helperText"
                                                             label="Email"
-                                                            defaultValue="dana@1998gmail.com"
+                                                            defaultValue={item.email}
                                                         />
                                                         <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
 
@@ -242,7 +281,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Location"
-                                                                    defaultValue="Matara"
+                                                                    defaultValue={item.city}
                                                                 />
                                                             </div>
 
@@ -250,7 +289,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Mobile"
-                                                                    defaultValue="+94763079345"
+                                                                    defaultValue={item.mobile}
                                                                 />
                                                             </div>
                                                         </div>
@@ -268,7 +307,7 @@ const JobSeekerProfile = () => {
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Description"
-                                                   defaultValue="I'm car penter"
+                                                   defaultValue={item.description}
                                         />
                                     </div>
                                 </Grid>
@@ -278,28 +317,18 @@ const JobSeekerProfile = () => {
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Qualification"
-                                                   defaultValue="I have 4 years experiance "
+                                                   defaultValue=""
                                         />
                                     </div>
 
-                                        {/*<Box sx={{ minWidth: 120 }}>*/}
-                                        {/*    <FormControl style={{width:"95%",paddingRight:"2%"}}>*/}
-                                        {/*        <InputLabel id="demo-simple-select-label">Qualification</InputLabel>*/}
-                                        {/*        <Select*/}
-                                        {/*            labelId="demo-simple-select-label"*/}
-                                        {/*            id="demo-simple-select"*/}
-                                        {/*            value={age}*/}
-                                        {/*            label="Qualification"*/}
-                                        {/*            onChange={handleChange}*/}
-                                        {/*        >*/}
-                                        {/*            <MenuItem value={10}>Qualification 1</MenuItem>*/}
-                                        {/*            <MenuItem value={20}>Qualification 2</MenuItem>*/}
-                                        {/*            <MenuItem value={30}>Qualification 3</MenuItem>*/}
-                                        {/*        </Select>*/}
-                                        {/*    </FormControl>*/}
-                                        {/*</Box>*/}
+
 
                                 </Grid>
+
+
+
+
+                                        {/*the end*/}
                                 <Grid item xs={12}>
 
                                         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
@@ -342,6 +371,9 @@ const JobSeekerProfile = () => {
                                 </Grid>
 
                             </Grid>
+
+                                );
+                            } )}
                         </Grid>
                     </Grid>
                     <Grid item xs={4}>
@@ -438,46 +470,7 @@ const JobSeekerProfile = () => {
 
                                 </div>
 
-                                {/*<div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>*/}
-                                {/*    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>*/}
-                                {/*        FrockMe Textile*/}
-                                {/*        <ArrowDropDownIcon />*/}
-                                {/*    </Button>*/}
-                                {/*    <Menu*/}
-                                {/*        id="simple-menu"*/}
-                                {/*        anchorEl={anchorEl}*/}
-                                {/*        keepMounted*/}
-                                {/*        open={Boolean(anchorEl)}*/}
-                                {/*        onClose={handleClose}*/}
-                                {/*    >*/}
-                                {/*        <MenuItem onClick={handleClose}>*/}
-                                {/*            <div style={{display:"flex",flexDirection:"column"}}>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                    Date:*/}
-                                {/*                </Grid>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                    2022 july 23*/}
-                                {/*                </Grid>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                    Time:*/}
-                                {/*                </Grid>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                    9.00 am*/}
-                                {/*                </Grid>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                    Venue:*/}
-                                {/*                </Grid>*/}
-                                {/*                <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                    FrockMe, No 133/02/01*/}
-                                {/*                    Highlevel Road*/}
-                                {/*                    Kirulapana.*/}
-                                {/*                </Grid>*/}
-                                {/*            </div>*/}
 
-                                {/*        </MenuItem>*/}
-
-                                {/*    </Menu>*/}
-                                {/*</div>*/}
                             </Grid>
                         </Grid>
                     </Grid>
