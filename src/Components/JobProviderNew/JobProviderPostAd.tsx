@@ -79,7 +79,7 @@ export default function JobProviderPostAd() {
                 icon: 'success',
                 title: 'Job has been successfully posted',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 2000
             });
             setFormValues({
                 ...defaultValues,
@@ -121,7 +121,7 @@ export default function JobProviderPostAd() {
         {/* <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h5" component="h5" fontWeight='700' color='primary' padding={2} paddingLeft={5} textAlign='left'>
             Job Advertisement
         </Typography> <br /> */}
-        <form onSubmit={handleSubmit} style={{padding: '40px', paddingLeft: '70px'}} id="myForm" name='myForm' noValidate={false}>
+        <form onSubmit={handleSubmit} style={{padding: '40px', paddingLeft: '70px', marginBottom: '30px'}} id="myForm" name='myForm' noValidate={false}>
             <Grid container spacing={4} sx={{padding: '25px', borderRadius: '10px', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
                 <Grid item xs={4}>
                     <TextField
@@ -286,14 +286,14 @@ export default function JobProviderPostAd() {
                     />
                 </Grid>
                 <Grid xs={6}></Grid>
-                <Grid item xs={6} textAlign="right" sx={{marginBottom: '20px', marginTop: '20px'}}>
+                <Grid item xs={6} sx={{display: 'flex', justifyContent: 'right', alignItems: 'right', marginTop: '10px'}}>
                     <Button color='secondary' variant='contained' fullWidth type='submit'
-                    sx={{padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
+                    sx={{padding: '15px 40px', fontSize: '14px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s'}}>
                         <PostAddIcon sx={{padding: '0px 10px 0px 0px'}}/> Post Advertisement
                     </Button>
 
-                    <Button color='error' variant='contained' fullWidth type='reset' onClick={cancelButton}
-                    sx={{marginLeft: '30px', padding: '15px 40px', fontSize: '16px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
+                    <Button variant='outlined' fullWidth type='reset' onClick={cancelButton}
+                    sx={{marginLeft: '20px', padding: '15px 40px', fontSize: '14px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s'}}>
                         Cancel
                     </Button>
                 </Grid>
