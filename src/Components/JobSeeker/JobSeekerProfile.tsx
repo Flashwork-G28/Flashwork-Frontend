@@ -128,6 +128,7 @@ const JobSeekerProfile = () => {
 
 
     useEffect(() => {
+
         axios.get("http://localhost:8000/JobSeeker/profile").then((response: { data: any; }) => {
             const det = response.data;
             // console.log(det);
@@ -140,6 +141,9 @@ const JobSeekerProfile = () => {
                     mobile: item.mobile,
                     description: item.description,
                     city: item.city,
+                    qualification: item.qualification,
+
+
 
                 }])
                 return null;
@@ -256,8 +260,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Fist Name"
-
-
+                                                                    disabled
                                                                     defaultValue={item.first_name}
                                                                 />
                                                             </div>
@@ -266,6 +269,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Last Name"
+                                                                    disabled
                                                                     defaultValue={item.last_name}
                                                                 />
                                                             </div>
@@ -273,6 +277,7 @@ const JobSeekerProfile = () => {
                                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
                                                             id="outlined-helperText"
                                                             label="Email"
+                                                                   disabled
                                                             defaultValue={item.email}
                                                         />
                                                         <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
@@ -281,6 +286,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Location"
+                                                                    disabled
                                                                     defaultValue={item.city}
                                                                 />
                                                             </div>
@@ -289,6 +295,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Mobile"
+                                                                    disabled
                                                                     defaultValue={item.mobile}
                                                                 />
                                                             </div>
@@ -303,10 +310,11 @@ const JobSeekerProfile = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div style={{paddingLeft:"40px"}}>
+                                    <div style={{paddingLeft:"10px"}}>
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Description"
+                                                   disabled
                                                    defaultValue={item.description}
                                         />
                                     </div>
@@ -317,7 +325,8 @@ const JobSeekerProfile = () => {
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Qualification"
-                                                   defaultValue=""
+                                                   disabled
+                                                   defaultValue={item.qualification}
                                         />
                                     </div>
 
@@ -329,16 +338,16 @@ const JobSeekerProfile = () => {
 
 
                                         {/*the end*/}
-                                <Grid item xs={12}>
+                                {/*<Grid item xs={12}>*/}
 
-                                        <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-                                            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>
-                                            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div></Item>
-                                           <Item> <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>
+                                {/*        <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>*/}
+                                {/*            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>*/}
+                                {/*            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div></Item>*/}
+                                {/*           <Item> <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>*/}
 
-                                        </div>
+                                {/*        </div>*/}
 
-                                </Grid>
+                                {/*</Grid>*/}
                                 <Grid item xs={12}>
                                     <div style={{backgroundColor:"lightgrey",borderRadius:"10px"}}>
                                         <Box component="fieldset" mb={3} borderColor="transparent">
@@ -389,7 +398,7 @@ const JobSeekerProfile = () => {
                             </Grid>
                             <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>
                                 <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>
-                                    <div><h3>Daily Task 4</h3></div>
+                                    <div><h3>Daily Task 1</h3></div>
 
                                 </div>
                             </Grid>
@@ -431,42 +440,7 @@ const JobSeekerProfile = () => {
                                             </div>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel2a-content"
-                                            id="panel2a-header"
-                                            style={{backgroundColor:"#ECD2F2"}}
-                                        >
-                                            <Typography><h4>BlueMarket Privet Limited</h4></Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>
-                                                <div style={{display:"flex",flexDirection:"column"}}>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Date:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        2022 May 23
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Time:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        10.00 am
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Venue:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        BlueMArket, No 134/02/01
-                                                        Highlevel Road
-                                                        Kirulapana.
-                                                    </Grid>
-                                                </div>
-                                            </Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
+
 
                                 </div>
 

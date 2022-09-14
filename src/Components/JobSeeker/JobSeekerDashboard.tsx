@@ -206,84 +206,10 @@ const JobSeekerDashboard = () => {
                                             </div>
                                         </AccordionDetails>
                                     </Accordion>
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel2a-content"
-                                            id="panel2a-header"
-                                            style={{backgroundColor:"#ECD2F2"}}
-                                        >
-                                            <Typography><h4>BlueMarket Privet Limited</h4></Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>
-                                                <div style={{display:"flex",flexDirection:"column"}}>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Date:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        2022 May 23
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Time:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        10.00 am
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>
-                                                        Venue:
-                                                    </Grid>
-                                                    <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>
-                                                        BlueMArket, No 134/02/01
-                                                        Highlevel Road
-                                                        Kirulapana.
-                                                    </Grid>
-                                                </div>
-                                            </Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
+
 
                                 </div>
-                                {/*<div style={{backgroundColor:"#ECD2F2",borderRadius:"10px"}}>*/}
-                                {/*    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>*/}
-                                {/*        FrockMe Textile*/}
-                                {/*        <ArrowDropDownIcon />*/}
-                                {/*    </Button>*/}
-                                {/*    <Menu*/}
-                                {/*        id="simple-menu"*/}
-                                {/*        anchorEl={anchorEl}*/}
-                                {/*        keepMounted*/}
-                                {/*        open={Boolean(anchorEl)}*/}
-                                {/*        onClose={handleClose}*/}
-                                {/*    >*/}
-                                {/*        <MenuItem onClick={handleClose}>*/}
-                                {/*           <div style={{display:"flex",flexDirection:"column"}}>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                   Date:*/}
-                                {/*               </Grid>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                   2022 july 23*/}
-                                {/*               </Grid>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                   Time:*/}
-                                {/*               </Grid>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                   9.00 am*/}
-                                {/*               </Grid>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
-                                {/*                   Venue:*/}
-                                {/*               </Grid>*/}
-                                {/*               <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
-                                {/*                   FrockMe, No 133/02/01*/}
-                                {/*                   Highlevel Road*/}
-                                {/*                   Kirulapana.*/}
-                                {/*               </Grid>*/}
-                                {/*           </div>*/}
 
-                                {/*        </MenuItem>*/}
-
-                                {/*    </Menu>*/}
-                                {/*</div>*/}
                             </Grid>
 
 

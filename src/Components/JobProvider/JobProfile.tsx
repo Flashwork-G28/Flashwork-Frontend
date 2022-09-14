@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import JobProviderProfileContent from "./JobProviderComponents/JobProviderProfileContent";
 import JobProviderProMember from "./JobProviderComponents/JobProviderProMember";
 import JobProviderProfileDetails from "./JobProviderComponents/JobProviderProfileDetails";
@@ -40,6 +40,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from "axios";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -145,6 +146,29 @@ const JobProfile = () => {
     };
 
     const [value, setValue] = React.useState<number | null>(2);
+    const [jobProviderProfile, setJobProviderProfileDetails] = React.useState<any>([]);
+
+    useEffect(() => {
+
+        axios.get("http://localhost:8000/JobSeeker/jobProviderProfile").then((response: { data: any; }) => {
+
+            const det = response.data;
+
+            det.map((item: any) => {
+
+                setJobProviderProfileDetails((prevState: any) => [...prevState, {
+                    conpanyName: item.conpanyName,
+                    email: item.email,
+                    location: item.city,
+                    mobile: item.mobile,
+                    description: item.description,
+
+                }])
+                return null;
+            });
+        })
+    }, []);
+
 
 
     return (
@@ -152,6 +176,7 @@ const JobProfile = () => {
 
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
+
                     <Grid item xs={8}>
                         <Grid item xs={12}>
                             <div style={{display:"flex",flexDirection:"column",paddingTop:"20px"}}>
@@ -179,100 +204,149 @@ const JobProfile = () => {
                                 </div>
                             </div>
                         </Grid>
+
+
                         <Grid item xs={12}>
-                            <Grid container spacing={2}>
-                                <Grid container spacing={3} item xs={12}>
-                                    <Grid item xs={4} style={{ display : "flex" , justifyContent: "center" , alignItems: "center"}}>
 
-                                        <img src={Deshani} alt={Deshani} width={"100px"} height={"100px" }  style={{ border: "2px solid green", borderRadius:"100%"}}/>
-                                    </Grid>
 
-                                    <Grid item xs={8}>
-                                        <Grid item xs={12}>
-                                            <div style={{display:"flex",justifyContent:"end"}}>
-                                                <div>
-                                                    <Button
-                                                        ref={anchorRef}
-                                                        id="composition-button"
-                                                        aria-controls={open ? 'composition-menu' : undefined}
-                                                        aria-expanded={open ? 'true' : undefined}
-                                                        aria-haspopup="true"
-                                                        onClick={handleToggle}
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </Button>
-                                                    <Popper
-                                                        open={open}
-                                                        anchorEl={anchorRef.current}
-                                                        role={undefined}
-                                                        placement="bottom-start"
-                                                        transition
-                                                        disablePortal
-                                                    >
-                                                        {({ TransitionProps, placement }) => (
-                                                            <Grow
-                                                                {...TransitionProps}
-                                                                style={{
-                                                                    transformOrigin:
-                                                                        placement === 'bottom-start' ? 'left top' : 'left bottom',
-                                                                }}
+
+
+                                    <Grid container spacing={2}>
+                                        <Grid container spacing={3} item xs={12}>
+                                            <Grid item xs={4} style={{ display : "flex" , justifyContent: "center" , alignItems: "center"}}>
+
+                                                <img src={Deshani} alt={Deshani} width={"100px"} height={"100px" }  style={{ border: "2px solid green", borderRadius:"100%"}}/>
+                                            </Grid>
+
+                                            <Grid item xs={8}>
+                                                <Grid item xs={12}>
+                                                    <div style={{display:"flex",justifyContent:"end"}}>
+                                                        <div>
+                                                            <Button
+                                                                ref={anchorRef}
+                                                                id="composition-button"
+                                                                aria-controls={open ? 'composition-menu' : undefined}
+                                                                aria-expanded={open ? 'true' : undefined}
+                                                                aria-haspopup="true"
+                                                                onClick={handleToggle}
                                                             >
-                                                                <Paper>
-                                                                    <ClickAwayListener onClickAway={handleClose}>
-                                                                        <MenuList
-                                                                            autoFocusItem={open}
-                                                                            id="composition-menu"
-                                                                            aria-labelledby="composition-button"
-                                                                            onKeyDown={handleListKeyDown}
-                                                                        >
-                                                                            <MenuItem onClick={handleClose}>Edit</MenuItem>
-                                                                            <MenuItem onClick={handleClose}>Deactivate</MenuItem>
+                                                                <MoreVertIcon />
+                                                            </Button>
+                                                            <Popper
+                                                                open={open}
+                                                                anchorEl={anchorRef.current}
+                                                                role={undefined}
+                                                                placement="bottom-start"
+                                                                transition
+                                                                disablePortal
+                                                            >
+                                                                {({ TransitionProps, placement }) => (
+                                                                    <Grow
+                                                                        {...TransitionProps}
+                                                                        style={{
+                                                                            transformOrigin:
+                                                                                placement === 'bottom-start' ? 'left top' : 'left bottom',
+                                                                        }}
+                                                                    >
+                                                                        <Paper>
+                                                                            <ClickAwayListener onClickAway={handleClose}>
+                                                                                <MenuList
+                                                                                    autoFocusItem={open}
+                                                                                    id="composition-menu"
+                                                                                    aria-labelledby="composition-button"
+                                                                                    onKeyDown={handleListKeyDown}
+                                                                                >
+                                                                                    <MenuItem onClick={handleClose}>Edit</MenuItem>
+                                                                                    <MenuItem onClick={handleClose}>Deactivate</MenuItem>
 
-                                                                        </MenuList>
-                                                                    </ClickAwayListener>
-                                                                </Paper>
-                                                            </Grow>
-                                                        )}
-                                                    </Popper>
-                                                </div>
-                                            </div>
+                                                                                </MenuList>
+                                                                            </ClickAwayListener>
+                                                                        </Paper>
+                                                                    </Grow>
+                                                                )}
+                                                            </Popper>
+                                                        </div>
+                                                    </div>
+                                                </Grid>
+                                                <Grid item xs={12}>
+
+                                                    {jobProviderProfile.map((item:any) => {
+                                                        return (
+                                                    <form noValidate autoComplete="off">
+
+                                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
+                                                                   id="outlined-helperText"
+                                                                   label="conpany_name"
+                                                                   disabled
+                                                                   defaultValue={item.conpanyName}
+                                                        />
+
+                                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
+                                                                   id="outlined-helperText"
+                                                                   label="Email"
+                                                                   disabled
+                                                                   defaultValue={item.email}
+                                                        />
+                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                            <div style={{paddingRight:"30px"}}>
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Location"
+                                                                    disabled
+                                                                    defaultValue={item.location}
+                                                                />
+                                                            </div>
+
+                                                            <div >
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Mobile"
+                                                                    disabled
+                                                                    defaultValue={item.mobile}
+                                                                />
+                                                            </div>
+                                                        </div>
+
+                                                        <Grid item xs={12}>
+                                                            <div >
+                                                                <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
+                                                                           id="outlined-helperText"
+                                                                           label="Description"
+                                                                           disabled
+                                                                    defaultValue={item.description}
+                                                                />
+                                                            </div>
+                                                        </Grid>
+                                                    </form>
+
+                                                        );
+                                                    })}
+                                                </Grid>
+
+                                            </Grid>
                                         </Grid>
-                                        <Grid item xs={12}>
 
 
-                                            <form noValidate autoComplete="off">
-                                                <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"94.5%"}} id="outlined-basic" label="Company Name" variant="outlined" />
-                                                <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"94.5%"}} id="outlined-basic" label="Email Address" variant="outlined" />
-                                                <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
-                                                    <TextField   id="outlined-basic" label="Location" variant="outlined" />
-                                                    <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Mobile" variant="outlined" />
-                                                </div>
 
 
-                                            </form>
 
-
-                                        </Grid>
 
                                     </Grid>
+
+
+
                                 </Grid>
-                                <Grid item xs={12}>
 
-                                    <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px",width:"95%",marginLeft:"1.5%"}} id="outlined-basic" label="Description" variant="outlined" />
-                                </Grid>
-
-
-
-
-                            </Grid>
-                        </Grid>
                     </Grid>
+
                     <Grid item xs={4}>
                        <Item>
                        </Item>
                     </Grid>
 
                 </Grid>
+
             </Box>
         </div>
     );
