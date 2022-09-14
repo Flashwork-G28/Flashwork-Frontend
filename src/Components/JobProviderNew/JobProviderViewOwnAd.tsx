@@ -14,11 +14,14 @@ import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useAuth0 } from '@auth0/auth0-react';
+import Swal from 'sweetalert2';
+
 
 export default function JobProviderViewOwnAd() {
     // const {user} = useAuth0();
     // let user_id:any = user?.sub;
     // user_id = user_id.substring(6);
+    
 
     const [isShown, setIsShown] = useState(false);
 
@@ -31,10 +34,10 @@ export default function JobProviderViewOwnAd() {
 
     const [details, setDetails] = useState<any>([]);
 
-    useEffect(() => {
-        axios.get("http://localhost:8000/jobs/").then((response) => {
+    const viewJobs = () => {
+        axios.get('http://localhost:8000/jobs/JobAdView', {params:{user_id: '631313df003454364c278fee'}}).then((response) => {
             const det = response.data;
-            // console.log(det);
+            // console.log(user_id);
             det.map((item: any) => {
                 // const date1:any = new Date();
                 // const date2:any = new Date(item.pub_date);
@@ -63,6 +66,44 @@ export default function JobProviderViewOwnAd() {
                 // setShow(true);
             }
         })
+    }
+
+   const deletePost = (id: any) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: 'btn btn-success',
+        confirmButtonText: 'Confirm',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete('http://localhost:8000/jobs/DeleteJobs', {params: {user_id: '631313df003454364c278fee', id: id}}).then((response) => {
+            console.log(response);
+            console.log(response.data);
+            setDetails(
+                details.filter((details: { id: any; }) => {
+                    return details.id !== id;
+                })
+            );
+            Swal.fire(
+                    'Deleted!',
+                    'Advertisement has been deleted',
+                    'success'
+                )
+            }).catch(function (error) {
+                if (error.response) {
+                    console.log(error);
+                }
+            })
+        }
+    })
+    
+   };
+
+    useEffect(() => {
+        viewJobs();
     }, []);
     // if (!details) return null;
 
@@ -186,7 +227,7 @@ export default function JobProviderViewOwnAd() {
                                             <Button>
                                                 <VisibilityIcon />
                                             </Button>
-                                            <Button>
+                                            <Button onClick={() => deletePost(item.id)}>
                                                 <DeleteIcon color='error'/>
                                             </Button>
                                         </div>

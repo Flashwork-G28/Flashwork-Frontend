@@ -54,7 +54,7 @@ export default function JobProviderPostAd() {
     };
 
     const handleSubmit = (e: {target: any; preventDefault: () => void;}) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         let seeker_id:any = user?.sub;
         seeker_id = seeker_id.substring(6);
