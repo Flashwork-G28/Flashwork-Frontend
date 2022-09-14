@@ -100,75 +100,69 @@ const Jobs = () => {
     const [type, setType] = React.useState('');
     const handleChangeType = (event: SelectChangeEvent) => {
         setType(event.target.value);
-        console.log(event.target.value);
+        // console.log(event.target.value);
     };
 
     const [size, setSize] = React.useState('');
     const handleChangeSize = (event: SelectChangeEvent) => {
         setSize(event.target.value);
-        console.log(event.target.value);
+        // console.log(event.target.value);
     };
 
 
     const [categories, setCategories] = React.useState('');
     const handleChangeCatagoris = (event: SelectChangeEvent) => {
         setCategories(event.target.value);
-        console.log(event.target.value);
+        // console.log(event.target.value);
     };
 
 
     const [Location, setLocation] = React.useState('');
     const handleChangeLocation = (event: SelectChangeEvent) => {
         setLocation(event.target.value);
-        console.log(event.target.value);
+        // console.log(event.target.value);
     };
-
-    const [searchCheck, setSearchCheck] = useState(false);
-
-    function search() {
-        setSearchCheck(true);
-        console.log(searchCheck);
-    }
-
-    const [filteredList, setFilteredList] = useState(jobs);
     
     async function getJobs() {
-        try {
-            const response = await axios.get('http://localhost:8000/jobs');
-            console.log(response);
-            const dataj = response.data;
-            dataj.map((item: any) => {
-                const date1:any = new Date();
-                const date2:any = new Date(item.pub_date);
-                const diffTime = Math.abs(date2 - date1);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        axios.post('http://localhost:8000/jobs', {
+            category: categories,
+            type: type,
+            size: size,
+            location: Location
+        })
+            .then(function (response:any) {
+                console.log(response.data);
+                response.data.map((item: any) => {
+                    const date1:any = new Date();
+                    const date2:any = new Date(item.pub_date);
+                    const diffTime = Math.abs(date2 - date1);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-                setJobs((prevState: any) => [...prevState, {
-                    id: item.id,
-                    img: item.img,
-                    title: item.title,
-                    city: item.city,
-                    category: item.category,
-                    description: item.description,
-                    amc: item.amc,
-                    pay: item.pay,
-                    pub_date: diffDays,
-                    job_date: item.job_date,
-                    user_id: item.user_id,
-                    type: item.apply_type
+                    setJobs((prevState: any) => [...prevState, {
+                        id: item.id,
+                        img: item.img,
+                        title: item.title,
+                        city: item.city,
+                        category: item.category,
+                        description: item.description,
+                        amc: item.amc,
+                        pay: item.pay,
+                        pub_date: diffDays,
+                        job_date: item.job_date,
+                        user_id: item.user_id,
+                        type: item.apply_type
 
-                }])
-                setFilteredList(jobs);
-                return null;
-            });
-        } catch (error) {
-            console.error(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!'
+                    }])
+                    return null;
+                });
             })
-        }
+            .catch(function (error:any) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!'
+                })
+            });
     }
 
     async function getLatestJobs() {
@@ -212,13 +206,11 @@ const Jobs = () => {
 
 
 
-
     useEffect(() => {
         getJobs();
         getLatestJobs();
         setLoading(true);
-
-    }, [searchCheck])
+    }, [categories, type, size, Location]);
 
     return (
         <>
@@ -302,7 +294,7 @@ const Jobs = () => {
                         </Select>
                     </FormControl>
 
-                <Button variant="contained" color="secondary" onClick={search}>Search</Button>
+                <Button variant="contained" color="secondary"  >Search</Button>
             </Stack>
             <div>
                 <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='10px 0px 0px 30px'>
@@ -314,9 +306,9 @@ const Jobs = () => {
                       direction="row"
                       justifyContent="center"
                       alignItems="center">
-                    {loading ? filteredList.map((item: any) => {
+                    {loading ? jobs.map((item: any, index: number) => {
                         return (
-                            <div className={classes.JobcardBody} key={item.id}>
+                            <div className={classes.JobcardBody} key={index}>
                                 <Grid container  sx={{m:2}} width={"fit-content"}>
                                     <Grid item xs={3}>
                                         <Avatar
@@ -401,9 +393,9 @@ const Jobs = () => {
                       direction="row"
                       justifyContent="center"
                       alignItems="center">
-                    {loading ? ljobs.map((item: any) => {
-                        return (
-                            <div className={classes.JobcardBody} key={item.id}>
+                    {loading ? ljobs.map((item: any, index: number) => {
+                            return (
+                                <div className={classes.JobcardBody} key={index}>
                                 <Grid container  sx={{m:2}} width={"fit-content"}>
                                     <Grid item xs={3}>
                                         <Avatar
