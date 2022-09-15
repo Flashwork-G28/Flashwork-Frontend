@@ -45,7 +45,7 @@ function createData(
 }
 
 const rows = [
-    createData('Udesh Lakshan', 'Job Seeker'),
+    createData('Ananda Rajakaruna', 'Job Seeker'),
     createData('Rashmika Malshan', 'Job Seeker'),
     createData('Shalani Hansika', 'Manpower agency'),
     createData('Lakshitha Shehan', 'Job Provider'),
@@ -76,7 +76,7 @@ const JobDashboardSaveJobSeeker = () => {
                   style={{marginBottom:'30px'}}>
 
                 <Grid item xs={6}>
-                    <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Requested Worker</Typography>
+                    <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Saved Workers</Typography>
 
                 </Grid>
                 <Grid item xs={6}>
@@ -91,7 +91,7 @@ const JobDashboardSaveJobSeeker = () => {
                   justifyContent="flex-start"
                   alignItems="flex-start"
                   >
-                <Grid style={{backgroundColor:'red'}} item xs={4} spacing={2}>
+                <Grid item xs={4} spacing={2}>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 270 }} aria-label="customized table">
@@ -117,8 +117,8 @@ const JobDashboardSaveJobSeeker = () => {
 
                     </Paper>
                 </Grid>
-                <Grid style={{backgroundColor:'red'}} item xs={8} >
-                    <Paper style={{backgroundColor:'blue',marginLeft:'25px'}}>
+                <Grid item xs={8} >
+                    <Paper style={{marginLeft:'25px'}}>
                         <JobSeekerReqProfile />
                     </Paper>
 

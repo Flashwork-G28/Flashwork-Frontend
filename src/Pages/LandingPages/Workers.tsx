@@ -124,10 +124,9 @@ const Workers = () => {
         payment_type:'',
         pay: '',
         description: '',
+        category:'',
+
     }
-
-
-
 
     const [ formValues, setFormValues ] = useState(defaultValues);
 
@@ -144,8 +143,6 @@ const Workers = () => {
     const handleChangePayment_type = (event: SelectChangeEvent) => {
         setPayment_type(event.target.value);
     };
-
-
 
     const handleClickFavorite = () => {
     };
@@ -242,9 +239,57 @@ const Workers = () => {
             });
     }
 
+    //---------------------- manpower aguncy --------------------------------------------------------
+    async function getMAWorkers() {
+        try {
+            const response = await axios.get('http://localhost:8000/workers/ManPower');
+            const data = response.data;
+            console.log("data");
+            console.log(data);
+            // data.map((item: any) => {
+            //     console.log("data");
+            //     console.log(item.user_id);
+            //     setWorkers((prevState: any) => [...prevState, {
+            //         user_id: item.user_id,
+            //         first_name: item.first_name,
+            //         last_name: item.last_name,
+            //         img:item.img,
+            //         category: item.category,
+            //         description: item.description,
+            //         complet_count: item.complet_count,
+            //         rate: item.rate,
+            //     }])
+            //     return null;
+            // });
+        } catch (any) {
+            console.error(any);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!'
+            })
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     useEffect(() => {
         getWorkers();
         setLoading(true);
+        getMAWorkers();
     }, [])
 
 
@@ -361,8 +406,7 @@ const Workers = () => {
                                                                       value={formValues.city}
                                                                       onChange={handleInputChange}
                                                                       fullWidth
-                                                                      label='City'
-                                                                  >
+                                                                      label='City'>
                                                                       <MenuItem value=""><em>All Cities</em></MenuItem>
                                                                       <MenuItem value="Ampara">Ampara</MenuItem>
                                                                       <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
@@ -499,6 +543,7 @@ const Workers = () => {
                           </Grid>
                       </Grid>
 
+{/*------------------------- ManPower Aguncy Popup page --------------------------------------------------*/}
 
                       <Dialog open={openMP} onClose={handleCloseMP}>
                           <DialogContent>
@@ -510,54 +555,42 @@ const Workers = () => {
                                             alignItems="flex-start">
                                           <Grid xs={4} direction="column">
                                               <Grid item xs={6} sx={{m: 2}}>
-                                                  <FormControl>
-                                                      {/*<LocalizationProvider dateAdapter={AdapterDateFns} >*/}
-                                                      {/*<DesktopDatePicker*/}
-                                                      {/*    label="Date desktop"*/}
-                                                      {/*    inputFormat="MM/dd/yyyy"*/}
-                                                      {/*    value={value}*/}
-                                                      {/*    onChange={handleChange}*/}
-                                                      {/*    renderInput={(params) => <TextField {...params} sx={{ width: 1/1 }}/>}/>*/}
-                                                      {/*</LocalizationProvider>*/}
-
-                                                      <TextField
-                                                          required
-                                                          id="outlined-required"
+                                                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                      <DatePicker
                                                           label="Date"
-                                                          defaultValue="Date"
+                                                          value={required_date}
+                                                          onChange={(newValue) => {
+                                                              setRequired_date(newValue);
+                                                          }}
+                                                          renderInput={(params) => <TextField {...params}/>}
                                                       />
-                                                  </FormControl>
+                                                  </LocalizationProvider>
 
                                               </Grid>
                                               <Grid item xs={4} sx={{m: 2}}>
-                                                  <FormControl>
+                                                  <FormControl fullWidth >
+                                                      <InputLabel id="demo-select-small">Category</InputLabel>
                                                       <Select
-                                                          // fullWidth
-                                                          labelId="demo-simple-select-label"
-                                                          id="demo-simple-select"
-                                                          label="Category">
-                                                          <MenuItem value={"Restaurant & food services"}>Restaurant & food
-                                                              services</MenuItem>
-                                                          <MenuItem value={"Transportation & delivery"}>Transportation &
-                                                              delivery</MenuItem>
-                                                          <MenuItem value={"Retail & Production"}>Retail &
-                                                              Production</MenuItem>
-                                                          <MenuItem value={"Office work & Administration"}>Office work &
-                                                              Administration</MenuItem>
-                                                          <MenuItem value={"General services"}>General services</MenuItem>
-                                                          <MenuItem value={"Others"}>Others</MenuItem>
+                                                          required
+                                                          labelId='selectCity'
+                                                          id='category'
+                                                          name='category'
+                                                          value={formValues.category}
+                                                          onChange={handleInputChange}
+                                                          fullWidth
+                                                          label='Category'>
+
+                                                          <MenuItem value="Restaurant & food services">Restaurant & food services</MenuItem>
+                                                          <MenuItem value="Transportation & delivery">Transportation & delivery</MenuItem>
+                                                          <MenuItem value="Retail & Production">Retail & Production</MenuItem>
+                                                          <MenuItem value="Office work & Administration">Office work & Administration</MenuItem>
+                                                          <MenuItem value="General services">General services</MenuItem>
+                                                          <MenuItem value="Others">Others</MenuItem>
+
                                                       </Select>
                                                   </FormControl>
                                               </Grid>
-                                              <Grid item xs={4} sx={{m: 2}}>
-                                                  <TextField
-                                                      label="Mobile"
-                                                      id="outlined-start-adornment"
-                                                      InputProps={{
-                                                          startAdornment: <InputAdornment
-                                                              position="start">+94</InputAdornment>,
-                                                      }}/>
-                                              </Grid>
+
                                           </Grid>
                                           <Grid xs={4} direction="column">
                                               <Grid item xs={6} sx={{m: 2}}>
@@ -572,39 +605,76 @@ const Workers = () => {
                                                   />
                                               </Grid>
                                               <Grid item xs={6} sx={{m: 2}}>
-                                                  <Select
-                                                      fullWidth
-                                                      labelId="demo-simple-select-label"
-                                                      id="demo-simple-select"
-                                                      label="Payment Method">
-                                                      <MenuItem value={"Cash"}>Chash</MenuItem>
-                                                      <MenuItem value={"Online"}>Online</MenuItem>
-                                                  </Select>
+                                                  <FormControl fullWidth >
+                                                      <InputLabel id="demo-select-small">Payment Type</InputLabel>
+                                                      <Select
+                                                          labelId="demo-simple-select-label"
+                                                          id="demo-simple-select"
+                                                          label="Payment Method"
+                                                          name='payment_type'
+                                                          value={formValues.payment_type}
+                                                          onChange={handleInputChange}>
+                                                          <MenuItem value={"0"}>Cash</MenuItem>
+                                                          <MenuItem value={"1"}>Online</MenuItem>
+                                                      </Select>
+                                                  </FormControl>
                                               </Grid>
-
-
                                           </Grid>
                                           <Grid xs={4} direction="column">
-                                              <Grid item xs={6} sx={{m: 2}}>
-                                                  <TextField fullWidth id="last-name" label="City" variant="outlined"
-                                                             required/>
+                                              <Grid item xs={6} sx={{ m: 2 }}>
+                                                  <FormControl fullWidth >
+                                                      <InputLabel id="demo-select-small">City</InputLabel>
+                                                      <Select
+                                                          required
+                                                          labelId='selectCity'
+                                                          id='city'
+                                                          name='city'
+                                                          value={formValues.city}
+                                                          onChange={handleInputChange}
+                                                          fullWidth
+                                                          label='City'>
+                                                          <MenuItem value=""><em>All Cities</em></MenuItem>
+                                                          <MenuItem value="Ampara">Ampara</MenuItem>
+                                                          <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                                                          <MenuItem value="Badulla">Badulla</MenuItem>
+                                                          <MenuItem value="Batticaloa">Batticaloa</MenuItem>
+                                                          <MenuItem value="Colombo">Colombo</MenuItem>
+                                                          <MenuItem value="Galle">Galle</MenuItem>
+                                                          <MenuItem value="Gampaha">Gampaha</MenuItem>
+                                                          <MenuItem value="Hambantota">Hambantota</MenuItem>
+                                                          <MenuItem value="Jaffna">Jaffna</MenuItem>
+                                                          <MenuItem value="Kalutara">Kalutara</MenuItem>
+                                                          <MenuItem value="Kandy">Kandy</MenuItem>
+                                                          <MenuItem value="Kegalle">Kegalle</MenuItem>
+                                                          <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                                                          <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                                                          <MenuItem value="Mannar">Mannar</MenuItem>
+                                                          <MenuItem value="Matale">Matale</MenuItem>
+                                                          <MenuItem value="Matara">Matara</MenuItem>
+                                                          <MenuItem value="Monaragala">Monaragala</MenuItem>
+                                                          <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                                                          <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                                                          <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                                                          <MenuItem value="Puttalam">Puttalam</MenuItem>
+                                                          <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                                                          <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                                                          <MenuItem value="Vavuniya">Vavuniya</MenuItem>
+                                                      </Select>
+                                                  </FormControl>
                                               </Grid>
 
                                               <Grid item xs={6} sx={{m: 2}}>
                                                   <TextField
-                                                      label="One Worker Payment "
-                                                      id="outlined-start-adornment"
-                                                      InputProps={{
-                                                          startAdornment: <InputAdornment
-                                                              position="start">LKR</InputAdornment>,
-                                                      }}
-                                                  />
+                                                      required
+                                                      label="(LKR)One hour Payment "
+                                                      id='pay'
+                                                      name='pay'
+                                                      type='number'
+                                                      value={formValues.pay}
+                                                      onChange={handleInputChange}/>
                                               </Grid>
 
                                           </Grid>
-                                          {/*<Grid  xs={3} direction="column"  >*/}
-                                          {/*    <TextField fullWidth label="Description" id="fullWidth" />*/}
-                                          {/*</Grid>*/}
 
                                       </Grid>
 
@@ -618,10 +688,6 @@ const Workers = () => {
                                           </Grid>
 
                                       </Grid>
-
-                                      {/*<Grid className={classes.sendAdd} >*/}
-                                      {/*    <Button className={classes.closeIcon} variant="contained" >Booking</Button>*/}
-                                      {/*</Grid>*/}
                                   </form>
                               </Card>
                           </DialogContent>
@@ -631,6 +697,9 @@ const Workers = () => {
 
                           </DialogActions>
                       </Dialog>
+
+
+
                   </div>
                   {/*);*/}
               </Grid>

@@ -16,6 +16,17 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import {useAuth0} from "@auth0/auth0-react";
 
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Card from "@mui/material/Card";
+import Box from '@mui/material/Box';
+
+
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -39,24 +50,47 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(
-    name: string,
-    category: string,
-    reg: string,
-    pymMethod: string,
-    status: string,
+// function bookingWorkers(
+//     id : string,
+//     category : string,
+//     description : string,
+//     jobSeeker_first_name : string,
+//     job_seeker_id: string,
+//     jobSeeker_last_name : string,
+//     location : string,
+//     mobile: string,
+//     pay : string,
+//     payment_type : string,
+//     req_date: string,
+//     required_date : string,
+//     job_status : string,
+//     type: string,
+//     worker_count:string,
+//
+// ) {
+//     return {
+//         id ,
+//         category,
+//         description ,
+//         jobSeeker_first_name,
+//         job_seeker_id,
+//         jobSeeker_last_name,
+//         location,
+//         mobile,
+//         pay,
+//         payment_type,
+//         req_date,
+//         required_date,
+//         job_status,
+//         type,
+//         worker_count};
+// }
 
-) {
-    return { name, category, reg, pymMethod, status };
-}
-
-const rows = [
-    createData('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Cash', 'None'),
-    createData('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Cash', 'None'),
-    createData('Shalani Hansika', 'Manpower agency', '22/08/2022', 'Cash', 'None'),
-    createData('Lakshitha Shehan', 'Job Provider', '11/08/2022', 'Online', 'Accept'),
-    createData('Chavinda Perera', 'Job Provider', '09/08/2022', 'Cash', 'Accept'),
-];
+// const rows = [
+//     bookingWorkers('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Cash', 'None',),
+//     bookingWorkers('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Cash', 'None'),
+//
+// ];
 
 
 const JobDashboardWorkerTable = () => {
@@ -65,33 +99,77 @@ const JobDashboardWorkerTable = () => {
         user
     } = useAuth0();
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [workers, setBookingWorkers]= useState<any>([]);
+    // const [page, setPage] = React.useState(0);
+    // const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [bookingWorkers, setBookingWorkers]= useState<any>([]);
+    const [popUpWorker, setPopupDetails]= useState<any>();
+    const [open, setOpen] = React.useState(false);
 
-    const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
+    // const handleChangePage = (event: unknown, newPage: number) => {
+    //     setPage(newPage);
+    // };
+    //
+    // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setRowsPerPage(+event.target.value);
+    //     setPage(0);
+    // };
+
+    const handleClickOpen = (prop : any) => {
+        console.log("prop");
+        console.log(prop);
+        console.log(prop.type);
+
+
+
+        setPopupDetails(prop);
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
     };
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
+    // const handleClickOpen = (id:any) => {
+    //     if(user?.family_name==="JobProvider"){
+    //         setSeeker_id(id);
+    //         setOpen(true);
+    //     }else {
+    //         navigate("/signUp/JobProvider", { replace: false });
+    //     }
+    // };
 
 
     async function getBookingWorkers() {
         let providerID:any = user?.sub;
         providerID = providerID.substring(6)
-        let provider_id:any = user?.sub;
-        provider_id = provider_id.substring(6);
 
-        axios.post('http://localhost:8000/workers/booking', {
-
-
+        axios.post('http://localhost:8000/jobProvider', {
+            job_provider_id : providerID,
 
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response.data);
+                const data = response.data;
+
+                data.map((item: any) => {
+                    setBookingWorkers((prevState: any) => [...prevState, {
+                        id : item.id,
+                        category : item.category,
+                        description : item.description,
+                        jobSeeker_first_name : item.first_name,
+                        job_seeker_id: item.job_seeker_id,
+                        jobSeeker_last_name : item.last_name,
+                        location : item.location,
+                        mobile: item.mobile,
+                        pay : item.pay,
+                        payment_type : item.payment_type,
+                        req_date: item.req_date,
+                        required_date : item.required_date,
+                        job_status : item.status,
+                        type: item.type,
+                        worker_count:item.worker_count,
+                    }])
+                    return null;
+                });
 
             })
             .catch(function (error) {
@@ -99,8 +177,10 @@ const JobDashboardWorkerTable = () => {
             });
     }
 
+
     useEffect(() => {
         getBookingWorkers();
+
         // setLoading(true);
     }, [])
 
@@ -114,7 +194,6 @@ const JobDashboardWorkerTable = () => {
 
                 <Grid item xs={6}>
                     <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Requested Worker</Typography>
-
                 </Grid>
                 <Grid item xs={6}>
                     <SearchBar />
@@ -125,41 +204,109 @@ const JobDashboardWorkerTable = () => {
 
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <Table sx={{ minWidth: 700 }} aria-label="sticky table" >
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell align="left">Requested Date</StyledTableCell>
                                 <StyledTableCell align="left">Name</StyledTableCell>
+                                <StyledTableCell align="left">Type</StyledTableCell>
                                 <StyledTableCell align="left">Category</StyledTableCell>
-                                <StyledTableCell align="left">Payment Method</StyledTableCell>
                                 <StyledTableCell align="left">Status</StyledTableCell>
+                                <StyledTableCell align="left">   </StyledTableCell>
 
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <StyledTableRow key={row.name}>
-                                    <StyledTableCell align="left">{row.reg}</StyledTableCell>
-                                    <StyledTableCell component="th" scope="row" align="left">{row.name} </StyledTableCell>
-                                    <StyledTableCell align="left">{row.category}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.pymMethod}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.status}</StyledTableCell>
+                            {bookingWorkers.map((item: any,index:Number) => (
+                                <StyledTableRow key={item.index}>
+                                    <StyledTableCell component="th" scope="row">{item.req_date}</StyledTableCell>
+                                    <StyledTableCell align="left">{item.jobSeeker_first_name}{' '}{item.jobSeeker_last_name}</StyledTableCell>
+                                    <StyledTableCell align="left">{item.type}</StyledTableCell>
+                                    <StyledTableCell align="left">{item.category}</StyledTableCell>
+                                    <StyledTableCell align="left">None</StyledTableCell>
+                                    <StyledTableCell align="left"><Button variant="contained" size="small" onClick={() => handleClickOpen({item})}>View</Button></StyledTableCell>
                                 </StyledTableRow>
-                            ))}
+                                ))}
                         </TableBody>
+
                     </Table>
                 </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 15, 90]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+
             </Paper>
 
+            <Dialog open={open} onClose={handleClose} >
+                    <DialogContent>
+                        <Card style={{width:'300px', padding:'20px'}}>
+
+                            <Grid container
+                                  direction="column"
+                                  justifyContent="flex-start"
+                                  alignItems="flex-start">
+
+                                <Grid item xs={4} container>
+                                    <Typography variant="h4" marginBottom="20px" color="#4E2363" fontWeight="1000">Dilum Ariyathilaka</Typography>
+
+                                </Grid>
+                                <Grid item xs={8} container
+                                      direction="column"
+                                      justifyContent="flex-start"
+                                      alignItems="flex-start">
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Type : <span style={{color:"#4E2363"}}>Job Seeker</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Category : <span style={{color:"#4E2363"}}>Office work & Administration</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Worker Count : <span style={{color:"#4E2363"}}>01</span></Typography>
+                                        <Typography variant="subtitle1" marginBottom="5px" color="#878787">Required Date : <span style={{color:"#4E2363" , fontWeight:"700"}}>2022 / 09 / 14</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Status : <span style={{color:"Blue"}}>None</span></Typography>
+                                    </Grid>
+                                    <Grid item xs={6} style={{marginTop:"20px"}} container
+                                          direction="column"
+                                          justifyContent="space-between"
+                                          alignItems="flex-start">
+                                        <Grid  container
+                                               direction="row"
+                                               justifyContent="space-between"
+                                               alignItems="flex-start">
+                                            <Grid item xs={6} marginBottom="20px">
+                                                <Typography variant="body2" color="#878787">Request Date</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">2022/09/20</Typography>
+                                            </Grid>
+                                            <Grid item xs={6} marginBottom="20px">
+                                                <Typography variant="body2" color="#878787">Location</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">Nugegoda</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container
+                                              direction="row"
+                                              justifyContent="space-between"
+                                              alignItems="flex-start">
+                                            <Grid item xs={6} marginBottom="20px">
+                                                <Typography variant="body2" color="#878787">Payment Type</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">Online</Typography>
+                                            </Grid>
+                                            <Grid item xs={6} marginBottom="20px">
+                                                <Typography variant="body2" color="#878787">1 hour Payment</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363" fontWeight="700">LKR 500</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid>
+                                            <Typography variant="body2" color="#878787">Description</Typography>
+                                            <Typography variant="subtitle1" color="#4E2363">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+                                                neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
+                                                Eum quasi quidem quibusdam.
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </Card>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} variant='outlined'>Cancel</Button>
+                    </DialogActions>
+
+            </Dialog>
 
         </div>
     );

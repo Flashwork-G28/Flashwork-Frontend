@@ -28,7 +28,7 @@ const JobSeekerReqProfile = () => {
     return (
         <div>
             {/*<h1  className={classes.link}>Ananda Rajakaruna</h1>*/}
-            <Box  sx={{ flexGrow: 1 }}>
+            <Box  sx={{ flexGrow: 1 }} style={{ paddingLeft:'25px'}}>
                 <Grid  container spacing={2} >
                     <Grid  item xs={12} >
                         <Item style={{boxShadow:'none'}}><h2>Ananda Rajakaruna</h2></Item>
@@ -48,7 +48,7 @@ const JobSeekerReqProfile = () => {
                     </Grid>
                     <Grid item xs={6}>
                         <Item style={{boxShadow:'none'}}>
-                            <img src={RequestProfile} width={"100px"} height={"100px"} alt={"RequestProfile"}/>
+                            <img src={RequestProfile} width={"150px"} height={"150px"} alt={"RequestProfile"}/>
                         </Item>
                     </Grid>
                     <Grid item xs={12}>
