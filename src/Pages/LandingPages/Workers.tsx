@@ -125,7 +125,6 @@ const Workers = () => {
         pay: '',
         description: '',
         category:'',
-
     }
 
     const [ formValues, setFormValues ] = useState(defaultValues);
@@ -166,11 +165,7 @@ const Workers = () => {
         try {
             const response = await axios.get('http://localhost:8000/workers/');
             const data = response.data;
-            console.log("data");
-            console.log(data);
             data.map((item: any) => {
-                console.log("data");
-                console.log(item.user_id);
                 setWorkers((prevState: any) => [...prevState, {
                     user_id: item.user_id,
                     first_name: item.first_name,
@@ -246,21 +241,21 @@ const Workers = () => {
             const data = response.data;
             console.log("data");
             console.log(data);
-            // data.map((item: any) => {
-            //     console.log("data");
-            //     console.log(item.user_id);
-            //     setWorkers((prevState: any) => [...prevState, {
-            //         user_id: item.user_id,
-            //         first_name: item.first_name,
-            //         last_name: item.last_name,
-            //         img:item.img,
-            //         category: item.category,
-            //         description: item.description,
-            //         complet_count: item.complet_count,
-            //         rate: item.rate,
-            //     }])
-            //     return null;
-            // });
+            data.map((item: any) => {
+                console.log("data");
+                console.log(item.user_id);
+                setWorkers((prevState: any) => [...prevState, {
+                    user_id: item.user_id,
+                    first_name: item.first_name,
+                    last_name: item.last_name,
+                    img:item.img,
+                    category: item.category,
+                    description: item.description,
+                    complet_count: item.complet_count,
+                    rate: item.rate,
+                }])
+                return null;
+            });
         } catch (any) {
             console.error(any);
             Swal.fire({
