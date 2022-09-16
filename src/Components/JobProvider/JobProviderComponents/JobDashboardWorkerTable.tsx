@@ -41,7 +41,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const JobDashboardWorkerTable = () => {    // ----------------------------- call dashboard loading
+const JobDashboardWorkerTable = () => {    // ----------------------- call dashboard loading
 
     const {
         user
@@ -51,15 +51,15 @@ const JobDashboardWorkerTable = () => {    // ----------------------------- call
     const [dailogData, setdailogData]= useState<any>({});
     const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = (prop : any) => {
+    const handleClickOpen = (prop : any) => {   // ------------------ Open the popup box
         setdailogData(prop)
         setOpen(true);
     };
-    const handleClose = () => {
+    const handleClose = () => {      // ----------------------------- Close the popup box
         setOpen(false);
     };
 
-    async function getBookingWorkers() {          // ------------- get the Requested worker details for the table
+    async function getBookingWorkers() {          // ---------------- get the Requested worker details for the table
         let providerID:any = user?.sub;
         providerID = providerID.substring(6)
 
@@ -152,7 +152,7 @@ const JobDashboardWorkerTable = () => {    // ----------------------------- call
 
             </Paper>
 
-            <Dialog open={open} onClose={handleClose} >    {/* --------table of requested worker full details in popup box */}
+            <Dialog open={open} onClose={handleClose} >    {/* -------------------table of requested worker full details in popup box */}
                     <DialogContent>
                         <Card style={{width:'300px', padding:'20px'}}>
 
