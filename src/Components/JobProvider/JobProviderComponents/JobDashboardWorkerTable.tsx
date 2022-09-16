@@ -6,26 +6,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import Button from "@mui/material/Button";
-import TablePagination from "@mui/material/TablePagination";
 import {styled} from "@mui/material/styles";
 import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import SearchBar from "../../CommonComponent/SearchBar";
 import axios from "axios";
-import Swal from "sweetalert2";
 import {useAuth0} from "@auth0/auth0-react";
-
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import Card from "@mui/material/Card";
-import Box from '@mui/material/Box';
-
-
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -44,102 +35,31 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
-    // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
 }));
 
-// function bookingWorkers(
-//     id : string,
-//     category : string,
-//     description : string,
-//     jobSeeker_first_name : string,
-//     job_seeker_id: string,
-//     jobSeeker_last_name : string,
-//     location : string,
-//     mobile: string,
-//     pay : string,
-//     payment_type : string,
-//     req_date: string,
-//     required_date : string,
-//     job_status : string,
-//     type: string,
-//     worker_count:string,
-//
-// ) {
-//     return {
-//         id ,
-//         category,
-//         description ,
-//         jobSeeker_first_name,
-//         job_seeker_id,
-//         jobSeeker_last_name,
-//         location,
-//         mobile,
-//         pay,
-//         payment_type,
-//         req_date,
-//         required_date,
-//         job_status,
-//         type,
-//         worker_count};
-// }
 
-// const rows = [
-//     bookingWorkers('Udesh Lakshan', 'Job Seeker', '07/08/2022', 'Cash', 'None',),
-//     bookingWorkers('Rashmika Malshan', 'Job Seeker', '13/08/2022', 'Cash', 'None'),
-//
-// ];
-
-
-const JobDashboardWorkerTable = () => {
+const JobDashboardWorkerTable = () => {    // ----------------------------- call dashboard loading
 
     const {
         user
     } = useAuth0();
 
-    // const [page, setPage] = React.useState(0);
-    // const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [bookingWorkers, setBookingWorkers]= useState<any>([]);
     const [dailogData, setdailogData]= useState<any>({});
-    const [popUpWorker, setPopupDetails]= useState<any>();
     const [open, setOpen] = React.useState(false);
 
-    // const handleChangePage = (event: unknown, newPage: number) => {
-    //     setPage(newPage);
-    // };
-    //
-    // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setRowsPerPage(+event.target.value);
-    //     setPage(0);
-    // };
-
     const handleClickOpen = (prop : any) => {
-        console.log("prop");
-        console.log(prop);
-        console.log(prop.type);
-
         setdailogData(prop)
-
-        setPopupDetails(prop);
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
     };
 
-    // const handleClickOpen = (id:any) => {
-    //     if(user?.family_name==="JobProvider"){
-    //         setSeeker_id(id);
-    //         setOpen(true);
-    //     }else {
-    //         navigate("/signUp/JobProvider", { replace: false });
-    //     }
-    // };
-
-
-    async function getBookingWorkers() {
+    async function getBookingWorkers() {          // ------------- get the Requested worker details for the table
         let providerID:any = user?.sub;
         providerID = providerID.substring(6)
 
@@ -148,7 +68,6 @@ const JobDashboardWorkerTable = () => {
 
         })
             .then(function (response) {
-                // console.log(response.data);
                 const data = response.data;
 
                 data.map((item: any) => {
@@ -181,8 +100,6 @@ const JobDashboardWorkerTable = () => {
 
     useEffect(() => {
         getBookingWorkers();
-
-        // setLoading(true);
     }, [])
 
     return (
@@ -203,7 +120,7 @@ const JobDashboardWorkerTable = () => {
             </Grid>
 
 
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>   {/* -------------table of requested worker */}
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="sticky table" >
                         <TableHead>
@@ -235,7 +152,7 @@ const JobDashboardWorkerTable = () => {
 
             </Paper>
 
-            <Dialog open={open} onClose={handleClose} >
+            <Dialog open={open} onClose={handleClose} >    {/* --------table of requested worker full details in popup box */}
                     <DialogContent>
                         <Card style={{width:'300px', padding:'20px'}}>
 
