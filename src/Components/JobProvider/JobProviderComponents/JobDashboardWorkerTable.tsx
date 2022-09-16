@@ -102,6 +102,7 @@ const JobDashboardWorkerTable = () => {
     // const [page, setPage] = React.useState(0);
     // const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [bookingWorkers, setBookingWorkers]= useState<any>([]);
+    const [dailogData, setdailogData]= useState<any>({});
     const [popUpWorker, setPopupDetails]= useState<any>();
     const [open, setOpen] = React.useState(false);
 
@@ -119,7 +120,7 @@ const JobDashboardWorkerTable = () => {
         console.log(prop);
         console.log(prop.type);
 
-
+        setdailogData(prop)
 
         setPopupDetails(prop);
         setOpen(true);
@@ -223,8 +224,8 @@ const JobDashboardWorkerTable = () => {
                                     <StyledTableCell align="left">{item.jobSeeker_first_name}{' '}{item.jobSeeker_last_name}</StyledTableCell>
                                     <StyledTableCell align="left">{item.type}</StyledTableCell>
                                     <StyledTableCell align="left">{item.category}</StyledTableCell>
-                                    <StyledTableCell align="left">None</StyledTableCell>
-                                    <StyledTableCell align="left"><Button variant="contained" size="small" onClick={() => handleClickOpen({item})}>View</Button></StyledTableCell>
+                                    <StyledTableCell align="left">{item.job_status}</StyledTableCell>
+                                    <StyledTableCell align="left"><Button variant="contained" size="small" onClick={() => handleClickOpen(item)}>View</Button></StyledTableCell>
                                 </StyledTableRow>
                                 ))}
                         </TableBody>
@@ -244,7 +245,7 @@ const JobDashboardWorkerTable = () => {
                                   alignItems="flex-start">
 
                                 <Grid item xs={4} container>
-                                    <Typography variant="h4" marginBottom="20px" color="#4E2363" fontWeight="1000">Dilum Ariyathilaka</Typography>
+                                    <Typography variant="h4" marginBottom="20px" color="#4E2363" fontWeight="1000">{dailogData.jobSeeker_first_name} {dailogData.jobSeeker_last_name}</Typography>
 
                                 </Grid>
                                 <Grid item xs={8} container
@@ -252,11 +253,11 @@ const JobDashboardWorkerTable = () => {
                                       justifyContent="flex-start"
                                       alignItems="flex-start">
                                     <Grid item xs={6}>
-                                        <Typography variant="body2" marginBottom="5px" color="#878787">Type : <span style={{color:"#4E2363"}}>Job Seeker</span></Typography>
-                                        <Typography variant="body2" marginBottom="5px" color="#878787">Category : <span style={{color:"#4E2363"}}>Office work & Administration</span></Typography>
-                                        <Typography variant="body2" marginBottom="5px" color="#878787">Worker Count : <span style={{color:"#4E2363"}}>01</span></Typography>
-                                        <Typography variant="subtitle1" marginBottom="5px" color="#878787">Required Date : <span style={{color:"#4E2363" , fontWeight:"700"}}>2022 / 09 / 14</span></Typography>
-                                        <Typography variant="body2" marginBottom="5px" color="#878787">Status : <span style={{color:"Blue"}}>None</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Type : <span style={{color:"#4E2363"}}>{dailogData.type}</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Category : <span style={{color:"#4E2363"}}>{dailogData.category}</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Worker Count : <span style={{color:"#4E2363"}}>{dailogData.worker_count}</span></Typography>
+                                        <Typography variant="subtitle1" marginBottom="5px" color="#878787">Required Date : <span style={{color:"#4E2363" , fontWeight:"700"}}>{dailogData.req_date}</span></Typography>
+                                        <Typography variant="body2" marginBottom="5px" color="#878787">Status : <span style={{color:"Blue"}}>{dailogData.job_status}</span></Typography>
                                     </Grid>
                                     <Grid item xs={6} style={{marginTop:"20px"}} container
                                           direction="column"
@@ -268,11 +269,11 @@ const JobDashboardWorkerTable = () => {
                                                alignItems="flex-start">
                                             <Grid item xs={6} marginBottom="20px">
                                                 <Typography variant="body2" color="#878787">Request Date</Typography>
-                                                <Typography variant="subtitle1" color="#4E2363">2022/09/20</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">{dailogData.required_date}</Typography>
                                             </Grid>
                                             <Grid item xs={6} marginBottom="20px">
                                                 <Typography variant="body2" color="#878787">Location</Typography>
-                                                <Typography variant="subtitle1" color="#4E2363">Nugegoda</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">{dailogData.location}</Typography>
                                             </Grid>
                                         </Grid>
                                         <Grid container
@@ -281,20 +282,16 @@ const JobDashboardWorkerTable = () => {
                                               alignItems="flex-start">
                                             <Grid item xs={6} marginBottom="20px">
                                                 <Typography variant="body2" color="#878787">Payment Type</Typography>
-                                                <Typography variant="subtitle1" color="#4E2363">Online</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363">{dailogData.payment_type}</Typography>
                                             </Grid>
                                             <Grid item xs={6} marginBottom="20px">
                                                 <Typography variant="body2" color="#878787">1 hour Payment</Typography>
-                                                <Typography variant="subtitle1" color="#4E2363" fontWeight="700">LKR 500</Typography>
+                                                <Typography variant="subtitle1" color="#4E2363" fontWeight="700">LKR {dailogData.pay}</Typography>
                                             </Grid>
                                         </Grid>
                                         <Grid>
                                             <Typography variant="body2" color="#878787">Description</Typography>
-                                            <Typography variant="subtitle1" color="#4E2363">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-                                                neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-                                                Eum quasi quidem quibusdam.
-                                            </Typography>
+                                            <Typography variant="subtitle1" color="#4E2363">{dailogData.description}</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
