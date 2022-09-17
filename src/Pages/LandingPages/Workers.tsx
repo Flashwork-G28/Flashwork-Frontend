@@ -116,8 +116,14 @@ const Workers = () => {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [seeker_id, setSeeker_id] = useState('');
+    const [ma_id, setMAseeker_id] = useState('');
+    const [form_category, setMAcategory] = useState('');
     const [payment_type, setPayment_type] = React.useState("Cash");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const [manpower, setMAWorkers]= useState<any>([]);
+    const [maLoading, setMALoading] = useState(false);
+
 
     const defaultValues = {
         city:'',
@@ -125,6 +131,8 @@ const Workers = () => {
         pay: '',
         description: '',
         category:'',
+        worker_count :'',
+
     }
 
     const [ formValues, setFormValues ] = useState(defaultValues);
@@ -152,8 +160,14 @@ const Workers = () => {
 
     const [openMP, setOpenMP] = React.useState(false);
 
-    const handleClickOpenMP = () => {
-        setOpenMP(true);
+    const handleClickOpenMP = (id:any,category:any) => {
+        if(user?.family_name==="JobProvider"){
+            setMAseeker_id(id);
+            setMAcategory(category);
+            setOpenMP(true);
+        }else {
+            navigate("/signUp/JobProvider", { replace: false });
+        }
     };
 
     const handleCloseMP = () => {
@@ -204,7 +218,7 @@ const Workers = () => {
         provider_id = provider_id.substring(6);
 
         axios.post('http://localhost:8000/workers/booking', {
-            job_seeker_id: seeker_id ,
+            job_seeker_id: seeker_id,
             job_provider_id: provider_id,
             req_date: required_date,
             city: formValues.city,
@@ -239,15 +253,10 @@ const Workers = () => {
         try {
             const response = await axios.get('http://localhost:8000/workers/ManPower');
             const data = response.data;
-            console.log("data");
-            console.log(data);
             data.map((item: any) => {
-                console.log("data");
-                console.log(item.user_id);
-                setWorkers((prevState: any) => [...prevState, {
+                setMAWorkers((prevState: any) => [...prevState, {
                     user_id: item.user_id,
-                    first_name: item.first_name,
-                    last_name: item.last_name,
+                    company_name: item.company_name,
                     img:item.img,
                     category: item.category,
                     description: item.description,
@@ -266,25 +275,54 @@ const Workers = () => {
         }
     }
 
+    const OnsubmitMP = (e: {target: any; preventDefault: () => void;}) => {
+        e.preventDefault();
 
+        let provider_id:any = user?.sub;
+        provider_id = provider_id.substring(6);
 
+        axios.post('http://localhost:8000/workers/bookingMA', {
+            ma_id: ma_id ,
+            job_provider_id: provider_id,
+            req_date: required_date,
+            city: formValues.city,
+            payment_type: formValues.payment_type,
+            pay: formValues.pay,
+            category:formValues.category,
+            worker_count: formValues.worker_count,
+            description: formValues.description,
 
+        })
+            .then(function (response) {
+                setOpenMP(false);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Booking success',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
 
+                setFormValues({
+                    ...defaultValues,
+                });
+                setValue(null);
 
-
-
-
-
-
-
-
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
 
 
     useEffect(() => {
         getWorkers();
         setLoading(true);
+
         getMAWorkers();
+        setMALoading(true);
+
     }, [])
 
 
@@ -319,7 +357,8 @@ const Workers = () => {
                                       <Grid item xs={6} container
                                             direction="column"
                                             alignItems="flex-end">
-                                          <FavoriteBorderIcon className={classes.favourite} onClick={handleClickFavorite} fontSize='medium' sx={{mr:5.8}} />
+                                          {/*className={classes.favourite}*/}
+                                          <div style={{marginRight:'50px' , backgroundColor:'none'}} onClick={handleClickFavorite}><FavoriteBorderIcon /></div>
                                           <Stack direction="row" spacing={0.5} sx={{mt:6.5 ,mr:5.8}} alignItems="flex-end">
                                               <StarIcon sx={{color:yellow[600]}}/>
                                               <Typography variant="subtitle2" fontWeight='500'>{item.rate}</Typography>
@@ -476,231 +515,237 @@ const Workers = () => {
 {/*------------------------- ManPower Aguncy Card and Form -------------------------------------------------------*/}
 
 
-          <div>
-              <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
-                  Top Rate Workers
-              </Typography>
 
-              <Grid className={classes.cardSection}  container  spacing={0.0}  direction="row" justifyContent="center"  alignItems="center">
+                  <div>
+                      <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
+                          ManPower Aguncy For You
+                      </Typography>
 
-                  {/*<WorkerCardMp />*/}
-                  {/*return (*/}
-                  <div className={classes.cardBody}>
+                      <Grid className={classes.cardSection} container spacing={0.0} direction="row" justifyContent="center"
+                            alignItems="center">
 
-                      <Grid
-                          container
-                          direction="column"
-                          margin='25px'>
+                          {maLoading? manpower.map((item: any) => {
+                                  return(
+                                      <div className={classes.cardBody}>
 
-                          <Grid className={classes.contentCard} sx={{width: '100%', height: 'fitContent'}}
-                                container
-                                justifyContent="space-between"
-                                alignItems="flex-start">
-                              <Grid item xs={6}>
-                                  <Avatar
-                                      alt="Remy Sharp"
-                                      src={pc1}
-                                      sx={{width: 100, height: 100}}/>
-                              </Grid>
-                              <Grid item xs={6} container
-                                    direction="column"
-                                    alignItems="flex-end">
-                                  <FavoriteBorderIcon fontSize='medium' sx={{mr: 5.8}}/>
-                                  <Stack direction="row" spacing={0.5} sx={{mt: 7, mr: 5.8}} alignItems="flex-end">
-                                      <StarIcon sx={{color: yellow[600]}}/>
-                                      <Typography variant="subtitle2" fontWeight='500'>4.5</Typography>
-                                      <Typography variant="subtitle2" fontWeight='500'>(2 reviews)</Typography>
-                                  </Stack>
+                                      <Grid
+                                          container
+                                          direction="column"
+                                          margin='25px'>
 
-                              </Grid>
+                                          <Grid className={classes.contentCard} sx={{width: '100%', height: 'fitContent'}}
+                                                container
+                                                justifyContent="space-between"
+                                                alignItems="flex-start">
+                                              <Grid item xs={6}>
+                                                  <Avatar
+                                                      alt="Remy Sharp"
+                                                      src={item.img}
+                                                      sx={{width: 100, height: 100}}/>
+                                              </Grid>
+                                              <Grid item xs={6} container
+                                                    direction="column"
+                                                    alignItems="flex-end">
+                                                  <FavoriteBorderIcon fontSize='medium' sx={{mr: 5.8}}/>
+                                                  <Stack direction="row" spacing={0.5} sx={{mt: 7, mr: 5.8}} alignItems="flex-end">
+                                                      <StarIcon sx={{color: yellow[600]}}/>
+                                                      <Typography variant="subtitle2" fontWeight='500'>{item.rate}</Typography>
+                                                      <Typography variant="subtitle2" fontWeight='500'>({item.complet_count} reviews)</Typography>
+                                                  </Stack>
 
-                          </Grid>
-                          <Grid alignItems="flex-start" className={classes.contentCard}>
-                              <div className={classes.line}></div>
-                              <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
-                                  Mohomad Faalil
-                              </Typography>
-                              <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                                  <span><WorkIcon fontSize='small'/></span> Home Repairs
-                              </Typography>
-                              <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                                  <span><CheckCircleOutlineIcon fontSize='small'/></span> 49 Minor Tasks Completed
-                              </Typography>
+                                              </Grid>
 
-                              <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px'
-                                          marginRight='25px' position='absolute'>
-                                  I have been repairing anything that needed it for 35 years.
-                                  I have an engineering degree, tools, and a truck. How can I help you?
-                              </Typography>
-                          </Grid>
-                          <Grid className={classes.booking}>
-                              <Button variant="contained" onClick={handleClickOpenMP}>Booking</Button>
-                          </Grid>
+                                          </Grid>
+                                          <Grid alignItems="flex-start" className={classes.contentCard}>
+                                              <div className={classes.line}></div>
+                                              <Typography variant="h6" component="h6" fontWeight='700' textAlign='left'>
+                                                  {item.company_name} {' '}Aguncy
+                                              </Typography>
+                                              <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
+                                                  <span><WorkIcon fontSize='small'/></span> {item.category}
+                                              </Typography>
+                                              <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
+                                                  <span><CheckCircleOutlineIcon fontSize='small'/></span>{item.complet_count} Completed All Task
+                                              </Typography>
+
+                                              <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px'
+                                                          marginRight='25px' position='absolute'>{item.description}
+                                              </Typography>
+                                          </Grid>
+                                          <Grid className={classes.booking}>
+                                              <Button variant="contained" onClick={() => handleClickOpenMP(item.user_id , item.category)}>Booking</Button>
+                                          </Grid>
+                                      </Grid>
+
+{/*--------------------------------------- ManPower Aguncy Popup page --------------------------------------------------*/}
+
+                                      <Dialog open={openMP} onClose={handleCloseMP}>
+                                          <DialogContent>
+                                              <Card>
+                                                  <form>
+                                                      <Grid container
+                                                            direction="row"
+                                                            justifyContent="flex-start"
+                                                            alignItems="flex-start">
+                                                          <Grid xs={4} direction="column">
+                                                              <Grid item xs={6} sx={{m: 2}}>
+                                                                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                                      <DatePicker
+                                                                          label="Date"
+                                                                          value={required_date}
+                                                                          onChange={(newValue) => {
+                                                                              setRequired_date(newValue);
+                                                                          }}
+                                                                          renderInput={(params) => <TextField {...params}/>}
+                                                                      />
+                                                                  </LocalizationProvider>
+
+                                                              </Grid>
+                                                              <Grid item xs={4} sx={{m: 2}}>
+                                                                  <FormControl fullWidth>
+                                                                      <InputLabel id="demo-select-small">Category</InputLabel>
+                                                                      <Select
+                                                                          required
+                                                                          labelId='selectCity'
+                                                                          id='category'
+                                                                          name='category'
+                                                                          value={formValues.category}
+                                                                          onChange={handleInputChange}
+                                                                          fullWidth
+                                                                          label='Category'>
+                                                                          <MenuItem value={form_category}>{form_category}</MenuItem>
+                                                                          <MenuItem value="Others">Others</MenuItem>
+                                                                      </Select>
+                                                                  </FormControl>
+                                                              </Grid>
+
+                                                          </Grid>
+                                                          <Grid xs={4} direction="column">
+                                                              <Grid item xs={6} sx={{m: 2}}>
+                                                                  <TextField
+                                                                      required
+                                                                      label="Number"
+                                                                      id='worker_count'
+                                                                      name='worker_count'
+                                                                      type='number'
+                                                                      value={formValues.worker_count}
+                                                                      onChange={handleInputChange}/>
+                                                              </Grid>
+                                                              <Grid item xs={6} sx={{m: 2}}>
+                                                                  <FormControl fullWidth>
+                                                                      <InputLabel id="demo-select-small">Payment Type</InputLabel>
+                                                                      <Select
+                                                                          labelId="demo-simple-select-label"
+                                                                          id="demo-simple-select"
+                                                                          label="Payment Method"
+                                                                          name='payment_type'
+                                                                          value={formValues.payment_type}
+                                                                          onChange={handleInputChange}>
+                                                                          <MenuItem value={"0"}>Cash</MenuItem>
+                                                                          <MenuItem value={"1"}>Online</MenuItem>
+                                                                      </Select>
+                                                                  </FormControl>
+                                                              </Grid>
+                                                          </Grid>
+                                                          <Grid xs={4} direction="column">
+                                                              <Grid item xs={6} sx={{m: 2}}>
+                                                                  <FormControl fullWidth>
+                                                                      <InputLabel id="demo-select-small">City</InputLabel>
+                                                                      <Select
+                                                                          required
+                                                                          labelId='selectCity'
+                                                                          id='city'
+                                                                          name='city'
+                                                                          value={formValues.city}
+                                                                          onChange={handleInputChange}
+                                                                          fullWidth
+                                                                          label='City'>
+                                                                          <MenuItem value=""><em>All Cities</em></MenuItem>
+                                                                          <MenuItem value="Ampara">Ampara</MenuItem>
+                                                                          <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                                                                          <MenuItem value="Badulla">Badulla</MenuItem>
+                                                                          <MenuItem value="Batticaloa">Batticaloa</MenuItem>
+                                                                          <MenuItem value="Colombo">Colombo</MenuItem>
+                                                                          <MenuItem value="Galle">Galle</MenuItem>
+                                                                          <MenuItem value="Gampaha">Gampaha</MenuItem>
+                                                                          <MenuItem value="Hambantota">Hambantota</MenuItem>
+                                                                          <MenuItem value="Jaffna">Jaffna</MenuItem>
+                                                                          <MenuItem value="Kalutara">Kalutara</MenuItem>
+                                                                          <MenuItem value="Kandy">Kandy</MenuItem>
+                                                                          <MenuItem value="Kegalle">Kegalle</MenuItem>
+                                                                          <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                                                                          <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                                                                          <MenuItem value="Mannar">Mannar</MenuItem>
+                                                                          <MenuItem value="Matale">Matale</MenuItem>
+                                                                          <MenuItem value="Matara">Matara</MenuItem>
+                                                                          <MenuItem value="Monaragala">Monaragala</MenuItem>
+                                                                          <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                                                                          <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                                                                          <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                                                                          <MenuItem value="Puttalam">Puttalam</MenuItem>
+                                                                          <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                                                                          <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                                                                          <MenuItem value="Vavuniya">Vavuniya</MenuItem>
+                                                                      </Select>
+                                                                  </FormControl>
+                                                              </Grid>
+
+                                                              <Grid item xs={6} sx={{m: 2}}>
+                                                                  <TextField
+                                                                      required
+                                                                      label="(LKR)One hour Payment "
+                                                                      id='pay'
+                                                                      name='pay'
+                                                                      type='number'
+                                                                      value={formValues.pay}
+                                                                      onChange={handleInputChange}/>
+                                                              </Grid>
+
+                                                          </Grid>
+
+                                                      </Grid>
+
+                                                      <Grid container
+                                                            direction="row"
+                                                            justifyContent="flex-start"
+                                                            alignItems="flex-start">
+                                                          <Grid item xs={12} sx={{m: 2}}>
+                                                              <TextField required
+                                                                         fullWidth
+                                                                         id='description'
+                                                                         name='description'
+                                                                         label='Description'
+                                                                         value={formValues.description}
+                                                                         onChange={handleInputChange}/>
+
+                                                          </Grid>
+
+                                                      </Grid>
+                                                  </form>
+                                              </Card>
+                                          </DialogContent>
+                                          <DialogActions>
+                                              <Button onClick={OnsubmitMP} variant="contained">Booking</Button>
+                                              <Button onClick={handleClose} variant='outlined'>Cancel</Button>
+
+                                          </DialogActions>
+                                      </Dialog>
+
+
+                                  </div>
+                                  );
+                          }) :<CircularProgress />}
+
+
+                          {/*);*/}
                       </Grid>
-
-{/*------------------------- ManPower Aguncy Popup page --------------------------------------------------*/}
-
-                      <Dialog open={openMP} onClose={handleCloseMP}>
-                          <DialogContent>
-                              <Card>
-                                  <form>
-                                      <Grid container
-                                            direction="row"
-                                            justifyContent="flex-start"
-                                            alignItems="flex-start">
-                                          <Grid xs={4} direction="column">
-                                              <Grid item xs={6} sx={{m: 2}}>
-                                                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                                      <DatePicker
-                                                          label="Date"
-                                                          value={required_date}
-                                                          onChange={(newValue) => {
-                                                              setRequired_date(newValue);
-                                                          }}
-                                                          renderInput={(params) => <TextField {...params}/>}
-                                                      />
-                                                  </LocalizationProvider>
-
-                                              </Grid>
-                                              <Grid item xs={4} sx={{m: 2}}>
-                                                  <FormControl fullWidth >
-                                                      <InputLabel id="demo-select-small">Category</InputLabel>
-                                                      <Select
-                                                          required
-                                                          labelId='selectCity'
-                                                          id='category'
-                                                          name='category'
-                                                          value={formValues.category}
-                                                          onChange={handleInputChange}
-                                                          fullWidth
-                                                          label='Category'>
-
-                                                          <MenuItem value="Restaurant & food services">Restaurant & food services</MenuItem>
-                                                          <MenuItem value="Transportation & delivery">Transportation & delivery</MenuItem>
-                                                          <MenuItem value="Retail & Production">Retail & Production</MenuItem>
-                                                          <MenuItem value="Office work & Administration">Office work & Administration</MenuItem>
-                                                          <MenuItem value="General services">General services</MenuItem>
-                                                          <MenuItem value="Others">Others</MenuItem>
-
-                                                      </Select>
-                                                  </FormControl>
-                                              </Grid>
-
-                                          </Grid>
-                                          <Grid xs={4} direction="column">
-                                              <Grid item xs={6} sx={{m: 2}}>
-                                                  <TextField
-                                                      id="outlined-number"
-                                                      label="Number"
-                                                      type="number"
-                                                      sx={{width: 1 / 1}}
-                                                      InputLabelProps={{
-                                                          shrink: true,
-                                                      }}
-                                                  />
-                                              </Grid>
-                                              <Grid item xs={6} sx={{m: 2}}>
-                                                  <FormControl fullWidth >
-                                                      <InputLabel id="demo-select-small">Payment Type</InputLabel>
-                                                      <Select
-                                                          labelId="demo-simple-select-label"
-                                                          id="demo-simple-select"
-                                                          label="Payment Method"
-                                                          name='payment_type'
-                                                          value={formValues.payment_type}
-                                                          onChange={handleInputChange}>
-                                                          <MenuItem value={"0"}>Cash</MenuItem>
-                                                          <MenuItem value={"1"}>Online</MenuItem>
-                                                      </Select>
-                                                  </FormControl>
-                                              </Grid>
-                                          </Grid>
-                                          <Grid xs={4} direction="column">
-                                              <Grid item xs={6} sx={{ m: 2 }}>
-                                                  <FormControl fullWidth >
-                                                      <InputLabel id="demo-select-small">City</InputLabel>
-                                                      <Select
-                                                          required
-                                                          labelId='selectCity'
-                                                          id='city'
-                                                          name='city'
-                                                          value={formValues.city}
-                                                          onChange={handleInputChange}
-                                                          fullWidth
-                                                          label='City'>
-                                                          <MenuItem value=""><em>All Cities</em></MenuItem>
-                                                          <MenuItem value="Ampara">Ampara</MenuItem>
-                                                          <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
-                                                          <MenuItem value="Badulla">Badulla</MenuItem>
-                                                          <MenuItem value="Batticaloa">Batticaloa</MenuItem>
-                                                          <MenuItem value="Colombo">Colombo</MenuItem>
-                                                          <MenuItem value="Galle">Galle</MenuItem>
-                                                          <MenuItem value="Gampaha">Gampaha</MenuItem>
-                                                          <MenuItem value="Hambantota">Hambantota</MenuItem>
-                                                          <MenuItem value="Jaffna">Jaffna</MenuItem>
-                                                          <MenuItem value="Kalutara">Kalutara</MenuItem>
-                                                          <MenuItem value="Kandy">Kandy</MenuItem>
-                                                          <MenuItem value="Kegalle">Kegalle</MenuItem>
-                                                          <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
-                                                          <MenuItem value="Kurunegala">Kurunegala</MenuItem>
-                                                          <MenuItem value="Mannar">Mannar</MenuItem>
-                                                          <MenuItem value="Matale">Matale</MenuItem>
-                                                          <MenuItem value="Matara">Matara</MenuItem>
-                                                          <MenuItem value="Monaragala">Monaragala</MenuItem>
-                                                          <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
-                                                          <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
-                                                          <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
-                                                          <MenuItem value="Puttalam">Puttalam</MenuItem>
-                                                          <MenuItem value="Ratnapura">Ratnapura</MenuItem>
-                                                          <MenuItem value="Trincomalee">Trincomalee</MenuItem>
-                                                          <MenuItem value="Vavuniya">Vavuniya</MenuItem>
-                                                      </Select>
-                                                  </FormControl>
-                                              </Grid>
-
-                                              <Grid item xs={6} sx={{m: 2}}>
-                                                  <TextField
-                                                      required
-                                                      label="(LKR)One hour Payment "
-                                                      id='pay'
-                                                      name='pay'
-                                                      type='number'
-                                                      value={formValues.pay}
-                                                      onChange={handleInputChange}/>
-                                              </Grid>
-
-                                          </Grid>
-
-                                      </Grid>
-
-                                      <Grid container
-                                            direction="row"
-                                            justifyContent="flex-start"
-                                            alignItems="flex-start">
-                                          <Grid item xs={12} sx={{m: 2}}>
-                                              <TextField fullWidth label="Description" id="fullWidth"/>
-
-                                          </Grid>
-
-                                      </Grid>
-                                  </form>
-                              </Card>
-                          </DialogContent>
-                          <DialogActions>
-                              <Button onClick={handleClose} variant="contained">Booking</Button>
-                              <Button onClick={handleClose} variant='outlined'>Cancel</Button>
-
-                          </DialogActions>
-                      </Dialog>
-
 
 
                   </div>
-                  {/*);*/}
-              </Grid>
 
 
-          </div>
+
+
           <div>
               <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
                   Favourites
