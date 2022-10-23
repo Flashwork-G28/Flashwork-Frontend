@@ -126,63 +126,6 @@ export default function BasicTabs() {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <JobDashboardSaveJobSeeker />
-                {/*<div>*/}
-                {/*    <Grid container*/}
-                {/*          direction="row"*/}
-                {/*          justifyContent="space-between"*/}
-                {/*          alignItems="center"*/}
-                {/*          style={{marginBottom:'30px'}}>*/}
-
-                {/*        <Grid item xs={6}>*/}
-                {/*            <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='20px 0px 20px 0px'>Requested Worker</Typography>*/}
-
-                {/*        </Grid>*/}
-                {/*        <Grid item xs={6}>*/}
-                {/*            <SearchBar />*/}
-                {/*        </Grid>*/}
-
-                {/*    </Grid>*/}
-
-
-                {/*    <Grid container*/}
-                {/*          direction="row"*/}
-                {/*          justifyContent="flex-start"*/}
-                {/*          alignItems="flex-start"*/}
-                {/*    >*/}
-                {/*        <Grid style={{backgroundColor:'red'}} item xs={4} spacing={2}>*/}
-                {/*            <Paper sx={{ width: '100%', overflow: 'hidden' }}>*/}
-                {/*                <TableContainer component={Paper}>*/}
-                {/*                    <Table sx={{ minWidth: 270 }} aria-label="customized table">*/}
-                {/*                        <TableHead>*/}
-                {/*                            <TableRow>*/}
-
-                {/*                                <StyledTableCell align="left">Name</StyledTableCell>*/}
-                {/*                                <StyledTableCell align="left">Category</StyledTableCell>*/}
-
-
-                {/*                            </TableRow>*/}
-                {/*                        </TableHead>*/}
-                {/*                        <TableBody>*/}
-                {/*                            {rows.map((row) => (*/}
-                {/*                                <StyledTableRow key={row.name}>*/}
-                {/*                                    <StyledTableCell component="th" scope="row" align="left">{row.name} </StyledTableCell>*/}
-                {/*                                    <StyledTableCell align="left">{row.category}</StyledTableCell>*/}
-                {/*                                </StyledTableRow>*/}
-                {/*                            ))}*/}
-                {/*                        </TableBody>*/}
-                {/*                    </Table>*/}
-                {/*                </TableContainer>*/}
-
-                {/*            </Paper>*/}
-                {/*        </Grid>*/}
-                {/*        <Grid style={{backgroundColor:'red'}} item xs={8} >*/}
-                {/*            <Paper style={{backgroundColor:'blue',marginLeft:'25px'}}>*/}
-                {/*                <JobSeekerReqProfile />*/}
-                {/*            </Paper>*/}
-
-                {/*        </Grid>*/}
-                {/*    </Grid>*/}
-                {/*</div>*/}
             </TabPanel>
             <TabPanel value={value} index={2}>
 

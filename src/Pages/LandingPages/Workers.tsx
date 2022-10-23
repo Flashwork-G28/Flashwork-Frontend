@@ -9,7 +9,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {useNavigate} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
 import Avatar from "@mui/material/Avatar";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Stack from "@mui/material/Stack";
 import StarIcon from "@mui/icons-material/Star";
 import {yellow} from "@mui/material/colors";
@@ -33,6 +33,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import withReactContent from "sweetalert2-react-content";
 import CircularProgress from '@mui/material/CircularProgress';
 import pc1 from "../../Assets/backgroundImages/man1.jpg";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const useStyles = makeStyles({
     cardSection: {
@@ -121,8 +122,10 @@ const Workers = () => {
     const [payment_type, setPayment_type] = React.useState("Cash");
     const navigate = useNavigate();
 
+
     const [manpower, setMAWorkers]= useState<any>([]);
     const [maLoading, setMALoading] = useState(false);
+
 
 
     const defaultValues = {
@@ -151,7 +154,58 @@ const Workers = () => {
         setPayment_type(event.target.value);
     };
 
-    const handleClickFavorite = () => {
+    const iconColor='blue';
+
+    const handleClickFavorite = (user_id:any) => {
+        if(user?.family_name==="JobProvider"){
+            let provider_id:any = user?.sub;
+            provider_id = provider_id.substring(6);
+            alert(user_id +" and "+ provider_id);
+
+            axios.post('http://localhost:8000/workers/favourite', {
+                job_seeker_id: user_id,
+                job_provider_id: provider_id
+
+            })
+                .then(function (response) {
+                    let timerInterval
+                    Swal.fire({
+                        title: 'Save Worker',
+                        html: 'Add your Favourite Worker...',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            // const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(500)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            console.log('I was closed by the timer')
+                        }
+                    })
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+
+        }else {
+            navigate("/signUp/JobProvider", { replace: false });
+        }
+
+
+
+
+
     };
 
     const handleClose = () => {
@@ -337,32 +391,39 @@ const Workers = () => {
               <Grid className={classes.cardSection}  container  spacing={0.0}  direction="row" justifyContent="center"  alignItems="center">
 
                   {loading? workers.map((item: any) => {
-                      return (
-                          <div className={classes.cardBody}>
+
+                     return (<div className={classes.cardBody}>
                               <Grid
                                   container
                                   direction="column"
-                                  margin='25px' >
-                                  <Grid className={classes.contentCard} sx={{ width:'100%' , height:'fitContent'} }
+                                  margin='25px'>
+                                  <Grid className={classes.contentCard} sx={{width: '100%', height: 'fitContent'}}
                                         container
                                         justifyContent="space-between"
                                         alignItems="flex-start">
                                       <Grid item xs={6}>
                                           <Avatar
                                               alt="Remy Sharp"
-                                              src= {item.img}
+                                              src={item.img}
                                               // uri:{{item.img}}
-                                              sx={{ width: 100, height: 100 }}/>
+                                              sx={{width: 100, height: 100}}/>
                                       </Grid>
                                       <Grid item xs={6} container
                                             direction="column"
                                             alignItems="flex-end">
                                           {/*className={classes.favourite}*/}
-                                          <div style={{marginRight:'50px' , backgroundColor:'none'}} onClick={handleClickFavorite}><FavoriteBorderIcon /></div>
-                                          <Stack direction="row" spacing={0.5} sx={{mt:6.5 ,mr:5.8}} alignItems="flex-end">
-                                              <StarIcon sx={{color:yellow[600]}}/>
+                                          <div style={{
+                                              marginRight: '50px',
+                                              backgroundColor: 'none',
+                                              color: 'blueviolet',
+                                              cursor: 'pointer'
+                                          }} onClick={() => handleClickFavorite(item.user_id)}><FavoriteIcon/></div>
+                                          <Stack direction="row" spacing={0.5} sx={{mt: 6.5, mr: 5.8}}
+                                                 alignItems="flex-end">
+                                              <StarIcon sx={{color: yellow[600]}}/>
                                               <Typography variant="subtitle2" fontWeight='500'>{item.rate}</Typography>
-                                              <Typography variant="subtitle2" fontWeight='500'>({item.complet_count} reviews)</Typography>
+                                              <Typography variant="subtitle2"
+                                                          fontWeight='500'>({item.complet_count} reviews)</Typography>
                                           </Stack>
                                       </Grid>
                                   </Grid>
@@ -372,33 +433,36 @@ const Workers = () => {
                                           {item.first_name}{' '} {item.last_name}
                                       </Typography>
                                       <Typography variant="subtitle2" fontWeight='700' textAlign='left'>
-                                          <span><WorkIcon fontSize='small' /></span> {item.category}
+                                          <span><WorkIcon fontSize='small'/></span> {item.category}
                                       </Typography>
                                       <Typography variant="subtitle2" fontWeight='500' textAlign='left'>
-                                          <span><CheckCircleOutlineIcon fontSize='small' /></span>{item.complet_count} Tasks Completed
+                                          <span><CheckCircleOutlineIcon
+                                              fontSize='small'/></span>{item.complet_count} Tasks Completed
                                       </Typography>
 
-                                      <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px' marginRight='25px' position='absolute' >
+                                      <Typography variant="body2" fontWeight='500' textAlign='left' marginTop='30px'
+                                                  marginRight='25px' position='absolute'>
                                           {item.description}
                                       </Typography>
                                   </Grid>
-                                  <Grid className={classes.booking} >
-                                      <Button variant="contained" onClick={() => handleClickOpen(item.user_id)} >Book Now</Button>
+                                  <Grid className={classes.booking}>
+                                      <Button variant="contained" onClick={() => handleClickOpen(item.user_id)}>Book
+                                          Now</Button>
                                   </Grid>
                               </Grid>
 
 
-{/*--------------------------- Popup box for the booking workers --------------------------------------------------------*/}
-                              <Dialog open={open} onClose={handleClose} >
+                              {/*--------------------------- Popup box for the booking workers --------------------------------------------------------*/}
+                              <Dialog open={open} onClose={handleClose}>
                                   <DialogContent>
-                                      <Card >
+                                      <Card>
                                           <form onSubmit={onSubmitBooking} id="myForm" name='myForm' noValidate={false}>
                                               <Grid container
                                                     direction="row"
                                                     justifyContent="flex-start"
-                                                    alignItems="flex-start" >
-                                                  <Grid  xs={4} direction="column"  >
-                                                      <Grid item xs={6} sx={{ m: 2 }}>
+                                                    alignItems="flex-start">
+                                                  <Grid xs={4} direction="column">
+                                                      <Grid item xs={6} sx={{m: 2}}>
                                                           <LocalizationProvider dateAdapter={AdapterDateFns}>
                                                               <DatePicker
 
@@ -411,9 +475,10 @@ const Workers = () => {
                                                               />
                                                           </LocalizationProvider>
                                                       </Grid>
-                                                      <Grid item xs={6} sx={{ m: 2 }}>
-                                                          <FormControl fullWidth >
-                                                              <InputLabel id="demo-select-small">Payment Type</InputLabel>
+                                                      <Grid item xs={6} sx={{m: 2}}>
+                                                          <FormControl fullWidth>
+                                                              <InputLabel id="demo-select-small">Payment
+                                                                  Type</InputLabel>
                                                               <Select
                                                                   labelId="demo-simple-select-label"
                                                                   id="demo-simple-select"
@@ -428,49 +493,49 @@ const Workers = () => {
                                                           </FormControl>
                                                       </Grid>
                                                   </Grid>
-                                                  <Grid  xs={4} direction="column">
-                                                      <Grid item xs={6} sx={{ m: 2 }}>
-                                                          <FormControl fullWidth >
+                                                  <Grid xs={4} direction="column">
+                                                      <Grid item xs={6} sx={{m: 2}}>
+                                                          <FormControl fullWidth>
                                                               <InputLabel id="demo-select-small">City</InputLabel>
-                                                                  <Select
-                                                                      required
-                                                                      labelId='selectCity'
-                                                                      id='city'
-                                                                      name='city'
-                                                                      value={formValues.city}
-                                                                      onChange={handleInputChange}
-                                                                      fullWidth
-                                                                      label='City'>
-                                                                      <MenuItem value=""><em>All Cities</em></MenuItem>
-                                                                      <MenuItem value="Ampara">Ampara</MenuItem>
-                                                                      <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
-                                                                      <MenuItem value="Badulla">Badulla</MenuItem>
-                                                                      <MenuItem value="Batticaloa">Batticaloa</MenuItem>
-                                                                      <MenuItem value="Colombo">Colombo</MenuItem>
-                                                                      <MenuItem value="Galle">Galle</MenuItem>
-                                                                      <MenuItem value="Gampaha">Gampaha</MenuItem>
-                                                                      <MenuItem value="Hambantota">Hambantota</MenuItem>
-                                                                      <MenuItem value="Jaffna">Jaffna</MenuItem>
-                                                                      <MenuItem value="Kalutara">Kalutara</MenuItem>
-                                                                      <MenuItem value="Kandy">Kandy</MenuItem>
-                                                                      <MenuItem value="Kegalle">Kegalle</MenuItem>
-                                                                      <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
-                                                                      <MenuItem value="Kurunegala">Kurunegala</MenuItem>
-                                                                      <MenuItem value="Mannar">Mannar</MenuItem>
-                                                                      <MenuItem value="Matale">Matale</MenuItem>
-                                                                      <MenuItem value="Matara">Matara</MenuItem>
-                                                                      <MenuItem value="Monaragala">Monaragala</MenuItem>
-                                                                      <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
-                                                                      <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
-                                                                      <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
-                                                                      <MenuItem value="Puttalam">Puttalam</MenuItem>
-                                                                      <MenuItem value="Ratnapura">Ratnapura</MenuItem>
-                                                                      <MenuItem value="Trincomalee">Trincomalee</MenuItem>
-                                                                      <MenuItem value="Vavuniya">Vavuniya</MenuItem>
-                                                                  </Select>
+                                                              <Select
+                                                                  required
+                                                                  labelId='selectCity'
+                                                                  id='city'
+                                                                  name='city'
+                                                                  value={formValues.city}
+                                                                  onChange={handleInputChange}
+                                                                  fullWidth
+                                                                  label='City'>
+                                                                  <MenuItem value=""><em>All Cities</em></MenuItem>
+                                                                  <MenuItem value="Ampara">Ampara</MenuItem>
+                                                                  <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                                                                  <MenuItem value="Badulla">Badulla</MenuItem>
+                                                                  <MenuItem value="Batticaloa">Batticaloa</MenuItem>
+                                                                  <MenuItem value="Colombo">Colombo</MenuItem>
+                                                                  <MenuItem value="Galle">Galle</MenuItem>
+                                                                  <MenuItem value="Gampaha">Gampaha</MenuItem>
+                                                                  <MenuItem value="Hambantota">Hambantota</MenuItem>
+                                                                  <MenuItem value="Jaffna">Jaffna</MenuItem>
+                                                                  <MenuItem value="Kalutara">Kalutara</MenuItem>
+                                                                  <MenuItem value="Kandy">Kandy</MenuItem>
+                                                                  <MenuItem value="Kegalle">Kegalle</MenuItem>
+                                                                  <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                                                                  <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                                                                  <MenuItem value="Mannar">Mannar</MenuItem>
+                                                                  <MenuItem value="Matale">Matale</MenuItem>
+                                                                  <MenuItem value="Matara">Matara</MenuItem>
+                                                                  <MenuItem value="Monaragala">Monaragala</MenuItem>
+                                                                  <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                                                                  <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                                                                  <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                                                                  <MenuItem value="Puttalam">Puttalam</MenuItem>
+                                                                  <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                                                                  <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                                                                  <MenuItem value="Vavuniya">Vavuniya</MenuItem>
+                                                              </Select>
                                                           </FormControl>
                                                       </Grid>
-                                                      <Grid item xs={6} sx={{ m: 2 }}>
+                                                      <Grid item xs={6} sx={{m: 2}}>
                                                           <TextField
                                                               required
                                                               label="(LKR)One hour Payment "
@@ -486,8 +551,8 @@ const Workers = () => {
                                               <Grid container
                                                     direction="row"
                                                     justifyContent="flex-start"
-                                                    alignItems="flex-start" >
-                                                  <Grid item xs={12} sx={{ m: 2 }} >
+                                                    alignItems="flex-start">
+                                                  <Grid item xs={12} sx={{m: 2}}>
                                                       <TextField required
                                                                  fullWidth
                                                                  id='description'
@@ -501,12 +566,13 @@ const Workers = () => {
                                       </Card>
                                   </DialogContent>
                                   <DialogActions>
-                                      <Button variant="contained" type="submit" onClick={onSubmitBooking} >Booking</Button>
+                                      <Button variant="contained" type="submit"
+                                              onClick={onSubmitBooking}>Booking</Button>
                                       <Button onClick={handleClose} variant='outlined'>Cancel</Button>
                                   </DialogActions>
                               </Dialog>
-                          </div>
-                      );
+                          </div>);
+
                   }) :<CircularProgress />}
               </Grid>
           </div>
@@ -546,7 +612,7 @@ const Workers = () => {
                                               <Grid item xs={6} container
                                                     direction="column"
                                                     alignItems="flex-end">
-                                                  <FavoriteBorderIcon fontSize='medium' sx={{mr: 5.8}}/>
+                                                  <FavoriteIcon fontSize='medium' sx={{mr: 5.8}}/>
                                                   <Stack direction="row" spacing={0.5} sx={{mt: 7, mr: 5.8}} alignItems="flex-end">
                                                       <StarIcon sx={{color: yellow[600]}}/>
                                                       <Typography variant="subtitle2" fontWeight='500'>{item.rate}</Typography>
