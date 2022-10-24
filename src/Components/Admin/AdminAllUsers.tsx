@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,7 +13,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
-// import AdminPopupProfile from "../../Components/Admin/AdminPopupProfile";
+import AdminPopupProfile from "./AdminPopupProfile";
 import AdminSearchUsers from "./AdminSearchUsers";
 
 import TextField from '@mui/material/TextField';
@@ -25,6 +26,7 @@ import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Grid';
+import { useState } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -98,6 +100,46 @@ export default function AdminAllUsers() {
     }
   }
 
+  // Get all users
+  // const [details, setDetails] = useState<any>([]);
+
+  //   const viewUsers = () => {
+  //       axios.get('http://localhost:8000/jobs/JobAdView').then((response) => {
+  //           const det = response.data;
+  //           // console.log(user_id);
+  //           det.map((item: any) => {
+  //               // const date1:any = new Date();
+  //               // const date2:any = new Date(item.pub_date);
+  //               // const diffTime = Math.abs(date2 - date1);
+  //               // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  //               setDetails((prevState: any) => [...prevState, {
+  //                   id: item.id,
+  //                   img: item.img,
+  //                   title: item.title,
+  //                   city: item.city,
+  //                   pub_date: item.pub_date,
+  //                   job_date: item.job_date,
+  //                   category: item.category,
+  //                   apply_type: item.apply_type,
+  //                   description: item.description,
+  //                   rmc: item.rmc,
+  //                   amc: item.amc,
+  //                   pay: item.pay,
+  //                   status: item.status,
+  //                   // pub_date: diffDays,
+  //               }])
+  //               return null;
+  //           });
+  //       }).catch(function (error) {
+  //           if (error.response) {
+  //               // setAlertPara("Something went wrong when creating the user!");
+  //               // setVariant("danger");
+  //               // setShow(true);
+  //           }
+  //       })
+  //   }
+
   // Delete button popup
   const deleteButton = () => {
     Swal.fire({
@@ -129,6 +171,40 @@ export default function AdminAllUsers() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+
+  // const [open, setOpen] = React.useState(false);
+  //   const [close, setClose] = React.useState(false);
+  //   const theme = useTheme();
+  //   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  //   const handleClickOpen = (id: any) => {
+  //       setDetails(
+  //           details.filter((details: { id: any; }) => {
+  //               return details.id === id;
+  //           })
+  //       );
+  //       console.log(id);
+  //       console.log(details.title);
+  //       setOpen(true);
+  //   };
+
+  //   const handleClose = () => {
+  //       setOpen(false);
+  //       // viewJobs();
+  //       // window.location.reload();
+  //   };
+
+  //   const Transition = React.forwardRef(function Transition(
+  //       props: TransitionProps & {
+  //         children: React.ReactElement<any, any>;
+  //       },
+  //       ref: React.Ref<unknown>,
+  //     ) {
+  //       return <Slide direction="left" ref={ref} {...props} />;
+  //   }
+  // );
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
