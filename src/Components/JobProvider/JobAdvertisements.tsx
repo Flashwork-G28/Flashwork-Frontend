@@ -35,9 +35,6 @@ const JobAdvertisements = () => {
             </Card>
 
 
-
-
-
         </>
     );
 };

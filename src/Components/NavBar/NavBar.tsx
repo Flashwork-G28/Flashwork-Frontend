@@ -16,6 +16,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+
 
 const useStyles = makeStyles({
     typoContent: {
@@ -52,16 +54,19 @@ const NavBar = () => {
         isAuthenticated,
         loginWithRedirect,
         logout,
+        isLoading
     } = useAuth0();
 
     const [url, setUrl] = useState("/");
+    // console.log(url);
 
-    useEffect(() => {
+    const seturl = () => {
         if(user?.family_name==="JobProvider"){
             setUrl("/dashboard/jobprovider/home")
         }
         else if(user?.family_name==="JobSeeker"){
             setUrl("/dashboard/jobseeker/home")
+            console.log('two');
         }
         else if(user?.family_name==="ManPower"){
             setUrl("/dashboard/manpower/home")
@@ -71,7 +76,15 @@ const NavBar = () => {
         }else{
             setUrl("/")
         }
-    });
+    }
+
+    useEffect(() => {
+        seturl();
+
+        console.log(isAuthenticated);
+    },[isAuthenticated]);
+
+
 
 
     return (
