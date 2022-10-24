@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
-import WorkerCard from "../Workers/WorkerCard";
+
 import Grid from "@mui/material/Grid";
 
 const HomeTopWorker = () => {
@@ -20,9 +20,9 @@ const HomeTopWorker = () => {
                   justifyContent="center"
                   alignItems="center">
 
-                <WorkerCard />
-                <WorkerCard />
-                <WorkerCard />
+                {/*<WorkerCard />*/}
+                {/*<WorkerCard />*/}
+                {/*<WorkerCard />*/}
 
 
             </Grid>

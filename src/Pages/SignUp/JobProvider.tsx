@@ -14,11 +14,10 @@ import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
+import RadioGroup from '@mui/material/RadioGroup';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -26,6 +25,7 @@ import YupPassword from 'yup-password';
 const axios = require('axios');
 
 YupPassword(yup);
+
 
 
 const useStyles = makeStyles({
@@ -59,7 +59,6 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const validationSchema = yup.object({
     firstName: yup.string().required('First Name Required !'),
     lastName: yup.string().required('Last Name Required !'),
-    // gender: yup.string().required('Gender Required !'),
     street: yup.string().required('Street Required !').max(150),
     city: yup.string().required('City Name Required !'),
     mobile: yup.string().min(9, "to short").max(9, "to long").required('Mobile Number Required !').matches(phoneRegExp, 'Phone number is not valid'),
@@ -70,23 +69,28 @@ const validationSchema = yup.object({
         .minUppercase(1, 'password must contain at least 1 upper case letter')
         .minNumbers(1, 'password must contain at least 1 number')
         .minSymbols(1, 'password must contain at least 1 special character'),
-    nid:yup.string().required('National ID Required !').min(10, "to short").max(12, "to long"),
+    nid:yup.string().required('National ID Required !').min(10, "to short").max(12, "to long")
 });
 
 
 const JobProvider = () => {
+
     const navigate = useNavigate()
     const classes = useStyles();
     const {
         loginWithRedirect,
     } = useAuth0();
 
+    const [gender, setGender] = React.useState('male');
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGender((event.target as HTMLInputElement).value);
+    };
 
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
-            // gender:'',
             street:'',
             city:'',
             mobile:'',
@@ -96,17 +100,17 @@ const JobProvider = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            //lert(JSON.stringify(values, null, 2));
-            console.log('about to submit:', values);
             axios.post('http://localhost:8000/register/jobprovider', {
                 firstName: values.firstName,
                 lastName: values.lastName,
+                // gender:gender,
                 street: values.street,
                 city: values.city,
                 mobile:values.mobile,
                 email: values.email,
                 password: values.password,
                 nid:values.nid,
+                gender:gender
             })
                 .then(function (response: any) {
                     console.log(response);
@@ -177,14 +181,15 @@ const JobProvider = () => {
                                 </Grid>
                                 <Grid item xs={12} sx={{ m: 2 }}>
                                     <FormControl>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{fontSize:"18px"}}>Gender</FormLabel>
+                                        <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
                                         <RadioGroup
                                             row
-                                            aria-labelledby="demo-row-radio-buttons-group-label"
-                                            name="row-radio-buttons-group"
-                                            sx={{ml:2}}
+                                            aria-labelledby="demo-controlled-radio-buttons-group"
+                                            name="controlled-radio-buttons-group"
+                                            value={gender}
+                                            onChange={handleChange}
                                         >
-                                            <FormControlLabel value="male" control={<Radio />} label="Male" defaultValue="male" />
+                                            <FormControlLabel value="male" control={<Radio />} label="Male" />
                                             <FormControlLabel value="female" control={<Radio />} label="Female" />
                                         </RadioGroup>
                                     </FormControl>
@@ -271,7 +276,6 @@ const JobProvider = () => {
                                         <Button variant="contained" type="submit">Sign Up</Button>
                                         <Button variant="outlined">Cancel</Button>
                                     </Stack>
-
                                 </Grid>
                             </Grid>
                         </Grid>
