@@ -16,8 +16,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function OthersProfile() {
     return (
-        <Box sx={{paddingRight: '10px'}}>
-        <Grid container sx={{backgroundImage: 'linear-gradient(white, white, #e1bee7, #7A3293)', borderRadius: '0% 0% 10% 10%', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)'}}>
+        <Box sx={{padding: '0px 10px 10px 10px'}}>
+        {/* <Grid container sx={{backgroundImage: 'linear-gradient(white, white, #e1bee7, #7A3293)', borderRadius: '0% 0% 10% 10%', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)'}}> */}
+        <Grid container sx={{borderRadius: '10%', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)'}}>
             <Grid padding="20px" item xs={12}>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative'}}><Avatar sx={{width: '100px', height: '100px'}} alt="User image"/></div>
             </Grid>

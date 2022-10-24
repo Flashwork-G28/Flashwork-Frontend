@@ -17,11 +17,11 @@ root.render(
         useRefreshTokens
         cacheLocation='localstorage'
     >
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
           <BrowserRouter>
               <App />
           </BrowserRouter>
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
     </Auth0Provider>,
 );
 

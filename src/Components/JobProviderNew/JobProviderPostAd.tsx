@@ -1,20 +1,21 @@
-import { Button, FormControl, FormHelperText, Grid, Input, Paper, styled, TextareaAutosize, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { Button, FormControl, FormHelperText, Grid, Input, Paper, styled, TextareaAutosize, TextField, TextFieldProps, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 import axios from 'axios';
-
-
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import Swal from 'sweetalert2';
 
 export default function JobProviderPostAd() {
     const {user} = useAuth0();
     // const axios = require('axios').default;
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
     const ButtonHover = styled(Button)({
         '&:hover': {
@@ -29,16 +30,20 @@ export default function JobProviderPostAd() {
     })
 
     const defaultValues = {
-        name: '',
-        jobCatgeory: '',
+        title: '',
+        category: '',
+        apply_type: '',
         city: '',
-        reqMemberCount: null,
-        paymentPerWorker: null,
-        date: date,
+        rmc: '',
+        amc: '',
+        pay: 1000,
+        job_date: '',
         description: '',
     }
 
     const [ formValues, setFormValues ] = useState(defaultValues);
+
+    const [value, setValue] = React.useState<Date | null>(null);
 
     const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
         const { name, value } = e.target;
@@ -48,67 +53,134 @@ export default function JobProviderPostAd() {
         });
     };
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        axios.post('/JobAdPost', {
-            name: formValues.name,
-            jobCatgeory: formValues.jobCatgeory,
+    const handleSubmit = (e: {target: any; preventDefault: () => void;}) => {
+        // e.preventDefault();
+
+        let seeker_id:any = user?.sub;
+        seeker_id = seeker_id.substring(6);
+
+        axios.post('http://localhost:8000/jobs/JobAdPost', {
+            title: formValues.title,
+            category: formValues.category,
+            apply_type: formValues.apply_type,
             city: formValues.city,
-            reqMemberCount: formValues.reqMemberCount,
-            paymentPerWorker: formValues.paymentPerWorker,
-            date: formValues.date,
+            rmc: formValues.rmc,
+            amc: formValues.rmc,
+            pay: formValues.pay,
+            job_date: value,
             description: formValues.description,
+            status: 1,
+            seeker_id,
           })
           .then(function (response) {
             console.log(response);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Job has been successfully posted',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setFormValues({
+                ...defaultValues,
+              });
+            setValue(null);
+            // e.target.reset();
           })
           .catch(function (error) {
             console.log(error);
           });
-        alert(JSON.stringify(formValues, null, 5));
+        // alert(JSON.stringify(formValues, null, 5));
+    }
+
+    // Cancel button popup
+    const cancelButton = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'All the changes will be discarded!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: 'btn btn-success',
+            confirmButtonText: 'Confirm',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setFormValues({...defaultValues,});
+                setValue(null);
+                // Swal.fire(
+                //     'Cancelled!',
+                //     'All changes have been cancelled',
+                //     'error'
+                // )
+            }
+        })
     }
 
   return (
     <Paper>
-        <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='50px 0px 0px 40px'>
+        {/* <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h5" component="h5" fontWeight='700' color='primary' padding={2} paddingLeft={5} textAlign='left'>
             Job Advertisement
-        </Typography>
-        <form onSubmit={handleSubmit} style={{padding: '20px'}}>
-            <Grid container spacing={2} sx={{padding: '20px'}}>
-                <Grid item xs={6}>
+        </Typography> <br /> */}
+        <form onSubmit={handleSubmit} style={{padding: '40px', paddingLeft: '70px', marginBottom: '30px'}} id="myForm" name='myForm' noValidate={false}>
+            <Grid container spacing={4} sx={{padding: '25px', borderRadius: '10px', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
+                <Grid item xs={4}>
                     <TextField
+                        required
+                        // feedback="Looks good!"
                         fullWidth
-                        id='name'
-                        name='name'
+                        id='title'
+                        name='title'
                         type='text'
-                        label='Name'
-                        value={formValues.name}
+                        label='Title'
+                        value={formValues.title}
                         onChange={handleInputChange}
-                        // error={formik.touched.name && Boolean(formik.errors.name)}
-                        // helperText={formik.touched.name && formik.errors.name}
+                        // error={formik.touched.title && Boolean(formik.errors.title)}
+                        // helperText={formik.touched.title && formik.errors.title}
                         inputProps={{ readOnly: false, }}
                     />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <FormControl fullWidth>
                         <InputLabel id='selectJob'>Job Category</InputLabel>
                         <Select
+                            required
                             labelId='selectJob'
-                            id='jobCatgeory'
-                            name='jobCatgeory'
-                            value={formValues.jobCatgeory}
+                            id='category'
+                            name='category'
+                            value={formValues.category}
                             onChange={handleInputChange}
                             // error={formik.touched.category && Boolean(formik.errors.category)}
                             fullWidth
                             label='Job Category'
                         >
-                            <MenuItem value=""><em>None</em></MenuItem>
-                            <MenuItem value='carp'>Carpentary</MenuItem>
-                            <MenuItem value='elec'>Electrical</MenuItem>
-                            <MenuItem value='plum'>Plumbing</MenuItem>
-                            <MenuItem value='gard'>Gardening</MenuItem>
-                            <MenuItem value='mas'>Mason</MenuItem>
-                            <MenuItem value='paint'>Painting</MenuItem>
+                            <MenuItem value="">
+                            <em>All Categories</em>
+                            </MenuItem>
+                            <MenuItem value={1}>Restaurant & Food Services</MenuItem>
+                            <MenuItem value={2}>Transportation & Delivery</MenuItem>
+                            <MenuItem value={3}>Retail & Production</MenuItem>
+                            <MenuItem value={4}>Office Work & Administration</MenuItem>
+                            <MenuItem value={5}>General Services</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={4}>
+                    <FormControl fullWidth>
+                        <InputLabel id='selectWorker'>Prefer Worker Type</InputLabel>
+                        <Select
+                            required
+                            labelId='selectWorker'
+                            id='apply_type'
+                            name='apply_type'
+                            value={formValues.apply_type}
+                            onChange={handleInputChange}
+                            // error={formik.touched.apply_type && Boolean(formik.errors.apply_type)}
+                            fullWidth
+                            label='Prefer Worker Type'
+                        >
+                            <MenuItem value="0">Both</MenuItem>
+                            <MenuItem value='1'>Manpower Agency</MenuItem>
+                            <MenuItem value='2'>Job Seeker</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
@@ -116,6 +188,7 @@ export default function JobProviderPostAd() {
                     <FormControl fullWidth>
                         <InputLabel id='selectCity'>City</InputLabel>
                         <Select
+                            required
                             labelId='selectCity'
                             id='city'
                             name='city'
@@ -124,52 +197,86 @@ export default function JobProviderPostAd() {
                             fullWidth
                             label='City'
                         >
-                            <MenuItem value=""><em>None</em></MenuItem>
-                            <MenuItem value="1">Colombo</MenuItem>
-                            <MenuItem value="2">Galle</MenuItem>
-                            <MenuItem value="3">Kandy</MenuItem>
-                            <MenuItem value="4">Matara</MenuItem>
-                            <MenuItem value="5">Negombo</MenuItem>
+                            <MenuItem value=""><em>All Cities</em></MenuItem>
+                            <MenuItem value="Ampara">Ampara</MenuItem>
+                            <MenuItem value="Anuradhapura">Anuradhapura</MenuItem>
+                            <MenuItem value="Badulla">Badulla</MenuItem>
+                            <MenuItem value="Batticaloa">Batticaloa</MenuItem>
+                            <MenuItem value="Colombo">Colombo</MenuItem>
+                            <MenuItem value="Galle">Galle</MenuItem>
+                            <MenuItem value="Gampaha">Gampaha</MenuItem>
+                            <MenuItem value="Hambantota">Hambantota</MenuItem>
+                            <MenuItem value="Jaffna">Jaffna</MenuItem>
+                            <MenuItem value="Kalutara">Kalutara</MenuItem>
+                            <MenuItem value="Kandy">Kandy</MenuItem>
+                            <MenuItem value="Kegalle">Kegalle</MenuItem>
+                            <MenuItem value="Kilinochchi">Kilinochchi</MenuItem>
+                            <MenuItem value="Kurunegala">Kurunegala</MenuItem>
+                            <MenuItem value="Mannar">Mannar</MenuItem>
+                            <MenuItem value="Matale">Matale</MenuItem>
+                            <MenuItem value="Matara">Matara</MenuItem>
+                            <MenuItem value="Monaragala">Monaragala</MenuItem>
+                            <MenuItem value="Mullaitivu">Mullaitivu</MenuItem>
+                            <MenuItem value="Nuwara Eliya">Nuwara Eliya</MenuItem>
+                            <MenuItem value="Polonnaruwa">Polonnaruwa</MenuItem>
+                            <MenuItem value="Puttalam">Puttalam</MenuItem>
+                            <MenuItem value="Ratnapura">Ratnapura</MenuItem>
+                            <MenuItem value="Trincomalee">Trincomalee</MenuItem>
+                            <MenuItem value="Vavuniya">Vavuniya</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
+                        required
                         fullWidth
-                        id='reqMemberCount'
-                        name='reqMemberCount'
-                        type='text'
+                        id='rmc'
+                        name='rmc'
+                        type='number'
                         label='Required Member Count'
-                        value={formValues.reqMemberCount}
+                        value={formValues.rmc}
                         onChange={handleInputChange}
-                        // error={formik.touched.reqMemberCount && Boolean(formik.errors.reqMemberCount)}
-                        // helperText={formik.touched.reqMemberCount && formik.errors.reqMemberCount}
+                        // error={formik.touched.rmc && Boolean(formik.errors.rmc)}
+                        // helperText={formik.touched.rmc && formik.errors.rmc}
                         inputProps={{ readOnly: false, }}           
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField 
+                    <TextField
+                        required
                         fullWidth
-                        id='paymentPerWorker'
-                        name='paymentPerWorker'
-                        type='text'
+                        id='pay'
+                        name='pay'
+                        type='number'
+
                         label='Payment Per Worker (Rs.)'
-                        value={formValues.paymentPerWorker}
+                        value={formValues.pay}
                         onChange={handleInputChange}
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField 
+                    {/* <TextField 
                         fullWidth
                         id='date'
                         name='date'
                         label='Date'
                         value={formValues.date}
                         disabled
-                    />
+                    /> */}
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Required Date"
+                            value={value}
+                            onChange={(newValue) => {
+                            setValue(newValue);
+                            }}
+                            renderInput={(params) => <TextField fullWidth required {...params} />}
+                        />
+                    </LocalizationProvider>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        required
                         fullWidth
                         id='description'
                         name='description'
@@ -178,11 +285,17 @@ export default function JobProviderPostAd() {
                         onChange={handleInputChange}
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <ButtonHover color='secondary' variant='contained' fullWidth type='submit'
-                    sx={{marginBottom: '10px', marginTop: '20px', padding: '15px 40px', fontSize: '16px', borderRadius: '50px', maxWidth: 'fit-content', transition: 'ease .4s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
-                        Post Advertisement
-                    </ButtonHover>
+                <Grid xs={6}></Grid>
+                <Grid item xs={6} sx={{display: 'flex', justifyContent: 'right', alignItems: 'right', marginTop: '10px'}}>
+                    <Button color='secondary' variant='contained' fullWidth type='submit'
+                    sx={{padding: '15px 40px', fontSize: '14px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s'}}>
+                        <PostAddIcon sx={{padding: '0px 10px 0px 0px'}}/> Post Advertisement
+                    </Button>
+
+                    <Button variant='outlined' fullWidth type='reset' onClick={cancelButton}
+                    sx={{marginLeft: '20px', padding: '15px 40px', fontSize: '14px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s'}}>
+                        Cancel
+                    </Button>
                 </Grid>
             </Grid>
         </form>

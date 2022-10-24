@@ -7,6 +7,8 @@ import { Box } from "@mui/system";
 import { shadows } from '@mui/system';
 import { Session } from "inspector";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import Swal from 'sweetalert2';
 // import { CKEditor } from 'ckeditor4-react';
 
 export default function JobSeekerComplaint() {
@@ -42,7 +44,26 @@ export default function JobSeekerComplaint() {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-          alert(JSON.stringify(values, null, 5));
+            axios.post('http://localhost:8000/complaints/JobSeekerCompl', {
+                email: values.email,
+                reason: values.reason,
+                rating: values.rating,
+            })
+            .then(function (response) {
+                console.log(response);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Complaint has been successfully posted',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                formik.resetForm();
+              })
+              .catch(function (error) {
+                //console.log(error);
+              });
+          //alert(JSON.stringify(values, null, 5));
         },
     })
 
@@ -59,7 +80,7 @@ export default function JobSeekerComplaint() {
         '&:hover': {
             backgroundColor: 'red',
             color: 'black',
-            transform: 'scale(1.2)',
+            transform: 'scale(1.05)',
             transition: 'ease .4s',
             // borderRadius: '0px'
         }
@@ -128,7 +149,7 @@ export default function JobSeekerComplaint() {
                     /> <br />
 
                     <ButtonHover color="secondary" variant="contained" fullWidth type="submit" 
-                    sx={{marginBottom: '10px', padding: '15px 8px', fontSize: '18px', borderRadius: '50px', width: '20%', transition: 'ease .4s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
+                    sx={{marginBottom: '10px', padding: '15px 8px', fontSize: '18px', borderRadius: '10px', width: '20%', transition: 'ease .4s', boxShadow: '0 5px 20px rgba(0,0,0,0.30), 0 5px 20px rgba(0,0,0,0.22)' }}>
                         Submit
                     </ButtonHover> <br /><br />
                 </form>
