@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -25,6 +26,7 @@ import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Grid';
+import { useEffect, useState } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,6 +69,31 @@ const rows = [
 ];
 
 export default function AdminUserRequest() {
+  const [details, setDetails] = useState<any>([]);
+
+    const viewCompl = () => {
+        axios.get('http://localhost:8000/complaints/ViewCompl').then((response) => {
+            const det = response.data;
+            // console.log(user_id);
+            det.map((item: any) => {
+                setDetails((prevState: any) => [...prevState, {
+                  id: item.id,
+                  email: item.email,
+                  date: item.date,
+                  reason: item.reason,
+                  rating: item.rating,
+                }])
+                return null;
+            });
+        }).catch(function (error) {
+            if (error.response) {
+                // setAlertPara("Something went wrong when creating the user!");
+                // setVariant("danger");
+                // setShow(true);
+            }
+        })
+    }
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -128,38 +155,46 @@ export default function AdminUserRequest() {
       })
   }
 
+  useEffect(() => {
+    viewCompl();
+  }, []);
+
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
         User Requests / Complaints
       </Typography>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{maxHeight: '60vh', overflow: 'scroll', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">Complaint ID</StyledTableCell>
-              <StyledTableCell align="center">Complainer email</StyledTableCell>
-              <StyledTableCell align="center">Suspected User ID</StyledTableCell>
-              <StyledTableCell align="center">Complained Date</StyledTableCell>
-              <StyledTableCell align="center">Reason</StyledTableCell>
+              <StyledTableCell align="left">Complainer email</StyledTableCell>
+              {/* <StyledTableCell align="left">Suspected User ID</StyledTableCell> */}
+              <StyledTableCell align="left">Complained Date</StyledTableCell>
+              <StyledTableCell align="left">Reason</StyledTableCell>
+              <StyledTableCell align="center">Complaint Weight</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.compID}>
-                <StyledTableCell align="left">{row.compID}</StyledTableCell>
-                <StyledTableCell align="center">{row.senderEmail}</StyledTableCell>
-                <StyledTableCell align="center">{row.suspectID}</StyledTableCell>
-                <StyledTableCell align="center">{row.complainedDate}</StyledTableCell>
-                <StyledTableCell align="center">{row.reason}</StyledTableCell>
-                <StyledTableCell align="right"><Button onClick={resolveButton} sx={{backgroundColor: '#7A3293'}} variant="contained">Resolve</Button></StyledTableCell>
-                <StyledTableCell align="right"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
+          {details.map((item: any) => {
+            return (
+              <TableBody>
+                  <StyledTableRow key={item.id}>
+                    <StyledTableCell align="left">{item.id}</StyledTableCell>
+                    <StyledTableCell align="left">{item.email}</StyledTableCell>
+                    {/* <StyledTableCell align="left">{item.suspectID}</StyledTableCell> */}
+                    <StyledTableCell align="left">{item.date}</StyledTableCell>
+                    <StyledTableCell align="left">{item.reason}</StyledTableCell>
+                    <StyledTableCell align="center">{item.rating}</StyledTableCell>
+                    <StyledTableCell align="right"><Button onClick={resolveButton} sx={{backgroundColor: '#7A3293'}} variant="contained">Resolve</Button></StyledTableCell>
+                    <StyledTableCell align="right"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
+                  </StyledTableRow>
+              </TableBody>
+            )
+          })}
         </Table>
       </TableContainer>
       
