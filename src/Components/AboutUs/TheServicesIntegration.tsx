@@ -11,7 +11,6 @@ const useStyles = makeStyles({
 
 });
 
-
 export default function TheServicesIntegration() {
     const classes = useStyles();
     return (
