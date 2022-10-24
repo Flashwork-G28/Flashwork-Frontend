@@ -139,8 +139,8 @@ export default function JobSeekerReq() {
                         Requests
                     </Typography>
                 </Grid>
-                <Grid item xs={9}>
-                    <TableContainer component={Paper}>
+                <Grid item xs={12}>
+                    <TableContainer component={Paper} sx={{maxHeight: '60vh', overflow: 'scroll', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
                         <Table>
                             <TableHead>
                                 <StyledTableRow>
@@ -192,7 +192,6 @@ export default function JobSeekerReq() {
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
                 </Grid>
-                <Grid item xs={3}><OthersProfile /></Grid>
             </Grid> 
     )
 }
