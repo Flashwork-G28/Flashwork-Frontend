@@ -23,8 +23,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const JobSeekerReqProfile = () => {
-
-
     return (
         <div>
             {/*<h1  className={classes.link}>Ananda Rajakaruna</h1>*/}

@@ -135,7 +135,6 @@ const Workers = () => {
         description: '',
         category:'',
         worker_count :'',
-
     }
 
     const [ formValues, setFormValues ] = useState(defaultValues);

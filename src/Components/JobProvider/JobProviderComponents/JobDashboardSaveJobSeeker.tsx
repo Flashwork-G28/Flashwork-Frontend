@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import SearchBar from "../../CommonComponent/SearchBar";
@@ -12,7 +12,27 @@ import TablePagination from "@mui/material/TablePagination";
 import {styled} from "@mui/material/styles";
 import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import JobSeekerReqProfile from "../../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
+import Box from "@mui/material/Box";
+import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
+import GroupIcon from "@mui/icons-material/Group";
+import PaidIcon from "@mui/icons-material/Paid";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import CallIcon from "@mui/icons-material/Call";
+import RequestProfile from "../../../Assets/JobSeeker/JobSeekerReqPro.png";
+import {useAuth0} from "@auth0/auth0-react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import CircularProgress from "@mui/material/CircularProgress";
 
+const Item = styled(Paper)(({ theme }) => ({
+    //backgroundColor: theme.palette.mode === 'dark' ? '#000000' : 'none',
+    // ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'start',
+    color: '#1C1C1C',
+    borderRadius:'20px',
+    // color: theme.palette.text.secondary,
+}));
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -36,37 +56,68 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(
-    name: string,
-    category: string,
-
-) {
-    return { name, category};
-}
-
-const rows = [
-    createData('Ananda Rajakaruna', 'Job Seeker'),
-    createData('Rashmika Malshan', 'Job Seeker'),
-    createData('Shalani Hansika', 'Manpower agency'),
-    createData('Lakshitha Shehan', 'Job Provider'),
-    createData('Chavinda Perera', 'Job Provider'),
-];
-
 
 
 const JobDashboardSaveJobSeeker = () => {
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    // const [page, setPage] = React.useState(0);
+    // const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    //
+    // const handleChangePage = (event: unknown, newPage: number) => {
+    //     setPage(newPage);
+    // };
+    //
+    // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setRowsPerPage(+event.target.value);
+    //     setPage(0);
+    // };
 
-    const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
+    const {
+        user
+    } = useAuth0();
+
+    const [SaveWorker, setSaveWorkers]= useState<any>([]);
+    const [loading, setLoading] = useState(false);
+
+    async function getSaveWorkers() {
+        try {
+            const response = await axios.get('http://localhost:8000/jobProvider/saveWorkers');
+            const data = response.data;
+            data.map((item: any) => {
+                setSaveWorkers((prevState: any) => [...prevState, {
+                    user_id: item.user_id,
+                    first_name: item.first_name,
+                    last_name: item.last_name,
+                    img:item.img,
+                    category: item.category,
+                    description: item.description,
+                    complet_count: item.complet_count,
+                    rate: item.rate,
+                }])
+                return null;
+            });
+        } catch (any) {
+            console.error(any);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!'
+            })
+        }
+    }
+
+
+    const openDetails = () => {
+        alert("hhhhhhhh");
+
     };
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
+    useEffect(() => {
+        getSaveWorkers();
+        setLoading(true);
+
+    }, [])
+
     return (
         <div>
             <Grid container
@@ -91,7 +142,7 @@ const JobDashboardSaveJobSeeker = () => {
                   justifyContent="flex-start"
                   alignItems="flex-start"
                   >
-                <Grid item xs={4} spacing={2}>
+                <Grid item xs={5} spacing={2}>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 270 }} aria-label="customized table">
@@ -105,27 +156,68 @@ const JobDashboardSaveJobSeeker = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.map((row) => (
-                                        <StyledTableRow key={row.name}>
-                                            <StyledTableCell component="th" scope="row" align="left">{row.name} </StyledTableCell>
-                                            <StyledTableCell align="left">{row.category}</StyledTableCell>
-                                        </StyledTableRow>
-                                    ))}
+                                    {loading? SaveWorker.map((item: any) => {
+                                        return(
+                                            <StyledTableRow >
+                                                <StyledTableCell style={{cursor: 'pointer'}} onClick={openDetails} component="th" scope="row" align="left">kkkkkkk </StyledTableCell>
+                                                <StyledTableCell align="left">hhhhhhhhhhh</StyledTableCell>
+                                            </StyledTableRow>
+                                        );
+
+                                    }) :<CircularProgress />}
                                 </TableBody>
                             </Table>
                         </TableContainer>
 
                     </Paper>
                 </Grid>
-                <Grid item xs={8} >
+                <Grid item xs={7} >
                     <Paper style={{marginLeft:'25px'}}>
-                        <JobSeekerReqProfile />
+
+                        {/*<JobSeekerReqProfile />*/}
+
+                        <div>
+
+                            <Box  sx={{ flexGrow: 1 }} style={{ paddingLeft:'25px'}}>
+                                <Grid  container spacing={2} >
+                                    <Grid  item xs={12} >
+                                        <Item style={{boxShadow:'none'}}><h2>Ananda Rajakaruna</h2></Item>
+                                    </Grid>
+                                    <Grid  item xs={6}>
+
+                                        <Item style={{boxShadow:'none'}} >
+                                            <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><PersonPinCircleIcon />Nugegoda</div>
+                                            <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><GroupIcon />5  Members</div>
+                                            <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><PaidIcon />Online</div>
+                                            <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><DateRangeIcon />23-08-2022</div>
+                                            <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><CallIcon />+94772826357</div>
+
+                                        </Item>
+
+
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Item style={{boxShadow:'none'}}>
+                                            <img src={RequestProfile} width={"150px"} height={"150px"} alt={"RequestProfile"}/>
+                                        </Item>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Item style={{boxShadow:'none'}}><h3>Note</h3></Item>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Item style={{boxShadow:'none'}}>I Need A Job Today. Work From Home Sites. Work Remote. Work From Home Sites. Computer Work From Home</Item>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Item style={{boxShadow:'none'}}>Chat</Item>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </div>
                     </Paper>
 
                 </Grid>
 
             </Grid>
-
 
 
 
