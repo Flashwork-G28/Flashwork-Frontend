@@ -105,19 +105,19 @@ const useStyles = makeStyles({
 })
 
 
-
 const Workers = () => {
     const classes = useStyles();
     const {
-        user
+        user,
+        isAuthenticated
     } = useAuth0();
 
-    const [required_date, setRequired_date] = React.useState<Date | null>(null);
     const [workers, setWorkers]= useState<any>([]);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [seeker_id, setSeeker_id] = useState('');
     const [ma_id, setMAseeker_id] = useState('');
+    const [required_date, setRequired_date] = React.useState<Date | null>(null);
     const [form_category, setMAcategory] = useState('');
     const [payment_type, setPayment_type] = React.useState("Cash");
     const navigate = useNavigate();
@@ -125,7 +125,7 @@ const Workers = () => {
 
     const [manpower, setMAWorkers]= useState<any>([]);
     const [maLoading, setMALoading] = useState(false);
-
+    const [openMP, setOpenMP] = React.useState(false);
 
 
     const defaultValues = {
@@ -153,7 +153,8 @@ const Workers = () => {
         setPayment_type(event.target.value);
     };
 
-    const iconColor='blue';
+
+
 
     const handleClickFavorite = (user_id:any) => {
         if(user?.family_name==="JobProvider"){
@@ -195,40 +196,16 @@ const Workers = () => {
                 .catch(function (error) {
                     console.log(error);
                 });
-
-
-        }else {
-            navigate("/signUp/JobProvider", { replace: false });
-        }
-
-
-
-
-
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const [openMP, setOpenMP] = React.useState(false);
-
-    const handleClickOpenMP = (id:any,category:any) => {
-        if(user?.family_name==="JobProvider"){
-            setMAseeker_id(id);
-            setMAcategory(category);
-            setOpenMP(true);
         }else {
             navigate("/signUp/JobProvider", { replace: false });
         }
     };
 
-    const handleCloseMP = () => {
-        setOpenMP(false);
-    };
 
-
+// ------------------------------  Job Seeker ----------------------------------------------------------
     async function getWorkers() {
+
+        // {isAuthenticated && ()}
         try {
             const response = await axios.get('http://localhost:8000/workers/');
             const data = response.data;
@@ -301,6 +278,10 @@ const Workers = () => {
             });
     }
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     //---------------------- manpower aguncy --------------------------------------------------------
     async function getMAWorkers() {
         try {
@@ -327,6 +308,16 @@ const Workers = () => {
             })
         }
     }
+
+    const handleClickOpenMP = (id:any,category:any) => {
+        if(user?.family_name==="JobProvider"){
+            setMAseeker_id(id);
+            setMAcategory(category);
+            setOpenMP(true);
+        }else {
+            navigate("/signUp/JobProvider", { replace: false });
+        }
+    };
 
     const OnsubmitMP = (e: {target: any; preventDefault: () => void;}) => {
         e.preventDefault();
@@ -367,6 +358,9 @@ const Workers = () => {
             });
     }
 
+    const handleCloseMP = () => {
+        setOpenMP(false);
+    };
 
 
     useEffect(() => {
@@ -376,7 +370,10 @@ const Workers = () => {
         getMAWorkers();
         setMALoading(true);
 
-    }, [])
+        console.log("check the user");
+        console.log(isAuthenticated);
+        console.log("After the check");
+    }, [isAuthenticated])
 
 
 
@@ -578,8 +575,6 @@ const Workers = () => {
 
 
 {/*------------------------- ManPower Aguncy Card and Form -------------------------------------------------------*/}
-
-
 
                   <div>
                       <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
@@ -804,11 +799,7 @@ const Workers = () => {
 
                           {/*);*/}
                       </Grid>
-
-
                   </div>
-
-
 
 
           <div>

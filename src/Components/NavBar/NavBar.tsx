@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const useStyles = makeStyles({
@@ -58,6 +59,7 @@ const NavBar = () => {
     } = useAuth0();
 
     const [url, setUrl] = useState("/");
+    const [notification, setNotification]= useState<any>([]);
     // console.log(url);
 
     const seturl = () => {
@@ -78,8 +80,81 @@ const NavBar = () => {
         }
     }
 
+    const getNotification = () =>{
+        if (isAuthenticated){
+            let providerID:any = user?.sub;
+            providerID = providerID.substring(6)
+            alert(providerID);
+
+            axios.post('http://localhost:8000/jobProvider/notificationCount', {
+                job_provider_id : providerID,
+
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    const data = response.data;
+
+                    data.map((item: any) => {
+                        setNotification((prevState: any) => [...prevState, {
+                            notification_id: item.notification_id,
+                            titel: item.titel,
+                            notification_update_date: item.notification_update_date,
+                            view_status: item.view_status,
+
+                        }])
+                        return null;
+                    });
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
+                });
+
+
+            axios.post('http://localhost:8000/jobProvider/notification', {
+                job_provider_id : providerID,
+
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    const data = response.data;
+
+                    data.map((item: any) => {
+                        setNotification((prevState: any) => [...prevState, {
+                            notification_id: item.notification_id,
+                            titel: item.titel,
+                            notification_update_date: item.notification_update_date,
+                            view_status: item.view_status,
+
+                        }])
+                        return null;
+                    });
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
+                });
+
+
+        }
+    }
+
+
+
     useEffect(() => {
         seturl();
+        getNotification();
+
 
         console.log(isAuthenticated);
     },[isAuthenticated]);
@@ -144,8 +219,7 @@ const NavBar = () => {
                         <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
                             <IconButton
                                 size="large"
-                                color="inherit"
-                            >
+                                color="inherit">
                                 <Badge badgeContent={17} color="error">
                                     <NotificationsIcon fontSize="inherit"/>
                                 </Badge>
