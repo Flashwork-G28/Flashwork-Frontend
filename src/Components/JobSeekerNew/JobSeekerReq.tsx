@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import Swal from 'sweetalert2';
 import OthersProfile from './OthersProfile';
 import { Grid } from '@mui/material';
+import axios from 'axios';
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -67,7 +68,7 @@ const acceptButton = () => {
 }
 
 interface Column {
-    id: 'user' | 'userType' | 'category' | 'date' | 'city';
+    id: 'user' | 'userType' | 'category' | 'city';
     label: string;
     align?: 'center';
     // minWidth?: number;
@@ -78,7 +79,6 @@ const columns: readonly Column[] = [
     {id: 'user', label: 'User Name'},
     {id: 'userType', label: 'User Type'},
     {id: 'category', label: 'Job Category'},
-    {id: 'date', label: 'Requested Date'},
     {id: 'city', label: 'City'},
 ];
 
@@ -86,7 +86,6 @@ interface Data {
     user: string,
     userType: string,
     category: string,
-    date: string,
     city: string,
 }
 
@@ -94,27 +93,26 @@ function createData(
     user: string,
     userType: string,
     category: string,
-    date: string,
     city: string,
 ) {
-    return {user, userType, category, date, city};
+    return {user, userType, category, city};
 }
 
 const rows = [
-    createData('Udesh', 'Job Provider', 'Carpentery', '09-98-2022', 'Kandy'),
-    createData('Udesh', 'Job Provider', 'Carpentery', '08/09/2022', 'Kandy'),
-    createData('Udesh', 'Job Provider', 'Carpentery', '08/09/2022', 'Kandy'),
-    createData('Udesh', 'Job Provider', 'Carpentery', '08/09/2022', 'Kandy'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
-    createData('Saman', 'Job Provider', 'Carpentery', '08/09/2022', 'Matara'),
+    createData('Udesh | 09-98-2022', 'Job Provider', 'Carpentery', 'Kandy'),
+    createData('Udesh | 08/09/2022', 'Job Provider', 'Carpentery', 'Kandy'),
+    createData('Udesh | 08/09/2022', 'Job Provider', 'Carpentery', 'Kandy'),
+    createData('Udesh | 08/09/2022', 'Job Provider', 'Carpentery', 'Kandy'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
+    createData('Saman | 08/09/2022', 'Job Provider', 'Carpentery', 'Matara'),
 ];
 
 export default function JobSeekerReq() {
@@ -130,69 +128,71 @@ export default function JobSeekerReq() {
         setPage(0);
     };
 
+    const handleShow = (e: any) => {
+        console.log(e.target.values);
+    };
+
     return (
         
-            <Grid container spacing={2}>
-            <Grid item xs={9}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
-                Requests
-            </Typography>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <StyledTableRow>
-                            {columns.map((column) => (
-                                <StyledTableCell
-                                key={column.id}
-                                align={column.align}
-                                // style={{ minWidth: column.minWidth }}
-                                >
-                                {column.label}
-                                </StyledTableCell>
-                            ))}
-                            <StyledTableCell align="right"></StyledTableCell>
-                            <StyledTableCell align="center"></StyledTableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => {
-                            return (
-                            <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.city}>
-                                {columns.map((column) => {
-                                const value = row[column.id];
-                                return (
-                                    <StyledTableCell key={column.id} align={column.align}>
-                                    {/* {column.format && typeof value === 'number'
-                                        ? column.format(value)
-                                        : value} */}
-                                        {value}
-                                    </StyledTableCell>
-                                );
+            <Grid container spacing={1}>
+                <Grid item xs={12}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
+                        Requests
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <TableContainer component={Paper} sx={{maxHeight: '60vh', overflow: 'scroll', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
+                        <Table>
+                            <TableHead>
+                                <StyledTableRow>
+                                    {columns.map((column) => (
+                                        <StyledTableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        // style={{ minWidth: column.minWidth }}
+                                        >
+                                        {column.label}
+                                        </StyledTableCell>
+                                    ))}
+                                    <StyledTableCell align="right"></StyledTableCell>
+                                    <StyledTableCell align="center"></StyledTableCell>
+                                </StyledTableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
+                                    return (
+                                    <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.city} onClick={handleShow}>
+                                        {columns.map((column) => {
+                                        const value = row[column.id];
+                                        return (
+                                            <StyledTableCell key={column.id} align={column.align}>
+                                            {/* {column.format && typeof value === 'number'
+                                                ? column.format(value)
+                                                : value} */}
+                                                {value}
+                                            </StyledTableCell>
+                                        );
+                                        })}
+                                        <StyledTableCell align="right"><Button onClick={acceptButton} sx={{backgroundColor: '#4caf50'}} variant="contained">&nbsp;Accept&nbsp;</Button></StyledTableCell>
+                                        <StyledTableCell align="center"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
+                                    </StyledTableRow>
+                                    );
                                 })}
-                                <StyledTableCell align="right"><Button onClick={acceptButton} sx={{backgroundColor: '#4caf50'}} variant="contained">&nbsp;Accept&nbsp;</Button></StyledTableCell>
-                                <StyledTableCell align="center"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
-                            </StyledTableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            /></Grid>
-            
-            <Grid item xs={3}><OthersProfile /></Grid> </Grid>
-            
-       
-        
-        
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Grid>
+            </Grid> 
     )
 }
 
