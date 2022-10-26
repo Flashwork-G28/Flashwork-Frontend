@@ -34,6 +34,7 @@ import withReactContent from "sweetalert2-react-content";
 import CircularProgress from '@mui/material/CircularProgress';
 import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const useStyles = makeStyles({
     cardSection: {
@@ -105,27 +106,27 @@ const useStyles = makeStyles({
 })
 
 
-
 const Workers = () => {
     const classes = useStyles();
     const {
-        user
+        user,
+        isAuthenticated
     } = useAuth0();
 
-    const [required_date, setRequired_date] = React.useState<Date | null>(null);
     const [workers, setWorkers]= useState<any>([]);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [seeker_id, setSeeker_id] = useState('');
     const [ma_id, setMAseeker_id] = useState('');
+    const [required_date, setRequired_date] = React.useState<Date | null>(null);
     const [form_category, setMAcategory] = useState('');
     const [payment_type, setPayment_type] = React.useState("Cash");
     const navigate = useNavigate();
-
+    const [favourite, setFavourite] = useState(false);
 
     const [manpower, setMAWorkers]= useState<any>([]);
     const [maLoading, setMALoading] = useState(false);
-
+    const [openMP, setOpenMP] = React.useState(false);
 
 
     const defaultValues = {
@@ -153,7 +154,8 @@ const Workers = () => {
         setPayment_type(event.target.value);
     };
 
-    const iconColor='blue';
+
+
 
     const handleClickFavorite = (user_id:any) => {
         if(user?.family_name==="JobProvider"){
@@ -189,46 +191,23 @@ const Workers = () => {
                             console.log('I was closed by the timer')
                         }
                     })
+                // setFavourite(true);
 
 
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-
-
-        }else {
-            navigate("/signUp/JobProvider", { replace: false });
-        }
-
-
-
-
-
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const [openMP, setOpenMP] = React.useState(false);
-
-    const handleClickOpenMP = (id:any,category:any) => {
-        if(user?.family_name==="JobProvider"){
-            setMAseeker_id(id);
-            setMAcategory(category);
-            setOpenMP(true);
         }else {
             navigate("/signUp/JobProvider", { replace: false });
         }
     };
 
-    const handleCloseMP = () => {
-        setOpenMP(false);
-    };
 
-
+// ------------------------------  Job Seeker ----------------------------------------------------------
     async function getWorkers() {
+
+        // {isAuthenticated && ()}
         try {
             const response = await axios.get('http://localhost:8000/workers/');
             const data = response.data;
@@ -242,6 +221,7 @@ const Workers = () => {
                     description: item.description,
                     complet_count: item.complet_count,
                     rate: item.rate,
+                    favorite: false
                 }])
                 return null;
             });
@@ -260,6 +240,12 @@ const Workers = () => {
             setSeeker_id(id);
             setOpen(true);
         }else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please login to the system as a Job Provider!'
+            })
+
             navigate("/signUp/JobProvider", { replace: false });
         }
     };
@@ -301,6 +287,10 @@ const Workers = () => {
             });
     }
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     //---------------------- manpower aguncy --------------------------------------------------------
     async function getMAWorkers() {
         try {
@@ -327,6 +317,16 @@ const Workers = () => {
             })
         }
     }
+
+    const handleClickOpenMP = (id:any,category:any) => {
+        if(user?.family_name==="JobProvider"){
+            setMAseeker_id(id);
+            setMAcategory(category);
+            setOpenMP(true);
+        }else {
+            navigate("/signUp/JobProvider", { replace: false });
+        }
+    };
 
     const OnsubmitMP = (e: {target: any; preventDefault: () => void;}) => {
         e.preventDefault();
@@ -367,6 +367,9 @@ const Workers = () => {
             });
     }
 
+    const handleCloseMP = () => {
+        setOpenMP(false);
+    };
 
 
     useEffect(() => {
@@ -376,7 +379,7 @@ const Workers = () => {
         getMAWorkers();
         setMALoading(true);
 
-    }, [])
+    }, [isAuthenticated])
 
 
 
@@ -416,7 +419,8 @@ const Workers = () => {
                                               backgroundColor: 'none',
                                               color: 'blueviolet',
                                               cursor: 'pointer'
-                                          }} onClick={() => handleClickFavorite(item.user_id)}><FavoriteIcon/></div>
+                                          }} onClick={() => handleClickFavorite(item.user_id)}>
+                                              {item.favourite == true ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</div>
                                           <Stack direction="row" spacing={0.5} sx={{mt: 6.5, mr: 5.8}}
                                                  alignItems="flex-end">
                                               <StarIcon sx={{color: yellow[600]}}/>
@@ -476,8 +480,7 @@ const Workers = () => {
                                                       </Grid>
                                                       <Grid item xs={6} sx={{m: 2}}>
                                                           <FormControl fullWidth>
-                                                              <InputLabel id="demo-select-small">Payment
-                                                                  Type</InputLabel>
+                                                              <InputLabel id="demo-select-small">Payment Type</InputLabel>
                                                               <Select
                                                                   labelId="demo-simple-select-label"
                                                                   id="demo-simple-select"
@@ -578,8 +581,6 @@ const Workers = () => {
 
 
 {/*------------------------- ManPower Aguncy Card and Form -------------------------------------------------------*/}
-
-
 
                   <div>
                       <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' margin='50px 0px 0px 30px'>
@@ -804,11 +805,7 @@ const Workers = () => {
 
                           {/*);*/}
                       </Grid>
-
-
                   </div>
-
-
 
 
           <div>
