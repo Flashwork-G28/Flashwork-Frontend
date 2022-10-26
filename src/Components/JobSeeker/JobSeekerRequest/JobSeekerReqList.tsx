@@ -76,7 +76,7 @@ const JobSeekerReqList = () => {
     }, []);
     return (
         <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{color:"#46225F",paddingRight:"500px"}} >
+            <div style={{color:"#46225F",paddingRight:"900px"}} >
             <h2>Request</h2>
             </div>
             <div>
@@ -95,10 +95,10 @@ const JobSeekerReqList = () => {
                             {rows.map((row) => (
                                 <StyledTableRow key={row.category}>
                                     <StyledTableCell component="th" scope="row">
-                                        {row.city}
+                                        {row.first_name}
                                     </StyledTableCell>
-                                    <StyledTableCell align="left">{row.first_name}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.last_name}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.city}</StyledTableCell>
+                                    <StyledTableCell align="left">{row.category}</StyledTableCell>
                                     <StyledTableCell align="left"><button style={{padding:"5px",backgroundColor:"#43BA5D",border:"none",fontWeight:"bold",color:"white",borderRadius:"3px"}}>Accept</button></StyledTableCell>
                                     <StyledTableCell align="left"><button style={{padding:"5px",backgroundColor:"red",border:"none",fontWeight:"bold",color:"white",borderRadius:"3px"}}>Reject</button></StyledTableCell>
                                 </StyledTableRow>

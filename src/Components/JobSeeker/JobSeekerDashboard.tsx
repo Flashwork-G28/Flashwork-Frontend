@@ -70,13 +70,12 @@ function createData(
 }
 
 function createData2(
-    jobSeeker: string,
+    jobProvider: string,
     location: string,
     payment: string,
-    status: string,
     mobile: string,
 ) {
-    return {jobSeeker, location, payment, status, mobile};
+    return {jobProvider, location, payment,mobile};
 }
 
 // const rows = [
@@ -88,12 +87,14 @@ function createData2(
 //
 // ];
 
+
+
 const rows = [
-    createData2('Ananda Rajapaksha', 'kalutara', 'Cash', 'current', '0145689765'),
-    createData2('Lakshitha Dhananjaya', 'Matara', 'Cash', 'progrs', '0145689765'),
-    createData2('Pasindu  Dhananajaya', 'Panadura', 'Cash', 'current', '0145689765'),
-    createData2('Bhashitha  Sandeepa', 'Maradana', 'Cash', 'current', '0145689765'),
-    createData2('Sameera  Sankapal', 'Galle', 'Cash', 'current', '0145689765')
+    createData2('Ananda Rajapaksha', 'kalutara', 'Cash', '0145689765'),
+    createData2('Lakshitha Dhananjaya', 'Matara', 'Cash', '0145689765'),
+    createData2('Pasindu  Dhananajaya', 'Panadura', 'Cash', '0145689765'),
+    createData2('Bhashitha  Sandeepa', 'Maradana', 'Cash', '0145689765'),
+    createData2('Sameera  Sankapal', 'Galle', 'Cash', '0145689765')
 ];
 
 
@@ -145,8 +146,8 @@ const JobSeekerDashboard = () => {
     return (
         <div>
             <Box sx={{flexGrow: 1}}>
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
+                <Grid container spacing={12}>
+                    <Grid item xs={12}>
                         <Grid item xs={12} style={{display: "flex", flexDirection: "row"}}>
                             <Grid item xs={6}>
                                 <div style={{
@@ -154,7 +155,7 @@ const JobSeekerDashboard = () => {
                                     paddingTop: "20px",
                                     fontWeight: "bold",
                                     fontSize: "30px"
-                                }}>Time Schedule
+                                }}>
                                 </div>
                             </Grid>
                             <Grid item xs={6}>
@@ -240,27 +241,26 @@ const JobSeekerDashboard = () => {
                                         <Table sx={{minWidth: 500}} aria-label="customized table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell style={{fontWeight: "bold"}}>Job
-                                                        Seeker</StyledTableCell>
+                                                    <StyledTableCell style={{fontWeight: "bold"}}>Job Provider</StyledTableCell>
                                                     <StyledTableCell align="left"
                                                                      style={{fontWeight: "bold"}}>Location</StyledTableCell>
                                                     <StyledTableCell align="left" style={{fontWeight: "bold"}}>Payment
                                                         Methoud</StyledTableCell>
                                                     <StyledTableCell align="left"
-                                                                     style={{fontWeight: "bold"}}>Status</StyledTableCell>
-                                                    <StyledTableCell align="left"
                                                                      style={{fontWeight: "bold"}}>Contact</StyledTableCell>
+                                                    {/*<StyledTableCell align="left"*/}
+                                                    {/*                 style={{fontWeight: "bold"}}>Contact</StyledTableCell>*/}
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
                                                 {rows.map((row) => (
-                                                    <StyledTableRow key={row.jobSeeker}>
+                                                    <StyledTableRow key={row.jobProvider}>
                                                         <StyledTableCell component="th" scope="row">
-                                                            {row.jobSeeker}
+                                                            {row.jobProvider}
                                                         </StyledTableCell>
                                                         <StyledTableCell align="left">{row.location}</StyledTableCell>
                                                         <StyledTableCell align="left">{row.payment}</StyledTableCell>
-                                                        <StyledTableCell align="left">{row.status}</StyledTableCell>
+                                                        {/*<StyledTableCell align="left">{row.status}</StyledTableCell>*/}
                                                         <StyledTableCell align="left">{row.mobile}</StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
@@ -273,85 +273,85 @@ const JobSeekerDashboard = () => {
 
 
                     </Grid>
-                    <Grid item xs={4}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                    {/*<Grid item xs={4}>*/}
+                    {/*    <Grid container spacing={2}>*/}
+                    {/*        <Grid item xs={12}>*/}
 
-                            </Grid>
-                            <Grid item xs={12} style={{marginLeft: "5%", marginBottom: "10px"}}>
-                                <div style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "center",
-                                    backgroundColor: "#ECD2F2",
-                                    borderRadius: "10px"
-                                }}>
-                                    <div><h3>Upcoming All Task 24</h3></div>
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12} style={{marginLeft: "5%", marginBottom: "10px"}}>*/}
+                    {/*            <div style={{*/}
+                    {/*                display: "flex",*/}
+                    {/*                flexDirection: "row",*/}
+                    {/*                justifyContent: "center",*/}
+                    {/*                backgroundColor: "#ECD2F2",*/}
+                    {/*                borderRadius: "10px"*/}
+                    {/*            }}>*/}
+                    {/*                <div><h3>Upcoming All Task 24</h3></div>*/}
 
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} style={{marginLeft: "5%", marginBottom: "10px"}}>
-                                <div style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "center",
-                                    backgroundColor: "#ECD2F2",
-                                    borderRadius: "10px"
-                                }}>
-                                    <div><h3>Daily Task 4</h3></div>
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12} style={{marginLeft: "5%", marginBottom: "10px"}}>*/}
+                    {/*            <div style={{*/}
+                    {/*                display: "flex",*/}
+                    {/*                flexDirection: "row",*/}
+                    {/*                justifyContent: "center",*/}
+                    {/*                backgroundColor: "#ECD2F2",*/}
+                    {/*                borderRadius: "10px"*/}
+                    {/*            }}>*/}
+                    {/*                <div><h3>Daily Task 4</h3></div>*/}
 
-                                </div>
-                            </Grid>
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
 
-                            <Grid item xs={12} style={{marginLeft: "5%"}}>
+                    {/*        <Grid item xs={12} style={{marginLeft: "5%"}}>*/}
 
-                                <div>
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon/>}
-                                            aria-controls="panel1a-content"
-                                            id="panel1a-header"
-                                            style={{backgroundColor: "#ECD2F2"}}
-                                        >
-                                            <Typography><h4>FrockMe Textile</h4></Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <div style={{display: "flex", flexDirection: "column"}}>
-                                                <Grid item xs={12}
-                                                      style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>
-                                                    Date:
-                                                </Grid>
-                                                <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>
-                                                    2022 july 23
-                                                </Grid>
-                                                <Grid item xs={12}
-                                                      style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>
-                                                    Time:
-                                                </Grid>
-                                                <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>
-                                                    9.00 am
-                                                </Grid>
-                                                <Grid item xs={12}
-                                                      style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>
-                                                    Venue:
-                                                </Grid>
-                                                <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>
-                                                    FrockMe, No 133/02/01
-                                                    Highlevel Road
-                                                    Kirulapana.
-                                                </Grid>
-                                            </div>
-                                        </AccordionDetails>
-                                    </Accordion>
-
-
-                                </div>
-
-                            </Grid>
+                    {/*            <div>*/}
+                    {/*                <Accordion>*/}
+                    {/*                    <AccordionSummary*/}
+                    {/*                        expandIcon={<ExpandMoreIcon/>}*/}
+                    {/*                        aria-controls="panel1a-content"*/}
+                    {/*                        id="panel1a-header"*/}
+                    {/*                        style={{backgroundColor: "#ECD2F2"}}*/}
+                    {/*                    >*/}
+                    {/*                        <Typography><h4>FrockMe Textile</h4></Typography>*/}
+                    {/*                    </AccordionSummary>*/}
+                    {/*                    <AccordionDetails>*/}
+                    {/*                        <div style={{display: "flex", flexDirection: "column"}}>*/}
+                    {/*                            <Grid item xs={12}*/}
+                    {/*                                  style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>*/}
+                    {/*                                Date:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>*/}
+                    {/*                                2022 july 23*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12}*/}
+                    {/*                                  style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>*/}
+                    {/*                                Time:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>*/}
+                    {/*                                9.00 am*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12}*/}
+                    {/*                                  style={{backgroundColor: "lightgrey", fontWeight: "bold"}}>*/}
+                    {/*                                Venue:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor: "lightgrey"}}>*/}
+                    {/*                                FrockMe, No 133/02/01*/}
+                    {/*                                Highlevel Road*/}
+                    {/*                                Kirulapana.*/}
+                    {/*                            </Grid>*/}
+                    {/*                        </div>*/}
+                    {/*                    </AccordionDetails>*/}
+                    {/*                </Accordion>*/}
 
 
-                        </Grid>
-                    </Grid>
+                    {/*            </div>*/}
+
+                    {/*        </Grid>*/}
+
+
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
 
                 </Grid>
             </Box>
