@@ -51,7 +51,7 @@ export default function UserChat() {
         });
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (user_id: any) => {
         // e.preventDefault();
 
         let seeker_id:any = user?.sub;
@@ -81,7 +81,7 @@ export default function UserChat() {
         else {
             axios.post('http://localhost:8000/chat/postChat', {
                 sender_id: '630362a354a0bca9c18842a9',
-                receiver_id: seeker_id,
+                receiver_id: user_id,
                 message: formValues.message,
           })
           .then(function (response) {
@@ -135,6 +135,8 @@ export default function UserChat() {
         })
     }
 
+    const [receiver, setReceiver] = useState<any>([]);
+
     useEffect(() => {
         viewUsers();
     }, []);
@@ -153,7 +155,7 @@ export default function UserChat() {
                                 {/* <StyledTableCell align="center">{item.status}</StyledTableCell> */}
                                 {/* <StyledTableCell align="center">{item.user_id}</StyledTableCell> */}
                                 <StyledTableCell align="left"><img style={{paddingLeft: '5px', borderRadius: "50%", width: "45px", height: "45px"}} src={item.img} alt='profile_pic' /></StyledTableCell>
-                                <StyledTableCell component="th" scope="row" align="left">
+                                <StyledTableCell component="th" scope="row" align="left" style={{cursor:'pointer'}} onClick={() => setReceiver(item.user_id)}>
                                 {item.first_name} {item.last_name}
                                 </StyledTableCell>
                             </StyledTableRow>
@@ -181,7 +183,7 @@ export default function UserChat() {
                             />
                         </Grid>
                         <Grid item xs={2.5} sx={{display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
-                            <Button color='secondary' variant='contained' fullWidth type='submit' onClick={handleSubmit}
+                            <Button color='secondary' variant='contained' fullWidth type='submit' onClick={() => handleSubmit(receiver)}
                             sx={{padding: '10px 30px', fontSize: '14px', borderRadius: '10px', maxWidth: 'fit-content', transition: 'ease .3s'}}>
                                 <SendIcon sx={{padding: '0px 10px 0px 0px'}}/> Send
                             </Button>
