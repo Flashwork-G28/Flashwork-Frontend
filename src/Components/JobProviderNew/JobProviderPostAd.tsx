@@ -74,6 +74,7 @@ export default function JobProviderPostAd() {
           })
           .then(function (response) {
             console.log(response);
+            // window.location.reload();
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
