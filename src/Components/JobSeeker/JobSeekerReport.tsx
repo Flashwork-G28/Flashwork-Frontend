@@ -28,6 +28,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
+import {useState} from "react";
 
 
 
@@ -77,8 +78,7 @@ const rows = [
     createData('Lakshitha Dhananjaya', 'Matara', 'cash','progrs','0145689765'),
     createData('Pasindu  Dhananajaya', 'Panadura', 'cash','current','0145689765'),
     createData('Bhashitha  Sandeepa', 'MAradana', 'cash','current','0145689765'),
-    createData('Sameera  Sankapal', 'Galle', 'cash','current','0145689765'),
-
+    createData('Sameera  Sankapal', 'Galle', 'cash','current','0145689765')
 ];
 
 
@@ -87,6 +87,7 @@ const rows = [
 
 const JobSeekerReport = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);

@@ -266,7 +266,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Fist Name"
-                                                                    disabled
+                                                                    // disabled
                                                                     defaultValue={item.first_name}
                                                                 />
                                                             </div>
@@ -275,7 +275,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Last Name"
-                                                                    disabled
+                                                                    // disabled
                                                                     defaultValue={item.last_name}
                                                                 />
                                                             </div>
@@ -283,7 +283,7 @@ const JobSeekerProfile = () => {
                                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
                                                             id="outlined-helperText"
                                                             label="Email"
-                                                                   disabled
+                                                                   // disabled
                                                             defaultValue={item.email}
                                                         />
                                                         <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
@@ -292,7 +292,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Location"
-                                                                    disabled
+                                                                    // disabled
                                                                     defaultValue={item.city}
                                                                 />
                                                             </div>
@@ -301,7 +301,7 @@ const JobSeekerProfile = () => {
                                                                 <TextField
                                                                     id="outlined-helperText"
                                                                     label="Mobile"
-                                                                    disabled
+                                                                    // disabled
                                                                     defaultValue={item.mobile}
                                                                 />
                                                             </div>
@@ -316,11 +316,11 @@ const JobSeekerProfile = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div style={{paddingLeft:"10px"}}>
+                                    <div style={{paddingLeft:"40px"}}>
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Description"
-                                                   disabled
+                                                   // disabled
                                                    defaultValue={item.description}
                                         />
                                     </div>
@@ -331,7 +331,7 @@ const JobSeekerProfile = () => {
                                         <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
                                                    id="outlined-helperText"
                                                    label="Qualification"
-                                                   disabled
+                                                   // disabled
                                                    defaultValue={item.qualification}
                                         />
                                     </div>
@@ -339,9 +339,6 @@ const JobSeekerProfile = () => {
 
 
                                 </Grid>
-
-
-
 
                                         {/*the end*/}
                                 {/*<Grid item xs={12}>*/}
@@ -354,36 +351,36 @@ const JobSeekerProfile = () => {
                                 {/*        </div>*/}
 
                                 {/*</Grid>*/}
-                                <Grid item xs={12}>
-                                    <div style={{backgroundColor:"lightgrey",borderRadius:"10px"}}>
-                                        <Box component="fieldset" mb={3} borderColor="transparent">
-                                            <Typography component="legend"><h3>Anjana Thilakawardana</h3>2022 - 08 - 12,Good Aguncy, Good service</Typography>
-                                            <Rating
-                                                name="simple-controlled"
-                                                value={value}
-                                                onChange={(event, newValue) => {
-                                                    setValue(newValue);
-                                                }}
-                                            />
-                                        </Box>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
+                                {/*<Grid item xs={12}>*/}
+                                {/*    <div style={{backgroundColor:"lightgrey",borderRadius:"10px"}}>*/}
+                                {/*        <Box component="fieldset" mb={3} borderColor="transparent">*/}
+                                {/*            <Typography component="legend"><h3>Anjana Thilakawardana</h3>2022 - 08 - 12,Good Aguncy, Good service</Typography>*/}
+                                {/*            <Rating*/}
+                                {/*                name="simple-controlled"*/}
+                                {/*                value={value}*/}
+                                {/*                onChange={(event, newValue) => {*/}
+                                {/*                    setValue(newValue);*/}
+                                {/*                }}*/}
+                                {/*            />*/}
+                                {/*        </Box>*/}
+                                {/*    </div>*/}
+                                {/*</Grid>*/}
+                                {/*<Grid item xs={12}>*/}
 
-                                    <div style={{backgroundColor:"lightgrey",borderRadius:"10px",marginTop:"2px"}}>
-                                        <Box component="fieldset" mb={3} borderColor="transparent">
-                                            <Typography component="legend"><h3>Amila Gnarathne</h3>2023 - 08 - 2,Good Aguncy, Good service</Typography>
-                                            <Rating
-                                                name="simple-controlled"
-                                                value={value}
-                                                onChange={(event, newValue) => {
-                                                    setValue(newValue);
-                                                }}
-                                            />
-                                        </Box>
-                                    </div>
+                                {/*    <div style={{backgroundColor:"lightgrey",borderRadius:"10px",marginTop:"2px"}}>*/}
+                                {/*        <Box component="fieldset" mb={3} borderColor="transparent">*/}
+                                {/*            <Typography component="legend"><h3>Amila Gnarathne</h3>2023 - 08 - 2,Good Aguncy, Good service</Typography>*/}
+                                {/*            <Rating*/}
+                                {/*                name="simple-controlled"*/}
+                                {/*                value={value}*/}
+                                {/*                onChange={(event, newValue) => {*/}
+                                {/*                    setValue(newValue);*/}
+                                {/*                }}*/}
+                                {/*            />*/}
+                                {/*        </Box>*/}
+                                {/*    </div>*/}
 
-                                </Grid>
+                                {/*</Grid>*/}
 
                             </Grid>
 
