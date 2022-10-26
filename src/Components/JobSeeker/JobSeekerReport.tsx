@@ -73,11 +73,11 @@ function createData(
 }
 
 const rows = [
-    createData('Ananda Rajapaksha -No 04 | Aug 23 2022', 'kalutara', 'cash','current','0145689765'),
-    createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Matara', 'cash','progrs','0145689765'),
-    createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'cash','current','0145689765'),
-    createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'MAradana', 'cash','current','0145689765'),
-    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Galle', 'cash','current','0145689765'),
+    createData('Ananda Rajapaksha', 'kalutara', 'cash','current','0145689765'),
+    createData('Lakshitha Dhananjaya', 'Matara', 'cash','progrs','0145689765'),
+    createData('Pasindu  Dhananajaya', 'Panadura', 'cash','current','0145689765'),
+    createData('Bhashitha  Sandeepa', 'MAradana', 'cash','current','0145689765'),
+    createData('Sameera  Sankapal', 'Galle', 'cash','current','0145689765'),
 
 ];
 

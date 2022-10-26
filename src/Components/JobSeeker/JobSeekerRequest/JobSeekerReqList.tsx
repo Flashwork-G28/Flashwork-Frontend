@@ -40,12 +40,12 @@ function createData(
 }
 
 const rows = [
-    createData('Ananda Rajapaksha -No 04 | Aug 23 2022', 'Nugegoda', 'Car penter'),
-    createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Kalutara', 'Electrition'),
-    createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'Car penter'),
-    createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'Galle', 'Electrit'),
-    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Matara', 'Car penter'),
-    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Matara', 'Car penter'),
+    createData('Ananda Rajapaksha', 'Nugegoda', 'Car penter'),
+    createData('Lakshitha Dhananjaya', 'Kalutara', 'Electrition'),
+    createData('Pasindu  Dhananajaya ', 'Panadura', 'Car penter'),
+    createData('Bhashitha  Sandeepa ', 'Galle', 'Electrit'),
+    createData('Sameera  Sankapal', 'Matara', 'Car penter'),
+    createData('Sameera  Sankapal ', 'Matara', 'Car penter'),
 
 
 ];

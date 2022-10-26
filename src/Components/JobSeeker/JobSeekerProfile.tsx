@@ -123,15 +123,21 @@ const JobSeekerProfile = () => {
 
     const [value, setValue] = React.useState<number | null>(2);
     const [profileDetails, setProfileDetails] = React.useState<any>([]);
-// console.log(profileDetails);
+
+
 
 
 
     useEffect(() => {
 
-        axios.get("http://localhost:8000/JobSeeker/profile").then((response: { data: any; }) => {
-            const det = response.data;
-            // console.log(det);
+        axios.get("http://localhost:8000/JobSeeker/profile")
+            .then((response: { data: any; }) => {
+                console.log(response.data);
+
+
+                const det = response.data;
+                console.log(det);
+
             det.map((item: any) => {
 
                 setProfileDetails((prevState: any) => [...prevState, {
@@ -185,7 +191,7 @@ const JobSeekerProfile = () => {
                         <Grid item xs={12}>
 
                             {profileDetails.map((item:any) => {
-                                return (
+                              return (
 
                             <Grid container spacing={2}>
                                 <Grid container spacing={3} item xs={12}>

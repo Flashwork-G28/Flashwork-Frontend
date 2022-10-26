@@ -151,6 +151,7 @@ const JobProfile = () => {
     useEffect(() => {
 
         axios.get("http://localhost:8000/JobSeeker/jobProviderProfile").then((response: { data: any; }) => {
+            alert("gg")
 
             const det = response.data;
 

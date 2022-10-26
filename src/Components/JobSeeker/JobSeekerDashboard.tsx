@@ -62,19 +62,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function createData(
     jobSeeker: string,
     location: string,
-    payment: string,
+    category: string,
     status: string,
 
 ) {
-    return { jobSeeker, location, payment,status };
+    return { jobSeeker, location,category,status };
 }
 
 const rows = [
-    createData('Ananda Rajapaksha -No 04 | Aug 23 2022', 'kalutara', 'cash','Accept'),
-    createData('Lakshitha Dhananjaya -No 05 | Aug 23 2022', 'Matara', 'Online','Accept'),
-    createData('Pasindu  Dhananajaya -No 06 | Aug 23 2022', 'Panadura', 'cash','Reject'),
-    createData('Bhashitha  Sandeepa -No 07 | Aug 23 2022', 'MAradana', 'Online','Reject'),
-    createData('Sameera  Sankapal -No 09 | Aug 23 2022', 'Galle', 'cash','None',),
+    createData('Ananda Rajapaksha', 'kalutara', 'Car penter','Accept'),
+    createData('Lakshitha Dhananjaya', 'Matara', 'Electrition','Accept'),
+    createData('Pasindu  Dhananajaya', 'Panadura', 'Car penter','Reject'),
+    createData('Bhashitha  Sandeepa', 'MAradana', 'Electrition','Reject'),
+    createData('Sameera  Sankapal ', 'Galle', 'Electrition','None',),
 
 ];
 
@@ -109,9 +109,9 @@ const JobSeekerDashboard = () => {
                             {/*    <div  style={{paddingLeft:"300px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>*/}
                             {/*</div>*/}
                         </Grid>
-                        <Grid item xs={12} >
-                            <Item>Activity Calender</Item>
-                        </Grid>
+                        {/*<Grid item xs={12} >*/}
+                        {/*    <Item>Activity Calender</Item>*/}
+                        {/*</Grid>*/}
                         <Grid item xs={12} >
                             <h2>Applied Job</h2>
                         </Grid>
@@ -122,7 +122,7 @@ const JobSeekerDashboard = () => {
                                         <TableRow>
                                             <StyledTableCell style={{fontWeight:"bold"}}>Job Seeker</StyledTableCell>
                                             <StyledTableCell align="left" style={{fontWeight:"bold"}}>Location</StyledTableCell>
-                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Payment Methoud</StyledTableCell>
+                                            <StyledTableCell align="left" style={{fontWeight:"bold"}}>Category</StyledTableCell>
                                             <StyledTableCell align="left" style={{fontWeight:"bold"}}>Status</StyledTableCell>
 
                                         </TableRow>
@@ -134,7 +134,7 @@ const JobSeekerDashboard = () => {
                                                     {row.jobSeeker}
                                                 </StyledTableCell>
                                                 <StyledTableCell align="left">{row.location}</StyledTableCell>
-                                                <StyledTableCell align="left">{row.payment}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.category}</StyledTableCell>
                                                 <StyledTableCell align="left">{row.status}</StyledTableCell>
 
                                             </StyledTableRow>
