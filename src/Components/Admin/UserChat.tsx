@@ -98,6 +98,43 @@ export default function UserChat() {
         }
     }
 
+    let admin_id: '630362a354a0bca9c18842a9';
+
+    const getChat = (user_id: any) => {
+        let seeker_id:any = user?.sub;
+        seeker_id = seeker_id.substring(6);
+        console.log(formValues.message);
+
+        if(seeker_id != '630362a354a0bca9c18842a9') {
+            axios.get('http://localhost:8000/chat/getChat/' + admin_id)
+          .then(function (response) {
+            console.log(response);
+            setFormValues({
+                ...defaultValues,
+              });
+            // e.target.reset();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        // alert(JSON.stringify(formValues, null, 5));
+        }
+
+        else {
+            axios.get('http://localhost:8000/chat/getChat/' + user_id)
+          .then(function (response) {
+            console.log(response);
+            console.log(user_id);
+            // const det = response.data;
+            setFormValues(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        alert(JSON.stringify(formValues, null, 5));
+        }
+    }
+
     // Get all users
     const [details, setDetails] = useState<any>([]);
 
@@ -135,6 +172,7 @@ export default function UserChat() {
         })
     }
 
+    // Get selected user
     const [receiver, setReceiver] = useState<any>([]);
 
     useEffect(() => {
@@ -155,7 +193,7 @@ export default function UserChat() {
                                 {/* <StyledTableCell align="center">{item.status}</StyledTableCell> */}
                                 {/* <StyledTableCell align="center">{item.user_id}</StyledTableCell> */}
                                 <StyledTableCell align="left"><img style={{paddingLeft: '5px', borderRadius: "50%", width: "45px", height: "45px"}} src={item.img} alt='profile_pic' /></StyledTableCell>
-                                <StyledTableCell component="th" scope="row" align="left" style={{cursor:'pointer'}} onClick={() => setReceiver(item.user_id)}>
+                                <StyledTableCell component="th" scope="row" align="left" style={{cursor:'pointer'}} onClick={() => {setReceiver(item.user_id); getChat(item.user_id)}}>
                                 {item.first_name} {item.last_name}
                                 </StyledTableCell>
                             </StyledTableRow>
@@ -168,7 +206,7 @@ export default function UserChat() {
                 <Grid item xs={8} sx={{padding: '40px 30px'}}>
                     <Grid item xs={12} sx={{padding: '40px 10px 40px 30px', minHeight: '600px', background: 'linear-gradient(90deg, #ffffff, #d1c4e9, #ffffff)', display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
                         <Typography sx={{maxWidth: '200px', height: 'fit-content', overflowWrap: 'break-word', padding: '10px 10px 10px 40px', backgroundColor: '#ff1744', borderRadius: '20px 0px 0px 20px'}} component="h4">
-                            ghhh &nbsp;&nbsp;|&nbsp;&nbsp; bjjnm
+                            {formValues.message}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sx={{padding: '20px 10px', display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
