@@ -34,6 +34,7 @@ import withReactContent from "sweetalert2-react-content";
 import CircularProgress from '@mui/material/CircularProgress';
 import pc1 from "../../Assets/backgroundImages/man1.jpg";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const useStyles = makeStyles({
     cardSection: {
@@ -121,7 +122,7 @@ const Workers = () => {
     const [form_category, setMAcategory] = useState('');
     const [payment_type, setPayment_type] = React.useState("Cash");
     const navigate = useNavigate();
-
+    const [favourite, setFavourite] = useState(false);
 
     const [manpower, setMAWorkers]= useState<any>([]);
     const [maLoading, setMALoading] = useState(false);
@@ -190,6 +191,7 @@ const Workers = () => {
                             console.log('I was closed by the timer')
                         }
                     })
+                // setFavourite(true);
 
 
                 })
@@ -219,6 +221,7 @@ const Workers = () => {
                     description: item.description,
                     complet_count: item.complet_count,
                     rate: item.rate,
+                    favorite: false
                 }])
                 return null;
             });
@@ -237,6 +240,12 @@ const Workers = () => {
             setSeeker_id(id);
             setOpen(true);
         }else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please login to the system as a Job Provider!'
+            })
+
             navigate("/signUp/JobProvider", { replace: false });
         }
     };
@@ -370,9 +379,6 @@ const Workers = () => {
         getMAWorkers();
         setMALoading(true);
 
-        console.log("check the user");
-        console.log(isAuthenticated);
-        console.log("After the check");
     }, [isAuthenticated])
 
 
@@ -413,7 +419,8 @@ const Workers = () => {
                                               backgroundColor: 'none',
                                               color: 'blueviolet',
                                               cursor: 'pointer'
-                                          }} onClick={() => handleClickFavorite(item.user_id)}><FavoriteIcon/></div>
+                                          }} onClick={() => handleClickFavorite(item.user_id)}>
+                                              {item.favourite == true ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</div>
                                           <Stack direction="row" spacing={0.5} sx={{mt: 6.5, mr: 5.8}}
                                                  alignItems="flex-end">
                                               <StarIcon sx={{color: yellow[600]}}/>
@@ -473,8 +480,7 @@ const Workers = () => {
                                                       </Grid>
                                                       <Grid item xs={6} sx={{m: 2}}>
                                                           <FormControl fullWidth>
-                                                              <InputLabel id="demo-select-small">Payment
-                                                                  Type</InputLabel>
+                                                              <InputLabel id="demo-select-small">Payment Type</InputLabel>
                                                               <Select
                                                                   labelId="demo-simple-select-label"
                                                                   id="demo-simple-select"

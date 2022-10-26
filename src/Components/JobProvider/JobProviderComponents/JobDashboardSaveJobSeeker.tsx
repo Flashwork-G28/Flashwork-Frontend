@@ -99,7 +99,7 @@ const JobDashboardSaveJobSeeker = () => {
     const [SaveWorker, setSaveWorkers]= useState<any>([]);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = React.useState(false);
-
+    const [initialState, setInitialState] = useState<any>({});
 
     // async function getSaveWorkers() {
     //     try {
@@ -137,7 +137,7 @@ const JobDashboardSaveJobSeeker = () => {
 
         })
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 const data = response.data;
 
                 data.map((item: any) => {
@@ -152,8 +152,19 @@ const JobDashboardSaveJobSeeker = () => {
                         complet_count: item.complet_count,
                         rate: item.rate,
                     }])
-                    return null;
                 });
+               setInitialState({
+                   user_id: response.data[0].user_id,
+                   first_name: response.data[0].first_name,
+                   last_name: response.data[0].last_name,
+                   img:response.data[0].img,
+                   mobile:response.data[0].mobile,
+                   category: response.data[0].category,
+                   description: response.data[0].description,
+                   complet_count: response.data[0].complet_count,
+                   rate: response.data[0].rate,
+               })
+
 
             })
             .catch(function (error) {
@@ -169,6 +180,7 @@ const JobDashboardSaveJobSeeker = () => {
     const [dailogData, setdailogData]= useState<any>({});
 
     const openDetails = (prop : any) => {
+        setInitState(true);
         setdailogData(prop)
 
     };
@@ -196,7 +208,7 @@ const JobDashboardSaveJobSeeker = () => {
 
     const [ formValues, setFormValues ] = useState(defaultValues);
     const [value, setValue] = React.useState<Date | null>(null);
-
+    const [initState, setInitState] = useState(false);
 
     const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
         const { name, value } = e.target;
@@ -312,8 +324,8 @@ const JobDashboardSaveJobSeeker = () => {
                         {/*<JobSeekerReqProfile />*/}
 
                         <div>
-
-                            <Box  sx={{ flexGrow: 1 }} style={{ paddingLeft:'25px',paddingTop:'10px',paddingBottom:'25px'}}>
+                            {initState== true &&
+                                <Box  sx={{ flexGrow: 1 }} style={{ paddingLeft:'25px',paddingTop:'10px',paddingBottom:'25px'}}>
                                 <Grid  container spacing={2} >
                                     <Grid  item xs={12} >
                                         <Item style={{boxShadow:'none'}}><h1 color="blue">{dailogData.first_name} {dailogData.last_name}</h1></Item>
@@ -349,6 +361,46 @@ const JobDashboardSaveJobSeeker = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
+                            }
+                            {
+                                initState == false &&
+                                <Box  sx={{ flexGrow: 1 }} style={{ paddingLeft:'25px',paddingTop:'10px',paddingBottom:'25px'}}>
+                                    <Grid  container spacing={2} >
+                                        <Grid  item xs={12} >
+                                            <Item style={{boxShadow:'none'}}><h1 color="blue">{initialState.first_name} {initialState.last_name}</h1></Item>
+                                        </Grid>
+                                        <Grid  item xs={6}>
+
+                                            <Item style={{boxShadow:'none'}} >
+                                                <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><BusinessCenterIcon style={{ color: "#afafaf" }} /> {initialState.category}</div>
+                                                <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><CallIcon style={{ color: "#afafaf" }} /> {initialState.mobile}</div>
+                                                <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><StarIcon style={{ color: "#afafaf" }} /> Rate : {initialState.rate}</div>
+                                                <div style={{display:"flex",flexDirection:"row",fontWeight:"bold",paddingBottom:"8px"}}><AssignmentTurnedInIcon style={{ color: "#afafaf" }} /> {initialState.complet_count} Task Completed</div>
+
+                                            </Item>
+
+
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Item style={{boxShadow:'none'}}>
+                                                <Avatar
+                                                    alt="RequestProfile"
+                                                    src={initialState.img}
+                                                    sx={{width: 150, height: 150}}/>
+                                            </Item>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Item style={{boxShadow:'none'}}><h3>Description</h3></Item>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Item style={{boxShadow:'none'}}>{initialState.description}</Item>
+                                        </Grid>
+                                        <Grid item xs={12} >
+                                            <Button variant="contained"  onClick={() => handleClickOpen(initialState.user_id)}>Book Now</Button>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            }
                         </div>
                     </Paper>
 
