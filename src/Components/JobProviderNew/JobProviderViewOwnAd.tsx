@@ -267,7 +267,7 @@ export default function JobProviderViewOwnAd() {
                             return (
                                 <TableBody>
                                     <StyledTableRow
-                                        key={item.title}
+                                        key={item.id}
                                     >
                                     <StyledTableCell
                                         component="th" scope="row" align='left'>{item.title}

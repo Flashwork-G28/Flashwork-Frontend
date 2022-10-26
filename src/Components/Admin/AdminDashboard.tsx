@@ -305,7 +305,7 @@ export default function AdminDashboard() {
             Users
         </Typography> }</Grow>
     
-        <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+        <Grid container spacing={2}>
             <Grid item xs={2.5}><Grow in={checked} >{cards1}</Grow></Grid>
             {/* Conditionally applies the timeout prop to change the entry speed. */} 
             <Grid item xs={2.5}><Grow

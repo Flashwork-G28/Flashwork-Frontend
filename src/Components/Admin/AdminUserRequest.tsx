@@ -124,35 +124,64 @@ export default function AdminUserRequest() {
   }
 
   // Decline button popup
-  const declineButton = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: 'btn btn-success',
-      confirmButtonText: 'Confirm'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Declined!',
-          'Complaint declined',
-          'error'
-        )
-      }
-    })
+  const declineButton = (id: any) => {
+    axios.delete("http://localhost:8000/complaints/DeleteCompl/"+id)
+    
+      .then(function (response) {
+        console.log(response);
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: 'btn btn-success',
+            confirmButtonText: 'Confirm'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Resolved!',
+                'Complaint has been resolved.',
+                'success'
+              )
+            }
+          })
+        })
+        // window.location.reload();
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // Resolve button popup
-  const resolveButton = () => {
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Complaint has been resolved',
-        showConfirmButton: false,
-        timer: 1500
-      })
+  const resolveButton = (id: any) => {
+    // console.log(id);
+      axios.delete("http://localhost:8000/complaints/DeleteCompl/"+id)
+    
+      .then(function (response) {
+        console.log(response);
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: 'btn btn-success',
+            confirmButtonText: 'Confirm'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Resolved!',
+                'Complaint has been resolved.',
+                'success'
+              )
+            }
+          })
+        })
+        // window.location.reload();
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -165,7 +194,7 @@ export default function AdminUserRequest() {
         User Requests / Complaints
       </Typography>
 
-      <TableContainer component={Paper} sx={{maxHeight: '60vh', overflow: 'scroll', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
+      <TableContainer component={Paper} sx={{borderRadius: '20px 20px 0px 0px', maxHeight: '60vh', overflow: 'scroll', boxShadow: '0 5px 20px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.2)'}}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -189,8 +218,8 @@ export default function AdminUserRequest() {
                     <StyledTableCell align="left">{item.date}</StyledTableCell>
                     <StyledTableCell align="left">{item.reason}</StyledTableCell>
                     <StyledTableCell align="center">{item.rating}</StyledTableCell>
-                    <StyledTableCell align="right"><Button onClick={resolveButton} sx={{backgroundColor: '#7A3293'}} variant="contained">Resolve</Button></StyledTableCell>
-                    <StyledTableCell align="right"><Button onClick={declineButton} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
+                    <StyledTableCell align="right"><Button onClick={() => resolveButton(item.id)} sx={{backgroundColor: '#7A3293'}} variant="contained">Resolve</Button></StyledTableCell>
+                    <StyledTableCell align="right"><Button onClick={() => declineButton(item.id)} sx={{backgroundColor: '#d32f2f'}} variant="contained">Decline</Button></StyledTableCell>
                   </StyledTableRow>
               </TableBody>
             )

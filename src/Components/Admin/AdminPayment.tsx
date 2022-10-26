@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import PendingIcon from '@mui/icons-material/Pending';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
+import UserChat from './UserChat';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -73,6 +74,7 @@ export default function AdminPayment() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }} >
+      <UserChat />
       <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
         Payments
       </Typography> 
