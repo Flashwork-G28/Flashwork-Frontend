@@ -80,7 +80,7 @@ const rows = [
 
 export default function AdminAllUsers() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
  
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -150,9 +150,10 @@ export default function AdminAllUsers() {
             Swal.fire(
               'Deactivated!',
               'User has been successfully deactivated.',
-              'success'
-            )
-            
+              'success',
+            ).then((result) => {
+              window.location.reload();
+            })
           }
         })
       }
@@ -171,7 +172,9 @@ export default function AdminAllUsers() {
               'Activated!',
               'User has been successfully activated.',
               'success'
-            )
+            ).then((result) => {
+              window.location.reload();
+            })
           }
         })
       }
@@ -216,7 +219,7 @@ export default function AdminAllUsers() {
     const handleClose = () => {
         setOpen(false);
         // viewUsers();
-        // window.location.reload();
+        window.location.reload();
     }; 
 
     

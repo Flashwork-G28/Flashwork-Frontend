@@ -76,7 +76,7 @@ export default function JobProviderViewOwnAd() {
                     status: item.status,
                     // pub_date: diffDays,
                 }])
-                //return null;
+                return null;
             });
         }).catch(function (error) {
             if (error.response) {

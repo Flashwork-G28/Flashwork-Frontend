@@ -14,6 +14,8 @@ import PendingIcon from '@mui/icons-material/Pending';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import UserChat from './UserChat';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -72,6 +74,35 @@ export default function AdminPayment() {
     setPage(0);
   };
 
+  const [details, setDetails] = useState<any>([]);
+
+  const viewPay = () => {
+      axios.get('http://localhost:8000/payments/ViewPay').then((response) => {
+          const det = response.data;
+          // console.log(user_id);
+          det.map((item: any) => {
+              setDetails((prevState: any) => [...prevState, {
+                id: item.id,
+                user_id: item.user_id,
+                price: item.price,
+                start_date: item.start_date,
+                end_date: item.end_date,
+              }])
+              return null;
+          });
+      }).catch(function (error) {
+          if (error.response) {
+              // setAlertPara("Something went wrong when creating the user!");
+              // setVariant("danger");
+              // setShow(true);
+          }
+      })
+  }
+
+  useEffect(() => {
+    viewPay();
+  }, []);
+
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }} >
       <UserChat />
@@ -82,32 +113,34 @@ export default function AdminPayment() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">ID</StyledTableCell>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">User Type</StyledTableCell>
-              <StyledTableCell align="center">Recieved Date</StyledTableCell>
-              <StyledTableCell align="center">Valid Until</StyledTableCell>
-              <StyledTableCell align="center">City</StyledTableCell>
+              <StyledTableCell align="center">PaymentID</StyledTableCell>
+              <StyledTableCell align="left">UserID</StyledTableCell>
+              <StyledTableCell align="center">Payment(Rs.)</StyledTableCell>
+              <StyledTableCell align="left">Recieved Date</StyledTableCell>
+              <StyledTableCell align="left">Valid Until</StyledTableCell>
+              {/* <StyledTableCell align="center">City</StyledTableCell>
               <StyledTableCell align="center">Email</StyledTableCell>
-              <StyledTableCell align="right">Amount (Rs.)</StyledTableCell>
+              <StyledTableCell align="right">Amount (Rs.)</StyledTableCell> */}
             </TableRow>
           </TableHead>
+          {details.map((item: any) => {
+            return (
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell align="left">{row.id}</StyledTableCell>
-                <StyledTableCell component="th" scope="row" align="center">
-                  {row.name}
+              <StyledTableRow key={item.id}>
+                <StyledTableCell align="center">{item.id}</StyledTableCell>
+                <StyledTableCell component="th" scope="row" align="left">
+                  {item.user_id}
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.userType}</StyledTableCell>
-                <StyledTableCell align="center">{row.recDate}</StyledTableCell>
-                <StyledTableCell align="center">{row.validUntil}</StyledTableCell>
-                <StyledTableCell align="center">{row.city}</StyledTableCell>
+                <StyledTableCell align="center">{item.price}</StyledTableCell>
+                <StyledTableCell align="left">{item.start_date}</StyledTableCell>
+                <StyledTableCell align="left">{item.end_date}</StyledTableCell>
+                {/* <StyledTableCell align="center">{row.city}</StyledTableCell>
                 <StyledTableCell align="center">{row.email}</StyledTableCell>
-                <StyledTableCell align="right">{row.amount}</StyledTableCell>
+                <StyledTableCell align="right">{row.amount}</StyledTableCell> */}
               </StyledTableRow>
-            ))}
           </TableBody>
+          )
+        })}
         </Table>
       </TableContainer>
       

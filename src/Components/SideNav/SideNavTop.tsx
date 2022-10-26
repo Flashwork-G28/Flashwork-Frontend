@@ -46,35 +46,35 @@ const SideNavTop = () => {
         setOpen(false);
     };
 
-    let ID:any = user?.sub;
-    ID = ID.substring(6);
+    // let ID:any = user?.sub;
+    // ID = ID.substring(6);
 
-    let linky = "http://localhost:8000/payment/year/" + ID + "/" + "10000";
-    let linkm = "http://localhost:8000/payment/month/" + ID + "/" + "1000";
+    // let linky = "http://localhost:8000/payment/year/" + ID + "/" + "10000";
+    // let linkm = "http://localhost:8000/payment/month/" + ID + "/" + "1000";
 
-    function getpro() {
-        axios.post('http://localhost:8000/payment/pro', {
-            id: ID
-        })
-            .then(function (response) {
-                // console.log(response.data.length);
-                if (response.data.length == 1) {
-                    setPro(true);
-                }
-                else {
-                    setPro(false);
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    // function getpro() {
+    //     axios.post('http://localhost:8000/payment/pro', {
+    //         id: ID
+    //     })
+    //         .then(function (response) {
+    //             // console.log(response.data.length);
+    //             if (response.data.length == 1) {
+    //                 setPro(true);
+    //             }
+    //             else {
+    //                 setPro(false);
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
-    useEffect(() => {
-        getpro();
+    // useEffect(() => {
+    //     getpro();
 
 
-    }, []);
+    // }, []);
 
 
     if(user?.family_name==="Admin"){
@@ -166,7 +166,7 @@ const SideNavTop = () => {
                                                     <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>833.33 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
                                                     <Typography variant={'subtitle1'} textAlign='left' marginBottom={'30px'} >10000 LKR every 12 month</Typography>
                                                     <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
-                                                    <form action={linky} method="POST">
+                                                    <form method="POST">
                                                         <Button type="submit" variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
                                                     </form>
                                                     </Card>
@@ -178,7 +178,7 @@ const SideNavTop = () => {
                                                     <Typography fontSize={'24px'} fontWeight={'700'} color={'#7A3293'} textAlign='left'>1000 LKR<span style={{fontSize:'16px'}}> / month</span></Typography>
                                                     <Typography variant={'subtitle1'} textAlign='left' marginBottom={'30px'} >12000 LKR every 12 month</Typography>
                                                     <Typography fontSize={'11px'} textAlign='left'marginBottom={'10px'}>•	VAT and local taxes may apply</Typography>
-                                                    <form action={linkm} method='POST'>
+                                                    <form method='POST'>
                                                         <Button type="submit" variant="contained" sx={{backgroundColor:'#4E2363'}} >Subscribe Now</Button>
                                                     </form>
                                                 </Card>
