@@ -73,7 +73,6 @@ const SideNavTop = () => {
     useEffect(() => {
         getpro();
 
-
     }, []);
 
 
