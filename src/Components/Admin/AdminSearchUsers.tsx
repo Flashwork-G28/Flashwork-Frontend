@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import {alpha } from '@mui/material/styles';
+import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,6 +56,76 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchBar = () => {
+    // Get all users
+  const [details, setDetails] = useState<any>([]);
+
+  const viewUsers = () => {
+      axios.get('http://localhost:8000/users/').then((response) => {
+          const det = response.data;
+          // console.log(user_id);
+          det.map((item: any) => {
+              // const date1:any = new Date();
+              // const date2:any = new Date(item.pub_date);
+              // const diffTime = Math.abs(date2 - date1);
+              // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+              setDetails((prevState: any) => [...prevState, {
+                  user_id: item.user_id,
+                  img: item.img,
+                  first_name: item.first_name,
+                  last_name: item.last_name,
+                  nid: item.nid,
+                  street: item.street,
+                  city: item.city,
+                  mobile: item.mobile,
+                  email: item.email,
+                  type: item.type,
+                  status: item.status,
+              }])
+              
+          });
+      }).catch(function (error) {
+          if (error.response) {
+              // setAlertPara("Something went wrong when creating the user!");
+              // setVariant("danger");
+              // setShow(true);
+          }
+      })
+  }
+
+  const [typing, setTyping] = useState('');
+
+  const viewSearched = (keyword: any) => {
+    setDetails(
+        details.filter((details: { first_name: any; last_name: any }) => {
+            return (details.first_name == keyword);
+        })
+    );
+    console.log(keyword);
+    console.log(details.first_name);
+    // setOpen(true);
+  };
+
+//   const handleChange = (e: any) => {
+//     setTyping(e);
+//     console.log(typing);
+//     viewSearched(typing);
+//   };
+
+  const [inputText, setInputText] = useState("");
+  let inputHandler = (e: any) => {
+    //convert input text to lower case
+    setInputText(e.target.value);
+    if(inputText != "") {
+        viewSearched(inputText);
+    }
+  };
+  
+  useEffect(() => {
+    viewUsers();
+  });
+
+
     return (
         <>
             <Search style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
@@ -62,6 +133,9 @@ const SearchBar = () => {
                 <StyledInputBase
                     placeholder="Search User..."
                     inputProps={{ 'aria-label': 'search' }}
+                    type = {'text'}
+                    value = {inputText}
+                    onChange = {inputHandler}
                 />
             </Search>
         </>
