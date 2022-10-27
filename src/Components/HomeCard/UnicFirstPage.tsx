@@ -37,15 +37,14 @@ export default function UnicFirstPage() {
                             A Platform You Can Rely On
                         </Typography>
                         <Typography variant="body2" fontWeight='500' fontSize='24px' textAlign='left' marginTop='50px' >
-                            We Understand Your Needs Better,
-                            Get the Right Worker for your needs today.
+                            We Understand Your Needs Better Work and Help are One Click Away, Get the Right Worker for Your Needs Today.
                         </Typography>
 
                     </Grid>
 
                     <Stack spacing={2} >
                         <Button variant="contained">Get Start</Button>
-                        <SearchBar />
+                        {/*<SearchBar />*/}
                     </Stack>
 
                     </Grid>
