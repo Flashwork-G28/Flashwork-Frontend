@@ -72,12 +72,12 @@ const ManDashbord = () => {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
+                <Grid container spacing={12}>
+                    <Grid item xs={12}>
                         <Grid item xs={12} >
                             <div style={{display:"flex",flexDirection:"row"}}>
-                                <div style={{color:"#46225F",paddingLeft:"50px",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>
-                                <div  style={{paddingLeft:"300px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>
+                                {/*<div style={{color:"#46225F",paddingLeft:"50px",paddingTop:"20px",fontWeight:"bold",fontSize:"30px"}}>Time Schedule</div>*/}
+                                <div  style={{paddingLeft:"900px",paddingTop:"20px"}}><button style={{color:"white",backgroundColor:"#7A3293",borderRadius:"5px",border:"none",fontWeight:"bold",padding:"10px"}}>All current job</button></div>
                             </div>
                         </Grid>
                         <Grid item xs={12} >
@@ -116,61 +116,61 @@ const ManDashbord = () => {
 
 
                     </Grid>
-                    <Grid item xs={4}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} >
-                                {/*<Item>calender</Item>*/}
-                            </Grid>
-                            <Grid item xs={12}>
+                    {/*<Grid item xs={4}>*/}
+                    {/*    <Grid container spacing={2}>*/}
+                    {/*        <Grid item xs={12} >*/}
+                    {/*            /!*<Item>calender</Item>*!/*/}
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12}>*/}
 
-                                <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
+                    {/*            <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>*/}
 
-                            </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgray"}}>
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12} style={{backgroundColor:"lightgray"}}>*/}
 
-                                <Grid item xs={12} >
-                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>2</div> </h3>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={BlueMarket} alt={BlueMarket} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>2</div> </h3>*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                <div style={{display:"flex",flexDirection:"row"}}>*/}
+                    {/*                    <div> <img src={BlueMarket} alt={BlueMarket} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>*/}
+                    {/*                    <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>*/}
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row",backgroundColor:"darkgrey"}}>
-                                        <div> <img src={FrockMe} alt={FrockMe} width={"50px"} height={"50px"} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"28px",color:"#7A3293"}}><h5>FrockMe Textile 8.00 am</h5></div>
-                                        <ArrowDropUpIcon />
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    FrockMe, No 133/02/01
-                                    Highlevel Road,
-                                    Kirulapana.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    0772595548 / 0705594661
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <h3>Description</h3>
-                                    This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={profile} alt={profile} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
+                    {/*                    <ArrowDropDownIcon />*/}
+                    {/*                </div>*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                <div style={{display:"flex",flexDirection:"row",backgroundColor:"darkgrey"}}>*/}
+                    {/*                    <div> <img src={FrockMe} alt={FrockMe} width={"50px"} height={"50px"} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>*/}
+                    {/*                    <div style={{paddingLeft:"28px",color:"#7A3293"}}><h5>FrockMe Textile 8.00 am</h5></div>*/}
+                    {/*                    <ArrowDropUpIcon />*/}
+                    {/*                </div>*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                FrockMe, No 133/02/01*/}
+                    {/*                Highlevel Road,*/}
+                    {/*                Kirulapana.*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                0772595548 / 0705594661*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                <h3>Description</h3>*/}
+                    {/*                This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.*/}
+                    {/*            </Grid>*/}
+                    {/*            <Grid item xs={12} >*/}
+                    {/*                <div style={{display:"flex",flexDirection:"row"}}>*/}
+                    {/*                    <div> <img src={profile} alt={profile} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>*/}
+                    {/*                    <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>*/}
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
+                    {/*                    <ArrowDropDownIcon />*/}
+                    {/*                </div>*/}
+                    {/*            </Grid>*/}
 
-                            </Grid>
+                    {/*        </Grid>*/}
 
-                        </Grid>
-                    </Grid>
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
 
                 </Grid>
             </Box>
