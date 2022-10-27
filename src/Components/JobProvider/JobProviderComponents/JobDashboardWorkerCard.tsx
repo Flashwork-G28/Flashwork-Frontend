@@ -16,7 +16,7 @@ import TableCell, {tableCellClasses} from "@mui/material/TableCell";
 import JobSeekerReqProfile from "../../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
 import JobDashboardWorkerTable from "./JobDashboardWorkerTable";
 import JobDashboardSaveJobSeeker from "./JobDashboardSaveJobSeeker";
-
+import JobDashboardOngoin from "./JobDashboardOngoin";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -55,13 +55,13 @@ function createData(
     return { name, category};
 }
 
-const rows = [
-    createData('Udesh Lakshan', 'Job Seeker'),
-    createData('Rashmika Malshan', 'Job Seeker'),
-    createData('Shalani Hansika', 'Manpower agency'),
-    createData('Lakshitha Shehan', 'Job Provider'),
-    createData('Chavinda Perera', 'Job Provider'),
-];
+// const rows = [
+//     createData('Udesh Lakshan', 'Job Seeker'),
+//     createData('Rashmika Malshan', 'Job Seeker'),
+//     createData('Shalani Hansika', 'Manpower agency'),
+//     createData('Lakshitha Shehan', 'Job Provider'),
+//     createData('Chavinda Perera', 'Job Provider'),
+// ];
 
 
 function TabPanel(props: TabPanelProps) {
@@ -117,7 +117,9 @@ export default function BasicTabs() {
 
                     <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363' ,paddingBottom:'30px'}} label="Requested Worker" {...a11yProps(0)} />
                     <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Workers" {...a11yProps(1)} />
-                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Manpower Aguncy" {...a11yProps(2)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Manpower Agency" {...a11yProps(2)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Current-jobs " {...a11yProps(3)} />
+
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
@@ -128,7 +130,10 @@ export default function BasicTabs() {
                 <JobDashboardSaveJobSeeker />
             </TabPanel>
             <TabPanel value={value} index={2}>
-
+                <JobDashboardSaveJobSeeker />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <JobDashboardOngoin />
             </TabPanel>
         </Box>
     );
