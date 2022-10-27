@@ -105,7 +105,7 @@ export default function AdminPayment() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }} >
-      <UserChat />
+      {/* <UserChat /> */}
       <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={2} textAlign='left'>
         Payments
       </Typography> 
