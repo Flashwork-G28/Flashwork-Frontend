@@ -1,109 +1,140 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import {makeStyles} from "@material-ui/core/styles";
-import Grid from "@mui/material/Grid";
-// import Diversity1Icon from '@mui/icons-material/Diversity1';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import HailIcon from '@mui/icons-material/Hail';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import ImportContactsIcon from '@mui/icons-material/ImportContacts';
-
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
+import Grid from "@mui/material/Grid";
+import SearchBar from "../../CommonComponent/SearchBar";
+import Paper from "@mui/material/Paper";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableBody from "@mui/material/TableBody";
+import {styled} from "@mui/material/styles";
+import TableCell, {tableCellClasses} from "@mui/material/TableCell";
+import JobSeekerReqProfile from "../../JobSeeker/JobSeekerRequest/JobSeekerReqProfile";
+import JobDashboardWorkerTable from "./JobDashboardWorkerTable";
+import JobDashboardSaveJobSeeker from "./JobDashboardSaveJobSeeker";
+import JobDashboardOngoin from "./JobDashboardOngoin";
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
 
 
-const useStyles = makeStyles({
-    WorkerCard: {
-        height: '65px',
-        width: '200px',
-        backgroundColor: '#E5E5E5',
-        borderRadius: '10px',
-        // position:'relative',
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: '#ECD2F2',
+        color: '#1C1C1C',
+        fontSize: 14,
     },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
 
-});
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
+function createData(
+    name: string,
+    category: string,
+
+) {
+    return { name, category};
+}
+
+// const rows = [
+//     createData('Udesh Lakshan', 'Job Seeker'),
+//     createData('Rashmika Malshan', 'Job Seeker'),
+//     createData('Shalani Hansika', 'Manpower agency'),
+//     createData('Lakshitha Shehan', 'Job Provider'),
+//     createData('Chavinda Perera', 'Job Provider'),
+// ];
 
 
+function TabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
 
-const JobDashboardWorkerCard = () => {
-    const classes = useStyles();
     return (
-        <>
-            <Grid container spacing={3} width='100%'>
-                <Grid item xs={4}>
-                    <CardContent className={classes.WorkerCard}>
-                            <Grid container
-                                  direction="row"
-                                  justifyContent="space-between"
-                                  alignItems="center"
-                                  >
-                                <Grid item xs={4}>
-                                    <HailIcon fontSize='large' />
-                                </Grid>
-                                <Grid item xs={8}>
-                                    <Typography variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Requested Workers</Typography>
-                                    <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >05</Typography>
-                                </Grid>
-
-                            </Grid>
-                    </CardContent>
-
-                </Grid>
-
-                <Grid item xs={4} >
-                    <CardContent className={classes.WorkerCard}>
-
-                        <Grid container
-                              direction="row"
-                              justifyContent="space-between"
-                              alignItems="center"
-                              sx={{ width: '100%', }}>
-                            <Grid item xs={4}>
-                                <ImportContactsIcon fontSize='large' />
-                            </Grid>
-                            <Grid item xs={8}>
-                                <Typography variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Saved Workers</Typography>
-                                <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >05</Typography>
-                            </Grid>
-
-                        </Grid>
-
-
-                    </CardContent>
-
-                </Grid>
-
-                <Grid item xs={4} >
-                    <CardContent className={classes.WorkerCard}>
-
-                        <Grid container
-                              direction="row"
-                              justifyContent="space-between"
-                              alignItems="center"
-                              sx={{ width: '100%', }}>
-                            <Grid item xs={4}>
-                                <PeopleAltIcon fontSize='large' />
-                            </Grid>
-                            <Grid item xs={8}>
-                                <Typography variant='subtitle2' fontWeight='700' color='#4E2363' alignItems='flex-end' >Saved Manpower Aguncy</Typography>
-                                <Typography textAlign='right' variant='h6' fontWeight='1000' color='black' alignItems='flex-end' >05</Typography>
-                            </Grid>
-
-                        </Grid>
-
-
-                    </CardContent>
-
-                </Grid>
-
-            </Grid>
-        </>
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
     );
-};
+}
 
-export default JobDashboardWorkerCard;
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
+export default function BasicTabs() {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
+    return (
+        <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" style={{display:'flex', justifyContent:'space-evenly'}}>
+
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363' ,paddingBottom:'30px'}} label="Requested Worker" {...a11yProps(0)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Workers" {...a11yProps(1)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Saved Manpower Agency" {...a11yProps(2)} />
+                    <Tab style={{fontWeight:'700',fontSize:'18px',color:'#4E2363',paddingBottom:'30px'}} label="Current-jobs " {...a11yProps(3)} />
+
+                </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+
+                <JobDashboardWorkerTable />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+                <JobDashboardSaveJobSeeker />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <JobDashboardSaveJobSeeker />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <JobDashboardOngoin />
+            </TabPanel>
+        </Box>
+    );
+}

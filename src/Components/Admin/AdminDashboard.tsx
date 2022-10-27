@@ -16,6 +16,13 @@ import { Chart } from "react-google-charts";
 import { normalize } from 'path';
 import { shadows } from '@mui/system';
 
+import Switch from '@mui/material/Switch';
+import Grow from '@mui/material/Grow';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { Theme } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'white',
@@ -63,25 +70,89 @@ const data2 = [
 ];
 
 export default function AdminDashboard() {
-  return (
-    <Box sx={{ width: 'auto', padding: '30px'}}>
-      <div>
-        <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
-            Users
-        </Typography> 
-        <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
-            <Grid item xs={2.5}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >9</Typography></Item>
+    const [details, setDetails] = useState<any>([]);
+
+    const viewUsers = () => {
+        axios.get('http://localhost:8000/users/').then((response) => {
+            const det = response.data;
+            // console.log(user_id);
+            det.map((item: any) => {
+                // const date1:any = new Date();
+                // const date2:any = new Date(item.pub_date);
+                // const diffTime = Math.abs(date2 - date1);
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                setDetails((prevState: any) => [...prevState, {
+                    user_id: item.user_id,
+                    img: item.img,
+                    first_name: item.first_name,
+                    last_name: item.last_name,
+                    nid: item.nid,
+                    street: item.street,
+                    city: item.city,
+                    mobile: item.mobile,
+                    email: item.email,
+                    type: item.type,
+                    status: item.status,
+                }])
+                // setDetails(
+                //     details.filter((details: { status: any; }) => {
+                //         return details.status == 0;
+                //     })
+                // );
+                // return null;
+            });
+        }).catch(function (error) {
+            if (error.response) {
+                // setAlertPara("Something went wrong when creating the user!");
+                // setVariant("danger");
+                // setShow(true);
+            }
+        })
+    }
+    // const [Jobp, setJobp] = useState<any>([]);
+    // setJobp(
+    //     details.filter((details: { type: any; }) => {
+    //         return details.type == "Job Provider";
+    //     })
+    // );
+    
+
+    // const length = (details.length);
+    // console.log(length);
+
+    const cards1 = (
+        <Box sx={{width: "auto", padding: '30px'}}> 
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >3</Typography></Item>
+            </Grid></Grid>
+        </Box>
+    );
+
+    const cards2 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Seeker Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >2</Typography></Item>
             </Grid>
-            <Grid item xs={2.5}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Seeker Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >7</Typography></Item>
             </Grid>
-            <Grid item xs={2.5}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Manpower Agency Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >15</Typography></Item>
+        </Box>
+    );
+
+    const cards3 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Manpower Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >1</Typography></Item>
             </Grid>
-            <Grid item xs={4.5}>
-                <br />
-                <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}} >
+            </Grid>
+        </Box>
+    );
+
+    const cards4 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}} >
                     <CardActionArea>
                         <CardContent>
                             {/* <Chart chartType="PieChart" width='100%' height='180px' data={data} /> */}
@@ -89,7 +160,7 @@ export default function AdminDashboard() {
                                 Total Count
                             </Typography><br />
                             <Typography gutterBottom variant="h3" component="div">
-                                31
+                                {details.length}
                             </Typography>
                             <Typography gutterBottom fontSize={16} marginTop={5} fontWeight='lighter' component="div" align='left' justifyContent='center'>
                                 <div>
@@ -101,59 +172,242 @@ export default function AdminDashboard() {
                         </CardContent>
                     </CardActionArea>
                 </Card>
-            </Grid>
-        </Grid><br /><br />
-        <Grid item xs={12}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
-            Payments
-        </Typography></Grid>
-        
-        <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
-            <Grid item xs={4}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Provider <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.32k</Typography></Item>
-            </Grid>
-            <Grid item xs={4}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Seeker <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.48k</Typography></Item>
-            </Grid>
-            <Grid item xs={4}>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Manpower Agency <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.78k</Typography></Item>
-            </Grid>
-        </Grid>
-      </div><br /><br />
+        </Box>
+    );
 
-      <div>
-        <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
-            <Grid item xs={6}>
-                <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
-                    <CardActionArea>
-                        <CardContent>
-                            <Grid xs={6}>
-                                <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
-                            </Grid>
-                            <Chart chartType="PieChart" width="100%" height="500px" data={data} options={options} />
-                            <Typography gutterBottom variant="h6" component="div">
-                                Registered User Count
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+    const cards5 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Provider <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.5900</Typography></Item>
             </Grid>
-            <Grid item xs={6}>
-                <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
-                    <CardActionArea>
-                        <CardContent>
-                            <Grid xs={6}>
-                                <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
-                            </Grid>
-                            <Chart chartType="ColumnChart" width="100%" height="500px" data={data2} />
-                            <Typography gutterBottom variant="h6" component="div">
-                                Monthly Views
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
             </Grid>
+        </Box>
+    );
+
+    const cards6 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Seeker <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.2700</Typography></Item>
+            </Grid>
+            </Grid>
+        </Box>
+    );
+
+    const cards7 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+            <Grid item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Manpower Agency <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.1100</Typography></Item>
+            </Grid>
+            </Grid>
+        </Box>
+    );
+
+    const cards8 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
+                <CardActionArea>
+                    <CardContent>
+                        <Grid xs={6}>
+                            <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
+                        </Grid>
+                        <Chart chartType="PieChart" width="100%" height="500px" data={data} options={options} />
+                        <Typography gutterBottom variant="h6" component="div">
+                            Registered User Count
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        </Box>
+    );
+
+    const cards9 = (
+        <Box sx={{width: "auto", padding: '30px'}}>
+            <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
+                <CardActionArea>
+                    <CardContent>
+                        <Grid xs={6}>
+                            <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
+                        </Grid>
+                        <Chart chartType="ColumnChart" width="100%" height="500px" data={data2} />
+                        <Typography gutterBottom variant="h6" component="div">
+                            Monthly Views
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        </Box>
+    );
+
+    // const cards = (
+    //     <Box sx={{width: "auto", padding: '30px'}}>
+    //   <div>
+    //     <Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
+    //         Users
+    //     </Typography> 
+    //     <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+    //         <Grid item xs={2.5}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >9</Typography></Item>
+    //         </Grid>
+    //         <Grid item xs={2.5}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Seeker Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >7</Typography></Item>
+    //         </Grid>
+    //         <Grid item xs={2.5}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Manpower Agency Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >15</Typography></Item>
+    //         </Grid>
+    //         <Grid item xs={4.5}>
+    //             <br />
+    //             <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}} >
+    //                 <CardActionArea>
+    //                     <CardContent>
+    //                         {/* <Chart chartType="PieChart" width='100%' height='180px' data={data} /> */}
+    //                         <Typography gutterBottom variant="h6" component="div">
+    //                             Total Count
+    //                         </Typography><br />
+    //                         <Typography gutterBottom variant="h3" component="div">
+    //                             31
+    //                         </Typography>
+    //                         <Typography gutterBottom fontSize={16} marginTop={5} fontWeight='lighter' component="div" align='left' justifyContent='center'>
+    //                             <div>
+    //                             <CalendarMonthIcon sx={{color: '#7A3293', fontSize: '25px', float: 'left', marginRight: '15px'}} />
+    //                             Total registered users for last month
+    //                             </div>
+                                
+    //                         </Typography>
+    //                     </CardContent>
+    //                 </CardActionArea>
+    //             </Card>
+    //         </Grid>
+    //     </Grid><br /><br />
+    //     <Grid item xs={12}><Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
+    //         Payments
+    //     </Typography></Grid>
+        
+    //     <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+    //         <Grid item xs={4}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Provider <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.32k</Typography></Item>
+    //         </Grid>
+    //         <Grid item xs={4}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Seeker <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.48k</Typography></Item>
+    //         </Grid>
+    //         <Grid item xs={4}>
+    //         <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Manpower Agency <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.78k</Typography></Item>
+    //         </Grid>
+    //     </Grid>
+    //   </div><br /><br />
+
+    //   <div>
+    //     <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
+    //         <Grid item xs={6}>
+    //             <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
+    //                 <CardActionArea>
+    //                     <CardContent>
+    //                         <Grid xs={6}>
+    //                             <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
+    //                         </Grid>
+    //                         <Chart chartType="PieChart" width="100%" height="500px" data={data} options={options} />
+    //                         <Typography gutterBottom variant="h6" component="div">
+    //                             Registered User Count
+    //                         </Typography>
+    //                     </CardContent>
+    //                 </CardActionArea>
+    //             </Card>
+    //         </Grid>
+    //         <Grid item xs={6}>
+    //             <Card sx={{boxShadow: '0px 12px 12px rgba(0, 0, 0, 0.16)'}}>
+    //                 <CardActionArea>
+    //                     <CardContent>
+    //                         <Grid xs={6}>
+    //                             <Button variant='contained' sx={{backgroundColor: '#7A3293'}} >Monthly</Button> <Button variant='outlined' >Annually</Button>
+    //                         </Grid>
+    //                         <Chart chartType="ColumnChart" width="100%" height="500px" data={data2} />
+    //                         <Typography gutterBottom variant="h6" component="div">
+    //                             Monthly Views
+    //                         </Typography>
+    //                     </CardContent>
+    //                 </CardActionArea>
+    //             </Card>
+    //         </Grid>
+    //     </Grid>
+    //   </div>
+    // </Box>
+    // );
+
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+      setChecked((prev) => !prev);
+    };
+
+    useEffect(() => {
+        handleChange();
+        viewUsers();
+    }, []);
+
+  return (
+    <div>
+        <Grow in={checked} 
+        style={{ transformOrigin: '0 0 0' }}
+        {...(checked ? { timeout: 2000 } : {})}
+        >
+        {<Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
+            Users
+        </Typography> }</Grow>
+    
+        <Grid container spacing={2}>
+            <Grid item xs={2.5}><Grow in={checked} >{cards1}</Grow></Grid>
+            {/* Conditionally applies the timeout prop to change the entry speed. */} 
+            <Grid item xs={2.5}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 1000 } : {})}
+            >{cards2}</Grow></Grid>
+            <Grid item xs={2.5}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 2000 } : {})}
+            >{cards3}</Grow></Grid>
+            <Grid item xs={4.5}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 3000 } : {})}
+            >{cards4}</Grow></Grid>
         </Grid>
-      </div>
-    </Box>
+
+        <Grow in={checked} 
+        style={{ transformOrigin: '0 0 0' }}
+        {...(checked ? { timeout: 2000 } : {})}
+        >
+        {<Typography sx={{backgroundColor: '#ECD2F2'}} variant="h4" component="h4" fontWeight='700' color='primary' padding={3} textAlign='left'>
+            Payments
+        </Typography> }</Grow>
+
+        <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 5, md: 24 }}>
+            <Grid item xs={4}><Grow in={checked} >{cards5}</Grow></Grid>
+            {/* Conditionally applies the timeout prop to change the entry speed. */} 
+            <Grid item xs={4}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 1000 } : {})}
+            >{cards6}</Grow></Grid>
+            <Grid item xs={4}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 2000 } : {})}
+            >{cards7}</Grow></Grid><br /><br />
+            <Grid item xs={6}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 4000 } : {})}
+            >{cards8}</Grow></Grid>
+            <Grid item xs={6}><Grow
+                in={checked}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(checked ? { timeout: 5000 } : {})}
+            >{cards9}</Grow></Grid>
+        </Grid>
+    </div>
   );
 }

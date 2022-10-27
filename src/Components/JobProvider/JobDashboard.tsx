@@ -31,9 +31,8 @@ const JobDashboard = () => {
                 {/*<Grid item xs={9} sx={{backgroundColor:"#ebccff",borderRadius:"10px"}}>*/}
                     <JobDashboardWorkerCard />
 
-            <Typography variant="h6" component="h6" fontWeight='700' textAlign='left' padding='50px 0px 20px 0px'>Requested Worker</Typography>
 
-            <JobDashboardWorkerTable />
+
                 {/*</Grid>*/}
                 {/*<Grid item xs={}  sx={{borderRadius:"10px",paddingLeft:"3px",backgroundColor:"#ffff"}}>*/}
                 {/*    <JobSeekerReqProfile/>*/}

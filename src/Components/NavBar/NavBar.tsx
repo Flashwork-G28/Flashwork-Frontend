@@ -16,6 +16,25 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+import axios from "axios";
+
+
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import PersonIcon from '@mui/icons-material/Person';
+import AddIcon from '@mui/icons-material/Add';
+import { blue } from '@mui/material/colors';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Unstable_Grid2';
+import CircularProgress from "@mui/material/CircularProgress";
 
 const useStyles = makeStyles({
     typoContent: {
@@ -52,16 +71,30 @@ const NavBar = () => {
         isAuthenticated,
         loginWithRedirect,
         logout,
+        isLoading
     } = useAuth0();
 
     const [url, setUrl] = useState("/");
+    const [notificationCount, setNotificationCount] = useState('');
+    const [notification, setNotification]= useState<any>([]);
+    const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {   // ------------------ Open the popup box
+        setOpen(true);
+    };
+    const handleClose = () => {      // ----------------------------- Close the popup box
+        setOpen(false);
+    };
+
+    const seturl = () => {
         if(user?.family_name==="JobProvider"){
             setUrl("/dashboard/jobprovider/home")
         }
         else if(user?.family_name==="JobSeeker"){
             setUrl("/dashboard/jobseeker/home")
+            console.log('two');
         }
         else if(user?.family_name==="ManPower"){
             setUrl("/dashboard/manpower/home")
@@ -71,7 +104,70 @@ const NavBar = () => {
         }else{
             setUrl("/")
         }
-    });
+    }
+
+    const getNotification = () =>{
+        if (isAuthenticated){
+            let providerID:any = user?.sub;
+            providerID = providerID.substring(6)
+            // alert(providerID);
+
+            axios.post('http://localhost:8000/jobProvider/notificationCount', {
+                job_provider_id : providerID,
+
+            })
+                .then(function (response) {
+                    const data = response.data;
+                    setNotificationCount(data[0].count);
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+
+            axios.post('http://localhost:8000/jobProvider/notification', {
+                job_provider_id : providerID,
+
+            })
+                .then(function (response) {
+                    const data = response.data;
+
+                    data.map((item: any) => {
+                        setNotification((prevState: any) => [...prevState, {
+                            notification_id: item.notification_id,
+                            user_id:item.user_id,
+                            header:item.header,
+                            titel: item.titel,
+                            notification_update_date: item.notification_update_date,
+                            view_status: item.view_status,
+
+                        }])
+                        return null;
+                    });
+
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
+                });
+
+
+        }
+    }
+
+
+
+    useEffect(() => {
+        seturl();
+        getNotification();
+        setLoading(true);
+
+    },[isAuthenticated]);
 
 
     return (
@@ -131,9 +227,8 @@ const NavBar = () => {
                         <Box sx={{ display: { xs: 'none', md: 'flex',gap:10 } }}>
                             <IconButton
                                 size="large"
-                                color="inherit"
-                            >
-                                <Badge badgeContent={17} color="error">
+                                color="inherit" onClick={handleClickOpen}>
+                                <Badge badgeContent={notificationCount} color="error">
                                     <NotificationsIcon fontSize="inherit"/>
                                 </Badge>
                             </IconButton>
@@ -167,7 +262,46 @@ const NavBar = () => {
 
                 </Toolbar>
             </Container>
+
+
+            <Dialog onClose={handleClose} open={open}>
+                <DialogTitle>Notification</DialogTitle>
+                <List sx={{ pt: 0 }}>
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                        {loading? notification.map((item: any) => {
+                            return(
+                                <Alert severity="success">
+                                    <AlertTitle>{item.header}</AlertTitle>
+                                    {item.titel}
+                                    <strong> - {item.notification_update_date}</strong>
+
+                                </Alert>
+                            );
+
+                        }) :<CircularProgress />}
+                    </Stack>
+                </List>
+
+            </Dialog>
+
+
         </AppBar>
     );
+
+    // function SimpleDialog(props: SimpleDialogProps) {
+    //     const { onClose, selectedValue, open } = props;
+    //
+    //     const handleClose = () => {
+    //         onClose(selectedValue);
+    //     };
+    //
+    //     const handleListItemClick = (value: string) => {
+    //         onClose(value);
+    //     };
+
+        // return (
+
+        // );
+    // }
 };
 export default NavBar;
