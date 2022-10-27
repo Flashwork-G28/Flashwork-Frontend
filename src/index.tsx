@@ -17,12 +17,14 @@ root.render(
         useRefreshTokens
         cacheLocation='localstorage'
     >
+
       {/* <React.StrictMode> */}
           <BrowserRouter>
               <App />
           </BrowserRouter>
       {/* </React.StrictMode> */}
     </Auth0Provider>,
+
 );
 
 // If you want to start measuring performance in your app, pass a function

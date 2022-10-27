@@ -1,19 +1,13 @@
-import * as React from 'react';
+
+import React, {useEffect, useState} from 'react';
 
 import Box from '@mui/material/Box';
 
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import BlueMarket from '../../Assets/JobSeeker/BlueMarket.png'
-import FrockMe from '../../Assets/JobSeeker/FrockMe.png'
-import profile from '../../Assets/JobSeeker/profile.png'
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
@@ -27,13 +21,29 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
 import MenuList from '@mui/material/MenuList';
+import Popup from '../Popup/popup'
 import Stack from '@mui/material/Stack';
 
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import star from '../../Assets/JobSeeker/star.png';
 import MenuItem from "@mui/material/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Swal from "sweetalert2";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+const axios = require('axios');
+
 
 
 
@@ -110,11 +120,66 @@ const JobSeekerProfile = () => {
         prevOpen.current = open;
     }, [open]);
 
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const [value, setValue] = React.useState<number | null>(2);
+    const [profileDetails, setProfileDetails] = React.useState<any>([]);
+    const [isShown, setShwon] = React.useState<boolean | false>(false);
+    const [firstName, setFirstName] = React.useState<String>("");
+    const [lastname, setLastName] = React.useState<String>("");
+    const [email, setEmail] = React.useState<String>("");
+    const [location, setLocation] = React.useState<String>("");
+    const [mobile, setMobile] = React.useState<String>("");
+
+    const popUp = () => {
+        setShwon(true);
+    }
+
+    const updateProfile = async () => {
+        const data = {firstName : firstName, lastname : lastname , email : email, location : location, mobile : mobile}
+        await axios.post("http://localhost:8000/JobSeeker/updateProfile",data)
+        // window.location.reload();
+    }
+
+
+    useEffect(() => {
+
+        axios.get("http://localhost:8000/JobSeeker/profile")
+            .then((response: { data: any; }) => {
+                console.log(response.data);
+
+
+                const det = response.data;
+                console.log(det);
+
+            det.map((item: any) => {
+
+                setProfileDetails((prevState: any) => [...prevState, {
+                    first_name: item.first_name,
+                     last_name: item.last_name,
+                    email: item.email,
+                    mobile: item.mobile,
+                    description: item.description,
+                    city: item.city,
+                    qualification: item.qualification,
+
+
+
+                }])
+                return null;
+            });
+        })
+    }, []);
+
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
+                <Grid container spacing={12}>
+                    <Grid item xs={12}>
                         <Grid item xs={12}>
                        <div style={{display:"flex",flexDirection:"column",paddingTop:"20px"}}>
                           <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around",borderRadius:"5px"}} >
@@ -127,21 +192,25 @@ const JobSeekerProfile = () => {
                                    <div style={{color:"#46225F",fontWeight:"bold"}}>Membership</div>
                                    <p>Pro membership</p>
                                </div>
-                               <div style={{width:"170px",height:"110px",backgroundColor:"lightgray",paddingTop:"10px",borderRadius:"5px"}}>
-                                   <CreditScoreIcon />
-                                   <div style={{color:"#46225F",fontWeight:"bold"}}>Payment</div>
-                                   <p>xxxxxxxx</p>
-                               </div>
-                               <div style={{width:"170px",height:"110px",backgroundColor:"lightgray",paddingTop:"10px",borderRadius:"5px"}}>
-                                   <CalendarMonthIcon />
-                                   <div style={{color:"#46225F",fontWeight:"bold"}}>Date</div>
-                                   <p>09/09/2022</p>
-                               </div>
+                               {/*<div style={{width:"170px",height:"110px",backgroundColor:"lightgray",paddingTop:"10px",borderRadius:"5px"}}>*/}
+                               {/*    <CreditScoreIcon />*/}
+                               {/*    <div style={{color:"#46225F",fontWeight:"bold"}}>Payment</div>*/}
+                               {/*    <p>xxxxxxxx</p>*/}
+                               {/*</div>*/}
+                               {/*<div style={{width:"170px",height:"110px",backgroundColor:"lightgray",paddingTop:"10px",borderRadius:"5px"}}>*/}
+                               {/*    <CalendarMonthIcon />*/}
+                               {/*    <div style={{color:"#46225F",fontWeight:"bold"}}>Date</div>*/}
+                               {/*    <p>09/09/2022</p>*/}
+                               {/*</div>*/}
 
                            </div>
                        </div>
                         </Grid>
                         <Grid item xs={12}>
+
+                            {profileDetails.map((item:any) => {
+                              return (
+
                             <Grid container spacing={2}>
                                 <Grid container spacing={3} item xs={12}>
                                     <Grid item xs={4} style={{ display : "flex" , justifyContent: "center" , alignItems: "center"}}>
@@ -181,13 +250,14 @@ const JobSeekerProfile = () => {
                                                             >
                                                                 <Paper>
                                                                     <ClickAwayListener onClickAway={handleClose}>
+
                                                                         <MenuList
                                                                             autoFocusItem={open}
                                                                             id="composition-menu"
                                                                             aria-labelledby="composition-button"
                                                                             onKeyDown={handleListKeyDown}
                                                                         >
-                                                                            <MenuItem onClick={handleClose}>Edit</MenuItem>
+                                                                            <MenuItem onClick={popUp}>Edit</MenuItem>
                                                                             <MenuItem onClick={handleClose}>Deactivate</MenuItem>
 
                                                                         </MenuList>
@@ -196,21 +266,129 @@ const JobSeekerProfile = () => {
                                                             </Grow>
                                                         )}
                                                     </Popper>
+                                                    {isShown && (
+                                                        <div>
+                                                            <Dialog open={open} onClose={handleClose}>
+                                                                <DialogTitle>Edit your profile</DialogTitle>
+                                                                <DialogContent>
+
+                                                                    <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                                        <div style={{paddingRight:"30px"}}>
+                                                                            <TextField
+                                                                                id="outlined-helperText"
+                                                                                label="Fist Name"
+                                                                                onChange={(e) => setFirstName(e.target.value)}
+                                                                                // disabled
+                                                                                defaultValue={item.first_name}
+                                                                            />
+                                                                        </div>
+
+                                                                        <div >
+                                                                            <TextField
+                                                                                id="outlined-helperText"
+                                                                                label="Last Name"
+                                                                                onChange = {(e) => setLastName(e.target.value)}
+                                                                                // disabled
+                                                                                defaultValue={item.last_name}
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                    <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
+                                                                               id="outlined-helperText"
+                                                                               label="Email"
+                                                                               onChange={(e) => setEmail(e.target.value)}
+                                                                        // disabled
+                                                                               defaultValue={item.email}
+                                                                    />
+                                                                    <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                                        <div style={{paddingRight:"30px"}}>
+                                                                            <TextField
+                                                                                id="outlined-helperText"
+                                                                                label="Location"
+                                                                                onChange={(e) => setLocation(e.target.value)}
+                                                                                // disabled
+                                                                                defaultValue={item.city}
+                                                                            />
+                                                                        </div>
+
+                                                                        <div >
+                                                                            <TextField
+                                                                                id="outlined-helperText"
+                                                                                label="Mobile"
+                                                                                onChange = {(e) => setMobile(e.target.value)}
+                                                                                // disabled
+                                                                                defaultValue={item.mobile}
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                </DialogContent>
+                                                                <DialogActions>
+                                                                    <Button onClick={handleClose}>Cancel</Button>
+                                                                    <Button onClick={updateProfile}>Update</Button>
+                                                                </DialogActions>
+                                                            </Dialog>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </Grid>
+
+                                        {/*strat*/}
+
+
+
+
                                         <Grid item xs={12}>
 
 
                                                     <form noValidate autoComplete="off">
-                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
-                                                            <TextField   id="outlined-basic" label="First Name" variant="outlined" />
-                                                            <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Last Name" variant="outlined" />
+                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                            <div style={{paddingRight:"30px"}}>
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Fist Name"
+                                                                    // disabled
+                                                                    defaultValue={item.first_name}
+                                                                />
+                                                            </div>
+
+                                                            <div >
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Last Name"
+                                                                    // disabled
+                                                                    defaultValue={item.last_name}
+                                                                />
+                                                            </div>
                                                         </div>
-                                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px"}} id="outlined-basic" label="Email Address" variant="outlined" />
-                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px"}}>
-                                                            <TextField   id="outlined-basic" label="Location" variant="outlined" />
-                                                            <TextField style={{paddingLeft:"10px",paddingBottom:"10px"}} id="outlined-basic" label="Mobile" variant="outlined" />
+                                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"87%"}}
+                                                            id="outlined-helperText"
+                                                            label="Email"
+                                                                   // disabled
+                                                            defaultValue={item.email}
+                                                        />
+                                                        <div style={{display:"flex",flexDirection:"row",marginRight:"5px",paddingBottom:"20px"}}>
+
+                                                            <div style={{paddingRight:"30px"}}>
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Location"
+                                                                    // disabled
+                                                                    defaultValue={item.city}
+                                                                />
+                                                            </div>
+
+                                                            <div >
+                                                                <TextField
+                                                                    id="outlined-helperText"
+                                                                    label="Mobile"
+                                                                    // disabled
+                                                                    defaultValue={item.mobile}
+                                                                />
+                                                            </div>
                                                         </div>
 
 
@@ -222,140 +400,141 @@ const JobSeekerProfile = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-
-                                        <TextField   style={{display:"flex",justifyContent:"flex-start",paddingBottom:"10px"}} id="outlined-basic" label="Description" variant="outlined" />
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                        <Box sx={{ minWidth: 120 }}>
-                                            <FormControl fullWidth>
-                                                <InputLabel id="demo-simple-select-label">Qualification</InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    value={age}
-                                                    label="Qualification"
-                                                    onChange={handleChange}
-                                                >
-                                                    <MenuItem value={10}>Qualification 1</MenuItem>
-                                                    <MenuItem value={20}>Qualification 2</MenuItem>
-                                                    <MenuItem value={30}>Qualification 3</MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                        </Box>
-
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                        <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div>
-                                            <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div>
-
-                                        </div>
-
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                        <div style={{display:"flex",flexDirection:"row"}}>
-                                            <div style={{paddingLeft:"10px"}}><h3>Review 05</h3></div>
-                                            <div style={{paddingLeft:"550px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <p>4.5</p>
-                                        </div>
-
-
-
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                        <div style={{display:"flex",flexDirection:"row"}}>
-                                            <div style={{paddingLeft:"10px"}}>
-                                                <div>Anjana Thilakawardana</div>
-                                                <div>2022-08-12</div>
-                                                <div>Good Aguncy, Good service</div>
-                                            </div>
-                                            <div style={{paddingLeft:"400px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                            <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        </div>
-
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div style={{paddingLeft:"10px"}}>
-                                            <div>Anjana Thilakawardana</div>
-                                            <div>2022-08-12</div>
-                                            <div>Good Aguncy, Good service</div>
-                                        </div>
-                                        <div style={{paddingLeft:"400px"}}> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div> <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
-                                        <div > <img src={star} alt={star} width={"20px"} height={"20px"} /></div>
+                                    <div style={{paddingLeft:"40px"}}>
+                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
+                                                   id="outlined-helperText"
+                                                   label="Description"
+                                                   // disabled
+                                                   defaultValue={item.description}
+                                        />
                                     </div>
                                 </Grid>
+                                <Grid item xs={12}>
+
+                                    <div style={{paddingLeft:"40px"}}>
+                                        <TextField style={{display:"flex", justifyContent:"start",paddingBottom:"20px",width:"91.5%"}}
+                                                   id="outlined-helperText"
+                                                   label="Qualification"
+                                                   // disabled
+                                                   defaultValue={item.qualification}
+                                        />
+                                    </div>
+
+
+
+                                </Grid>
+
+                                        {/*the end*/}
+                                {/*<Grid item xs={12}>*/}
+
+                                {/*        <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>*/}
+                                {/*            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>*/}
+                                {/*            <Item><div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>2 years Experience</div></Item>*/}
+                                {/*           <Item> <div style={{width:"150px",height:"35px",backgroundColor:"lightgray",fontWeight:"bold",paddingTop:"10px",borderRadius:"5px"}}>NVQ Level 1</div></Item>*/}
+
+                                {/*        </div>*/}
+
+                                {/*</Grid>*/}
+                                {/*<Grid item xs={12}>*/}
+                                {/*    <div style={{backgroundColor:"lightgrey",borderRadius:"10px"}}>*/}
+                                {/*        <Box component="fieldset" mb={3} borderColor="transparent">*/}
+                                {/*            <Typography component="legend"><h3>Anjana Thilakawardana</h3>2022 - 08 - 12,Good Aguncy, Good service</Typography>*/}
+                                {/*            <Rating*/}
+                                {/*                name="simple-controlled"*/}
+                                {/*                value={value}*/}
+                                {/*                onChange={(event, newValue) => {*/}
+                                {/*                    setValue(newValue);*/}
+                                {/*                }}*/}
+                                {/*            />*/}
+                                {/*        </Box>*/}
+                                {/*    </div>*/}
+                                {/*</Grid>*/}
+                                {/*<Grid item xs={12}>*/}
+
+                                {/*    <div style={{backgroundColor:"lightgrey",borderRadius:"10px",marginTop:"2px"}}>*/}
+                                {/*        <Box component="fieldset" mb={3} borderColor="transparent">*/}
+                                {/*            <Typography component="legend"><h3>Amila Gnarathne</h3>2023 - 08 - 2,Good Aguncy, Good service</Typography>*/}
+                                {/*            <Rating*/}
+                                {/*                name="simple-controlled"*/}
+                                {/*                value={value}*/}
+                                {/*                onChange={(event, newValue) => {*/}
+                                {/*                    setValue(newValue);*/}
+                                {/*                }}*/}
+                                {/*            />*/}
+                                {/*        </Box>*/}
+                                {/*    </div>*/}
+
+                                {/*</Grid>*/}
+
                             </Grid>
+
+                                );
+                            } )}
                         </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} >
-                                {/*<Item>calender</Item>*/}
-                            </Grid>
-                            <Grid item xs={12}>
+                    {/*<Grid item xs={4}>*/}
+                    {/*    <Grid container spacing={2}>*/}
+                    {/*        <Grid item xs={12} >*/}
 
-                                <h3>Upcoming All Task <div style={{color:'purple',fontWeight:"bold"}}>24</div> </h3>
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>*/}
+                    {/*            <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>*/}
+                    {/*                <div><h3>Upcoming All Task 24</h3></div>*/}
 
-                            </Grid>
-                            <Grid item xs={12} style={{backgroundColor:"lightgray"}}>
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
+                    {/*        <Grid item xs={12} style={{marginLeft:"5%",marginBottom:"10px"}}>*/}
+                    {/*            <div style={{display:"flex",flexDirection:"row",justifyContent:"center",backgroundColor:"#ECD2F2",borderRadius:"10px"}}>*/}
+                    {/*                <div><h3>Daily Task 1</h3></div>*/}
 
-                                <Grid item xs={12} >
-                                    <h3>Daily Task <div style={{color:'purple',fontWeight:"bold"}}>3</div> </h3>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={BlueMarket} alt={BlueMarket} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row",backgroundColor:"darkgrey"}}>
-                                        <div> <img src={FrockMe} alt={FrockMe} width={"50px"} height={"50px"} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"28px",color:"#7A3293"}}><h5>FrockMe Textile 8.00 am</h5></div>
-                                        <ArrowDropUpIcon />
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} >
-                                    FrockMe, No 133/02/01
-                                    Highlevel Road,
-                                    Kirulapana.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    0772595548 / 0705594661
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <h3>Description</h3>
-                                    This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.
-                                </Grid>
-                                <Grid item xs={12} >
-                                    <div style={{display:"flex",flexDirection:"row"}}>
-                                        <div> <img src={profile} alt={profile} style={{borderRadius:"100%",paddingLeft:"5px"}}/></div>
-                                        <div style={{paddingLeft:"30px"}}><h5>BlueMarket Privet Limited 8.00 am</h5></div>
+                    {/*        <Grid item xs={12} style={{marginLeft:"5%"}}>*/}
 
-                                        <ArrowDropDownIcon />
-                                    </div>
-                                </Grid>
+                    {/*            <div>*/}
+                    {/*                <Accordion>*/}
+                    {/*                    <AccordionSummary*/}
+                    {/*                        expandIcon={<ExpandMoreIcon />}*/}
+                    {/*                        aria-controls="panel1a-content"*/}
+                    {/*                        id="panel1a-header"*/}
+                    {/*                        style={{backgroundColor:"#ECD2F2"}}*/}
+                    {/*                    >*/}
+                    {/*                        <Typography><h4>FrockMe Textile</h4></Typography>*/}
+                    {/*                    </AccordionSummary>*/}
+                    {/*                    <AccordionDetails>*/}
+                    {/*                        <div style={{display:"flex",flexDirection:"column"}}>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                    {/*                                Date:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                    {/*                                2022 july 23*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                    {/*                                Time:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                    {/*                                9.00 am*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey",fontWeight:"bold"}}>*/}
+                    {/*                                Venue:*/}
+                    {/*                            </Grid>*/}
+                    {/*                            <Grid item xs={12} style={{backgroundColor:"lightgrey"}}>*/}
+                    {/*                                FrockMe, No 133/02/01*/}
+                    {/*                                Highlevel Road*/}
+                    {/*                                Kirulapana.*/}
+                    {/*                            </Grid>*/}
+                    {/*                        </div>*/}
+                    {/*                    </AccordionDetails>*/}
+                    {/*                </Accordion>*/}
 
-                            </Grid>
 
-                        </Grid>
-                    </Grid>
+                    {/*            </div>*/}
+
+
+                    {/*        </Grid>*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
 
                 </Grid>
             </Box>
