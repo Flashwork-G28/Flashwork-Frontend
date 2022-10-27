@@ -199,7 +199,11 @@ const Workers = () => {
                     console.log(error);
                 });
         }else {
-            navigate("/signUp/JobProvider", { replace: false });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Please Log as a Job Provider !"
+            })
         }
     };
 
@@ -392,7 +396,7 @@ const Workers = () => {
               </Typography>
               <Grid className={classes.cardSection}  container  spacing={0.0}  direction="row" justifyContent="center"  alignItems="center">
 
-                  {loading? workers.map((item: any) => {
+                  {loading? workers.map((item: any, index:number) => {
 
                      return (<div className={classes.cardBody}>
                               <Grid
@@ -419,8 +423,14 @@ const Workers = () => {
                                               backgroundColor: 'none',
                                               color: 'blueviolet',
                                               cursor: 'pointer'
-                                          }} onClick={() => handleClickFavorite(item.user_id)}>
-                                              {item.favourite == true ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</div>
+                                          }} onClick={() => {
+                                              console.log(item.favorite);
+                                            let temp  = workers.slice();
+                                              temp[index].favorite = !temp[index].favorite ;
+                                              setWorkers(temp);
+                                              handleClickFavorite(item.user_id);
+                                          }}>
+                                              {item.favorite.toString() == "true" ? <FavoriteIcon/> : <FavoriteBorderIcon/>}</div>
                                           <Stack direction="row" spacing={0.5} sx={{mt: 6.5, mr: 5.8}}
                                                  alignItems="flex-end">
                                               <StarIcon sx={{color: yellow[600]}}/>
