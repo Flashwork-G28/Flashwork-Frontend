@@ -20,7 +20,8 @@ import Switch from '@mui/material/Switch';
 import Grow from '@mui/material/Grow';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Theme } from '@mui/material/styles';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -68,18 +69,63 @@ const data2 = [
     ["December", 39, '#7986cb'],
 ];
 
-
-
 export default function AdminDashboard() {
-    useEffect(() => {
-        handleChange();
-    }, []);
+    const [details, setDetails] = useState<any>([]);
+
+    const viewUsers = () => {
+        axios.get('http://localhost:8000/users/').then((response) => {
+            const det = response.data;
+            // console.log(user_id);
+            det.map((item: any) => {
+                // const date1:any = new Date();
+                // const date2:any = new Date(item.pub_date);
+                // const diffTime = Math.abs(date2 - date1);
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                setDetails((prevState: any) => [...prevState, {
+                    user_id: item.user_id,
+                    img: item.img,
+                    first_name: item.first_name,
+                    last_name: item.last_name,
+                    nid: item.nid,
+                    street: item.street,
+                    city: item.city,
+                    mobile: item.mobile,
+                    email: item.email,
+                    type: item.type,
+                    status: item.status,
+                }])
+                // setDetails(
+                //     details.filter((details: { status: any; }) => {
+                //         return details.status == 0;
+                //     })
+                // );
+                // return null;
+            });
+        }).catch(function (error) {
+            if (error.response) {
+                // setAlertPara("Something went wrong when creating the user!");
+                // setVariant("danger");
+                // setShow(true);
+            }
+        })
+    }
+    // const [Jobp, setJobp] = useState<any>([]);
+    // setJobp(
+    //     details.filter((details: { type: any; }) => {
+    //         return details.type == "Job Provider";
+    //     })
+    // );
+    
+
+    // const length = (details.length);
+    // console.log(length);
 
     const cards1 = (
         <Box sx={{width: "auto", padding: '30px'}}> 
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >9</Typography></Item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Provider Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >3</Typography></Item>
             </Grid></Grid>
         </Box>
     );
@@ -88,7 +134,7 @@ export default function AdminDashboard() {
         <Box sx={{width: "auto", padding: '30px'}}>
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Seeker Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >7</Typography></Item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Job Seeker Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >2</Typography></Item>
             </Grid>
             </Grid>
         </Box>
@@ -98,7 +144,7 @@ export default function AdminDashboard() {
         <Box sx={{width: "auto", padding: '30px'}}>
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Manpower Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >7</Typography></Item>
+                <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;Manpower Count <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >1</Typography></Item>
             </Grid>
             </Grid>
         </Box>
@@ -114,7 +160,7 @@ export default function AdminDashboard() {
                                 Total Count
                             </Typography><br />
                             <Typography gutterBottom variant="h3" component="div">
-                                31
+                                {details.length}
                             </Typography>
                             <Typography gutterBottom fontSize={16} marginTop={5} fontWeight='lighter' component="div" align='left' justifyContent='center'>
                                 <div>
@@ -133,7 +179,7 @@ export default function AdminDashboard() {
         <Box sx={{width: "auto", padding: '30px'}}>
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Provider <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.32k</Typography></Item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Provider <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.5900</Typography></Item>
             </Grid>
             </Grid>
         </Box>
@@ -143,7 +189,7 @@ export default function AdminDashboard() {
         <Box sx={{width: "auto", padding: '30px'}}>
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Seeker <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.48k</Typography></Item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Job Seeker <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.2700</Typography></Item>
             </Grid>
             </Grid>
         </Box>
@@ -153,7 +199,7 @@ export default function AdminDashboard() {
         <Box sx={{width: "auto", padding: '30px'}}>
             <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
             <Grid item>
-            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Manpower Agency <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.78k</Typography></Item>
+            <Item><AssistantIcon sx={{position: 'relative', top: '4px'}} fontSize='small' color='secondary' />&nbsp;&nbsp;From Manpower Agency <br /> <Typography variant="h4" fontWeight='bold' padding='20px 0px 0px 0px' >Rs.1100</Typography></Item>
             </Grid>
             </Grid>
         </Box>
@@ -294,6 +340,11 @@ export default function AdminDashboard() {
     const handleChange = () => {
       setChecked((prev) => !prev);
     };
+
+    useEffect(() => {
+        handleChange();
+        viewUsers();
+    }, []);
 
   return (
     <div>

@@ -36,6 +36,10 @@ import { TransitionProps } from '@mui/material/transitions';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import {alpha } from '@mui/material/styles';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#4E2363',
@@ -55,6 +59,56 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
+  },
+}));
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  paddingRight: '2px',
+  padding: '15px',
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+  },
+  float: 'right',
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  // color: 'inherit',
+  color: '#4E2363',
+  borderRadius: '10px',
+  border: '1px solid #E5E5E5',
+  boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
+
+  '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+          width: '20ch',
+          '&:focus': {
+              width: '25ch',
+          },
+      },
   },
 }));
 
@@ -93,6 +147,7 @@ export default function AdminAllUsers() {
 
   // Get all users
   const [details, setDetails] = useState<any>([]);
+  const [newdetails, setnewDetails] = useState<any>([]);
 
     const viewUsers = () => {
         axios.get('http://localhost:8000/users/').then((response) => {
@@ -117,6 +172,20 @@ export default function AdminAllUsers() {
                     type: item.type,
                     status: item.status,
                 }])
+
+                setnewDetails((prevState: any) => [...prevState, {
+                  user_id: item.user_id,
+                  img: item.img,
+                  first_name: item.first_name,
+                  last_name: item.last_name,
+                  nid: item.nid,
+                  street: item.street,
+                  city: item.city,
+                  mobile: item.mobile,
+                  email: item.email,
+                  type: item.type,
+                  status: item.status,
+              }])
                 
             });
         }).catch(function (error) {
@@ -234,6 +303,28 @@ export default function AdminAllUsers() {
     }
   );
 
+  const [inputText, setInputText] = useState("");
+  let inputHandler = (e: any) => {
+    //convert input text to lower case
+    setInputText(e.target.value);
+    if(e.target.value != "") {
+      console.log(newdetails);
+        viewSearched(e.target.value);
+    }
+  };
+
+  const viewSearched = (e: any) => {
+    setInputText(e.target.value);
+    setnewDetails(
+      newdetails.filter((newdetails: { first_name: any}) => {
+            return (newdetails.first_name === e.target.value);
+        })
+    );
+    console.log(inputText);
+    console.log(newdetails);
+    // setOpen(true);
+  };
+
   useEffect(() => {
     viewUsers();
   }, []);
@@ -246,7 +337,17 @@ export default function AdminAllUsers() {
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
           <Grid item xs={5} alignItems='center'></Grid>
           <Grid item xs={7} alignItems='center'>
-            <AdminSearchUsers />
+            {/* <AdminSearchUsers /> */}
+            <Search style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+            <SearchIcon style={{paddingRight: '10px'}} />
+                <StyledInputBase
+                    placeholder="Search User..."
+                    inputProps={{ 'aria-label': 'search' }}
+                    // type = {'text'}
+                    value = {inputText}
+                    onChange = {viewSearched}
+                />
+            </Search>
           </Grid>
       </Grid>
 
