@@ -8,13 +8,14 @@ import TableViewIcon from '@mui/icons-material/TableView';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import HomeIcon from '@mui/icons-material/Home';
 
 
 export const JobProviderSidebarData = [
     {
         title: "Dashboard",
         path: "/dashboard/jobprovider/home",
-        icon: <AutoAwesomeMosaicIcon fontSize="large"/>
+        icon: <HomeIcon fontSize="large"/>
     },
     {
         title: "Profile",
@@ -41,9 +42,9 @@ export const JobProviderSidebarData = [
 
 export const JobSeekerSidebarData = [
     {
-        title: "Dashboard",
+        title: "Home",
         path: "/dashboard/jobseeker/home",
-        icon: <AutoAwesomeMosaicIcon fontSize="large"/>
+        icon: <HomeIcon fontSize="large"/>
     },
     {
         title: "Profile",

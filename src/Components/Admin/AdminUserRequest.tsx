@@ -140,10 +140,12 @@ export default function AdminUserRequest() {
           }).then((result) => {
             if (result.isConfirmed) {
               Swal.fire(
-                'Resolved!',
-                'Complaint has been resolved.',
-                'success'
-              )
+                'Declined!',
+                'Complaint has been declined.',
+                'error'
+              ).then((result) => {
+                window.location.reload();
+              })
             }
           })
         })
@@ -174,7 +176,9 @@ export default function AdminUserRequest() {
                 'Resolved!',
                 'Complaint has been resolved.',
                 'success'
-              )
+              ).then((result) => {
+                window.location.reload();
+              })
             }
           })
         })
@@ -212,7 +216,7 @@ export default function AdminUserRequest() {
             return (
               <TableBody>
                   <StyledTableRow key={item.id}>
-                    <StyledTableCell align="left">{item.id}</StyledTableCell>
+                    <StyledTableCell align="center">{item.id}</StyledTableCell>
                     <StyledTableCell align="left">{item.email}</StyledTableCell>
                     {/* <StyledTableCell align="left">{item.suspectID}</StyledTableCell> */}
                     <StyledTableCell align="left">{item.date}</StyledTableCell>
