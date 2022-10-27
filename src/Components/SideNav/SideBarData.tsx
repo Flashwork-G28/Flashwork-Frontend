@@ -34,8 +34,8 @@ export const JobProviderSidebarData = [
         icon: <EventNoteIcon fontSize="large"/>
     },
     {
-        title: "Help",
-        path: "/dashboard/jobprovider/help",
+        title: "Complaint",
+        path: "/dashboard/jobseeker/request",
         icon: <ForumIcon fontSize="large"/>
     },
 ];
@@ -51,19 +51,19 @@ export const JobSeekerSidebarData = [
         path: "/dashboard/jobseeker/profile",
         icon: <PersonIcon fontSize="large"/>
     },
-    {
-        title: "Request",
-        path: "/dashboard/jobseeker/request",
-        icon: <CoPresentIcon fontSize="large"/>
-    },
+    // {
+    //     title: "Request",
+    //     path: "/dashboard/jobseeker/request",
+    //     icon: <CoPresentIcon fontSize="large"/>
+    // },
     {
         title: "Report",
         path: "/dashboard/jobseeker/repeort",
         icon: <EventNoteIcon fontSize="large"/>
     },
     {
-        title: "Help",
-        path: "/dashboard/jobseeker/help",
+        title: "Complaint",
+        path: "/dashboard/jobseeker/request",
         icon: <ForumIcon fontSize="large"/>
     },
 ];
@@ -95,8 +95,8 @@ export const ManPowerSidebarData = [
         icon: <EventNoteIcon fontSize="large"/>
     },
     {
-        title: "Help",
-        path: "/dashboard/manpower/help",
+        title: "Complaint",
+        path: "/dashboard/jobseeker/request",
         icon: <ForumIcon fontSize="large"/>
     },
 ];
